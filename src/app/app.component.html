@@ -1,7 +1,7 @@
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo">Necesitoya</div>
+      <div class="logo">Profesional Java</div>
       <nav>
         <a href="#servicios">Servicios</a>
         <a href="#contacto">Contacto</a>
@@ -14,7 +14,7 @@
   <div class="container">
     <h1>🚀 Transformamos tu negocio con soluciones tecnológicas innovadoras</h1>
     <p>Desarrollamos aplicaciones modernas, rápidas y escalables para llevar tu empresa al siguiente nivel</p>
-    <a href="#" class="cta-button">Empezar ahora</a>
+    <!-- <a href="#" class="cta-button">Empezar ahora</a> -->
   </div>
 </section>
 
@@ -24,49 +24,6 @@
     <p class="section-subtitle">Soluciones tecnológicas integrales para tu negocio</p>
 
     <div class="services-grid">
-      <!-- Desarrollo Web -->
-      <div class="service-card">
-        <svg class="service-image" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
-            </linearGradient>
-          </defs>
-          <rect width="400" height="200" fill="url(#grad1)"/>
-          <rect x="50" y="40" width="300" height="120" rx="10" fill="white" opacity="0.1"/>
-          <circle cx="120" cy="80" r="15" fill="white" opacity="0.3"/>
-          <circle cx="280" cy="100" r="12" fill="white" opacity="0.3"/>
-          <rect x="100" y="120" width="200" height="4" fill="white" opacity="0.3"/>
-          <rect x="100" y="130" width="150" height="4" fill="white" opacity="0.2"/>
-        </svg>
-        <div class="service-content">
-          <h3 class="service-title">💻 Desarrollo Web</h3>
-          <p class="service-description">Aplicaciones web modernas, responsivas y de alto rendimiento con las tecnologías más actuales.</p>
-        </div>
-      </div>
-
-      <!-- Aplicaciones Móviles for test -->
-      <div class="service-card">
-        <svg class="service-image" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
-            </linearGradient>
-          </defs>
-          <rect width="400" height="200" fill="url(#grad2)"/>
-          <rect x="150" y="30" width="100" height="140" rx="8" fill="white" opacity="0.1" stroke="white" stroke-width="3"/>
-          <rect x="160" y="40" width="80" height="100" fill="white" opacity="0.2"/>
-          <circle cx="200" cy="155" r="5" fill="white" opacity="0.3"/>
-        </svg>
-        <div class="service-content">
-          <h3 class="service-title">📱 Aplicaciones Móviles</h3>
-          <p class="service-description">Apps nativas y multiplataforma diseñadas para ofrecer la mejor experiencia del usuario.</p>
-        </div>
-      </div>
-
-      <!-- Cloud & DevOps -->
       <div class="service-card">
         <svg class="service-image" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -88,29 +45,6 @@
         </div>
       </div>
 
-      <!-- Data & Analytics -->
-      <div class="service-card">
-        <svg class="service-image" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
-            </linearGradient>
-          </defs>
-          <rect width="400" height="200" fill="url(#grad4)"/>
-          <rect x="50" y="90" width="40" height="60" fill="white" opacity="0.2"/>
-          <rect x="110" y="70" width="40" height="80" fill="white" opacity="0.3"/>
-          <rect x="170" y="50" width="40" height="100" fill="white" opacity="0.2"/>
-          <rect x="230" y="75" width="40" height="75" fill="white" opacity="0.25"/>
-          <rect x="290" y="60" width="40" height="90" fill="white" opacity="0.2"/>
-        </svg>
-        <div class="service-content">
-          <h3 class="service-title">📊 Data & Analytics</h3>
-          <p class="service-description">Análisis de datos inteligente para tomar decisiones estratégicas basadas en información real.</p>
-        </div>
-      </div>
-
-      <!-- IA & Machine Learning -->
       <div class="service-card">
         <svg class="service-image" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -194,9 +128,41 @@
   </div>
 </section>
 
-<footer id="contacto">
+<section class="contact-form-section" id="contacto">
   <div class="container">
-    <p>&copy; 2024 Necesitoya. Transformamos tu negocio con tecnología.</p>
-    <p>Email: hola&#64;necesitoya.com | Tel: +34 XXX XXX XXX</p>
+    <h2 class="section-title">Contacto</h2>
+    <p class="section-subtitle">¿Tienes una pregunta o propuesta? Cuéntanos sobre tu proyecto</p>
+    
+    <form class="contact-form">
+      <div *ngIf="showSuccessMessage" class="success-message">
+        ✓ ¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo Electrónico</label>
+        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+      </div>
+      
+      <div class="form-group">
+        <label for="subject">Asunto</label>
+        <input type="text" id="subject" name="subject" required placeholder="Asunto de tu mensaje">
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" required placeholder="Cuéntanos más detalles sobre tu proyecto..." rows="6"></textarea>
+      </div>
+      
+      <input type="hidden" name="_captcha" value="false">
+      
+      <button type="submit" class="submit-button">Enviar Mensaje</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Profesional Java. Transformamos tu negocio con tecnología.</p>
+    <p>Email: felipe&#64;profesionaljava.es | Tel: +34 625 91 42 92</p>
   </div>
 </footer>
