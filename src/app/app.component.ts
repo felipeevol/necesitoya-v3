@@ -35,9 +35,9 @@ export class AppComponent {
   currentLocale: Locale = 'en';
   currentTranslations: Translation = translations.en;
   readonly languageOptions: ReadonlyArray<{ code: Locale; flagSrc: string }> = [
-    { code: 'pt', flagSrc: 'assets/flags/pt.svg' },
     { code: 'en', flagSrc: 'assets/flags/en.svg' },
     { code: 'es', flagSrc: 'assets/flags/es.svg' },
+    { code: 'pt', flagSrc: 'assets/flags/pt.svg' },
   ];
   private readonly languageStorageKey = 'app-language';
   private readonly languagePreferenceSourceKey = 'app-language-source';
