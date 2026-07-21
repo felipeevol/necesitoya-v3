@@ -12,7 +12,9 @@
             [attr.aria-label]="getLanguageLabel(language.code)"
             [attr.title]="getLanguageLabel(language.code)"
             (click)="setLanguage(language.code)">
-            <span aria-hidden="true">{{ language.flag }}</span>
+            <span aria-hidden="true" class="flag-icon">
+              <img [src]="language.flagSrc" alt="">
+            </span>
           </button>
         </div>
         <nav>

@@ -34,18 +34,19 @@ export class AppComponent {
   recaptchaToken: string | null = null;
   currentLocale: Locale = 'pt';
   currentTranslations: Translation = translations.pt;
-  readonly languageOptions: ReadonlyArray<{ code: Locale; flag: string }> = [
-    { code: 'pt', flag: '🇵🇹' },
-    { code: 'en', flag: '🇬🇧' },
-    { code: 'es', flag: '🇪🇸' },
+  readonly languageOptions: ReadonlyArray<{ code: Locale; flagSrc: string }> = [
+    { code: 'pt', flagSrc: 'assets/flags/pt.svg' },
+    { code: 'en', flagSrc: 'assets/flags/en.svg' },
+    { code: 'es', flagSrc: 'assets/flags/es.svg' },
   ];
   private readonly languageStorageKey = 'app-language';
+  private readonly fallbackLocale: Locale = 'pt';
 
   @ViewChild(RecaptchaComponent) recaptchaComponent?: RecaptchaComponent;
 
   constructor(@Inject(DOCUMENT) private readonly document: Document) {
     const savedLocale = localStorage.getItem(this.languageStorageKey);
-    this.applyLanguage(this.isLocale(savedLocale) ? savedLocale : 'pt');
+    this.applyLanguage(this.getInitialLocale(savedLocale));
   }
 
   get errorMessage(): string {
@@ -135,6 +136,25 @@ export class AppComponent {
     this.currentLocale = locale;
     this.currentTranslations = translations[locale];
     this.document.documentElement.lang = locale;
+  }
+
+  private getInitialLocale(savedLocale: string | null): Locale {
+    if (this.isLocale(savedLocale)) {
+      return savedLocale;
+    }
+
+    const browserLocales = this.document.defaultView?.navigator.languages
+      ?? [this.document.defaultView?.navigator.language].filter((value): value is string => Boolean(value));
+
+    for (const browserLocale of browserLocales) {
+      const normalizedLocale = browserLocale.toLowerCase().split('-')[0];
+
+      if (this.isLocale(normalizedLocale)) {
+        return normalizedLocale;
+      }
+    }
+
+    return this.fallbackLocale;
   }
 
   private isLocale(value: string | null): value is Locale {
