@@ -1,121 +1,81 @@
-<div class="privacy-layout">
-  <header class="page-header">
-    <div class="container header-content">
-      <a class="brand-link" routerLink="/">Profissional Java</a>
-      <a class="back-link" routerLink="/">Voltar à página principal</a>
+<div class="page-shell">
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a class="logo" routerLink="/">{{ currentTranslations.brandName }}</a>
+        <div class="header-actions">
+          <div class="language-switcher" [attr.aria-label]="currentTranslations.languages.label">
+            <button
+              *ngFor="let language of languageOptions"
+              type="button"
+              class="language-button"
+              [class.active]="language.code === currentLocale"
+              [attr.aria-label]="getLanguageLabel(language.code)"
+              [attr.title]="getLanguageLabel(language.code)"
+              (click)="setLanguage(language.code)">
+              <span aria-hidden="true" class="flag-icon">
+                <img [src]="language.flagSrc" alt="">
+              </span>
+            </button>
+          </div>
+
+          <nav>
+            <a [routerLink]="['/']" fragment="servicios">{{ currentTranslations.nav.services }}</a>
+            <a [routerLink]="['/']" fragment="contacto">{{ currentTranslations.nav.contact }}</a>
+          </nav>
+        </div>
+      </div>
     </div>
   </header>
+
+  <section class="hero policy-hero">
+    <div class="container">
+      <h1>{{ currentPolicy.title }}</h1>
+      <p>{{ currentPolicy.subtitle }}</p>
+    </div>
+  </section>
 
   <main class="privacy-main">
     <div class="container">
       <article class="privacy-card">
-        <h1>Política de Privacidade</h1>
-        <p class="updated-at"><strong>Última atualização:</strong> 22 de julho de 2026</p>
-
-        <section>
-          <h2>1. Introdução</h2>
-          <p>
-            A sua privacidade é importante para nós. Esta Política de Privacidade explica
-            como recolhemos, utilizamos e protegemos os seus dados pessoais quando utiliza
-            este website.
+        <div class="policy-meta">
+          <a class="back-home-link" routerLink="/">{{ currentPolicy.backToHome }}</a>
+          <p class="updated-at">
+            <strong>{{ currentPolicy.updatedAtLabel }}:</strong>
+            {{ currentPolicy.updatedAtValue }}
           </p>
-        </section>
+        </div>
 
-        <section>
-          <h2>2. Que dados recolhemos?</h2>
-          <p>Quando utiliza o formulário de contacto, podemos recolher os seguintes dados:</p>
-          <ul>
-            <li>Nome</li>
-            <li>Endereço de e-mail</li>
-            <li>Qualquer informação adicional que decida incluir na sua mensagem</li>
+        <section *ngFor="let section of currentPolicy.sections">
+          <h2>{{ section.title }}</h2>
+
+          <p *ngFor="let paragraph of section.paragraphs">{{ paragraph }}</p>
+
+          <ul *ngIf="section.items?.length">
+            <li *ngFor="let item of section.items">{{ item }}</li>
           </ul>
-        </section>
 
-        <section>
-          <h2>3. Para que utilizamos os seus dados?</h2>
-          <p>Os dados recolhidos são utilizados exclusivamente para:</p>
-          <ul>
-            <li>Responder às suas perguntas ou pedidos.</li>
-            <li>Comunicar consigo relativamente ao assunto do seu contacto.</li>
-          </ul>
-          <p>Não utilizamos os seus dados para marketing sem o seu consentimento.</p>
-        </section>
-
-        <section>
-          <h2>4. Base legal para o tratamento</h2>
-          <p>
-            Tratamos os seus dados com base no seu consentimento ao submeter o formulário de
-            contacto e/ou porque o tratamento é necessário para responder ao seu pedido.
-          </p>
-        </section>
-
-        <section>
-          <h2>5. Durante quanto tempo conservamos os dados?</h2>
-          <p>
-            Os seus dados serão conservados apenas durante o tempo necessário para responder ao
-            seu pedido ou cumprir obrigações legais aplicáveis.
-          </p>
-        </section>
-
-        <section>
-          <h2>6. Partilha de dados</h2>
-          <p>Os seus dados não são vendidos nem cedidos a terceiros para fins comerciais.</p>
-          <p>
-            Poderão ser tratados por fornecedores de serviços tecnológicos que suportam o
-            funcionamento deste website (por exemplo, alojamento ou envio de e-mails), sempre em
-            conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD).
-          </p>
-        </section>
-
-        <section>
-          <h2>7. Segurança</h2>
-          <p>
-            Adotamos medidas técnicas e organizativas adequadas para proteger os seus dados contra
-            acesso não autorizado, perda, alteração ou divulgação.
-          </p>
-        </section>
-
-        <section>
-          <h2>8. Os seus direitos</h2>
-          <p>Nos termos do RGPD, tem o direito de:</p>
-          <ul>
-            <li>Aceder aos seus dados pessoais.</li>
-            <li>Solicitar a retificação de dados incorretos.</li>
-            <li>Solicitar o apagamento dos seus dados.</li>
-            <li>Solicitar a limitação do tratamento.</li>
-            <li>Opor-se ao tratamento dos seus dados.</li>
-            <li>Solicitar a portabilidade dos dados, quando aplicável.</li>
-            <li>
-              Retirar o consentimento a qualquer momento, sem afetar a licitude do tratamento
-              realizado anteriormente.
-            </li>
-          </ul>
-          <p>
-            Para exercer qualquer destes direitos, contacte-nos através do endereço indicado
-            abaixo.
-          </p>
-        </section>
-
-        <section>
-          <h2>9. Contacto</h2>
-          <p>
-            Se tiver alguma questão sobre esta Política de Privacidade ou sobre o tratamento dos
-            seus dados pessoais, pode contactar-nos através de:
-          </p>
-          <p>
-            <strong>E-mail:</strong>
+          <p *ngIf="section.emailLabel">
+            <strong>{{ section.emailLabel }}: </strong>
             <a href="mailto:felipe@profesionaljava.es">felipe&#64;profesionaljava.es</a>
-          </p>
-        </section>
-
-        <section>
-          <h2>10. Alterações a esta política</h2>
-          <p>
-            Reservamo-nos o direito de atualizar esta Política de Privacidade sempre que
-            necessário. A versão mais recente estará sempre disponível nesta página.
           </p>
         </section>
       </article>
     </div>
   </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 {{ currentTranslations.brandName }}. {{ currentTranslations.footer.tagline }}</p>
+      <p>{{ currentTranslations.footer.emailLabel }}: felipe&#64;profesionaljava.es | {{ currentTranslations.footer.phoneLabel }}: +34 625 91 42 92</p>
+      <nav class="footer-links" [attr.aria-label]="currentTranslations.footer.linksLabel">
+        <a class="footer-link" routerLink="/politica-de-privacidade">
+          {{ currentTranslations.footer.privacyPolicy }}
+        </a>
+        <button type="button" class="footer-link">
+          {{ currentTranslations.footer.cookiePolicy }}
+        </button>
+      </nav>
+    </div>
+  </footer>
 </div>
