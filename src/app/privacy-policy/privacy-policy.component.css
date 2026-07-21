@@ -155,7 +155,7 @@ header nav a:hover {
 }
 
 .privacy-card {
-  background: white;
+  background: #fff;
   max-width: 960px;
   margin: 0 auto;
   border-radius: 24px;
@@ -192,33 +192,11 @@ header nav a:hover {
   color: var(--text-light);
 }
 
-section + section {
-  margin-top: 28px;
-}
-
-h2 {
-  margin: 0 0 12px;
-  font-size: 1.35rem;
-}
-
-p,
-li {
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-p + p {
-  margin-top: 12px;
-}
-
-ul {
-  margin: 12px 0 0;
-  padding-left: 24px;
-}
-
-li + li {
-  margin-top: 8px;
-}
+.policy-section{padding:1.5rem;border:1px solid rgba(191,219,254,.45);background:#f8fbff}
+.policy-section+.policy-section{margin-top:28px}
+.privacy-card h2{margin:0 0 12px;font-size:1.35rem}
+.privacy-card p,.privacy-card li{font-size:1rem;line-height:1.7}
+.policy-list{margin:1rem 0 0;padding:1rem 1.25rem 1rem 2.5rem;border:1px solid rgba(148,163,184,.16);background:#fff}
 
 a {
   color: var(--accent);
