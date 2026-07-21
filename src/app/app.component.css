@@ -268,6 +268,16 @@ footer {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
+.field-error {
+  margin-top: 8px;
+  color: #dc2626;
+  font-size: 0.85rem;
+}
+
+.recaptcha-group {
+  align-items: center;
+}
+
 .submit-button {
   padding: 14px 30px;
   background: linear-gradient(135deg, #3b82f6, #8b5cf6);
@@ -289,6 +299,13 @@ footer {
   transform: translateY(0);
 }
 
+.submit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
 .success-message {
   background-color: #10b981;
   color: white;
@@ -298,6 +315,15 @@ footer {
   text-align: center;
   font-weight: 600;
   animation: slideIn 0.3s ease-in-out;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
 }
 
 @keyframes slideIn {
