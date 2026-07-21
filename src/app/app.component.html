@@ -2,26 +2,40 @@
   <div class="container">
     <div class="header-content">
       <div class="logo">Profesional Java</div>
-      <nav>
-        <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
+      <div class="header-actions">
+        <div class="language-switcher" [attr.aria-label]="currentTranslations.languages.label">
+          <button
+            *ngFor="let language of languageOptions"
+            type="button"
+            class="language-button"
+            [class.active]="language.code === currentLocale"
+            [attr.aria-label]="getLanguageLabel(language.code)"
+            [attr.title]="getLanguageLabel(language.code)"
+            (click)="setLanguage(language.code)">
+            <span aria-hidden="true">{{ language.flag }}</span>
+          </button>
+        </div>
+        <nav>
+          <a href="#servicios">{{ currentTranslations.nav.services }}</a>
+          <a href="#contacto">{{ currentTranslations.nav.contact }}</a>
+        </nav>
+      </div>
     </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="container">
-    <h1>🚀 Transformamos tu negocio con soluciones tecnológicas innovadoras</h1>
-    <p>Desarrollamos aplicaciones modernas, rápidas y escalables para llevar tu empresa al siguiente nivel</p>
+    <h1>{{ currentTranslations.hero.title }}</h1>
+    <p>{{ currentTranslations.hero.subtitle }}</p>
     <!-- <a href="#" class="cta-button">Empezar ahora</a> -->
   </div>
 </section>
 
 <section class="services-section" id="servicios">
   <div class="container">
-    <h2 class="section-title">Nuestros Servicios</h2>
-    <p class="section-subtitle">Soluciones tecnológicas integrales para tu negocio</p>
+    <h2 class="section-title">{{ currentTranslations.services.title }}</h2>
+    <p class="section-subtitle">{{ currentTranslations.services.subtitle }}</p>
 
     <div class="services-grid">
       <div class="service-card">
@@ -40,8 +54,8 @@
           <line x1="235" y1="95" x2="270" y2="80" stroke="white" stroke-width="2" opacity="0.3"/>
         </svg>
         <div class="service-content">
-          <h3 class="service-title">☁️ Cloud & DevOps</h3>
-          <p class="service-description">Infraestructura escalable, segura y eficiente en la nube con deploy automatizado.</p>
+          <h3 class="service-title">{{ currentTranslations.services.cloud.title }}</h3>
+          <p class="service-description">{{ currentTranslations.services.cloud.description }}</p>
         </div>
       </div>
 
@@ -61,8 +75,8 @@
           <path d="M 220 100 Q 250 105 300 115" stroke="white" stroke-width="1.5" fill="none" opacity="0.4"/>
         </svg>
         <div class="service-content">
-          <h3 class="service-title">🤖 IA & Machine Learning</h3>
-          <p class="service-description">Soluciones de inteligencia artificial para automatizar procesos y generar insights.</p>
+          <h3 class="service-title">{{ currentTranslations.services.ai.title }}</h3>
+          <p class="service-description">{{ currentTranslations.services.ai.description }}</p>
         </div>
       </div>
 
@@ -82,8 +96,8 @@
           <circle cx="250" cy="80" r="4" fill="white"/>
         </svg>
         <div class="service-content">
-          <h3 class="service-title">💼 Consultoría TI</h3>
-          <p class="service-description">Asesoría experta para optimizar tu estrategia tecnológica y procesos empresariales.</p>
+          <h3 class="service-title">{{ currentTranslations.services.consulting.title }}</h3>
+          <p class="service-description">{{ currentTranslations.services.consulting.description }}</p>
         </div>
       </div>
     </div>
@@ -92,37 +106,37 @@
 
 <section class="features-section">
   <div class="container">
-    <h2 class="section-title">¿Por qué elegirnos?</h2>
+    <h2 class="section-title">{{ currentTranslations.features.title }}</h2>
     <div class="features-grid">
       <div class="feature">
         <div class="feature-icon">⚡</div>
-        <h3 class="feature-title">Rápido</h3>
-        <p class="feature-text">Desarrollo ágil con metodologías probadas para entregar resultados en tiempo récord.</p>
+        <h3 class="feature-title">{{ currentTranslations.features.speed.title }}</h3>
+        <p class="feature-text">{{ currentTranslations.features.speed.description }}</p>
       </div>
       <div class="feature">
         <div class="feature-icon">🔒</div>
-        <h3 class="feature-title">Seguro</h3>
-        <p class="feature-text">Máximos estándares de seguridad para proteger tu información y la de tus clientes.</p>
+        <h3 class="feature-title">{{ currentTranslations.features.security.title }}</h3>
+        <p class="feature-text">{{ currentTranslations.features.security.description }}</p>
       </div>
       <div class="feature">
         <div class="feature-icon">📈</div>
-        <h3 class="feature-title">Escalable</h3>
-        <p class="feature-text">Soluciones que crecen con tu negocio, adaptándose a tus necesidades futuras.</p>
+        <h3 class="feature-title">{{ currentTranslations.features.scalability.title }}</h3>
+        <p class="feature-text">{{ currentTranslations.features.scalability.description }}</p>
       </div>
       <div class="feature">
         <div class="feature-icon">🎯</div>
-        <h3 class="feature-title">Personalizado</h3>
-        <p class="feature-text">Cada solución es tailored a tus necesidades específicas, no genéricas.</p>
+        <h3 class="feature-title">{{ currentTranslations.features.customization.title }}</h3>
+        <p class="feature-text">{{ currentTranslations.features.customization.description }}</p>
       </div>
       <div class="feature">
         <div class="feature-icon">🤝</div>
-        <h3 class="feature-title">Soporte 24/7</h3>
-        <p class="feature-text">Equipo siempre disponible para ayudarte cuando lo necesites.</p>
+        <h3 class="feature-title">{{ currentTranslations.features.support.title }}</h3>
+        <p class="feature-text">{{ currentTranslations.features.support.description }}</p>
       </div>
       <div class="feature">
         <div class="feature-icon">💡</div>
-        <h3 class="feature-title">Innovación</h3>
-        <p class="feature-text">Siempre actualizado con las últimas tecnologías y mejores prácticas.</p>
+        <h3 class="feature-title">{{ currentTranslations.features.innovation.title }}</h3>
+        <p class="feature-text">{{ currentTranslations.features.innovation.description }}</p>
       </div>
     </div>
   </div>
@@ -130,12 +144,12 @@
 
 <section class="contact-form-section" id="contacto">
   <div class="container">
-    <h2 class="section-title">Contacto</h2>
-    <p class="section-subtitle">¿Tienes una pregunta o propuesta? Cuéntanos sobre tu proyecto</p>
+    <h2 class="section-title">{{ currentTranslations.contact.title }}</h2>
+    <p class="section-subtitle">{{ currentTranslations.contact.subtitle }}</p>
     
     <form class="contact-form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
       <div class="form-group">
-        <label for="email">Correo Electrónico</label>
+        <label for="email">{{ currentTranslations.contact.emailLabel }}</label>
         <input
           type="email"
           id="email"
@@ -144,14 +158,14 @@
           #email="ngModel"
           required
           email
-          placeholder="tu@email.com">
+          [placeholder]="currentTranslations.contact.emailPlaceholder">
         <span class="field-error" *ngIf="email.invalid && email.touched">
-          Ingresa un correo electrónico válido.
+          {{ currentTranslations.contact.errors.email }}
         </span>
       </div>
       
       <div class="form-group">
-        <label for="subject">Asunto</label>
+        <label for="subject">{{ currentTranslations.contact.subjectLabel }}</label>
         <input
           type="text"
           id="subject"
@@ -159,24 +173,24 @@
           ngModel
           #subject="ngModel"
           required
-          placeholder="Asunto de tu mensaje">
+          [placeholder]="currentTranslations.contact.subjectPlaceholder">
         <span class="field-error" *ngIf="subject.invalid && subject.touched">
-          El asunto es obligatorio.
+          {{ currentTranslations.contact.errors.subject }}
         </span>
       </div>
       
       <div class="form-group">
-        <label for="message">Mensaje</label>
+        <label for="message">{{ currentTranslations.contact.messageLabel }}</label>
         <textarea
           id="message"
           name="message"
           ngModel
           #message="ngModel"
           required
-          placeholder="Cuéntanos más detalles sobre tu proyecto..."
+          [placeholder]="currentTranslations.contact.messagePlaceholder"
           rows="6"></textarea>
         <span class="field-error" *ngIf="message.invalid && message.touched">
-          El mensaje es obligatorio.
+          {{ currentTranslations.contact.errors.message }}
         </span>
       </div>
 
@@ -185,7 +199,7 @@
       </div>
 
       <div *ngIf="showSuccessMessage" class="success-message">
-        ✓ ¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.
+        {{ currentTranslations.contact.successMessage }}
       </div>
 
       <div *ngIf="errorMessage" class="error-message">
@@ -196,7 +210,7 @@
         type="submit"
         class="submit-button"
         [disabled]="contactForm.invalid || !recaptchaToken || isSubmitting">
-        {{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}
+        {{ isSubmitting ? currentTranslations.contact.submitLoading : currentTranslations.contact.submit }}
       </button>
     </form>
   </div>
@@ -204,7 +218,7 @@
 
 <footer>
   <div class="container">
-    <p>&copy; 2026 Profesional Java. Transformamos tu negocio con tecnología.</p>
-    <p>Email: felipe&#64;profesionaljava.es | Tel: +34 625 91 42 92</p>
+    <p>&copy; 2026 Profesional Java. {{ currentTranslations.footer.tagline }}</p>
+    <p>{{ currentTranslations.footer.emailLabel }}: felipe&#64;profesionaljava.es | {{ currentTranslations.footer.phoneLabel }}: +34 625 91 42 92</p>
   </div>
 </footer>

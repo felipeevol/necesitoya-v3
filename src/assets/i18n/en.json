@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "🚀 We transform your business with innovative technology solutions",
+    "subtitle": "We build modern, fast, and scalable applications to take your company to the next level"
+  },
+  "services": {
+    "title": "Our services",
+    "subtitle": "End-to-end technology solutions for your business",
+    "cloud": {
+      "title": "☁️ Cloud & DevOps",
+      "description": "Scalable, secure, and efficient cloud infrastructure with automated deployment."
+    },
+    "ai": {
+      "title": "🤖 AI & Machine Learning",
+      "description": "Artificial intelligence solutions to automate processes and generate insights."
+    },
+    "consulting": {
+      "title": "💼 IT Consulting",
+      "description": "Expert guidance to optimize your technology strategy and business processes."
+    }
+  },
+  "features": {
+    "title": "Why choose us?",
+    "speed": {
+      "title": "Fast",
+      "description": "Agile delivery with proven methodologies to produce results in record time."
+    },
+    "security": {
+      "title": "Secure",
+      "description": "Top security standards to protect your data and your customers' information."
+    },
+    "scalability": {
+      "title": "Scalable",
+      "description": "Solutions that grow with your business and adapt to future needs."
+    },
+    "customization": {
+      "title": "Tailored",
+      "description": "Every solution is built around your specific needs, never generic."
+    },
+    "support": {
+      "title": "24/7 Support",
+      "description": "A team always available to help whenever you need it."
+    },
+    "innovation": {
+      "title": "Innovation",
+      "description": "Always up to date with the latest technologies and best practices."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Do you have a question or proposal? Tell us about your project",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Message subject",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us more about your project...",
+    "submit": "Send message",
+    "submitLoading": "Sending...",
+    "successMessage": "✓ Message sent successfully! We will get back to you soon.",
+    "errors": {
+      "email": "Enter a valid email address.",
+      "subject": "Subject is required.",
+      "message": "Message is required.",
+      "recaptchaRequired": "Complete the reCAPTCHA before sending your message.",
+      "submitFailed": "We could not send your message. Please try again shortly."
+    }
+  },
+  "footer": {
+    "tagline": "We transform your business with technology.",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone"
+  },
+  "languages": {
+    "label": "Language",
+    "options": {
+      "pt": "Portuguese",
+      "en": "English",
+      "es": "Spanish"
+    }
+  }
+}

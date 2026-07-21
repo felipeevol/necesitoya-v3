@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "🚀 Transformamos tu negocio con soluciones tecnológicas innovadoras",
+    "subtitle": "Desarrollamos aplicaciones modernas, rápidas y escalables para llevar tu empresa al siguiente nivel"
+  },
+  "services": {
+    "title": "Nuestros servicios",
+    "subtitle": "Soluciones tecnológicas integrales para tu negocio",
+    "cloud": {
+      "title": "☁️ Cloud & DevOps",
+      "description": "Infraestructura escalable, segura y eficiente en la nube con despliegue automatizado."
+    },
+    "ai": {
+      "title": "🤖 IA & Machine Learning",
+      "description": "Soluciones de inteligencia artificial para automatizar procesos y generar insights."
+    },
+    "consulting": {
+      "title": "💼 Consultoría TI",
+      "description": "Asesoría experta para optimizar tu estrategia tecnológica y tus procesos empresariales."
+    }
+  },
+  "features": {
+    "title": "¿Por qué elegirnos?",
+    "speed": {
+      "title": "Rápido",
+      "description": "Desarrollo ágil con metodologías probadas para entregar resultados en tiempo récord."
+    },
+    "security": {
+      "title": "Seguro",
+      "description": "Máximos estándares de seguridad para proteger tu información y la de tus clientes."
+    },
+    "scalability": {
+      "title": "Escalable",
+      "description": "Soluciones que crecen con tu negocio, adaptándose a tus necesidades futuras."
+    },
+    "customization": {
+      "title": "Personalizado",
+      "description": "Cada solución se adapta a tus necesidades específicas, nunca de forma genérica."
+    },
+    "support": {
+      "title": "Soporte 24/7",
+      "description": "Equipo siempre disponible para ayudarte cuando lo necesites."
+    },
+    "innovation": {
+      "title": "Innovación",
+      "description": "Siempre actualizados con las últimas tecnologías y mejores prácticas."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes una pregunta o propuesta? Cuéntanos sobre tu proyecto",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "tu@email.com",
+    "subjectLabel": "Asunto",
+    "subjectPlaceholder": "Asunto de tu mensaje",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Cuéntanos más detalles sobre tu proyecto...",
+    "submit": "Enviar mensaje",
+    "submitLoading": "Enviando...",
+    "successMessage": "✓ ¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.",
+    "errors": {
+      "email": "Introduce un correo electrónico válido.",
+      "subject": "El asunto es obligatorio.",
+      "message": "El mensaje es obligatorio.",
+      "recaptchaRequired": "Completa el reCAPTCHA antes de enviar tu mensaje.",
+      "submitFailed": "No pudimos enviar tu mensaje. Inténtalo de nuevo en unos instantes."
+    }
+  },
+  "footer": {
+    "tagline": "Transformamos tu negocio con tecnología.",
+    "emailLabel": "Email",
+    "phoneLabel": "Tel."
+  },
+  "languages": {
+    "label": "Idioma",
+    "options": {
+      "pt": "Portugués",
+      "en": "Inglés",
+      "es": "Español"
+    }
+  }
+}

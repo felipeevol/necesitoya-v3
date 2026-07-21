@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "services": "Serviços",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "🚀 Transformamos o seu negócio com soluções tecnológicas inovadoras",
+    "subtitle": "Desenvolvemos aplicações modernas, rápidas e escaláveis para levar a sua empresa ao próximo nível"
+  },
+  "services": {
+    "title": "Os nossos serviços",
+    "subtitle": "Soluções tecnológicas integrais para o seu negócio",
+    "cloud": {
+      "title": "☁️ Cloud & DevOps",
+      "description": "Infraestrutura escalável, segura e eficiente na nuvem com deploy automatizado."
+    },
+    "ai": {
+      "title": "🤖 IA & Machine Learning",
+      "description": "Soluções de inteligência artificial para automatizar processos e gerar insights."
+    },
+    "consulting": {
+      "title": "💼 Consultoria TI",
+      "description": "Assessoria especializada para otimizar a sua estratégia tecnológica e os seus processos empresariais."
+    }
+  },
+  "features": {
+    "title": "Por que escolher-nos?",
+    "speed": {
+      "title": "Rápido",
+      "description": "Desenvolvimento ágil com metodologias comprovadas para entregar resultados em tempo recorde."
+    },
+    "security": {
+      "title": "Seguro",
+      "description": "Os mais altos padrões de segurança para proteger a sua informação e a dos seus clientes."
+    },
+    "scalability": {
+      "title": "Escalável",
+      "description": "Soluções que crescem com o seu negócio, adaptando-se às suas necessidades futuras."
+    },
+    "customization": {
+      "title": "Personalizado",
+      "description": "Cada solução é feita à medida das suas necessidades específicas, nunca genérica."
+    },
+    "support": {
+      "title": "Suporte 24/7",
+      "description": "Equipa sempre disponível para ajudar quando precisar."
+    },
+    "innovation": {
+      "title": "Inovação",
+      "description": "Sempre atualizados com as tecnologias mais recentes e as melhores práticas."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Tem uma pergunta ou proposta? Fale-nos sobre o seu projeto",
+    "emailLabel": "Correio eletrónico",
+    "emailPlaceholder": "oseu@email.com",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "Assunto da sua mensagem",
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Conte-nos mais detalhes sobre o seu projeto...",
+    "submit": "Enviar mensagem",
+    "submitLoading": "A enviar...",
+    "successMessage": "✓ Mensagem enviada com sucesso! Entraremos em contacto em breve.",
+    "errors": {
+      "email": "Introduza um correio eletrónico válido.",
+      "subject": "O assunto é obrigatório.",
+      "message": "A mensagem é obrigatória.",
+      "recaptchaRequired": "Complete o reCAPTCHA antes de enviar a sua mensagem.",
+      "submitFailed": "Não conseguimos enviar a sua mensagem. Tente novamente dentro de instantes."
+    }
+  },
+  "footer": {
+    "tagline": "Transformamos o seu negócio com tecnologia.",
+    "emailLabel": "Email",
+    "phoneLabel": "Tel."
+  },
+  "languages": {
+    "label": "Idioma",
+    "options": {
+      "pt": "Português",
+      "en": "Inglês",
+      "es": "Espanhol"
+    }
+  }
+}
