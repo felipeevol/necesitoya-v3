@@ -32,20 +32,22 @@ export class AppComponent {
   errorMessageKey: ErrorMessageKey | null = null;
   isSubmitting = false;
   recaptchaToken: string | null = null;
-  currentLocale: Locale = 'pt';
-  currentTranslations: Translation = translations.pt;
+  currentLocale: Locale = 'en';
+  currentTranslations: Translation = translations.en;
   readonly languageOptions: ReadonlyArray<{ code: Locale; flagSrc: string }> = [
     { code: 'pt', flagSrc: 'assets/flags/pt.svg' },
     { code: 'en', flagSrc: 'assets/flags/en.svg' },
     { code: 'es', flagSrc: 'assets/flags/es.svg' },
   ];
   private readonly languageStorageKey = 'app-language';
-  private readonly fallbackLocale: Locale = 'pt';
+  private readonly languagePreferenceSourceKey = 'app-language-source';
+  private readonly manualLanguagePreference = 'manual';
+  private readonly fallbackLocale: Locale = 'en';
 
   @ViewChild(RecaptchaComponent) recaptchaComponent?: RecaptchaComponent;
 
   constructor(@Inject(DOCUMENT) private readonly document: Document) {
-    const savedLocale = localStorage.getItem(this.languageStorageKey);
+    const savedLocale = this.getSavedLocale();
     this.applyLanguage(this.getInitialLocale(savedLocale));
   }
 
@@ -62,6 +64,7 @@ export class AppComponent {
 
     this.applyLanguage(locale);
     localStorage.setItem(this.languageStorageKey, locale);
+    localStorage.setItem(this.languagePreferenceSourceKey, this.manualLanguagePreference);
   }
 
   getLanguageLabel(locale: Locale): string {
@@ -143,11 +146,16 @@ export class AppComponent {
       return savedLocale;
     }
 
-    const browserLocales = this.document.defaultView?.navigator.languages
-      ?? [this.document.defaultView?.navigator.language].filter((value): value is string => Boolean(value));
+    const navigator = this.document.defaultView?.navigator;
+    const browserLocales = [
+      navigator?.language,
+      ...(navigator?.languages ?? []),
+    ].filter((value, index, locales): value is string =>
+      Boolean(value) && locales.indexOf(value) === index,
+    );
 
     for (const browserLocale of browserLocales) {
-      const normalizedLocale = browserLocale.toLowerCase().split('-')[0];
+      const normalizedLocale = this.normalizeLocale(browserLocale);
 
       if (this.isLocale(normalizedLocale)) {
         return normalizedLocale;
@@ -157,8 +165,21 @@ export class AppComponent {
     return this.fallbackLocale;
   }
 
+  private getSavedLocale(): string | null {
+    if (localStorage.getItem(this.languagePreferenceSourceKey) !== this.manualLanguagePreference) {
+      localStorage.removeItem(this.languageStorageKey);
+      return null;
+    }
+
+    return localStorage.getItem(this.languageStorageKey);
+  }
+
   private isLocale(value: string | null): value is Locale {
     return value === 'pt' || value === 'en' || value === 'es';
+  }
+
+  private normalizeLocale(locale: string): string {
+    return locale.toLowerCase().split('-')[0];
   }
 
   private resetRecaptcha(): void {
