@@ -222,5 +222,13 @@
   <div class="container">
     <p>&copy; 2026 {{ currentTranslations.brandName }}. {{ currentTranslations.footer.tagline }}</p>
     <p>{{ currentTranslations.footer.emailLabel }}: felipe&#64;profesionaljava.es | {{ currentTranslations.footer.phoneLabel }}: +34 625 91 42 92</p>
+    <nav class="footer-links" [attr.aria-label]="currentTranslations.footer.linksLabel">
+      <button type="button" class="footer-link">
+        {{ currentTranslations.footer.privacyPolicy }}
+      </button>
+      <button type="button" class="footer-link">
+        {{ currentTranslations.footer.cookiePolicy }}
+      </button>
+    </nav>
   </div>
 </footer>

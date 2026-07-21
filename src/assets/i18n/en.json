@@ -74,7 +74,10 @@
   "footer": {
     "tagline": "We transform your business with technology.",
     "emailLabel": "Email",
-    "phoneLabel": "Phone"
+    "phoneLabel": "Phone",
+    "linksLabel": "Legal links",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
   },
   "languages": {
     "label": "Language",
