@@ -1,0 +1,20 @@
+<aside
+  *ngIf="showBanner"
+  class="cookie-banner"
+  [attr.aria-label]="currentContent.title"
+  aria-live="polite">
+  <div class="cookie-banner__content">
+    <div class="cookie-banner__text">
+      <h2>{{ currentContent.title }}</h2>
+      <p>
+        {{ currentContent.description }}
+        {{ currentContent.policyLeadIn }}
+        <a routerLink="/politica-de-cookies">{{ currentContent.linkLabel }}</a>.
+      </p>
+    </div>
+
+    <button type="button" class="cookie-banner__action" (click)="acknowledge()">
+      {{ currentContent.actionLabel }}
+    </button>
+  </div>
+</aside>

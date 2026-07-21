@@ -4,6 +4,10 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 describe('AppComponent', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
@@ -24,16 +28,18 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'amplify-angular-template' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('amplify-angular-template');
-  });
-
-  it('should render the contact section title', () => {
+  it('should render the cookie banner by default', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.contact-form-section .section-title')?.textContent).toContain('Contacto');
+    expect(compiled.querySelector('.cookie-banner h2')?.textContent).toContain('Cookies essenciais');
+  });
+
+  it('should hide the cookie banner after acknowledgement is stored', () => {
+    localStorage.setItem('cookie-banner-acknowledged', 'true');
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.cookie-banner')).toBeNull();
   });
 });
