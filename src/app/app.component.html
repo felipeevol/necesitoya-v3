@@ -1,7 +1,7 @@
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo">Profesional Java</div>
+      <div class="logo">{{ currentTranslations.brandName }}</div>
       <div class="header-actions">
         <div class="language-switcher" [attr.aria-label]="currentTranslations.languages.label">
           <button
@@ -220,7 +220,7 @@
 
 <footer>
   <div class="container">
-    <p>&copy; 2026 Profesional Java. {{ currentTranslations.footer.tagline }}</p>
+    <p>&copy; 2026 {{ currentTranslations.brandName }}. {{ currentTranslations.footer.tagline }}</p>
     <p>{{ currentTranslations.footer.emailLabel }}: felipe&#64;profesionaljava.es | {{ currentTranslations.footer.phoneLabel }}: +34 625 91 42 92</p>
   </div>
 </footer>
