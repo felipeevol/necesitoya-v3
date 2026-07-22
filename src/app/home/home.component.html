@@ -1,31 +1,3 @@
-<header>
-  <div class="container">
-    <div class="header-content">
-      <div class="logo">{{ currentTranslations.brandName }}</div>
-      <div class="header-actions">
-        <div class="language-switcher" [attr.aria-label]="currentTranslations.languages.label">
-          <button
-            *ngFor="let language of languageOptions"
-            type="button"
-            class="language-button"
-            [class.active]="language.code === currentLocale"
-            [attr.aria-label]="getLanguageLabel(language.code)"
-            [attr.title]="getLanguageLabel(language.code)"
-            (click)="setLanguage(language.code)">
-            <span aria-hidden="true" class="flag-icon">
-              <img [src]="language.flagSrc" alt="">
-            </span>
-          </button>
-        </div>
-        <nav>
-          <a href="#servicios">{{ currentTranslations.nav.services }}</a>
-          <a href="#contacto">{{ currentTranslations.nav.contact }}</a>
-        </nav>
-      </div>
-    </div>
-  </div>
-</header>
-
 <section class="hero">
   <div class="container">
     <h1>{{ currentTranslations.hero.title }}</h1>

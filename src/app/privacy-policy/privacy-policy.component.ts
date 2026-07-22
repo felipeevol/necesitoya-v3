@@ -1,18 +1,8 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import enTranslations from '../../assets/i18n/en.json';
-import esTranslations from '../../assets/i18n/es.json';
-import ptTranslations from '../../assets/i18n/pt.json';
-
-const translations = {
-  pt: ptTranslations,
-  en: enTranslations,
-  es: esTranslations,
-};
-
-type Locale = keyof typeof translations;
-type Translation = (typeof translations)[Locale];
+import { SiteLanguageService } from '../shared/site-language.service';
+import { Locale, Translation } from '../shared/site-translations';
 
 type PolicySection = {
   title: string;
@@ -314,83 +304,17 @@ const policyContent: Record<Locale, PolicyContent> = {
   styleUrl: './privacy-policy.component.css',
 })
 export class PrivacyPolicyComponent {
-  currentLocale: Locale = 'en';
-  currentTranslations: Translation = translations.en;
-  currentPolicy: PolicyContent = policyContent.en;
-  readonly languageOptions: ReadonlyArray<{ code: Locale; flagSrc: string }> = [
-    { code: 'en', flagSrc: 'assets/flags/en.svg' },
-    { code: 'es', flagSrc: 'assets/flags/es.svg' },
-    { code: 'pt', flagSrc: 'assets/flags/pt.svg' },
-  ];
-  private readonly languageStorageKey = 'app-language';
-  private readonly languagePreferenceSourceKey = 'app-language-source';
-  private readonly manualLanguagePreference = 'manual';
-  private readonly fallbackLocale: Locale = 'en';
+  private readonly language = inject(SiteLanguageService);
 
-  constructor(@Inject(DOCUMENT) private readonly document: Document) {
-    const savedLocale = this.getSavedLocale();
-    this.applyLanguage(this.getInitialLocale(savedLocale));
+  get currentLocale(): Locale {
+    return this.language.currentLocale();
   }
 
-  setLanguage(locale: Locale): void {
-    if (locale === this.currentLocale) {
-      return;
-    }
-
-    this.applyLanguage(locale);
-    localStorage.setItem(this.languageStorageKey, locale);
-    localStorage.setItem(this.languagePreferenceSourceKey, this.manualLanguagePreference);
+  get currentTranslations(): Translation {
+    return this.language.currentTranslations();
   }
 
-  getLanguageLabel(locale: Locale): string {
-    return this.currentTranslations.languages.options[locale];
-  }
-
-  private applyLanguage(locale: Locale): void {
-    this.currentLocale = locale;
-    this.currentTranslations = translations[locale];
-    this.currentPolicy = policyContent[locale];
-    this.document.documentElement.lang = locale;
-  }
-
-  private getInitialLocale(savedLocale: string | null): Locale {
-    if (this.isLocale(savedLocale)) {
-      return savedLocale;
-    }
-
-    const navigator = this.document.defaultView?.navigator;
-    const browserLocales = [
-      navigator?.language,
-      ...(navigator?.languages ?? []),
-    ].filter((value, index, locales): value is string =>
-      Boolean(value) && locales.indexOf(value) === index,
-    );
-
-    for (const browserLocale of browserLocales) {
-      const normalizedLocale = this.normalizeLocale(browserLocale);
-
-      if (this.isLocale(normalizedLocale)) {
-        return normalizedLocale;
-      }
-    }
-
-    return this.fallbackLocale;
-  }
-
-  private getSavedLocale(): string | null {
-    if (localStorage.getItem(this.languagePreferenceSourceKey) !== this.manualLanguagePreference) {
-      localStorage.removeItem(this.languageStorageKey);
-      return null;
-    }
-
-    return localStorage.getItem(this.languageStorageKey);
-  }
-
-  private isLocale(value: string | null): value is Locale {
-    return value === 'pt' || value === 'en' || value === 'es';
-  }
-
-  private normalizeLocale(locale: string): string {
-    return locale.toLowerCase().split('-')[0];
+  get currentPolicy(): PolicyContent {
+    return policyContent[this.currentLocale];
   }
 }
