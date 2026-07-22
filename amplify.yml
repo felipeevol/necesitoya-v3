@@ -13,6 +13,8 @@ frontend:
     build:
       commands:
         - npx ng build --configuration=production
+        - echo "=================="
+        - find dist -type f
   artifacts:
     baseDirectory: dist/amplify-angular-template/browser
     files:
