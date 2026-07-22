@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JAVA - NEW FEATURES PER VERSION</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+  <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ENBGYS73XR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ENBGYS73XR');
+  </script>
+  <style>
+    body {
+      font-family: helvetica;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    #cy {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 999;
+    }
+
+    /* Default styles for nodes and edges */
+    .node-default-style {
+      background-color: #666;
+      /* Cor original */
+      label: data(name);
+      width: label;
+      height: label;
+      padding: 10px;
+      shape: rectangle;
+      color: white;
+      text-valign: center;
+      text-halign: center;
+      border-width: 1px;
+      border-color: #333;
+      opacity: 1;
+      transition: border-color 0.2s ease-in-out, border-width 0.2s ease-in-out;
+    }
+
+    .edge-default-style {
+      width: 3;
+      line-color: #ccc;
+      target-arrow-color: #ccc;
+      target-arrow-shape: triangle;
+      curve-style: bezier;
+      opacity: 1;
+      transition: line-color 0.2s ease-in-out, width 0.2s ease-in-out;
+    }
+
+    /* Highlight style for the CLICKED NODE - NOW WITH BLUE BORDER */
+    .node-clicked-highlight-style {
+      border-color: #0000FF;
+      /* BLUE border for the clicked node */
+      border-width: 4px;
+      /* Borda mais grossa para o nó clicado */
+    }
+
+    /* Highlight style ONLY for CONNECTED EDGES */
+    .edge-highlighted-blue-style {
+      line-color: #0000FF;
+      /* Blue line */
+      target-arrow-color: #0000FF;
+      /* Blue arrow */
+      source-arrow-color: #0000FF;
+      /* Blue arrow */
+      width: 6px;
+      /* Thicker */
+    }
+
+    /* Tooltip Style */
+    #tooltip {
+      position: absolute;
+      display: none;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 12px;
+      color: #333;
+      z-index: 1000;
+      /* Acima do canvas do Cytoscape */
+      pointer-events: none;
+      /* Para não interferir com eventos do mouse no Cytoscape */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cy"></div>
+  <div id="tooltip"></div> <!-- Tooltip element -->
+  <div id="legend" style="position: absolute; top: 10px; right: 10px; background: white; border: 1px solid #ccc; padding: 10px; font-size: 14px; z-index: 10;">
+    <table>
+      <tr>
+        <td><strong>Actions:</strong></td>
+      </tr>
+      <tr>
+        <td>Drag - to move the diagram</td>
+      </tr>
+      <tr>
+        <td>Click - Fast explanation</td><td width="10px"></td>
+      </tr>
+      <tr>
+        <td>Right click - To see examples</td><td width="10px"></td>
+      </tr>
+	  <tr>
+        <td>Double click - To open documentation</td><td width="10px"></td>
+      </tr>
+    </table>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      console.log("DOM Carregado. Inicializando Cytoscape (v9)...");
+      var tooltipDiv = document.getElementById("tooltip");
+
+      var separador = 50;
+      var linha1 = 100;
+      var linha2 = linha1 + separador;
+      var linha3 = linha2 + separador;
+      var linha4 = linha3 + separador;
+      var linha5 = linha4 + separador;
+
+      var linha6 = linha5 + separador;
+      var linha7 = linha6 + separador;
+      var linha8 = linha7 + separador;
+      var linha9 = linha8 + separador;
+      var linha10 = linha9 + separador;
+      var linha11 = linha10 + separador;
+	  var linha12 = linha11 + separador;
+	  var linha13 = linha12 + separador;
+	  var linha14 = linha13 + separador;
+	  var linha15 = linha14 + separador;
+	  var linha16 = linha15 + separador;
+	  
+	  var coluna2 = 650;
+	  var coluna3 = 950;
+	  var coluna4 = 1250;
+	  var coluna5 = 1550;
+
+      var cy = cytoscape({
+        container: document.getElementById("cy"),
+        elements: [
+
+          // Coluna 1
+          { data: { id: 'Java 1.4 and Previous', name: 'Java 1.4 and Previous', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71011013&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71011013', category: 'title_lts' }, position: { x: 350, y: linha1 } },
+          { data: { id: 'Classes and objects', name: 'Classes and objects', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=7101102-&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=7101102-' }, position: { x: 350, y: linha2 } },
+          { data: { id: 'Package and import', name: 'Package and import', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=7101102-&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=7101102-' }, position: { x: 350, y: linha3 } },
+          { data: { id: 'Constructors, attributes and methods', name: 'Constructors, attributes and methods', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901014&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901014' }, position: { x: 350, y: linha4 } },
+          { data: { id: 'Inheritance and encapsulation', name: 'Inheritance and encapsulation', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901020&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901020' }, position: { x: 350, y: linha5 } },
+          { data: { id: 'Absctrat classes and interfaces', name: 'Absctrat classes and interfaces', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901043&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901043' }, position: { x: 350, y: linha6 } },
+		  { data: { id: 'Primitive types and arrays', name: 'Primitive types and arrays', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901072&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901072' }, position: { x: 350, y: linha7 } },
+          { data: { id: 'Access modifiers', name: 'Access modifiers', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=7190105-&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=7190105-' }, position: { x: 350, y: linha8 } },
+          { data: { id: 'Control flow and operators', name: 'Control flow and operators', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901089&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901089' }, position: { x: 350, y: linha9 } },
+		  { data: { id: 'Polimorphism', name: 'Polimorphism', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901066&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901066' }, position: { x: 350, y: linha10 } },
+          { data: { id: 'Main method and super', name: 'Main method', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901089&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901089' }, position: { x: 350, y: linha11 } },
+          { data: { id: 'Exceptions', name: 'Exceptions', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901089&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901089' }, position: { x: 350, y: linha12 } },
+          { data: { id: 'Standard library', name: 'Standard library', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901089&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901089' }, position: { x: 350, y: linha13 } },
+          { data: { id: 'Collections', name: 'Collections', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901089&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901089' }, position: { x: 350, y: linha14 } },
+          { data: { id: 'Input and output', name: 'Input and output', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901089&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901089' }, position: { x: 350, y: linha15 } },
+          { data: { id: 'Threads', name: 'Threads', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901089&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901089' }, position: { x: 350, y: linha16 } },
+
+          // Coluna 2
+          { data: { id: 'Java 5', name: 'Java 5', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71012030&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71012030', category: 'title_lts' }, position: { x: coluna2, y: linha1 } },
+          { data: { id: 'Versioning number', name: 'Versioning number', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902019&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902019' }, position: { x: coluna2, y: linha2 } },
+          { data: { id: 'Generics', name: 'Generics', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902019&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902019' }, position: { x: coluna2, y: linha3 } },
+          { data: { id: 'Annotations', name: 'Annotations', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902025&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902025' }, position: { x: coluna2, y: linha4 } },
+          { data: { id: 'Enums', name: 'Enums', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902031&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902031' }, position: { x: coluna2, y: linha5 } },
+          { data: { id: 'Varargs', name: 'Varargs', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902048&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902048' }, position: { x: coluna2, y: linha6 } },
+          { data: { id: 'Enhanced for-loop', name: 'Enhanced for-loop', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902048&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902048' }, position: { x: coluna2, y: linha7 } },
+          { data: { id: 'Autoboxing / unboxing', name: 'Autoboxing / unboxing', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902048&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902048' }, position: { x: coluna2, y: linha8 } },
+          { data: { id: 'Concurrency utilities', name: 'Concurrency utilities', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902048&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902048' }, position: { x: coluna2, y: linha9 } },
+
+          // Coluna 3
+          { data: { id: 'Java 7', name: 'Java 7', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013012&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013012', category: 'title' }, position: { x: coluna3, y: linha1 } },
+          { data: { id: 'Try-with-resources', name: 'Try-with-resources', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013029&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013029' }, position: { x: coluna3, y: linha2 } },
+          { data: { id: 'Diamond operator', name: 'Diamond operator', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013035&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013035' }, position: { x: coluna3, y: linha3 } },
+          { data: { id: 'NIO.2', name: 'NIO.2', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013041&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013041' }, position: { x: coluna3, y: linha4 } },
+          { data: { id: 'Binary integer literals', name: 'Binary integer literals', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013130&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013130' }, position: { x: coluna3, y: linha5 } },
+          { data: { id: 'Switch with Strings', name: 'Switch with Strings', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013058&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013058' }, position: { x: coluna3, y: linha6 } },
+          { data: { id: 'Underscores in numeric literals', name: 'Underscores in numeric literals', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013118&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013118' }, position: { x: coluna3, y: linha7 } },
+          { data: { id: 'Catching multiple exception types', name: 'Catching multiple exception types', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013124&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013124' }, position: { x: coluna3, y: linha8 } },
+          { data: { id: '@SafeVarargs', name: '@SafeVarargs', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013124&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013124' }, position: { x: coluna3, y: linha9 } },
+
+          // Coluna 4
+          { data: { id: 'Java 8', name: 'Java 8', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014017&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014017', category: 'title_lts' }, position: { x: coluna4, y: linha1 } },
+          { data: { id: 'Streams and lambda', name: 'Streams and lambda', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014023&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014023' }, position: { x: coluna4, y: linha2 } },
+          { data: { id: 'Optionals', name: 'Optionals', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014023&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014023' }, position: { x: coluna4, y: linha3 } },
+          { data: { id: 'Default methods', name: 'Default methods', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014023&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014023' }, position: { x: coluna4, y: linha4 } },
+          { data: { id: 'New Java Data and Time API', name: 'New Java Data and Time API', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna4, y: linha5 } },
+
+		  // Coluna 5
+          { data: { id: 'Java 9', name: 'Java 9', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014017&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014017', category: 'title' }, position: { x: coluna5, y: linha1 } },
+          { data: { id: 'Java Module System', name: 'Java Module System', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014023&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014023' }, position: { x: coluna5, y: linha2 } },
+          { data: { id: 'Immutable collections', name: 'Immutable collections', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha3 } },
+          { data: { id: 'Improved try-with-resources', name: 'Improved try-with-resources', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha4 } },
+          { data: { id: 'Private methods in interfaces', name: 'Private methods in interfaces', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha5 } },
+          { data: { id: 'HTTP Client (incubator)', name: 'HTTP Client (incubator)', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha6 } },
+          { data: { id: '@SafeVarargs extended', name: '@SafeVarargs extended', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha7 } },
+          { data: { id: '_ (underscore) is reserved word', name: '_ (underscore) is reserved word', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha8 } },
+          { data: { id: 'Optional enhancements', name: 'Optional enhancements', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha9 } },
+          { data: { id: 'New Stream methods', name: 'New Stream methods', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha10 } },
+          { data: { id: 'Process API improvements', name: 'Process API improvements', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha11 } },
+          { data: { id: 'Diamond operator in anonymous classes', name: 'Diamond operator in anonymous classes', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha12 } },
+          { data: { id: 'JShell', name: 'JShell', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha13 } },
+          { data: { id: 'JLink', name: 'JLink', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: coluna5, y: linha14 } },
+
+        ],
+        style: [
+          { selector: "node", style: { "background-color": "#FFFACD", "label": "data(name)", "width": "label", "height": "label", "padding": "10px", "shape": "roundrectangle", "color": "black", "text-valign": "center", "text-halign": "center", "border-width": "2px", "border-color": "#333", "opacity": 1, "transition-property": "border-color, border-width", "transition-duration": "0.2s" } },
+          { selector: "edge", style: { "width": 0, "line-color": "#fff", "target-arrow-color": "#fff", "target-arrow-shape": "triangle", "curve-style": "bezier", "opacity": 1, "transition-property": "line-color, width", "transition-duration": "0.2s" } },
+          { selector: "node[category = 'title_lts']", style: { "background-color": "#007396", "color": "#fff" } },
+          { selector: "node[category = 'title']", style: { "background-color": "#F89820", "color": "#fff" } }
+        ],
+        layout: {
+          name: "preset", idealEdgeLength: 100, nodeOverlap: 20, refresh: 20, fit: true, padding: 10, randomize: false, componentSpacing: 100, nodeRepulsion: 400000, edgeElasticity: 100, nestingFactor: 5, gravity: 80, numIter: 1000, initialTemp: 200, coolingFactor: 0.95, minTemp: 1.0
+        },
+		autoungrabify: true
+      });
+      cy.pan({ y: 100 });
+
+      // Tooltip events
+      cy.on("mouseover", "node", function (evt) {
+        var node = evt.target;
+        var nodeDescription = node.data("description") || node.data("name"); // Usa a descrição ou o nome
+        tooltipDiv.innerHTML = nodeDescription;
+        tooltipDiv.style.display = "block";
+        // Posiciona o tooltip perto do mouse
+        // Adiciona um pequeno deslocamento para não cobrir o cursor
+        tooltipDiv.style.left = (evt.originalEvent.pageX + 15) + "px";
+        tooltipDiv.style.top = (evt.originalEvent.pageY + 15) + "px";
+        console.log("Mouseover no nó: " + node.id() + ", Tooltip: " + nodeDescription);
+      });
+
+      cy.on("mouseout", "node", function (evt) {
+        tooltipDiv.style.display = "none";
+        console.log("Mouseout no nó: " + evt.target.id());
+      });
+
+      let lastClickTime = 0;
+
+      cy.on("tap", "node", function (evt) {
+        var tappedNode = evt.target;
+        console.log("Nó clicado (v9):", tappedNode.id());
+
+        const now = new Date().getTime();
+        const timeDiff = now - lastClickTime;
+        lastClickTime = now;
+
+        if (timeDiff < 300) {
+
+          // Agora, abre o link se existir
+          var link = tappedNode.data("linkURL");
+          if (link) {
+            console.log("Abrindo link: " + link);
+            window.open(link, "_blank"); // Abre em uma nova aba
+          }
+
+        }
+
+        // Other nodes remain in their default state
+      });
+
+      cy.on("cxttap", "node", function (evt) {
+        var tappedNode = evt.target;
+        var link = tappedNode.data("rightLinkURL");
+        if (link) {
+          console.log("Abrindo link: " + link);
+          window.open(link, "_blank"); // Abre em uma nova aba
+        }
+      });
+
+      cy.on("tap", function (evt) {
+        if (evt.target === cy) {
+          resetAllStyles();
+        }
+      });
+
+
+    });
+
+  </script>
+</body>
+
+</html>

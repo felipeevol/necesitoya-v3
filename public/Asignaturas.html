@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>UNED - GRADO EN INGENIERÍA INFORMÁTICA</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+  <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ENBGYS73XR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ENBGYS73XR');
+  </script>
+  <style>
+    body {
+      font-family: helvetica;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    #cy {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 999;
+    }
+
+    /* Default styles for nodes and edges */
+    .node-default-style {
+      background-color: #666;
+      /* Cor original */
+      label: data(name);
+      width: label;
+      height: label;
+      padding: 10px;
+      shape: rectangle;
+      color: white;
+      text-valign: center;
+      text-halign: center;
+      border-width: 1px;
+      border-color: #333;
+      opacity: 1;
+      transition: border-color 0.2s ease-in-out, border-width 0.2s ease-in-out;
+    }
+
+    .edge-default-style {
+      width: 3;
+      line-color: #ccc;
+      target-arrow-color: #ccc;
+      target-arrow-shape: triangle;
+      curve-style: bezier;
+      opacity: 1;
+      transition: line-color 0.2s ease-in-out, width 0.2s ease-in-out;
+    }
+
+    /* Highlight style for the CLICKED NODE - NOW WITH BLUE BORDER */
+    .node-clicked-highlight-style {
+      border-color: #0000FF;
+      /* BLUE border for the clicked node */
+      border-width: 4px;
+      /* Borda mais grossa para o nó clicado */
+    }
+
+    /* Highlight style ONLY for CONNECTED EDGES */
+    .edge-highlighted-blue-style {
+      line-color: #0000FF;
+      /* Blue line */
+      target-arrow-color: #0000FF;
+      /* Blue arrow */
+      source-arrow-color: #0000FF;
+      /* Blue arrow */
+      width: 6px;
+      /* Thicker */
+    }
+
+    /* Tooltip Style */
+    #tooltip {
+      position: absolute;
+      display: none;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 12px;
+      color: #333;
+      z-index: 1000;
+      /* Acima do canvas do Cytoscape */
+      pointer-events: none;
+      /* Para não interferir com eventos do mouse no Cytoscape */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cy"></div>
+  <div id="tooltip"></div> <!-- Tooltip element -->
+  <div id="legend"
+    style="position: absolute; top: 10px; right: 10px; background: white; border: 1px solid #ccc; padding: 10px; font-size: 14px; z-index: 10;">
+    <table>
+      <tr>
+        <td><strong>Leyenda:</strong></td><td></td><td><strong>Acciones:</strong></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td><span style="color: #FFFACD;">▇</span> Asignatura selecionada</td><td width="10px"></td><td>Clic - Para ver las asociaciones</td><td width="10px"></td><td>Arrastrar - para mover asignatura</td>
+      </tr>
+      <tr>
+        <td><span style="color: #98D7C2;">▇</span> Requisitos</td><td width="10px"></td><td>Doble clic - Para ver información</td><td width="10px"></td>
+      </tr>
+      <tr>
+        <td><span style="color: #FF8A8A;">▇</span> Despues de finalizar asignatura selecionada</td><td width="10px"></td><td>Clic derecho - Para ver libros</td><td width="10px"></td>
+      </tr>
+    </table>
+    <!-- 	🔵 Nó tipo A - Usuários<br>
+	🟢 Nó tipo B - Tarefas<br>
+	🔴 Nó tipo C - Erros -->
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      console.log("DOM Carregado. Inicializando Cytoscape (v9)...");
+      var tooltipDiv = document.getElementById("tooltip");
+
+      var separador = 50;
+      var linha1 = 100;
+      var linha2 = linha1 + separador;
+      var linha3 = linha2 + separador;
+      var linha4 = linha3 + separador;
+      var linha5 = linha4 + separador;
+
+      var linha6 = linha5 + separador + separador;
+      var linha7 = linha6 + separador;
+      var linha8 = linha7 + separador;
+      var linha9 = linha8 + separador;
+      var linha10 = linha9 + separador;
+
+      var cy = cytoscape({
+        container: document.getElementById("cy"),
+        elements: [
+
+          // Coluna 1
+          { data: { id: 'FUNDAMENTOS FÍSICOS DE LA INFORMÁTICA', name: 'FUNDAMENTOS FÍSICOS DE LA INFORMÁTICA', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71011013&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71011013' }, position: { x: 350, y: linha1 } },
+          { data: { id: 'FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA', name: 'FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=7101102-&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=7101102-' }, position: { x: 350, y: linha2 } },
+          { data: { id: 'FUNDAMENTOS DE SISTEMAS DIGITALES', name: 'FUNDAMENTOS DE SISTEMAS DIGITALES', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901014&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901014' }, position: { x: 350, y: linha3 } },
+          { data: { id: 'FUNDAMENTOS DE PROGRAMACIÓN', name: 'FUNDAMENTOS DE PROGRAMACIÓN', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901020&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901020' }, position: { x: 350, y: linha4 } },
+          { data: { id: 'LÓGICA Y ESTRUCTURAS DISCRETAS', name: 'LÓGICA Y ESTRUCTURAS DISCRETAS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901037&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901037' }, position: { x: 350, y: linha5 } },
+
+          { data: { id: 'ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS', name: 'ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901043&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901043' }, position: { x: 350, y: linha6 } },
+          { data: { id: 'ESTADÍSTICA (ING.INFORMÁTICA/ING.TI)', name: 'ESTADÍSTICA (ING.INFORMÁTICA/ING.TI)', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=7190105-&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=7190105-' }, position: { x: 350, y: linha7 } },
+          { data: { id: 'INGENIERÍA DE COMPUTADORES I', name: 'INGENIERÍA DE COMPUTADORES I', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901066&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901066' }, position: { x: 350, y: linha8 } },
+          { data: { id: 'PROGRAMACIÓN ORIENTADA A OBJETOS', name: 'PROGRAMACIÓN ORIENTADA A OBJETOS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901072&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901072' }, position: { x: 350, y: linha9 } },
+          { data: { id: 'AUTÓMATAS, GRAMÁTICAS Y LENGUAJES', name: 'AUTÓMATAS, GRAMÁTICAS Y LENGUAJES', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71901089&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71901089' }, position: { x: 350, y: linha10 } },
+
+          // Coluna 2
+          { data: { id: 'REDES DE COMPUTADORES', name: 'REDES DE COMPUTADORES', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71012030&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71012030' }, position: { x: 850, y: linha1 } },
+          { data: { id: 'PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS', name: 'PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902019&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902019' }, position: { x: 850, y: linha2 } },
+          { data: { id: 'INGENIERÍA DE COMPUTADORES II', name: 'INGENIERÍA DE COMPUTADORES II', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902025&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902025' }, position: { x: 850, y: linha3 } },
+          { data: { id: 'GESTIÓN DE EMPRESAS INFORMÁTICAS', name: 'GESTIÓN DE EMPRESAS INFORMÁTICAS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902031&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902031' }, position: { x: 850, y: linha4 } },
+          { data: { id: 'SISTEMAS OPERATIVOS', name: 'SISTEMAS OPERATIVOS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902048&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902048' }, position: { x: 850, y: linha5 } },
+
+          { data: { id: 'INGENIERÍA DE COMPUTADORES III', name: 'INGENIERÍA DE COMPUTADORES III', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71012018&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71012018' }, position: { x: 850, y: linha6 } },
+          { data: { id: 'TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN', name: 'TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71012024&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71012024' }, position: { x: 850, y: linha7 } },
+          { data: { id: 'FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL', name: 'FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902060&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902060' }, position: { x: 850, y: linha8 } },
+          { data: { id: 'INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE', name: 'INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902077&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902077' }, position: { x: 850, y: linha9 } },
+          { data: { id: 'BASES DE DATOS', name: 'BASES DE DATOS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71902083&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71902083' }, position: { x: 850, y: linha10 } },
+
+          // Coluna 3
+          { data: { id: 'DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS', name: 'DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013012&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013012' }, position: { x: 1300, y: linha1 } },
+          { data: { id: 'SISTEMAS DISTRIBUIDOS', name: 'SISTEMAS DISTRIBUIDOS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013029&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013029' }, position: { x: 1300, y: linha2 } },
+          { data: { id: 'DISEÑO DEL SOFTWARE', name: 'DISEÑO DEL SOFTWARE', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013035&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013035' }, position: { x: 1300, y: linha3 } },
+          { data: { id: 'SISTEMAS DE BASES DE DATOS', name: 'SISTEMAS DE BASES DE DATOS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013041&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013041' }, position: { x: 1300, y: linha4 } },
+          { data: { id: 'PROCESADORES DEL LENGUAJE I', name: 'PROCESADORES DEL LENGUAJE I', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013130&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013130' }, position: { x: 1300, y: linha5 } },
+
+          { data: { id: 'SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)', name: 'SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013058&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013058' }, position: { x: 1300, y: linha6 } },
+          { data: { id: 'PROCESADORES DEL LENGUAJE II', name: 'PROCESADORES DEL LENGUAJE II', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013118&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013118' }, position: { x: 1300, y: linha7 } },
+          { data: { id: 'SEGURIDAD', name: 'SEGURIDAD', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71013124&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71013124' }, position: { x: 1300, y: linha8 } },
+
+          // Coluna 4
+          { data: { id: 'COMPLEJIDAD Y COMPUTABILIDAD', name: 'COMPLEJIDAD Y COMPUTABILIDAD', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014017&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014017' }, position: { x: 1750, y: linha1 } },
+          { data: { id: 'APRENDIZAJE AUTOMÁTICO', name: 'APRENDIZAJE AUTOMÁTICO', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014023&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014023' }, position: { x: 1750, y: linha2 } },
+          { data: { id: 'AMPLIACIÓN DE SISTEMAS INTELIGENTES', name: 'AMPLIACIÓN DE SISTEMAS INTELIGENTES', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014069&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014069' }, position: { x: 1750, y: linha3 } },
+
+          { data: { id: 'PROYECTO FIN DE GRADO', name: 'PROYECTO FIN DE GRADO (ING. INFORMÁTICA)', linkURL: 'https://www.uned.es/universidad/facultades/informatica/bienvenida/estudiantes/informacion_PFG.html', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=7101403-' }, position: { x: 1750, y: linha6 } },
+          { data: { id: 'GESTIÓN DE PROYECTOS INFORMÁTICOS', name: 'GESTIÓN DE PROYECTOS INFORMÁTICOS', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71014052&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71014052' }, position: { x: 1750, y: linha7 } },
+          { data: { id: 'ÉTICA Y LEGISLACIÓN', name: 'ÉTICA Y LEGISLACIÓN', linkURL: 'https://www.uned.es/universidad/inicio/estudios/grados/grado-en-ingenieria-informatica/asignaturas.html?codTitulacion=7101&codAsignatura=71904018&idContenido=1', rightLinkURL: 'https://www.librosuned.com/busquedas/busquedas_NivelEstudios.aspx?asigs=01=71904018' }, position: { x: 1750, y: linha8 } },
+
+          // ... outros nós com suas posições
+          { data: { id: "DISEÑO DEL SOFTWARE - GESTIÓN DE PROYECTOS INFORMÁTICOS", source: "DISEÑO DEL SOFTWARE", target: "GESTIÓN DE PROYECTOS INFORMÁTICOS" } },
+          { data: { id: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE - GESTIÓN DE PROYECTOS INFORMÁTICOS", source: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE", target: "GESTIÓN DE PROYECTOS INFORMÁTICOS" } },
+          { data: { id: "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL - AMPLIACIÓN DE SISTEMAS INTELIGENTES", source: "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL", target: "AMPLIACIÓN DE SISTEMAS INTELIGENTES" } },
+          { data: { id: "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL - APRENDIZAJE AUTOMÁTICO", source: "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL", target: "APRENDIZAJE AUTOMÁTICO" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - COMPLEJIDAD Y COMPUTABILIDAD", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "COMPLEJIDAD Y COMPUTABILIDAD" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - COMPLEJIDAD Y COMPUTABILIDAD", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "COMPLEJIDAD Y COMPUTABILIDAD" } },
+          { data: { id: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS - COMPLEJIDAD Y COMPUTABILIDAD", source: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS", target: "COMPLEJIDAD Y COMPUTABILIDAD" } },
+          { data: { id: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS - COMPLEJIDAD Y COMPUTABILIDAD", source: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS", target: "COMPLEJIDAD Y COMPUTABILIDAD" } },
+          { data: { id: "AUTÓMATAS, GRAMÁTICAS Y LENGUAJES - COMPLEJIDAD Y COMPUTABILIDAD", source: "AUTÓMATAS, GRAMÁTICAS Y LENGUAJES", target: "COMPLEJIDAD Y COMPUTABILIDAD" } },
+          { data: { id: "SISTEMAS OPERATIVOS - SEGURIDAD", source: "SISTEMAS OPERATIVOS", target: "SEGURIDAD" } },
+          { data: { id: "REDES DE COMPUTADORES - SEGURIDAD", source: "REDES DE COMPUTADORES", target: "SEGURIDAD" } },
+          { data: { id: "AUTÓMATAS, GRAMÁTICAS Y LENGUAJES - PROCESADORES DEL LENGUAJE II", source: "AUTÓMATAS, GRAMÁTICAS Y LENGUAJES", target: "PROCESADORES DEL LENGUAJE II" } },
+          { data: { id: "TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN - PROCESADORES DEL LENGUAJE II", source: "TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN", target: "PROCESADORES DEL LENGUAJE II" } },
+          { data: { id: "PROCESADORES DEL LENGUAJE I - PROCESADORES DEL LENGUAJE II", source: "PROCESADORES DEL LENGUAJE I", target: "PROCESADORES DEL LENGUAJE II" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - PROCESADORES DEL LENGUAJE II", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "PROCESADORES DEL LENGUAJE II" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - PROCESADORES DEL LENGUAJE II", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "PROCESADORES DEL LENGUAJE II" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)" } },
+          { data: { id: "SISTEMAS OPERATIVOS - SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)", source: "SISTEMAS OPERATIVOS", target: "SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)" } },
+          { data: { id: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE - SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)", source: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE", target: "SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)" } },
+          { data: { id: "SISTEMAS DISTRIBUIDOS - SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)", source: "SISTEMAS DISTRIBUIDOS", target: "SISTEMAS EN TIEMPO REAL (I. INFORMÁTICA)" } },
+          { data: { id: "AUTÓMATAS, GRAMÁTICAS Y LENGUAJES - PROCESADORES DEL LENGUAJE I", source: "AUTÓMATAS, GRAMÁTICAS Y LENGUAJES", target: "PROCESADORES DEL LENGUAJE I" } },
+          { data: { id: "TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN - PROCESADORES DEL LENGUAJE I", source: "TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN", target: "PROCESADORES DEL LENGUAJE I" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - PROCESADORES DEL LENGUAJE I", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "PROCESADORES DEL LENGUAJE I" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - PROCESADORES DEL LENGUAJE I", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "PROCESADORES DEL LENGUAJE I" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - SISTEMAS DE BASES DE DATOS", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "SISTEMAS DE BASES DE DATOS" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - SISTEMAS DE BASES DE DATOS", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "SISTEMAS DE BASES DE DATOS" } },
+          { data: { id: "FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA - SISTEMAS DE BASES DE DATOS", source: "FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA", target: "SISTEMAS DE BASES DE DATOS" } },
+          { data: { id: "BASES DE DATOS - SISTEMAS DE BASES DE DATOS", source: "BASES DE DATOS", target: "SISTEMAS DE BASES DE DATOS" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - DISEÑO DEL SOFTWARE", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "DISEÑO DEL SOFTWARE" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - DISEÑO DEL SOFTWARE", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "DISEÑO DEL SOFTWARE" } },
+          { data: { id: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE - DISEÑO DEL SOFTWARE", source: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE", target: "DISEÑO DEL SOFTWARE" } },
+          { data: { id: "REDES DE COMPUTADORES - SISTEMAS DISTRIBUIDOS", source: "REDES DE COMPUTADORES", target: "SISTEMAS DISTRIBUIDOS" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - SISTEMAS DISTRIBUIDOS", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "SISTEMAS DISTRIBUIDOS" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - SISTEMAS DISTRIBUIDOS", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "SISTEMAS DISTRIBUIDOS" } },
+          { data: { id: "SISTEMAS OPERATIVOS - DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS", source: "SISTEMAS OPERATIVOS", target: "DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS" } },
+          { data: { id: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS - DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS", source: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS", target: "DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS" } },
+          { data: { id: "INGENIERÍA DE COMPUTADORES I - DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS", source: "INGENIERÍA DE COMPUTADORES I", target: "DISEÑO Y ADMINISTRACIÓN DE SISTEMAS OPERATIVOS" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - BASES DE DATOS", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "BASES DE DATOS" } },
+          { data: { id: "LÓGICA Y ESTRUCTURAS DISCRETAS - BASES DE DATOS", source: "LÓGICA Y ESTRUCTURAS DISCRETAS", target: "BASES DE DATOS" } },
+          { data: { id: "FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA - BASES DE DATOS", source: "FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA", target: "BASES DE DATOS" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE" } },
+          { data: { id: "BASES DE DATOS - INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE", source: "BASES DE DATOS", target: "INTRODUCCIÓN A LA INGENIERÍA DE SOFTWARE" } },
+          { data: { id: "LÓGICA Y ESTRUCTURAS DISCRETAS - FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL", source: "LÓGICA Y ESTRUCTURAS DISCRETAS", target: "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL" } },
+          { data: { id: "AUTÓMATAS, GRAMÁTICAS Y LENGUAJES - FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL", source: "AUTÓMATAS, GRAMÁTICAS Y LENGUAJES", target: "FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - SISTEMAS OPERATIVOS", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "SISTEMAS OPERATIVOS" } },
+          { data: { id: "INGENIERÍA DE COMPUTADORES I - SISTEMAS OPERATIVOS", source: "INGENIERÍA DE COMPUTADORES I", target: "SISTEMAS OPERATIVOS" } },
+          { data: { id: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS - SISTEMAS OPERATIVOS", source: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS", target: "SISTEMAS OPERATIVOS" } },
+          { data: { id: "INGENIERÍA DE COMPUTADORES I - INGENIERÍA DE COMPUTADORES II", source: "INGENIERÍA DE COMPUTADORES I", target: "INGENIERÍA DE COMPUTADORES II" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - INGENIERÍA DE COMPUTADORES II", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "INGENIERÍA DE COMPUTADORES II" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - INGENIERÍA DE COMPUTADORES II", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "INGENIERÍA DE COMPUTADORES II" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS" } },
+          { data: { id: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS - PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS", source: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS", target: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS" } },
+          { data: { id: "LÓGICA Y ESTRUCTURAS DISCRETAS - PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS", source: "LÓGICA Y ESTRUCTURAS DISCRETAS", target: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS" } },
+          { data: { id: "FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA - PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS", source: "FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA", target: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS" } },
+          { data: { id: "FUNDAMENTOS FÍSICOS DE LA INFORMÁTICA - REDES DE COMPUTADORES", source: "FUNDAMENTOS FÍSICOS DE LA INFORMÁTICA", target: "REDES DE COMPUTADORES" } },
+          { data: { id: "SISTEMAS OPERATIVOS - REDES DE COMPUTADORES", source: "SISTEMAS OPERATIVOS", target: "REDES DE COMPUTADORES" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - REDES DE COMPUTADORES", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "REDES DE COMPUTADORES" } },
+          { data: { id: "FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA - ESTADÍSTICA (ING.INFORMÁTICA/ING.TI)", source: "FUNDAMENTOS MATEMÁTICOS DE LA INFORMÁTICA", target: "ESTADÍSTICA (ING.INFORMÁTICA/ING.TI)" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "ESTRATEGIAS DE PROGRAMACIÓN Y ESTRUCTURAS DE DATOS" } },
+          { data: { id: "LÓGICA Y ESTRUCTURAS DISCRETAS - FUNDAMENTOS DE SISTEMAS DIGITALES", source: "LÓGICA Y ESTRUCTURAS DISCRETAS", target: "FUNDAMENTOS DE SISTEMAS DIGITALES" } },
+          { data: { id: "FUNDAMENTOS FÍSICOS DE LA INFORMÁTICA - FUNDAMENTOS DE SISTEMAS DIGITALES", source: "FUNDAMENTOS FÍSICOS DE LA INFORMÁTICA", target: "FUNDAMENTOS DE SISTEMAS DIGITALES" } },
+          { data: { id: "FUNDAMENTOS DE PROGRAMACIÓN - TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN", source: "FUNDAMENTOS DE PROGRAMACIÓN", target: "TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN" } },
+          { data: { id: "PROGRAMACIÓN ORIENTADA A OBJETOS - TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN", source: "PROGRAMACIÓN ORIENTADA A OBJETOS", target: "TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN" } },
+          { data: { id: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS - TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN", source: "PROGRAMACIÓN Y ESTRUCTURAS DE DATOS AVANZADAS", target: "TEORÍA DE LOS LENGUAJES DE PROGRAMACIÓN" } },
+          { data: { id: "FUNDAMENTOS DE SISTEMAS DIGITALES - INGENIERÍA DE COMPUTADORES III", source: "FUNDAMENTOS DE SISTEMAS DIGITALES", target: "INGENIERÍA DE COMPUTADORES III" } },
+          { data: { id: "INGENIERÍA DE COMPUTADORES I - INGENIERÍA DE COMPUTADORES III", source: "INGENIERÍA DE COMPUTADORES I", target: "INGENIERÍA DE COMPUTADORES III" } },
+          { data: { id: "FUNDAMENTOS DE SISTEMAS DIGITALES - INGENIERÍA DE COMPUTADORES I", source: "FUNDAMENTOS DE SISTEMAS DIGITALES", target: "INGENIERÍA DE COMPUTADORES I" } },
+          
+        ],
+        style: [
+          { selector: "node", style: { "background-color": "#2E8B71", "label": "data(name)", "width": "label", "height": "label", "padding": "10px", "shape": "roundrectangle", "color": "white", "text-valign": "center", "text-halign": "center", "border-width": "2px", "border-color": "#333", "opacity": 1, "transition-property": "border-color, border-width", "transition-duration": "0.2s" } },
+          { selector: "edge", style: { "width": 0, "line-color": "#fff", "target-arrow-color": "#fff", "target-arrow-shape": "triangle", "curve-style": "bezier", "opacity": 1, "transition-property": "line-color, width", "transition-duration": "0.2s" } }
+        ],
+        layout: {
+          name: "preset", idealEdgeLength: 100, nodeOverlap: 20, refresh: 20, fit: true, padding: 10, randomize: false, componentSpacing: 100, nodeRepulsion: 400000, edgeElasticity: 100, nestingFactor: 5, gravity: 80, numIter: 1000, initialTemp: 200, coolingFactor: 0.95, minTemp: 1.0
+        }
+      });
+      cy.pan({ y: 100 });
+
+      function resetAllStyles() {
+        cy.nodes().forEach(node => {
+          node.style("background-color", "#2E8B71");
+          node.style("color", "#fff");
+          node.style("border-color", "#000");
+          node.style("border-width", "1px");
+        });
+        cy.edges().forEach(edge => {
+          edge.style("line-color", "#fff");
+          edge.style("target-arrow-color", "#fff");
+          edge.style("source-arrow-color", "#fff");
+          edge.style("width", 0);
+        });
+        console.log("Todos os estilos resetados para o padrão (v9).");
+      }
+
+      // Tooltip events
+      cy.on("mouseover", "node", function (evt) {
+        var node = evt.target;
+        var nodeDescription = node.data("description") || node.data("name"); // Usa a descrição ou o nome
+        tooltipDiv.innerHTML = nodeDescription;
+        tooltipDiv.style.display = "block";
+        // Posiciona o tooltip perto do mouse
+        // Adiciona um pequeno deslocamento para não cobrir o cursor
+        tooltipDiv.style.left = (evt.originalEvent.pageX + 15) + "px";
+        tooltipDiv.style.top = (evt.originalEvent.pageY + 15) + "px";
+        console.log("Mouseover no nó: " + node.id() + ", Tooltip: " + nodeDescription);
+      });
+
+      cy.on("mouseout", "node", function (evt) {
+        tooltipDiv.style.display = "none";
+        console.log("Mouseout no nó: " + evt.target.id());
+      });
+
+      let lastClickTime = 0;
+
+      cy.on("tap", "node", function (evt) {
+        var tappedNode = evt.target;
+        console.log("Nó clicado (v9):", tappedNode.id());
+
+        // 1. Reset ALL elements to their default visual state first
+        resetAllStyles();
+
+        // 2. Apply highlight to the TAPPED NODE (BLUE BORDER)
+        tappedNode.style("border-color", "#0000FF");
+        tappedNode.style("border-width", "4px");
+        tappedNode.style("background-color", "#FFFACD");
+        tappedNode.style("color", "#000");
+
+        // 3. Highlight only the CONNECTED EDGES of the tapped node in blue
+        tappedNode.connectedEdges().forEach(function (edge) {
+          edge.style("line-color", "#0000FF");
+          edge.style("target-arrow-color", "#0000FF");
+          edge.style("source-arrow-color", "#0000FF");
+          edge.style("width", 4);
+          if (tappedNode !== edge.source()) {
+            edge.source().style("background-color", "#98D7C2");
+            edge.source().style("color", "#000");
+            edge.source().style("border-color", "#0000FF");
+            edge.source().style("border-width", "4px");
+          }
+          if (tappedNode !== edge.target()) {
+            edge.target().style("background-color", "#FF8A8A");
+            edge.target().style("color", "#000");
+            edge.target().style("border-color", "#0000FF");
+            edge.target().style("border-width", "4px");
+          }
+          if (tappedNode !== edge.source()) {
+            edge.target().style("border-color", "#0000FF");
+            edge.target().style("border-width", "4px");
+          }
+        });
+
+        const now = new Date().getTime();
+        const timeDiff = now - lastClickTime;
+        lastClickTime = now;
+
+        if (timeDiff < 300) {
+
+          // Agora, abre o link se existir
+          var link = tappedNode.data("linkURL");
+          if (link) {
+            console.log("Abrindo link: " + link);
+            window.open(link, "_blank"); // Abre em uma nova aba
+          }
+
+        }
+
+        // Other nodes remain in their default state
+      });
+
+      cy.on("cxttap", "node", function (evt) {
+        var tappedNode = evt.target;
+        var link = tappedNode.data("rightLinkURL");
+        if (link) {
+          console.log("Abrindo link: " + link);
+          window.open(link, "_blank"); // Abre em uma nova aba
+        }
+      });
+
+      cy.on("tap", function (evt) {
+        if (evt.target === cy) {
+          resetAllStyles();
+        }
+      });
+
+
+    });
+
+  </script>
+</body>
+
+</html>
