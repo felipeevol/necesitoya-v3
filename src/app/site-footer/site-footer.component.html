@@ -1,0 +1,15 @@
+<footer>
+  <div class="container">
+    <p>&copy; 2026 {{ currentTranslations.brandName }}. {{ currentTranslations.footer.tagline }}</p>
+    <p>{{ currentTranslations.footer.emailLabel }}: felipe&#64;profesionaljava.es | {{ currentTranslations.footer.phoneLabel }}: +34 604 905 860</p>
+    <p>{{ currentTranslations.footer.credit }}</p>
+    <nav class="footer-links" [attr.aria-label]="currentTranslations.footer.linksLabel">
+      <a class="footer-link" routerLink="/politica-de-privacidade">
+        {{ currentTranslations.footer.privacyPolicy }}
+      </a>
+      <a class="footer-link" routerLink="/politica-de-cookies">
+        {{ currentTranslations.footer.cookiePolicy }}
+      </a>
+    </nav>
+  </div>
+</footer>

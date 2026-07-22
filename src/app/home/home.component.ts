@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { Amplify } from 'aws-amplify';
 import { RecaptchaComponent, RecaptchaModule } from 'ng-recaptcha';
 import outputs from '../../../amplify_outputs.json';
@@ -17,7 +16,7 @@ type ErrorMessageKey = keyof Translation['contact']['errors'];
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  imports: [CommonModule, FormsModule, RecaptchaModule, RouterLink],
+  imports: [CommonModule, FormsModule, RecaptchaModule],
 })
 export class HomeComponent {
   private readonly language = inject(SiteLanguageService);

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteLanguageService } from '../shared/site-language.service';
-import { Locale, Translation } from '../shared/site-translations';
+import { Locale } from '../shared/site-translations';
 
 type PolicySection = {
   title: string;
@@ -194,10 +194,6 @@ export class CookiePolicyComponent {
 
   get currentLocale(): Locale {
     return this.language.currentLocale();
-  }
-
-  get currentTranslations(): Translation {
-    return this.language.currentTranslations();
   }
 
   get currentPolicy(): PolicyContent {
