@@ -86,7 +86,9 @@
     }
 
     .lead-copy {
-      display: grid;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 12px;
     }
 
@@ -97,6 +99,18 @@
       color: var(--muted);
     }
 
+    .checkbox-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checkbox-option input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+
     .summary {
       margin-top: 24px;
       padding: 18px 20px;
@@ -105,6 +119,16 @@
       border: 1px solid rgba(37, 99, 235, 0.1);
       font-size: 16px;
       line-height: 1.65;
+    }
+
+    .download-link {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .download-link:hover {
+      text-decoration: underline;
     }
 
     .side-card {
@@ -219,10 +243,53 @@
       <article class="panel">
         <span class="badge">IaC - Infrastructure as Code Examples</span>
         <h1>Projeto com vários códigos para IaC - Infrastructure as Code Examples para AWS</h1>
+        <div class="lead-copy">
+          <label class="lead checkbox-option">
+            <input type="checkbox" id="todos-checkbox" name="todos" data-filter="all" checked />
+            <span>Todos</span>
+          </label>
+          <label class="lead checkbox-option">
+            <input type="checkbox" id="auto-scaling-checkbox" name="auto-scaling" data-filter="autoscaling" />
+            <span>Auto Scaling</span>
+          </label>
+        </div>
+        <div class="summary">
+          <a id="autoscaling-download-link" class="download-link" href="download/AutoScaling1.yaml" data-categories="autoscaling"
+            download>AutoScaling1</a>
+        </div>
       </article>
     </section>
 
   </main>
+  <script>
+    const filterCheckboxes = Array.from(document.querySelectorAll('input[type="checkbox"][data-filter]'));
+    const downloadLinks = Array.from(document.querySelectorAll('.download-link[data-categories]'));
+
+    const toggleDownloadLinks = () => {
+      const allSelected = filterCheckboxes.some((checkbox) =>
+        checkbox.checked && checkbox.dataset.filter === 'all'
+      );
+      const activeFilters = new Set(
+        filterCheckboxes
+          .filter((checkbox) => checkbox.checked && checkbox.dataset.filter !== 'all')
+          .map((checkbox) => checkbox.dataset.filter)
+      );
+
+      downloadLinks.forEach((link) => {
+        const linkCategories = (link.dataset.categories || '')
+          .split(',')
+          .map((value) => value.trim())
+          .filter((value) => value.length > 0);
+        const shouldShowLink = allSelected || linkCategories.some((category) => activeFilters.has(category));
+        link.style.display = shouldShowLink ? 'inline' : 'none';
+      });
+    };
+
+    filterCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', toggleDownloadLinks);
+    });
+    toggleDownloadLinks();
+  </script>
 </body>
 
 </html>
