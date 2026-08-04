@@ -412,9 +412,10 @@
           <p>
             Este template CloudFormation cria uma VPC pública com duas sub-redes em zonas de disponibilidade
             diferentes e executa um Auto Scaling Group com duas instâncias EC2 usando um Launch Template.
+            O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.
           </p>
 
-          <svg class="architecture-diagram" viewBox="0 0 1100 640" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
+          <svg class="architecture-diagram" viewBox="0 0 1100 740" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
             aria-labelledby="autoscaling-diagram-title autoscaling-diagram-desc">
             <title id="autoscaling-diagram-title">Arquitetura AWS criada pelo AutoScaling1.yaml</title>
             <desc id="autoscaling-diagram-desc">
@@ -457,9 +458,9 @@
 
             </defs>
 
-            <rect x="32" y="38" width="1036" height="548" rx="28" class="diagram-container"></rect>
+            <rect x="32" y="38" width="1036" height="670" rx="28" class="diagram-container"></rect>
             <svg x="58" y="44" width="48" height="48" class="aws-icon-image"><use href="#aws-vpc-icon" xlink:href="#aws-vpc-icon"></use></svg>
-            <text x="106" y="78" class="diagram-title">AWS Cloud - VPC 172.31.0.0/16</text>
+            <text x="118" y="78" class="diagram-title">AWS Cloud - VPC 172.31.0.0/16</text>
 
             <rect x="74" y="118" width="176" height="86" rx="18" class="diagram-node"></rect>
             <svg x="94" y="137" width="48" height="48" class="aws-icon-image"><use href="#aws-internet-gateway-icon" xlink:href="#aws-internet-gateway-icon"></use></svg>
@@ -473,27 +474,27 @@
             <text x="422" y="173" class="diagram-small">public-rt</text>
             <text x="422" y="191" class="diagram-small">Associada às sub-redes</text>
 
-            <rect x="614" y="118" width="186" height="86" rx="18" class="diagram-node"></rect>
-            <svg x="634" y="137" width="48" height="48" class="aws-icon-image"><use href="#aws-cloudformation-template-icon" xlink:href="#aws-cloudformation-template-icon"></use></svg>
-            <text x="694" y="151" class="diagram-label">Launch Template</text>
-            <text x="694" y="173" class="diagram-small">AMI + instance type</text>
-            <text x="694" y="191" class="diagram-small">t3.micro/t3.small</text>
+            <rect x="272" y="604" width="232" height="96" rx="18" class="diagram-node"></rect>
+            <svg x="292" y="628" width="48" height="48" class="aws-icon-image"><use href="#aws-security-group-icon" xlink:href="#aws-security-group-icon"></use></svg>
+            <text x="352" y="640" class="diagram-label">Security Group</text>
+            <text x="352" y="662" class="diagram-small">HTTP 80</text>
+            <text x="352" y="680" class="diagram-small">Aberto à Internet</text>
 
-            <rect x="852" y="118" width="176" height="86" rx="18" class="diagram-node"></rect>
-            <svg x="872" y="137" width="48" height="48" class="aws-icon-image"><use href="#aws-security-group-icon" xlink:href="#aws-security-group-icon"></use></svg>
-            <text x="932" y="151" class="diagram-label">Security Group</text>
-            <text x="932" y="173" class="diagram-small">HTTP 80</text>
-            <text x="932" y="191" class="diagram-small">Aberto à Internet</text>
+            <rect x="604" y="604" width="252" height="96" rx="18" class="diagram-node"></rect>
+            <svg x="624" y="628" width="48" height="48" class="aws-icon-image"><use href="#aws-cloudformation-template-icon" xlink:href="#aws-cloudformation-template-icon"></use></svg>
+            <text x="684" y="640" class="diagram-label">Launch Template</text>
+            <text x="684" y="662" class="diagram-small">AMI + instance type</text>
+            <text x="684" y="680" class="diagram-small">t3.micro/t3.small</text>
 
             <path d="M250 161 H342" class="diagram-arrow"></path>
             <path d="M430 204 V236" class="diagram-arrow-soft"></path>
 
             <rect x="84" y="264" width="426" height="168" rx="22" class="diagram-subnet"></rect>
-            <text x="112" y="298" class="diagram-label">PublicSubnet1 - AZ 1</text>
+            <text x="112" y="298" class="diagram-label">Public Subnet1 - AZ 1</text>
             <text x="112" y="320" class="diagram-small">172.31.0.0/20 | Public IP on launch</text>
 
             <rect x="590" y="264" width="426" height="168" rx="22" class="diagram-subnet"></rect>
-            <text x="618" y="298" class="diagram-label">PublicSubnet2 - AZ 2</text>
+            <text x="618" y="298" class="diagram-label">Public Subnet2 - AZ 2</text>
             <text x="618" y="320" class="diagram-small">172.31.16.0/20 | Public IP on launch</text>
 
             <path d="M430 236 H298 V264" class="diagram-arrow-soft"></path>
@@ -514,8 +515,8 @@
             <text x="386" y="514" class="diagram-label">Auto Scaling Group</text>
             <text x="386" y="536" class="diagram-small">min 2 | desired 2 | max 2 | distribuído entre duas AZs</text>
 
-            <path d="M707 204 V484" class="diagram-arrow"></path>
-            <path d="M940 204 V226 H772 V484" class="diagram-arrow"></path>
+            <path d="M388 604 V558" class="diagram-arrow"></path>
+            <path d="M730 604 V558" class="diagram-arrow"></path>
             <path d="M420 484 V454 H237 V406" class="diagram-arrow"></path>
             <path d="M680 484 V454 H827 V406" class="diagram-arrow"></path>
           </svg>
