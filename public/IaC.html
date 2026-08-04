@@ -415,7 +415,7 @@
             O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.
           </p>
 
-          <svg class="architecture-diagram" viewBox="0 0 1100 740" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
+          <svg class="architecture-diagram" viewBox="0 0 1100 760" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
             aria-labelledby="autoscaling-diagram-title autoscaling-diagram-desc">
             <title id="autoscaling-diagram-title">Arquitetura AWS criada pelo AutoScaling1.yaml</title>
             <desc id="autoscaling-diagram-desc">
@@ -461,7 +461,7 @@
 
             </defs>
 
-            <rect x="32" y="38" width="1036" height="670" rx="28" class="diagram-container"></rect>
+            <rect x="32" y="38" width="1036" height="690" rx="28" class="diagram-container"></rect>
             <svg x="58" y="44" width="48" height="48" class="aws-icon-image"><use href="#aws-vpc-icon" xlink:href="#aws-vpc-icon"></use></svg>
             <text x="118" y="78" class="diagram-title">AWS Cloud - VPC 172.31.0.0/16</text>
 
@@ -471,17 +471,17 @@
             <text x="518" y="173" class="diagram-small">Entrada/saída pública</text>
             <text x="518" y="191" class="diagram-small">Rota 0.0.0.0/0</text>
 
-            <rect x="272" y="584" width="232" height="96" rx="18" class="diagram-node"></rect>
-            <svg x="292" y="608" width="48" height="48" class="aws-icon-image"><use href="#aws-security-group-icon" xlink:href="#aws-security-group-icon"></use></svg>
-            <text x="352" y="620" class="diagram-label">Security Group</text>
-            <text x="352" y="642" class="diagram-small">HTTP 80</text>
-            <text x="352" y="660" class="diagram-small">Aberto à Internet</text>
+            <rect x="272" y="604" width="232" height="96" rx="18" class="diagram-node"></rect>
+            <svg x="292" y="628" width="48" height="48" class="aws-icon-image"><use href="#aws-security-group-icon" xlink:href="#aws-security-group-icon"></use></svg>
+            <text x="352" y="640" class="diagram-label">Security Group</text>
+            <text x="352" y="662" class="diagram-small">HTTP 80</text>
+            <text x="352" y="680" class="diagram-small">Aberto à Internet</text>
 
-            <rect x="604" y="584" width="252" height="96" rx="18" class="diagram-node"></rect>
-            <svg x="624" y="608" width="48" height="48" class="aws-icon-image"><use href="#aws-ec2-launch-template-icon" xlink:href="#aws-ec2-launch-template-icon"></use></svg>
-            <text x="684" y="620" class="diagram-label">Launch Template</text>
-            <text x="684" y="642" class="diagram-small">AMI + instance type</text>
-            <text x="684" y="660" class="diagram-small">t3.micro/t3.small</text>
+            <rect x="604" y="604" width="252" height="96" rx="18" class="diagram-node"></rect>
+            <svg x="624" y="628" width="48" height="48" class="aws-icon-image"><use href="#aws-ec2-launch-template-icon" xlink:href="#aws-ec2-launch-template-icon"></use></svg>
+            <text x="684" y="640" class="diagram-label">Launch Template</text>
+            <text x="684" y="662" class="diagram-small">AMI + instance type</text>
+            <text x="684" y="680" class="diagram-small">t3.micro/t3.small</text>
 
             <path d="M550 204 V236" class="diagram-arrow-soft"></path>
 
@@ -511,8 +511,8 @@
             <text x="386" y="514" class="diagram-label">Auto Scaling Group</text>
             <text x="386" y="536" class="diagram-small">Min 2 | Desired 2 | Max 2 | Distribuído entre duas AZs</text>
 
-            <path d="M388 584 V558" class="diagram-arrow"></path>
-            <path d="M730 584 V558" class="diagram-arrow"></path>
+            <path d="M388 604 V558" class="diagram-arrow"></path>
+            <path d="M730 604 V558" class="diagram-arrow"></path>
             <path d="M420 484 V454 H237 V406" class="diagram-arrow"></path>
             <path d="M680 484 V454 H827 V406" class="diagram-arrow"></path>
           </svg>
