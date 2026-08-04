@@ -124,6 +124,7 @@
     .download-link {
       color: var(--primary);
       font-weight: 700;
+      margin-right: 18px;
       text-decoration: none;
     }
 
@@ -244,6 +245,13 @@
         <span class="badge">IaC - Infrastructure as Code Examples</span>
         <h1>Projeto com vários códigos para IaC - Infrastructure as Code Examples para AWS</h1>
         <div class="lead-copy">
+          <p class="lead">
+            Clique no check do arquivo para visualizar uma explicação.
+            Clique no nome do arquivo para fazer o download do arquivo.
+            Executar o arquivvo yaml para CloudFormation é uma das maneiras mais fáceis de criar uma estrutura no AWS.
+          </p>
+        </div>
+        <div class="lead-copy">
           <label class="lead checkbox-option">
             <input type="checkbox" id="todos-checkbox" name="todos" data-filter="all" checked />
             <span>Todos</span>
@@ -252,10 +260,16 @@
             <input type="checkbox" id="auto-scaling-checkbox" name="auto-scaling" data-filter="autoscaling" />
             <span>Auto Scaling</span>
           </label>
+          <label class="lead checkbox-option">
+            <input type="checkbox" id="load-balancer-checkbox" name="load-balancer" data-filter="loadbalancer" />
+            <span>Load Balancer</span>
+          </label>
         </div>
         <div class="summary">
           <a id="autoscaling-download-link" class="download-link" href="download/AutoScaling1.yaml" data-categories="autoscaling"
-            download>AutoScaling1</a>
+            download>AutoScaling1.yaml</a>
+          <a id="load-balancer-autoscaling-download-link" class="download-link" href="download/LoadBalancerAutoScaling1.yaml" data-categories="autoscaling,loadbalancer"
+            download>LoadBalancerAutoScaling1.yaml</a>
         </div>
       </article>
     </section>

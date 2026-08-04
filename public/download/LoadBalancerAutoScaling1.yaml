@@ -97,16 +97,35 @@ Resources:
       SubnetId: !Ref PublicSubnet2
       RouteTableId: !Ref PublicRouteTable
 
-  MySecurityGroup:
+  MySecurityGroupForLoadBalancer:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Acesso HTTP e SSH
+      GroupDescription: Acesso HTTP
       VpcId: !Ref VPC
       SecurityGroupIngress:
         - Description: Acesso HTTP pela internet
           IpProtocol: tcp
           FromPort: 80
           ToPort: 80
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - Description: Permitir toda saida
+          IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: sg-ec2-lb
+
+  MySecurityGroupForLaunchTemplate:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Acesso SSH
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - Description: Acesso SSH pela internet
+          IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
           CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
         - Description: Permitir toda saida
@@ -123,7 +142,7 @@ Resources:
         ImageId: !Ref AmiId
         InstanceType: !Ref InstanceType
         SecurityGroupIds:
-          - !Ref MySecurityGroup
+          - !Ref MySecurityGroupForLaunchTemplate
 #        UserData:
 #          Fn::Base64: !Sub |
 #            #!/bin/bash
