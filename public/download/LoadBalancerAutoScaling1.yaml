@@ -186,6 +186,9 @@ Resources:
       LaunchTemplate:
         LaunchTemplateId: !Ref MyLaunchTemplate
         Version: !GetAtt MyLaunchTemplate.LatestVersionNumber
+      Tags:
+        - Key: Name
+          Value: MyAutoScalingGroup
 
   MyTargetTrackingScalingPolicy:
     Type: AWS::AutoScaling::ScalingPolicy

@@ -185,9 +185,13 @@
       background: #ffffff;
     }
 
+    .code-block {
+      position: relative;
+    }
+
     .tab-panel pre {
       margin: 0;
-      padding: 16px;
+      padding: 16px 52px 16px 16px;
       overflow-x: auto;
       border: 1px solid var(--border);
       border-radius: 0 14px 14px 14px;
@@ -199,6 +203,56 @@
     .tab-panel code {
       font-family: Consolas, "Courier New", monospace;
       font-size: 14px;
+    }
+
+    .copy-code-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(226, 232, 240, 0.28);
+      border-radius: 10px;
+      color: #e2e8f0;
+      background: rgba(15, 23, 42, 0.88);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .copy-code-button:hover,
+    .copy-code-button:focus-visible {
+      color: #ffffff;
+      background: rgba(37, 99, 235, 0.95);
+      border-color: rgba(255, 255, 255, 0.7);
+      outline: none;
+    }
+
+    .copy-code-button.is-copied {
+      color: #bbf7d0;
+      border-color: rgba(187, 247, 208, 0.7);
+    }
+
+    .copy-code-button svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .copy-code-message {
+      position: fixed;
+      z-index: 1000;
+      transform: translate(-50%, calc(-100% - 10px));
+      padding: 6px 10px;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      border-radius: 999px;
+      color: #16a34a;
+      background: #f0fdf4;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
+      pointer-events: none;
     }
 
     .architecture-diagram {
@@ -597,7 +651,15 @@
 
             <div class="tab-panel" role="tabpanel" id="keypair-linux-panel"
               aria-labelledby="keypair-linux-tab" data-tab-panel="linux" hidden>
-              <pre><code>export MSYS_NO_PATHCONV=1
+              <div class="code-block">
+                <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Linux or Mac"
+                  title="Copiar codigo">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor"
+                      d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
+                  </svg>
+                </button>
+                <pre><code>export MSYS_NO_PATHCONV=1
 
 KEY_ID=$(aws ec2 describe-key-pairs \
   --key-names minha-key-for-launch-template \
@@ -609,11 +671,20 @@ aws ssm get-parameter \
   --with-decryption \
   --query "Parameter.Value" \
   --output text > minha-key-for-launch-template.ppk</code></pre>
+              </div>
             </div>
 
             <div class="tab-panel is-active" role="tabpanel" id="keypair-windows-panel"
               aria-labelledby="keypair-windows-tab" data-tab-panel="windows">
-              <pre><code>$KeyId = aws ec2 describe-key-pairs `
+              <div class="code-block">
+                <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Windows"
+                  title="Copiar codigo">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor"
+                      d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
+                  </svg>
+                </button>
+                <pre><code>$KeyId = aws ec2 describe-key-pairs `
   --key-names minha-key-for-launch-template `
   --query "KeyPairs[0].KeyPairId" `
   --output text
@@ -623,6 +694,7 @@ aws ssm get-parameter `
   --with-decryption `
   --query "Parameter.Value" `
   --output text | Set-Content -NoNewline -Encoding ascii minha-key-for-launch-template.pem</code></pre>
+              </div>
             </div>
           </div>
 
@@ -676,6 +748,80 @@ aws ssm get-parameter `
 
       toggleSummaries();
     };
+
+    const copyTextFallback = (text) => {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.setAttribute('readonly', '');
+      textArea.style.position = 'fixed';
+      textArea.style.top = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.select();
+
+      const copied = document.execCommand('copy');
+      textArea.remove();
+
+      if (!copied) {
+        throw new Error('Nao foi possivel copiar o codigo.');
+      }
+    };
+
+    const copyText = async (text) => {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return;
+        } catch (error) {
+          console.warn('Clipboard API indisponivel, usando fallback.', error);
+        }
+      }
+
+      copyTextFallback(text);
+    };
+
+    let copyMessageTimeout;
+    const showCopyMessage = (event) => {
+      document.querySelectorAll('.copy-code-message').forEach((message) => message.remove());
+      window.clearTimeout(copyMessageTimeout);
+
+      const message = document.createElement('span');
+      message.className = 'copy-code-message';
+      message.textContent = 'Copiado';
+      message.style.left = `${event.clientX}px`;
+      message.style.top = `${event.clientY}px`;
+      document.body.appendChild(message);
+
+      copyMessageTimeout = window.setTimeout(() => {
+        message.remove();
+      }, 1400);
+    };
+
+    document.querySelectorAll('[data-copy-code]').forEach((button) => {
+      button.addEventListener('click', async (event) => {
+        const code = button.closest('.code-block').querySelector('code');
+        const defaultLabel = button.dataset.defaultLabel || button.getAttribute('aria-label');
+
+        button.dataset.defaultLabel = defaultLabel;
+
+        try {
+          await copyText(code.textContent);
+          showCopyMessage(event);
+          button.classList.add('is-copied');
+          button.setAttribute('aria-label', 'Codigo copiado');
+          button.title = 'Codigo copiado';
+
+          window.setTimeout(() => {
+            button.classList.remove('is-copied');
+            button.setAttribute('aria-label', defaultLabel);
+            button.title = 'Copiar codigo';
+          }, 1800);
+        } catch (error) {
+          console.error(error);
+          button.setAttribute('aria-label', 'Nao foi possivel copiar');
+          button.title = 'Nao foi possivel copiar';
+        }
+      });
+    });
 
     filterCheckboxes.forEach((checkbox) => {
       checkbox.addEventListener('change', toggleDownloadLinks);
