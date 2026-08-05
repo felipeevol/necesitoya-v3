@@ -135,6 +135,13 @@ Resources:
         - Key: Name
           Value: sg-ec2-web
 
+  KeyPairForLaunchTemplate:
+    Type: AWS::EC2::KeyPair
+    Properties:
+      KeyName: minha-key-for-launch-template
+      KeyType: rsa
+      KeyFormat: ppk
+
   MyLaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
     Properties:
@@ -143,6 +150,7 @@ Resources:
         InstanceType: !Ref InstanceType
         SecurityGroupIds:
           - !Ref MySecurityGroupForLaunchTemplate
+        KeyName: !Ref KeyPairForLaunchTemplate
 #        UserData:
 #          Fn::Base64: !Sub |
 #            #!/bin/bash

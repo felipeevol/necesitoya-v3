@@ -520,6 +520,42 @@
           </svg>
 
         </div>
+
+        <div class="summary" id="loadbalancer-autoscaling-summary" hidden>
+          <h2>Diagrama e explicação do LoadBalancerAutoScaling1.yaml</h2>
+          <p>
+            Este template CloudFormation cria uma VPC pública com duas sub-redes em zonas de disponibilidade
+            diferentes e executa um Auto Scaling Group com duas instâncias EC2 usando um Launch Template.
+            Muito parecido com o que temos no AutoScaling1.yaml, mas agora adicionando um Application Load Balancer.
+
+
+            O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.<br>
+            <b>O importante aqui é aprender que se uma EC2 pára de responder, outra será criada.
+              Portanto, um teste válido será parar uma das EC2 criadas e se poderá ver que o Auto Scaling fará isso automaticamente</b>
+
+            Para baixar a Key Pair, use os seguintes comandos:
+
+            <pre>
+              <code>
+export MSYS_NO_PATHCONV=1
+
+KEY_ID=$(aws ec2 describe-key-pairs \
+  --key-names minha-key-for-launch-template \
+  --query "KeyPairs[0].KeyPairId" \
+  --output text)
+
+aws ssm get-parameter \
+  --name "/ec2/keypair/$KEY_ID" \
+  --with-decryption \
+  --query "Parameter.Value" \
+  --output text > minha-key-for-launch-template.pem
+              </code>
+            </pre>
+
+          </p>
+
+        </div>
+
       </article>
     </section>
 
@@ -527,12 +563,17 @@
   <script>
     const filterCheckboxes = Array.from(document.querySelectorAll('input[type="checkbox"][data-filter]'));
     const downloadOptions = Array.from(document.querySelectorAll('.file-option[data-categories]'));
-    const autoscalingRadio = document.getElementById('autoscaling-radio');
-    const autoscalingSummary = document.getElementById('autoscaling-summary');
-    const autoscalingOption = autoscalingRadio.closest('.file-option');
+    const summaryByRadioId = {
+      'autoscaling-radio': document.getElementById('autoscaling-summary'),
+      'load-balancer-autoscaling-radio': document.getElementById('loadbalancer-autoscaling-summary'),
+    };
 
-    const toggleAutoscalingSummary = () => {
-      autoscalingSummary.hidden = !autoscalingRadio.checked || autoscalingOption.style.display === 'none';
+    const toggleSummaries = () => {
+      Object.entries(summaryByRadioId).forEach(([radioId, summary]) => {
+        const radio = document.getElementById(radioId);
+        const option = radio.closest('.file-option');
+        summary.hidden = !radio.checked || option.style.display === 'none';
+      });
     };
 
     const toggleDownloadLinks = () => {
@@ -554,14 +595,14 @@
         option.style.display = shouldShowLink ? 'inline-flex' : 'none';
       });
 
-      toggleAutoscalingSummary();
+      toggleSummaries();
     };
 
     filterCheckboxes.forEach((checkbox) => {
       checkbox.addEventListener('change', toggleDownloadLinks);
     });
     document.querySelectorAll('input[name="iac-file"]').forEach((radio) => {
-      radio.addEventListener('change', toggleAutoscalingSummary);
+      radio.addEventListener('change', toggleSummaries);
     });
     toggleDownloadLinks();
   </script>
