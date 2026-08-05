@@ -158,6 +158,49 @@
       color: var(--muted);
     }
 
+    .code-tabs {
+      margin-top: 12px;
+    }
+
+    .tab-list {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .tab-button {
+      border: 1px solid var(--border);
+      border-bottom: 0;
+      border-radius: 12px 12px 0 0;
+      padding: 8px 14px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.65);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tab-button.is-active {
+      color: var(--primary);
+      background: #ffffff;
+    }
+
+    .tab-panel pre {
+      margin: 0;
+      padding: 16px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 0 14px 14px 14px;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .tab-panel code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+    }
+
     .architecture-diagram {
       width: 100%;
       height: auto;
@@ -412,9 +455,12 @@
           <p>
             Este template CloudFormation cria uma VPC pública com duas sub-redes em zonas de disponibilidade
             diferentes e executa um Auto Scaling Group com duas instâncias EC2 usando um Launch Template.
-            O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.<br>
-            <b>O importante aqui é aprender que se uma EC2 pára de responder, outra será criada.
-            Portanto, um teste válido será parar uma das EC2 criadas e se poderá ver que o Auto Scaling fará isso automaticamente</b>
+            O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.<br><br>
+          </p>
+          <p>
+            <b>Pontos importantes para aprender:</b><br>
+            - Se uma EC2 pára de responder, outra será criada automaticamente (pode-se testar isso finalizando uma das EC2 criadas).<br>
+            - O Security Group que está associado ao Launch Template, será colocado automaticamente para as EC2 criadas.
           </p>
 
           <svg class="architecture-diagram" viewBox="0 0 1100 760" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -525,19 +571,33 @@
           <h2>Diagrama e explicação do LoadBalancerAutoScaling1.yaml</h2>
           <p>
             Este template CloudFormation cria uma VPC pública com duas sub-redes em zonas de disponibilidade
-            diferentes e executa um Auto Scaling Group com duas instâncias EC2 usando um Launch Template.
-            Muito parecido com o que temos no AutoScaling1.yaml, mas agora adicionando um Application Load Balancer.
+            diferentes, executa um Auto Scaling Group com duas instâncias EC2 usando um Launch Template e
+            faz uso de um Application Load Balancer.<br>
+            Muito parecido com o que temos no AutoScaling1.yaml, mas agora adicionando um Application Load Balancer.<br><br>
+          </p>
+          <p>
+            <b>Este exemplo tem 2 Security Groups:</b><br>
+            - Um para o Load Balancer (que permite acesso a internet).<br>
+            - Outro para as EC2 instanciadas pelo Auto Scaling Group (que permite conexão SSH nas EC2).<br><br>
+          </p>
+          <p>
+            <b>Conexões SSH:</b><br>
+            - Se a origem for Windows, o yaml já está preparado para isso, pois usa "KeyFormat: ppk".<br>
+            - Se a origem for Linux or Mac, trocar "KeyFormat: ppk" para "KeyFormat: pem" no yaml.<br><br>
+          </p>
+          <p>Para baixar a Key Pair para a conexão SSH, use os seguintes comandos:</p>
 
+          <div class="code-tabs" data-code-tabs>
+            <div class="tab-list" role="tablist" aria-label="Comandos para baixar a Key Pair">
+              <button class="tab-button is-active" type="button" role="tab" aria-selected="true"
+                aria-controls="keypair-windows-panel" id="keypair-windows-tab" data-tab-target="windows">Windows</button>
+              <button class="tab-button" type="button" role="tab" aria-selected="false"
+                aria-controls="keypair-linux-panel" id="keypair-linux-tab" data-tab-target="linux">Linux or Mac</button>
+            </div>
 
-            O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.<br>
-            <b>O importante aqui é aprender que se uma EC2 pára de responder, outra será criada.
-              Portanto, um teste válido será parar uma das EC2 criadas e se poderá ver que o Auto Scaling fará isso automaticamente</b>
-
-            Para baixar a Key Pair, use os seguintes comandos:
-
-            <pre>
-              <code>
-export MSYS_NO_PATHCONV=1
+            <div class="tab-panel" role="tabpanel" id="keypair-linux-panel"
+              aria-labelledby="keypair-linux-tab" data-tab-panel="linux" hidden>
+              <pre><code>export MSYS_NO_PATHCONV=1
 
 KEY_ID=$(aws ec2 describe-key-pairs \
   --key-names minha-key-for-launch-template \
@@ -548,10 +608,29 @@ aws ssm get-parameter \
   --name "/ec2/keypair/$KEY_ID" \
   --with-decryption \
   --query "Parameter.Value" \
-  --output text > minha-key-for-launch-template.ppk
-              </code>
-            </pre>
+  --output text > minha-key-for-launch-template.ppk</code></pre>
+            </div>
 
+            <div class="tab-panel is-active" role="tabpanel" id="keypair-windows-panel"
+              aria-labelledby="keypair-windows-tab" data-tab-panel="windows">
+              <pre><code>$KeyId = aws ec2 describe-key-pairs `
+  --key-names minha-key-for-launch-template `
+  --query "KeyPairs[0].KeyPairId" `
+  --output text
+
+aws ssm get-parameter `
+  --name "/ec2/keypair/$KeyId" `
+  --with-decryption `
+  --query "Parameter.Value" `
+  --output text | Set-Content -NoNewline -Encoding ascii minha-key-for-launch-template.pem</code></pre>
+            </div>
+          </div>
+
+          <p>
+            <br><b>Pontos importantes para aprender:</b><br>
+            - Podemos ter mais de um Security Group e cada um com diferentes configurações.<br>
+            - Uma EC2 pode ter um script de inicialização que executa somente 1 vez ao ser criada<br>
+            - 
           </p>
 
         </div>
@@ -603,6 +682,28 @@ aws ssm get-parameter \
     });
     document.querySelectorAll('input[name="iac-file"]').forEach((radio) => {
       radio.addEventListener('change', toggleSummaries);
+    });
+    document.querySelectorAll('[data-code-tabs]').forEach((tabs) => {
+      const buttons = Array.from(tabs.querySelectorAll('[data-tab-target]'));
+      const panels = Array.from(tabs.querySelectorAll('[data-tab-panel]'));
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const activeTab = button.dataset.tabTarget;
+
+          buttons.forEach((tabButton) => {
+            const isActive = tabButton === button;
+            tabButton.classList.toggle('is-active', isActive);
+            tabButton.setAttribute('aria-selected', String(isActive));
+          });
+
+          panels.forEach((panel) => {
+            const isActive = panel.dataset.tabPanel === activeTab;
+            panel.classList.toggle('is-active', isActive);
+            panel.hidden = !isActive;
+          });
+        });
+      });
     });
     toggleDownloadLinks();
   </script>
