@@ -189,6 +189,7 @@ Resources:
       Tags:
         - Key: Name
           Value: MyAutoScalingGroup
+          PropagateAtLaunch: true
 
   MyTargetTrackingScalingPolicy:
     Type: AWS::AutoScaling::ScalingPolicy

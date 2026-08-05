@@ -511,11 +511,6 @@
             diferentes e executa um Auto Scaling Group com duas instâncias EC2 usando um Launch Template.
             O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.<br><br>
           </p>
-          <p>
-            <b>Pontos importantes para aprender:</b><br>
-            - Se uma EC2 pára de responder, outra será criada automaticamente (pode-se testar isso finalizando uma das EC2 criadas).<br>
-            - O Security Group que está associado ao Launch Template, será colocado automaticamente para as EC2 criadas.
-          </p>
 
           <svg class="architecture-diagram" viewBox="0 0 1100 760" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
             aria-labelledby="autoscaling-diagram-title autoscaling-diagram-desc">
@@ -619,6 +614,12 @@
             <path d="M680 484 V454 H827 V406" class="diagram-arrow"></path>
           </svg>
 
+          <p>
+            <b>Pontos importantes para aprender:</b><br>
+            - Se uma EC2 pára de responder, outra será criada automaticamente (pode-se testar isso finalizando uma das EC2 criadas).<br>
+            - O Security Group que está associado ao Launch Template, será colocado automaticamente para as EC2 criadas.
+          </p>
+
         </div>
 
         <div class="summary" id="loadbalancer-autoscaling-summary" hidden>
@@ -627,7 +628,8 @@
             Este template CloudFormation cria uma VPC pública com duas sub-redes em zonas de disponibilidade
             diferentes, executa um Auto Scaling Group com duas instâncias EC2 usando um Launch Template e
             faz uso de um Application Load Balancer.<br>
-            Muito parecido com o que temos no AutoScaling1.yaml, mas agora adicionando um Application Load Balancer.<br><br>
+            Muito parecido com o que temos no <a href="IaC.html?iacFile=AutoScaling1.yaml" target="_blank"
+              rel="noopener">AutoScaling1.yaml</a>, mas agora adicionando um Application Load Balancer.<br><br>
           </p>
           <p>
             <b>Este exemplo tem 2 Security Groups:</b><br>
@@ -639,7 +641,7 @@
             - Se a origem for Windows, o yaml já está preparado para isso, pois usa "KeyFormat: ppk".<br>
             - Se a origem for Linux or Mac, trocar "KeyFormat: ppk" para "KeyFormat: pem" no yaml.<br><br>
           </p>
-          <p>Para baixar a Key Pair para a conexão SSH, use os seguintes comandos:</p>
+          <p>Para baixar a Key Pair para a conexão SSH, use os seguintes comandos (gravará o arquivo com nome minha-key-for-launch-template.ppk ou minha-key-for-launch-template.pem, dependendo da origem):</p>
 
           <div class="code-tabs" data-code-tabs>
             <div class="tab-list" role="tablist" aria-label="Comandos para baixar a Key Pair">
@@ -684,7 +686,48 @@ aws ssm get-parameter \
                       d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
                   </svg>
                 </button>
-                <pre><code>$KeyId = aws ec2 describe-key-pairs `
+                <pre><code>aws ec2 describe-instances `
+  --filters `
+  "Name=tag:Name,Values=MyAutoScalingGroup" `
+  "Name=instance-state-name,Values=running" `
+  --query "Reservations[].Instances[].{InstanceId:InstanceId,PublicIP:PublicIpAddress}" `
+  --output table</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <br><p>Logo, para saber o IP das EC2, pode executar este comando:</p>
+
+          <div class="tab-panel" role="tabpanel" id="keypair-linux-panel"
+               aria-labelledby="keypair-linux-tab" data-tab-panel="linux" hidden>
+            <div class="code-block">
+              <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Linux or Mac"
+                      title="Copiar codigo">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="currentColor"
+                        d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
+                </svg>
+              </button>
+              <pre><code>aws ec2 describe-instances \
+  --filters \
+    "Name=tag:Name,Values=MyAutoScalingGroup" \
+    "Name=instance-state-name,Values=running" \
+  --query "Reservations[].Instances[].{InstanceId:InstanceId,PublicIP:PublicIpAddress}" \
+  --output table</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-panel is-active" role="tabpanel" id="keypair-windows-panel"
+               aria-labelledby="keypair-windows-tab" data-tab-panel="windows">
+            <div class="code-block">
+              <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Windows"
+                      title="Copiar codigo">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="currentColor"
+                        d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
+                </svg>
+              </button>
+              <pre><code>$KeyId = aws ec2 describe-key-pairs `
   --key-names minha-key-for-launch-template `
   --query "KeyPairs[0].KeyPairId" `
   --output text
@@ -694,7 +737,6 @@ aws ssm get-parameter `
   --with-decryption `
   --query "Parameter.Value" `
   --output text | Set-Content -NoNewline -Encoding ascii minha-key-for-launch-template.pem</code></pre>
-              </div>
             </div>
           </div>
 
@@ -702,10 +744,11 @@ aws ssm get-parameter `
             <br><b>Pontos importantes para aprender:</b><br>
             - Podemos ter mais de um Security Group e cada um com diferentes configurações.<br>
             - Uma EC2 pode ter um script de inicialização que executa somente 1 vez ao ser criada<br>
-            - 
+            -
           </p>
 
         </div>
+        
 
       </article>
     </section>
@@ -717,6 +760,18 @@ aws ssm get-parameter `
     const summaryByRadioId = {
       'autoscaling-radio': document.getElementById('autoscaling-summary'),
       'load-balancer-autoscaling-radio': document.getElementById('loadbalancer-autoscaling-summary'),
+    };
+    const radioByFileName = Object.fromEntries(
+      Array.from(document.querySelectorAll('input[name="iac-file"]')).map((radio) => [radio.value, radio])
+    );
+
+    const selectFileFromUrl = () => {
+      const selectedFileName = new URLSearchParams(window.location.search).get('iacFile');
+      const selectedRadio = radioByFileName[selectedFileName];
+
+      if (selectedRadio) {
+        selectedRadio.checked = true;
+      }
     };
 
     const toggleSummaries = () => {
@@ -851,6 +906,7 @@ aws ssm get-parameter `
         });
       });
     });
+    selectFileFromUrl();
     toggleDownloadLinks();
   </script>
 </body>
