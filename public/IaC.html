@@ -372,7 +372,7 @@
     <section class="hero">
       <article class="panel">
         <span class="badge">IaC - Infrastructure as Code Examples</span>
-        <h1>Projeto com vários códigos para IaC - Infrastructure as Code Examples para AWS</h1>
+        <h1>Exemplos de Infrastructure as Code para AWS</h1>
         <div class="lead-copy">
           <p class="lead">
             Clique no radio do arquivo para visualizar uma explicação.
@@ -412,7 +412,9 @@
           <p>
             Este template CloudFormation cria uma VPC pública com duas sub-redes em zonas de disponibilidade
             diferentes e executa um Auto Scaling Group com duas instâncias EC2 usando um Launch Template.
-            O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.
+            O Security Group aplicado ao Auto Scaling Group é automaticamente aplicado às EC2 instanciadas.<br>
+            <b>O importante aqui é aprender que se uma EC2 pára de responder, outra será criada.
+            Portanto, um teste válido será parar uma das EC2 criadas e se poderá ver que o Auto Scaling fará isso automaticamente</b>
           </p>
 
           <svg class="architecture-diagram" viewBox="0 0 1100 760" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
