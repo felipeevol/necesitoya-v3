@@ -223,7 +223,113 @@
         </div>
 
         <div class="architecture">
+          <svg class="architecture-diagram" viewBox="0 0 1100 900" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
+            aria-labelledby="loadbalancer-autoscaling-diagram-title loadbalancer-autoscaling-diagram-desc">
+            <title id="loadbalancer-autoscaling-diagram-title">Arquitetura AWS criada pelo LoadBalancerAutoScaling1.yaml</title>
+            <desc id="loadbalancer-autoscaling-diagram-desc">
+              VPC publica com Internet Gateway, Application Load Balancer, listener HTTP,
+              target group, Auto Scaling Group e duas instancias EC2 distribuidas em duas AZs.
+            </desc>
+            <defs>
+              <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                <path d="M0,0 L10,4 L0,8 Z" fill="#475569"></path>
+              </marker>
+              <marker id="arrowhead-soft" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                <path d="M0,0 L10,4 L0,8 Z" fill="#64748b"></path>
+              </marker>
+              <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#10203a" flood-opacity="0.12"></feDropShadow>
+              </filter>
+            </defs>
 
+            <rect x="2" y="2" width="1096" height="896" rx="28" class="diagram-container"></rect>
+            <rect x="58" y="44" width="48" height="48" rx="10" fill="#8C4FFF"></rect>
+            <text x="72" y="75" fill="#ffffff" font-size="14" font-weight="700">VPC</text>
+            <text x="118" y="78" class="diagram-title">AWS Cloud - VPC 172.31.0.0/16</text>
+
+            <rect x="430" y="112" width="240" height="86" rx="18" class="diagram-node"></rect>
+            <circle cx="476" cy="155" r="24" fill="#8C4FFF"></circle>
+            <text x="464" y="161" fill="#ffffff" font-size="13" font-weight="700">IGW</text>
+            <text x="518" y="145" class="diagram-label">Internet Gateway</text>
+            <text x="518" y="167" class="diagram-small">Entrada/saida publica</text>
+            <text x="518" y="185" class="diagram-small">Rota 0.0.0.0/0</text>
+
+            <rect x="110" y="226" width="880" height="76" rx="20" class="diagram-node"></rect>
+            <rect x="138" y="240" width="48" height="48" rx="10" fill="#7AA116"></rect>
+            <text x="151" y="270" fill="#ffffff" font-size="13" font-weight="700">ALB</text>
+            <text x="204" y="256" class="diagram-label">Application Load Balancer - my-alb</text>
+            <text x="204" y="278" class="diagram-small">Internet-facing | HTTP 80 | SG sg-ec2-lb aberto para 0.0.0.0/0</text>
+            <rect x="760" y="242" width="184" height="44" rx="14" class="diagram-asg"></rect>
+            <text x="784" y="260" class="diagram-label">Listener HTTP :80</text>
+            <text x="784" y="280" class="diagram-small">Forward para Target Group</text>
+
+            <path d="M550 198 V226" class="diagram-arrow-soft"></path>
+
+            <rect x="84" y="350" width="426" height="188" rx="22" class="diagram-subnet"></rect>
+            <text x="112" y="384" class="diagram-label">Public Subnet1 - AZ 1</text>
+            <text x="112" y="406" class="diagram-small">172.31.0.0/20 | Public IP on launch</text>
+
+            <rect x="590" y="350" width="426" height="188" rx="22" class="diagram-subnet"></rect>
+            <text x="618" y="384" class="diagram-label">Public Subnet2 - AZ 2</text>
+            <text x="618" y="406" class="diagram-small">172.31.16.0/20 | Public IP on launch</text>
+
+            <path d="M390 302 V326 H298 V350" class="diagram-arrow-soft"></path>
+            <path d="M710 302 V326 H804 V350" class="diagram-arrow-soft"></path>
+
+            <rect x="122" y="444" width="230" height="62" rx="16" class="diagram-node"></rect>
+            <rect x="144" y="451" width="48" height="48" rx="10" fill="#ED7100"></rect>
+            <text x="157" y="481" fill="#ffffff" font-size="13" font-weight="700">EC2</text>
+            <text x="204" y="469" class="diagram-label">EC2 Instance</text>
+            <text x="204" y="491" class="diagram-small">Apache + /health.html</text>
+
+            <rect x="712" y="444" width="230" height="62" rx="16" class="diagram-node"></rect>
+            <rect x="734" y="451" width="48" height="48" rx="10" fill="#ED7100"></rect>
+            <text x="747" y="481" fill="#ffffff" font-size="13" font-weight="700">EC2</text>
+            <text x="794" y="469" class="diagram-label">EC2 Instance</text>
+            <text x="794" y="491" class="diagram-small">Apache + /health.html</text>
+
+            <rect x="292" y="588" width="516" height="90" rx="20" class="diagram-asg"></rect>
+            <rect x="320" y="609" width="48" height="48" rx="10" fill="#ED7100"></rect>
+            <text x="331" y="639" fill="#ffffff" font-size="13" font-weight="700">ASG</text>
+            <text x="386" y="618" class="diagram-label">Auto Scaling Group</text>
+            <text x="386" y="640" class="diagram-small">Min 1 | Desired 2 | Max 2 | HealthCheckType ELB</text>
+            <text x="386" y="660" class="diagram-small">Target tracking: CPU media em 30%</text>
+
+            <rect x="382" y="724" width="336" height="66" rx="18" class="diagram-node"></rect>
+            <circle cx="422" cy="757" r="22" fill="#7AA116"></circle>
+            <text x="407" y="762" fill="#ffffff" font-size="12" font-weight="700">TG</text>
+            <text x="462" y="750" class="diagram-label">Target Group - my-target-group</text>
+            <text x="462" y="772" class="diagram-small">HTTP 80 | Health check /health.html</text>
+
+            <rect x="100" y="802" width="268" height="64" rx="18" class="diagram-node"></rect>
+            <rect x="124" y="815" width="38" height="38" rx="8" fill="#DD344C"></rect>
+            <text x="132" y="839" fill="#ffffff" font-size="12" font-weight="700">SG</text>
+            <text x="178" y="826" class="diagram-label">SG Load Balancer</text>
+            <text x="178" y="848" class="diagram-small">HTTP 80 vindo da Internet</text>
+
+            <rect x="416" y="802" width="268" height="64" rx="18" class="diagram-node"></rect>
+            <rect x="440" y="815" width="38" height="38" rx="8" fill="#DD344C"></rect>
+            <text x="448" y="839" fill="#ffffff" font-size="12" font-weight="700">SG</text>
+            <text x="494" y="826" class="diagram-label">SG EC2 Web</text>
+            <text x="494" y="848" class="diagram-small">SSH 22 + HTTP 80 do ALB</text>
+
+            <rect x="732" y="802" width="268" height="64" rx="18" class="diagram-node"></rect>
+            <rect x="756" y="815" width="38" height="38" rx="8" fill="#ED7100"></rect>
+            <text x="763" y="839" fill="#ffffff" font-size="12" font-weight="700">LT</text>
+            <text x="810" y="826" class="diagram-label">Launch Template</text>
+            <text x="810" y="848" class="diagram-small">AMI + t3.micro/t3.small + key pair</text>
+
+            <path d="M314 588 V550 H237 V506" class="diagram-arrow"></path>
+            <path d="M786 588 V550 H827 V506" class="diagram-arrow"></path>
+            <path d="M550 678 V724" class="diagram-arrow"></path>
+            <path d="M500 724 V704 H237 V506" class="diagram-arrow-soft"></path>
+            <path d="M600 724 V704 H827 V506" class="diagram-arrow-soft"></path>
+            <path d="M760 264 H718" class="diagram-arrow"></path>
+            <path d="M718 264 V724 H620" class="diagram-arrow"></path>
+            <path d="M234 802 V758 H382" class="diagram-arrow-soft"></path>
+            <path d="M550 802 V790" class="diagram-arrow-soft"></path>
+            <path d="M866 802 V678 H730" class="diagram-arrow-soft"></path>
+          </svg>
         </div>
 
         <section class="command-section">
