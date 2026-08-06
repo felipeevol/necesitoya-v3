@@ -189,14 +189,18 @@
       </article>
 
       <article class="card detail-card" *ngIf="selectedFileName === 'LoadBalancerAutoScaling1.yaml'">
-        <span class="badge badge-soft">{{ currentPage.files.loadBalancerAutoScaling.label }}</span>
-        <h2>{{ currentPage.files.loadBalancerAutoScaling.title }}</h2>
-        <p>{{ currentPage.files.loadBalancerAutoScaling.description }}</p>
-        <p>
-          {{ currentPage.files.loadBalancerAutoScaling.similarPrefix }}
-          <a routerLink="/recursos_iac" [queryParams]="{ iacFile: 'AutoScaling1.yaml' }">AutoScaling1.yaml</a>
-          {{ currentPage.files.loadBalancerAutoScaling.similarSuffix }}
-        </p>
+        <div class="detail-intro">
+          <div>
+            <span class="badge badge-soft">{{ currentPage.files.loadBalancerAutoScaling.label }}</span>
+            <h2>{{ currentPage.files.loadBalancerAutoScaling.title }}</h2>
+            <p>{{ currentPage.files.loadBalancerAutoScaling.description }}</p>
+            <p>
+              {{ currentPage.files.loadBalancerAutoScaling.similarPrefix }}
+              <a routerLink="/recursos_iac" [queryParams]="{ iacFile: 'AutoScaling1.yaml' }">AutoScaling1.yaml</a>
+              {{ currentPage.files.loadBalancerAutoScaling.similarSuffix }}
+            </p>
+          </div>
+        </div>
 
         <div class="architecture">
           <div class="diagram-flow diagram-flow-wide">
