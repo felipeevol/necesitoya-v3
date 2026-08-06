@@ -205,28 +205,21 @@
               >
               {{ currentPage.files.loadBalancerAutoScaling.similarSuffix }}
             </p>
+            <div class="detail-intro-notes">
+              <section>
+                <h3>{{ currentPage.files.loadBalancerAutoScaling.securityTitle }}</h3>
+                <ul class="check-list">
+                  <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.securityGroups">{{ item }}</li>
+                </ul>
+              </section>
+              <section>
+                <h3>{{ currentPage.files.loadBalancerAutoScaling.sshTitle }}</h3>
+                <ul class="check-list">
+                  <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.sshNotes">{{ item }}</li>
+                </ul>
+              </section>
+            </div>
           </div>
-        </div>
-
-        <div class="architecture">
-          <div class="diagram-flow diagram-flow-wide">
-
-          </div>
-        </div>
-
-        <div class="info-grid">
-          <section>
-            <h3>{{ currentPage.files.loadBalancerAutoScaling.securityTitle }}</h3>
-            <ul class="check-list">
-              <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.securityGroups">{{ item }}</li>
-            </ul>
-          </section>
-          <section>
-            <h3>{{ currentPage.files.loadBalancerAutoScaling.sshTitle }}</h3>
-            <ul class="check-list">
-              <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.sshNotes">{{ item }}</li>
-            </ul>
-          </section>
         </div>
 
         <section class="command-section">

@@ -340,6 +340,22 @@
   margin-top: 14px;
 }
 
+.detail-intro-notes {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.detail-intro-notes section {
+  padding-top: 14px;
+  border-top: 1px solid rgba(37, 99, 235, 0.16);
+}
+
+.detail-intro-notes h3 {
+  margin: 0 0 8px;
+  color: #1e3a8a;
+}
+
 .info-grid section,
 .command-section,
 .learning-points {
