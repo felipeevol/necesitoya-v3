@@ -26,7 +26,7 @@
 .iac-hero {
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
   color: white;
-  padding: 80px 0;
+  padding: 32px 0;
 }
 
 .hero-grid,
@@ -53,8 +53,7 @@
 }
 
 .iac-hero p,
-.detail-card p,
-.file-option small {
+.detail-card p {
   color: var(--text-light);
   line-height: 1.65;
 }
@@ -116,7 +115,7 @@
 }
 
 .iac-content {
-  padding: 56px 0 80px;
+  padding: 24px 0 80px;
 }
 
 .filter-card h2,
@@ -184,8 +183,7 @@
   accent-color: var(--accent);
 }
 
-.file-option span,
-.file-option small {
+.file-option span {
   display: grid;
   gap: 4px;
 }

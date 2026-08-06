@@ -37,7 +37,6 @@
             (change)="selectFile(file.fileName)">
           <span>
             <strong>{{ file.fileName }}</strong>
-            <small>{{ currentPage.files[file.translationKey].shortDescription }}</small>
           </span>
         </label>
         <a class="download-link" [href]="'download/' + selectedFile.fileName" download>
