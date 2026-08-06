@@ -54,7 +54,13 @@
     }
   },
   "resourcesPage": {
-    "title": "Resources"
+    "title": "Resources",
+    "iac": {
+      "badge": "IaC",
+      "title": "Infrastructure as Code for AWS",
+      "description": "Explore CloudFormation templates with technical explanations, diagrams, and YAML downloads.",
+      "linkText": "Open IaC resources"
+    }
   },
   "iacPage": {
     "badge": "IaC - Infrastructure as Code",

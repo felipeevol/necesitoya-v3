@@ -3,3 +3,14 @@
     <h1>{{ currentTranslations.resourcesPage.title }}</h1>
   </div>
 </section>
+
+<main class="resources-content">
+  <section class="container resources-grid">
+    <a class="resource-card" routerLink="/recursos_iac">
+      <span class="resource-badge">{{ currentTranslations.resourcesPage.iac.badge }}</span>
+      <h2>{{ currentTranslations.resourcesPage.iac.title }}</h2>
+      <p>{{ currentTranslations.resourcesPage.iac.description }}</p>
+      <strong>{{ currentTranslations.resourcesPage.iac.linkText }}</strong>
+    </a>
+  </section>
+</main>
