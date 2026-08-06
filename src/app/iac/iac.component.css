@@ -44,7 +44,7 @@
 
 .hero-side {
   display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 270px));
+  grid-template-columns: minmax(240px, 290px) minmax(320px, 380px);
   gap: 16px;
   justify-self: start;
   align-items: start;
