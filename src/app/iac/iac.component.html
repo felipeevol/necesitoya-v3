@@ -175,7 +175,10 @@
         </div>
 
         <section class="learning-points">
-          <h3>{{ currentPage.learningTitle }}</h3>
+          <div class="learning-heading">
+            <span class="learning-heading-icon" aria-hidden="true">★</span>
+            <h3>{{ currentPage.learningTitle }}</h3>
+          </div>
           <ul class="check-list learning-list">
             <li *ngFor="let item of currentPage.files.autoScaling.highlights">
               <span class="learning-check" aria-hidden="true">✓</span>
@@ -240,7 +243,10 @@
         </section>
 
         <section class="learning-points">
-          <h3>{{ currentPage.learningTitle }}</h3>
+          <div class="learning-heading">
+            <span class="learning-heading-icon" aria-hidden="true">★</span>
+            <h3>{{ currentPage.learningTitle }}</h3>
+          </div>
           <ul class="check-list learning-list">
             <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.highlights">
               <span class="learning-check" aria-hidden="true">✓</span>
