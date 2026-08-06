@@ -77,10 +77,12 @@
           </div>
         </div>
 
-        <h3>{{ currentPage.learningTitle }}</h3>
-        <ul class="check-list">
-          <li *ngFor="let item of currentPage.files.autoScaling.highlights">{{ item }}</li>
-        </ul>
+        <section class="learning-points">
+          <h3>{{ currentPage.learningTitle }}</h3>
+          <ul class="check-list learning-list">
+            <li *ngFor="let item of currentPage.files.autoScaling.highlights">{{ item }}</li>
+          </ul>
+        </section>
       </article>
 
       <article class="card detail-card" *ngIf="selectedFileName === 'LoadBalancerAutoScaling1.yaml'">
@@ -138,10 +140,12 @@
           </ng-container>
         </section>
 
-        <h3>{{ currentPage.learningTitle }}</h3>
-        <ul class="check-list">
-          <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.highlights">{{ item }}</li>
-        </ul>
+        <section class="learning-points">
+          <h3>{{ currentPage.learningTitle }}</h3>
+          <ul class="check-list learning-list">
+            <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.highlights">{{ item }}</li>
+          </ul>
+        </section>
       </article>
     </div>
   </section>

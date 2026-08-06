@@ -192,6 +192,10 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
+.filter-switch:focus {
+  outline: none;
+}
+
 .filter-switch-track {
   position: relative;
   flex: 0 0 44px;
@@ -366,6 +370,34 @@
   height: 9px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+.learning-points {
+  border: 1px solid #bfdbfe;
+  border-radius: 16px;
+  padding: 20px;
+  background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+}
+
+.learning-points h3 {
+  margin: 0 0 14px;
+}
+
+.learning-list {
+  gap: 12px;
+}
+
+.learning-list li {
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem 0.85rem 2.3rem;
+  background: white;
+  color: #334155;
+}
+
+.learning-list li::before {
+  top: 1.05rem;
+  left: 0.95rem;
 }
 
 .tab-list {
