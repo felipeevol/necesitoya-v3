@@ -122,11 +122,9 @@ aws ssm get-parameter \\
   }
 
   setFilter(filter: IacFilter): void {
-    const defaultFilter = this.categoryFilters[0];
-
     if (filter === 'all') {
       this.activeFilters = this.activeFilters.has('all')
-        ? new Set<IacFilter>([defaultFilter])
+        ? new Set<IacFilter>()
         : new Set<IacFilter>(['all', ...this.categoryFilters]);
     } else {
       const nextFilters = new Set(this.activeFilters);
@@ -136,10 +134,6 @@ aws ssm get-parameter \\
         nextFilters.delete(filter);
       } else {
         nextFilters.add(filter);
-      }
-
-      if (nextFilters.size === 0) {
-        nextFilters.add(defaultFilter);
       }
 
       const allCategoryFiltersActive = this.categoryFilters.every((categoryFilter) =>
@@ -153,8 +147,12 @@ aws ssm get-parameter \\
       this.activeFilters = nextFilters;
     }
 
-    if (!this.visibleFiles.some((file) => file.fileName === this.selectedFileName)) {
-      this.selectedFileName = this.visibleFiles[0].fileName;
+    const nextVisibleFiles = this.visibleFiles;
+    if (
+      nextVisibleFiles.length > 0 &&
+      !nextVisibleFiles.some((file) => file.fileName === this.selectedFileName)
+    ) {
+      this.selectedFileName = nextVisibleFiles[0].fileName;
     }
   }
 
