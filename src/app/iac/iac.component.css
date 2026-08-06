@@ -336,6 +336,10 @@
   font-weight: 700;
 }
 
+.detail-intro .badge + h2 {
+  margin-top: 14px;
+}
+
 .info-grid section,
 .command-section,
 .learning-points {
