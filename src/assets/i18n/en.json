@@ -64,7 +64,7 @@
   },
   "iacPage": {
     "badge": "IaC - Infrastructure as Code",
-    "title": "Infrastructure as Code examples for AWS",
+    "title": "IaC examples for AWS",
     "subtitle": "CloudFormation templates ready to study, download, and adapt",
     "quickStartTitle": "Featured template",
     "quickStartText": "Public VPC, Auto Scaling Group, Application Load Balancer, and EC2 instances with health checks.",

@@ -37,13 +37,15 @@
 }
 
 .hero-grid {
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.55fr);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
   align-items: center;
   gap: 24px;
 }
 
 .hero {
   padding-left: 0;
+  padding-right: clamp(0px, 12vw, 160px);
+  min-width: 0;
 }
 
 .iac-hero h1 {
@@ -99,8 +101,9 @@
   display: grid;
   gap: 18px;
   justify-self: start;
-  transform: translateX(-160px);
-  width: 64%;
+  transform: translateX(-80px);
+  width: 100%;
+  max-width: 270px;
 }
 
 .download-link {
@@ -312,9 +315,12 @@ code {
 
   .hero {
     padding-left: 0;
+    padding-right: 0;
   }
 
   .filter-card {
+    transform: none;
     width: 100%;
+    max-width: none;
   }
 }
