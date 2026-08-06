@@ -100,7 +100,8 @@
   display: grid;
   gap: 18px;
   justify-self: start;
-  width: 80%;
+  transform: translateX(-160px);
+  width: 64%;
 }
 
 .download-link {
