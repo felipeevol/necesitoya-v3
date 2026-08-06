@@ -358,11 +358,7 @@
 }
 
 .architecture {
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
   margin: 18px 0 20px;
-  background: #ffffff;
-  box-shadow: 0 12px 30px rgba(16, 32, 58, 0.08);
   overflow: hidden;
 }
 
