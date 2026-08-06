@@ -528,6 +528,22 @@
   background: var(--accent);
 }
 
+.detail-intro-notes .check-list {
+  gap: 6px;
+}
+
+.detail-intro-notes .check-list li {
+  padding-left: 18px;
+  line-height: 1.35;
+}
+
+.detail-intro-notes .check-list li::before {
+  top: 0.675em;
+  width: 6px;
+  height: 6px;
+  transform: translateY(-50%);
+}
+
 .learning-list li {
   display: flex;
   align-items: flex-start;
