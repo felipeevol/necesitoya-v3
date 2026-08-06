@@ -76,7 +76,7 @@ aws ssm get-parameter \\
   } as const;
 
   activeFilters = new Set<IacFilter>(['all']);
-  selectedFileName: IacFileName = 'LoadBalancerAutoScaling1.yaml';
+  selectedFileName: IacFileName = 'AutoScaling1.yaml';
   activeCommandPlatform: Record<CommandGroup, CommandPlatform> = {
     keyPair: 'windows',
     instanceIp: 'windows',
