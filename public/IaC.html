@@ -646,9 +646,9 @@
           <div class="code-tabs" data-code-tabs>
             <div class="tab-list" role="tablist" aria-label="Comandos para baixar a Key Pair">
               <button class="tab-button is-active" type="button" role="tab" aria-selected="true"
-                aria-controls="keypair-windows-panel" id="keypair-windows-tab" data-tab-target="windows">Windows</button>
+                aria-controls="keypair-windows-panel" id="keypair-windows-tab" data-tab-target="windows">Windows (PowerShell)</button>
               <button class="tab-button" type="button" role="tab" aria-selected="false"
-                aria-controls="keypair-linux-panel" id="keypair-linux-tab" data-tab-target="linux">Linux or Mac</button>
+                aria-controls="keypair-linux-panel" id="keypair-linux-tab" data-tab-target="linux">Linux or Mac (Bash)</button>
             </div>
 
             <div class="tab-panel" role="tabpanel" id="keypair-linux-panel"
@@ -672,12 +672,67 @@ aws ssm get-parameter \
   --name "/ec2/keypair/$KEY_ID" \
   --with-decryption \
   --query "Parameter.Value" \
-  --output text > minha-key-for-launch-template.ppk</code></pre>
+  --output text > minha-key-for-launch-template.pem</code></pre>
               </div>
             </div>
 
             <div class="tab-panel is-active" role="tabpanel" id="keypair-windows-panel"
               aria-labelledby="keypair-windows-tab" data-tab-panel="windows">
+              <div class="code-block">
+                <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Windows"
+                  title="Copiar codigo">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor"
+                      d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
+                  </svg>
+                </button>
+                <pre><code>$KeyId = aws ec2 describe-key-pairs `
+  --key-names minha-key-for-launch-template `
+  --query "KeyPairs[0].KeyPairId" `
+  --output text
+
+aws ssm get-parameter `
+  --name "/ec2/keypair/$KeyId" `
+  --with-decryption `
+  --query "Parameter.Value" `
+  --output text | Set-Content -NoNewline -Encoding ascii minha-key-for-launch-template.ppk</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <br><p>Logo, para saber o IP das EC2, pode executar este comando:</p>
+
+          <div class="code-tabs" data-code-tabs>
+            <div class="tab-list" role="tablist" aria-label="Comandos para consultar IP das EC2">
+              <button class="tab-button is-active" type="button" role="tab" aria-selected="true"
+                aria-controls="instance-ip-windows-panel" id="instance-ip-windows-tab"
+                data-tab-target="instance-ip-windows">Windows (PowerShell)</button>
+              <button class="tab-button" type="button" role="tab" aria-selected="false"
+                aria-controls="instance-ip-linux-panel" id="instance-ip-linux-tab"
+                data-tab-target="instance-ip-linux">Linux or Mac (Bash)</button>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" id="instance-ip-linux-panel"
+              aria-labelledby="instance-ip-linux-tab" data-tab-panel="instance-ip-linux" hidden>
+              <div class="code-block">
+                <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Linux or Mac"
+                  title="Copiar codigo">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor"
+                      d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
+                  </svg>
+                </button>
+                <pre><code>aws ec2 describe-instances \
+  --filters \
+    "Name=tag:Name,Values=MyAutoScalingGroup" \
+    "Name=instance-state-name,Values=running" \
+  --query "Reservations[].Instances[].{InstanceId:InstanceId,PublicIP:PublicIpAddress}" \
+  --output table</code></pre>
+              </div>
+            </div>
+
+            <div class="tab-panel is-active" role="tabpanel" id="instance-ip-windows-panel"
+              aria-labelledby="instance-ip-windows-tab" data-tab-panel="instance-ip-windows">
               <div class="code-block">
                 <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Windows"
                   title="Copiar codigo">
@@ -696,50 +751,6 @@ aws ssm get-parameter \
             </div>
           </div>
 
-          <br><p>Logo, para saber o IP das EC2, pode executar este comando:</p>
-
-          <div class="tab-panel" role="tabpanel" id="keypair-linux-panel"
-               aria-labelledby="keypair-linux-tab" data-tab-panel="linux" hidden>
-            <div class="code-block">
-              <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Linux or Mac"
-                      title="Copiar codigo">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path fill="currentColor"
-                        d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
-                </svg>
-              </button>
-              <pre><code>aws ec2 describe-instances \
-  --filters \
-    "Name=tag:Name,Values=MyAutoScalingGroup" \
-    "Name=instance-state-name,Values=running" \
-  --query "Reservations[].Instances[].{InstanceId:InstanceId,PublicIP:PublicIpAddress}" \
-  --output table</code></pre>
-            </div>
-          </div>
-
-          <div class="tab-panel is-active" role="tabpanel" id="keypair-windows-panel"
-               aria-labelledby="keypair-windows-tab" data-tab-panel="windows">
-            <div class="code-block">
-              <button class="copy-code-button" type="button" data-copy-code aria-label="Copiar codigo Windows"
-                      title="Copiar codigo">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path fill="currentColor"
-                        d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
-                </svg>
-              </button>
-              <pre><code>$KeyId = aws ec2 describe-key-pairs `
-  --key-names minha-key-for-launch-template `
-  --query "KeyPairs[0].KeyPairId" `
-  --output text
-
-aws ssm get-parameter `
-  --name "/ec2/keypair/$KeyId" `
-  --with-decryption `
-  --query "Parameter.Value" `
-  --output text | Set-Content -NoNewline -Encoding ascii minha-key-for-launch-template.pem</code></pre>
-            </div>
-          </div>
-
           <p>
             <br><b>Pontos importantes para aprender:</b><br>
             - Podemos ter mais de um Security Group e cada um com diferentes configurações.<br>
@@ -748,7 +759,7 @@ aws ssm get-parameter `
           </p>
 
         </div>
-        
+
 
       </article>
     </section>
