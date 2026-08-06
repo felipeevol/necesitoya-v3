@@ -65,7 +65,7 @@
   "iacPage": {
     "badge": "IaC - Infrastructure as Code",
     "title": "Infrastructure as Code examples for AWS",
-    "subtitle": "CloudFormation templates ready to study, download, and adapt. Select a file to see the technical explanation and use the file link to download it.",
+    "subtitle": "CloudFormation templates ready to study, download, and adapt",
     "quickStartTitle": "Featured template",
     "quickStartText": "Public VPC, Auto Scaling Group, Application Load Balancer, and EC2 instances with health checks.",
     "downloadFeatured": "Download LoadBalancerAutoScaling1.yaml",
