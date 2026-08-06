@@ -52,6 +52,9 @@
       "description": "Siempre actualizados con las últimas tecnologías y mejores prácticas."
     }
   },
+  "resourcesPage": {
+    "title": "Recursos"
+  },
   "contact": {
     "title": "Contacto",
     "subtitle": "¿Tienes una pregunta o propuesta? Cuéntanos sobre tu proyecto",
