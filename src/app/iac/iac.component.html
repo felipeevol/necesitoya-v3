@@ -7,18 +7,34 @@
     </div>
     <div class="hero-side">
       <div class="hero-card filter-card">
-        <div>
+        <div class="filter-card-header">
           <h2>{{ currentPage.filtersTitle }}</h2>
+          <button
+            type="button"
+            class="filter-switch all-filter-switch"
+            [class.active]="isFilterActive('all')"
+            role="switch"
+            [attr.aria-checked]="isFilterActive('all')"
+            (click)="setFilter('all')">
+            <span class="filter-switch-track" aria-hidden="true">
+              <span class="filter-switch-thumb"></span>
+            </span>
+            <span class="filter-switch-label">{{ currentPage.filters.all }}</span>
+          </button>
         </div>
         <div class="filter-list" role="group" [attr.aria-label]="currentPage.filtersTitle">
           <button
-            *ngFor="let filter of filters"
+            *ngFor="let filter of categoryFilters"
             type="button"
-            class="filter-button"
+            class="filter-switch"
             [class.active]="isFilterActive(filter)"
-            [attr.aria-pressed]="isFilterActive(filter)"
+            role="switch"
+            [attr.aria-checked]="isFilterActive(filter)"
             (click)="setFilter(filter)">
-            {{ currentPage.filters[filter] }}
+            <span class="filter-switch-track" aria-hidden="true">
+              <span class="filter-switch-thumb"></span>
+            </span>
+            <span class="filter-switch-label">{{ currentPage.filters[filter] }}</span>
           </button>
         </div>
       </div>

@@ -75,7 +75,7 @@ aws ssm get-parameter \\
   --output table`,
   } as const;
 
-  activeFilters = new Set<IacFilter>(['all']);
+  activeFilters = new Set<IacFilter>(['all', 'autoscaling', 'loadbalancer']);
   selectedFileName: IacFileName = 'AutoScaling1.yaml';
   activeCommandPlatform: Record<CommandGroup, CommandPlatform> = {
     keyPair: 'windows',
@@ -99,6 +99,10 @@ aws ssm get-parameter \\
     return this.currentTranslations.iacPage;
   }
 
+  get categoryFilters(): ReadonlyArray<IacFilter> {
+    return this.filters.filter((filter) => filter !== 'all');
+  }
+
   get visibleFiles(): ReadonlyArray<IacFile> {
     if (this.activeFilters.has('all')) {
       return this.files;
@@ -118,8 +122,12 @@ aws ssm get-parameter \\
   }
 
   setFilter(filter: IacFilter): void {
+    const defaultFilter = this.categoryFilters[0];
+
     if (filter === 'all') {
-      this.activeFilters = new Set<IacFilter>(['all']);
+      this.activeFilters = this.activeFilters.has('all')
+        ? new Set<IacFilter>([defaultFilter])
+        : new Set<IacFilter>(['all', ...this.categoryFilters]);
     } else {
       const nextFilters = new Set(this.activeFilters);
       nextFilters.delete('all');
@@ -130,7 +138,19 @@ aws ssm get-parameter \\
         nextFilters.add(filter);
       }
 
-      this.activeFilters = nextFilters.size > 0 ? nextFilters : new Set<IacFilter>(['all']);
+      if (nextFilters.size === 0) {
+        nextFilters.add(defaultFilter);
+      }
+
+      const allCategoryFiltersActive = this.categoryFilters.every((categoryFilter) =>
+        nextFilters.has(categoryFilter),
+      );
+
+      if (allCategoryFiltersActive) {
+        nextFilters.add('all');
+      }
+
+      this.activeFilters = nextFilters;
     }
 
     if (!this.visibleFiles.some((file) => file.fileName === this.selectedFileName)) {
