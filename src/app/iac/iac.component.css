@@ -357,6 +357,13 @@
   color: #1e3a8a;
 }
 
+.architecture {
+  border: 2px dashed #94a3b8;
+  border-radius: 22px;
+  padding: 16px;
+  background: #f8fafc;
+}
+
 .architecture-diagram {
   width: 100%;
   height: auto;
