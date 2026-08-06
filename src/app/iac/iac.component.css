@@ -42,8 +42,8 @@
   gap: 24px;
 }
 
-.hero-copy {
-  padding-left: 48px;
+.hero {
+  padding-left: 0;
 }
 
 .iac-hero h1 {
@@ -53,7 +53,6 @@
 }
 
 .iac-hero p,
-.toolbar p,
 .detail-card p,
 .file-option small {
   color: var(--text-light);
@@ -97,10 +96,6 @@
   color: var(--primary);
 }
 
-.hero-card p {
-  color: var(--text-light);
-}
-
 .filter-card {
   display: grid;
   gap: 18px;
@@ -108,15 +103,6 @@
   width: 80%;
 }
 
-.filter-card h2 {
-  margin: 0 0 10px;
-}
-
-.filter-card p {
-  margin: 0;
-}
-
-.primary-link,
 .download-link {
   display: inline-flex;
   justify-content: center;
@@ -132,6 +118,7 @@
   padding: 56px 0 80px;
 }
 
+.filter-card h2,
 .file-card h2,
 .detail-card h2,
 .architecture h3 {
@@ -324,7 +311,7 @@ code {
     grid-template-columns: 1fr;
   }
 
-  .hero-copy {
+  .hero {
     padding-left: 0;
   }
 
