@@ -142,8 +142,7 @@
 
 .filter-card h2,
 .file-card h2,
-.detail-card h2,
-.architecture h3 {
+.detail-card h2 {
   margin: 0 0 10px;
 }
 
@@ -337,7 +336,6 @@
   font-weight: 700;
 }
 
-.architecture,
 .info-grid section,
 .command-section,
 .learning-points {
@@ -362,11 +360,7 @@
 .architecture-diagram {
   width: 100%;
   height: auto;
-  margin: 18px 0 20px;
-  border-radius: 18px;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  box-shadow: 0 12px 30px rgba(16, 32, 58, 0.08);
+  display: block;
 }
 
 .diagram-node {
