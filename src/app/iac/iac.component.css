@@ -37,8 +37,13 @@
 }
 
 .hero-grid {
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.55fr);
   align-items: center;
+  gap: 24px;
+}
+
+.hero-copy {
+  padding-left: 48px;
 }
 
 .iac-hero h1 {
@@ -99,6 +104,8 @@
 .filter-card {
   display: grid;
   gap: 18px;
+  justify-self: start;
+  width: 80%;
 }
 
 .filter-card h2 {
@@ -149,11 +156,19 @@
   cursor: pointer;
 }
 
+.filter-button {
+  background: #f8fafc;
+}
+
 .filter-button.active,
 .tab-button.active {
   border-color: transparent;
   background: var(--accent);
   color: white;
+}
+
+.filter-button.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
 .layout {
@@ -307,5 +322,13 @@ code {
   .diagram-flow,
   .diagram-flow-wide {
     grid-template-columns: 1fr;
+  }
+
+  .hero-copy {
+    padding-left: 0;
+  }
+
+  .filter-card {
+    width: 100%;
   }
 }

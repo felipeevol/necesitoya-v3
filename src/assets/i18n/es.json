@@ -69,8 +69,7 @@
     "quickStartTitle": "Template destacado",
     "quickStartText": "VPC pública, Auto Scaling Group, Application Load Balancer e instancias EC2 con health checks.",
     "downloadFeatured": "Descargar LoadBalancerAutoScaling1.yaml",
-    "filtersTitle": "Filtrar ejemplos",
-    "filtersHelp": "Muestra todos los templates o enfócate en Auto Scaling y Load Balancer.",
+    "filtersTitle": "Filtrar",
     "filters": {
       "all": "Todos",
       "autoscaling": "Auto Scaling",

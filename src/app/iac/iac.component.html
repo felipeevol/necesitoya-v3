@@ -1,6 +1,6 @@
 <section class="iac-hero">
   <div class="container hero-grid">
-    <div>
+    <div class="hero-copy">
       <span class="badge">{{ currentPage.badge }}</span>
       <h1>{{ currentPage.title }}</h1>
       <p>{{ currentPage.subtitle }}</p>
@@ -8,7 +8,6 @@
     <div class="hero-card filter-card">
       <div>
         <h2>{{ currentPage.filtersTitle }}</h2>
-        <p>{{ currentPage.filtersHelp }}</p>
       </div>
       <div class="filter-list" role="group" [attr.aria-label]="currentPage.filtersTitle">
         <button
@@ -16,6 +15,7 @@
           type="button"
           class="filter-button"
           [class.active]="isFilterActive(filter)"
+          [attr.aria-pressed]="isFilterActive(filter)"
           (click)="setFilter(filter)">
           {{ currentPage.filters[filter] }}
         </button>
