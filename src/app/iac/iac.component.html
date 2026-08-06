@@ -1,0 +1,167 @@
+<section class="iac-hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge">{{ currentPage.badge }}</span>
+      <h1>{{ currentPage.title }}</h1>
+      <p>{{ currentPage.subtitle }}</p>
+    </div>
+    <div class="hero-card">
+      <strong>{{ currentPage.quickStartTitle }}</strong>
+      <p>{{ currentPage.quickStartText }}</p>
+      <a class="primary-link" href="download/LoadBalancerAutoScaling1.yaml" download>
+        {{ currentPage.downloadFeatured }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<main class="iac-content">
+  <section class="container">
+    <div class="toolbar card">
+      <div>
+        <h2>{{ currentPage.filtersTitle }}</h2>
+        <p>{{ currentPage.filtersHelp }}</p>
+      </div>
+      <div class="filter-list" role="group" [attr.aria-label]="currentPage.filtersTitle">
+        <button
+          *ngFor="let filter of filters"
+          type="button"
+          class="filter-button"
+          [class.active]="isFilterActive(filter)"
+          (click)="setFilter(filter)">
+          {{ currentPage.filters[filter] }}
+        </button>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside class="card file-card">
+        <h2>{{ currentPage.filesTitle }}</h2>
+        <label *ngFor="let file of visibleFiles" class="file-option">
+          <input
+            type="radio"
+            name="iacFile"
+            [checked]="selectedFileName === file.fileName"
+            (change)="selectFile(file.fileName)">
+          <span>
+            <strong>{{ file.fileName }}</strong>
+            <small>{{ currentPage.files[file.translationKey].shortDescription }}</small>
+          </span>
+        </label>
+        <a class="download-link" [href]="'download/' + selectedFile.fileName" download>
+          {{ currentPage.downloadSelected }}
+        </a>
+      </aside>
+
+      <article class="card detail-card" *ngIf="selectedFileName === 'AutoScaling1.yaml'">
+        <span class="badge badge-soft">{{ currentPage.files.autoScaling.label }}</span>
+        <h2>{{ currentPage.files.autoScaling.title }}</h2>
+        <p>{{ currentPage.files.autoScaling.description }}</p>
+
+        <div class="architecture">
+          <h3>{{ currentPage.diagramTitle }}</h3>
+          <div class="diagram-flow">
+            <span>VPC</span>
+            <span>{{ currentPage.diagram.publicSubnets }}</span>
+            <span>{{ currentPage.diagram.launchTemplate }}</span>
+            <span>{{ currentPage.diagram.autoScaling }}</span>
+            <span>EC2 x2</span>
+          </div>
+        </div>
+
+        <h3>{{ currentPage.learningTitle }}</h3>
+        <ul class="check-list">
+          <li *ngFor="let item of currentPage.files.autoScaling.highlights">{{ item }}</li>
+        </ul>
+      </article>
+
+      <article class="card detail-card" *ngIf="selectedFileName === 'LoadBalancerAutoScaling1.yaml'">
+        <span class="badge badge-soft">{{ currentPage.files.loadBalancerAutoScaling.label }}</span>
+        <h2>{{ currentPage.files.loadBalancerAutoScaling.title }}</h2>
+        <p>{{ currentPage.files.loadBalancerAutoScaling.description }}</p>
+        <p>
+          {{ currentPage.files.loadBalancerAutoScaling.similarPrefix }}
+          <a routerLink="/iac" [queryParams]="{ iacFile: 'AutoScaling1.yaml' }">AutoScaling1.yaml</a>
+          {{ currentPage.files.loadBalancerAutoScaling.similarSuffix }}
+        </p>
+
+        <div class="architecture">
+          <h3>{{ currentPage.diagramTitle }}</h3>
+          <div class="diagram-flow diagram-flow-wide">
+            <span>VPC</span>
+            <span>{{ currentPage.diagram.publicSubnets }}</span>
+            <span>ALB</span>
+            <span>{{ currentPage.diagram.targetGroup }}</span>
+            <span>{{ currentPage.diagram.autoScaling }}</span>
+            <span>EC2 x2</span>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <section>
+            <h3>{{ currentPage.files.loadBalancerAutoScaling.securityTitle }}</h3>
+            <ul class="check-list">
+              <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.securityGroups">{{ item }}</li>
+            </ul>
+          </section>
+          <section>
+            <h3>{{ currentPage.files.loadBalancerAutoScaling.sshTitle }}</h3>
+            <ul class="check-list">
+              <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.sshNotes">{{ item }}</li>
+            </ul>
+          </section>
+        </div>
+
+        <section class="command-section">
+          <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairTitle }}</h3>
+          <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIntro }}</p>
+          <ng-container
+            [ngTemplateOutlet]="commandBlock"
+            [ngTemplateOutletContext]="{ group: 'keyPair' }">
+          </ng-container>
+        </section>
+
+        <section class="command-section">
+          <h3>{{ currentPage.files.loadBalancerAutoScaling.instanceIpTitle }}</h3>
+          <p>{{ currentPage.files.loadBalancerAutoScaling.instanceIpIntro }}</p>
+          <ng-container
+            [ngTemplateOutlet]="commandBlock"
+            [ngTemplateOutletContext]="{ group: 'instanceIp' }">
+          </ng-container>
+        </section>
+
+        <h3>{{ currentPage.learningTitle }}</h3>
+        <ul class="check-list">
+          <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.highlights">{{ item }}</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</main>
+
+<ng-template #commandBlock let-group="group">
+  <div class="code-tabs">
+    <div class="tab-list" role="tablist">
+      <button
+        type="button"
+        class="tab-button"
+        [class.active]="isCommandPlatformActive(group, 'windows')"
+        (click)="setCommandPlatform(group, 'windows')">
+        {{ currentPage.commands.windows }}
+      </button>
+      <button
+        type="button"
+        class="tab-button"
+        [class.active]="isCommandPlatformActive(group, 'bash')"
+        (click)="setCommandPlatform(group, 'bash')">
+        {{ currentPage.commands.bash }}
+      </button>
+    </div>
+    <div class="code-block">
+      <button type="button" class="copy-button" (click)="copyCommand(group)">
+        {{ copiedCommand === group ? currentPage.commands.copied : currentPage.commands.copy }}
+      </button>
+      <pre><code>{{ getCommand(group) }}</code></pre>
+    </div>
+  </div>
+</ng-template>

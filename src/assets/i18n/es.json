@@ -3,6 +3,7 @@
   "nav": {
     "services": "Servicios",
     "resources": "Recursos",
+    "iac": "IaC",
     "contact": "Contacto"
   },
   "hero": {
@@ -54,6 +55,76 @@
   },
   "resourcesPage": {
     "title": "Recursos"
+  },
+  "iacPage": {
+    "badge": "IaC - Infrastructure as Code",
+    "title": "Ejemplos de Infrastructure as Code para AWS",
+    "subtitle": "Templates CloudFormation listos para estudiar, descargar y adaptar. Selecciona un archivo para ver la explicación técnica y usa el enlace del archivo para descargarlo.",
+    "quickStartTitle": "Template destacado",
+    "quickStartText": "VPC pública, Auto Scaling Group, Application Load Balancer e instancias EC2 con health checks.",
+    "downloadFeatured": "Descargar LoadBalancerAutoScaling1.yaml",
+    "filtersTitle": "Filtrar ejemplos",
+    "filtersHelp": "Muestra todos los templates o enfócate en Auto Scaling y Load Balancer.",
+    "filters": {
+      "all": "Todos",
+      "autoscaling": "Auto Scaling",
+      "loadbalancer": "Load Balancer"
+    },
+    "filesTitle": "Archivos disponibles",
+    "downloadSelected": "Descargar archivo seleccionado",
+    "diagramTitle": "Arquitectura creada",
+    "learningTitle": "Puntos importantes para aprender",
+    "diagram": {
+      "publicSubnets": "Subredes públicas",
+      "launchTemplate": "Launch Template",
+      "autoScaling": "Auto Scaling Group",
+      "targetGroup": "Target Group"
+    },
+    "commands": {
+      "windows": "Windows (PowerShell)",
+      "bash": "Linux o Mac (Bash)",
+      "copy": "Copiar",
+      "copied": "Copiado"
+    },
+    "files": {
+      "autoScaling": {
+        "label": "Auto Scaling",
+        "title": "Diagrama y explicación de AutoScaling1.yaml",
+        "shortDescription": "VPC pública con dos subredes y dos EC2 gestionadas por Auto Scaling.",
+        "description": "Este template CloudFormation crea una VPC pública con dos subredes en zonas de disponibilidad diferentes y ejecuta un Auto Scaling Group con dos instancias EC2 usando un Launch Template. El Security Group asociado al Launch Template se aplica automáticamente a las EC2 creadas.",
+        "highlights": [
+          "Si una EC2 deja de responder, se crea otra automáticamente; puedes probarlo finalizando una de las EC2 creadas.",
+          "El Security Group asociado al Launch Template se propaga automáticamente a las instancias EC2."
+        ]
+      },
+      "loadBalancerAutoScaling": {
+        "label": "Load Balancer + Auto Scaling",
+        "title": "Diagrama y explicación de LoadBalancerAutoScaling1.yaml",
+        "shortDescription": "Auto Scaling con Application Load Balancer, Target Group y health checks.",
+        "description": "Este template CloudFormation crea una VPC pública con dos subredes en zonas de disponibilidad diferentes, ejecuta un Auto Scaling Group con dos instancias EC2 usando un Launch Template y añade un Application Load Balancer.",
+        "similarPrefix": "Es parecido a ",
+        "similarSuffix": ", pero añade el Application Load Balancer.",
+        "securityTitle": "Este ejemplo tiene 2 Security Groups",
+        "securityGroups": [
+          "Un Security Group para el Load Balancer, permitiendo acceso HTTP desde internet.",
+          "Otro Security Group para las EC2 instanciadas por el Auto Scaling Group, permitiendo SSH y HTTP desde el ALB."
+        ],
+        "sshTitle": "Conexiones SSH",
+        "sshNotes": [
+          "Si el origen es Windows, el YAML ya está preparado porque usa KeyFormat: ppk.",
+          "Si el origen es Linux o Mac, cambia KeyFormat: ppk por KeyFormat: pem en el YAML."
+        ],
+        "keyPairTitle": "Descargar la Key Pair",
+        "keyPairIntro": "Usa estos comandos para guardar el archivo minha-key-for-launch-template.ppk o minha-key-for-launch-template.pem, dependiendo del origen.",
+        "instanceIpTitle": "Consultar las IP de las EC2",
+        "instanceIpIntro": "Después del despliegue, ejecuta el comando siguiente para listar las instancias EC2 en ejecución.",
+        "highlights": [
+          "Podemos tener más de un Security Group, cada uno con configuraciones diferentes.",
+          "Una EC2 puede tener un script de inicialización que se ejecuta solo una vez cuando se crea la instancia.",
+          "El Target Group usa health checks para mantener solo instancias saludables detrás del Load Balancer."
+        ]
+      }
+    }
   },
   "contact": {
     "title": "Contacto",

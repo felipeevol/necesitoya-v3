@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { IacComponent } from './iac/iac.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'recursos',
     component: ResourcesComponent,
+  },
+  {
+    path: 'recursos_iac',
+    component: IacComponent,
   },
 ];
