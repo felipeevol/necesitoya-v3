@@ -529,19 +529,23 @@
 }
 
 .detail-intro-notes .check-list {
-  gap: 6px;
+  gap: 4px;
 }
 
 .detail-intro-notes .check-list li {
-  padding-left: 18px;
-  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 0;
+  line-height: 1.25;
 }
 
 .detail-intro-notes .check-list li::before {
-  top: 0.675em;
-  width: 6px;
-  height: 6px;
-  transform: translateY(-50%);
+  position: static;
+  flex: 0 0 5px;
+  width: 5px;
+  height: 5px;
+  transform: none;
 }
 
 .learning-list li {
