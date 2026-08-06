@@ -96,6 +96,19 @@
   color: var(--text-light);
 }
 
+.filter-card {
+  display: grid;
+  gap: 18px;
+}
+
+.filter-card h2 {
+  margin: 0 0 10px;
+}
+
+.filter-card p {
+  margin: 0;
+}
+
 .primary-link,
 .download-link {
   display: inline-flex;
@@ -112,16 +125,6 @@
   padding: 56px 0 80px;
 }
 
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 30px;
-  padding: 24px;
-}
-
-.toolbar h2,
 .file-card h2,
 .detail-card h2,
 .architecture h3 {
@@ -304,10 +307,5 @@ code {
   .diagram-flow,
   .diagram-flow-wide {
     grid-template-columns: 1fr;
-  }
-
-  .toolbar {
-    align-items: flex-start;
-    flex-direction: column;
   }
 }
