@@ -340,6 +340,10 @@
   margin-top: 14px;
 }
 
+.detail-intro-similar {
+  margin-top: 18px;
+}
+
 .detail-intro-notes {
   display: grid;
   gap: 14px;
