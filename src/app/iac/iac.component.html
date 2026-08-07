@@ -395,23 +395,41 @@
       <button
         type="button"
         class="tab-button"
-        [class.active]="isCommandPlatformActive(group, 'windows')"
+        role="tab"
+        [class.is-active]="isCommandPlatformActive(group, 'windows')"
+        [attr.aria-selected]="isCommandPlatformActive(group, 'windows')"
         (click)="setCommandPlatform(group, 'windows')">
         {{ currentPage.commands.windows }}
       </button>
       <button
         type="button"
         class="tab-button"
-        [class.active]="isCommandPlatformActive(group, 'bash')"
+        role="tab"
+        [class.is-active]="isCommandPlatformActive(group, 'bash')"
+        [attr.aria-selected]="isCommandPlatformActive(group, 'bash')"
         (click)="setCommandPlatform(group, 'bash')">
         {{ currentPage.commands.bash }}
       </button>
     </div>
-    <div class="code-block">
-      <button type="button" class="copy-button" (click)="copyCommand(group)">
-        {{ copiedCommand === group ? currentPage.commands.copied : currentPage.commands.copy }}
-      </button>
-      <pre><code>{{ getCommand(group) }}</code></pre>
+    <div class="tab-panel is-active" role="tabpanel">
+      <div class="code-block">
+        <button
+          type="button"
+          class="copy-code-button"
+          [class.is-copied]="copiedCommand === group"
+          [attr.aria-label]="copiedCommand === group
+            ? currentPage.commands.copied
+            : currentPage.commands.copy"
+          [attr.title]="copiedCommand === group ? currentPage.commands.copied : currentPage.commands.copy"
+          (click)="copyCommand(group)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
+          </svg>
+        </button>
+        <pre><code>{{ getCommand(group) }}</code></pre>
+      </div>
     </div>
   </div>
 </ng-template>
