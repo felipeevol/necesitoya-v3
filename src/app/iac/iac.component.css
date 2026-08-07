@@ -374,13 +374,20 @@
   gap: 22px;
 }
 
-.command-item + .command-item {
-  padding-top: 22px;
-  border-top: 1px solid var(--border);
+.command-section h3 {
+  margin-top: 0;
 }
 
-.command-item h3 {
-  margin-top: 0;
+.command-section-featured {
+  border-color: #bfdbfe;
+  border-radius: 22px;
+  padding: 24px;
+  background: linear-gradient(135deg, #eff6ff, #fff 58%, #f5f3ff);
+  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.1);
+}
+
+.command-section-featured h3 {
+  color: #1e3a8a;
 }
 
 .learning-points {
