@@ -119,6 +119,12 @@
           "Se a origem for Windows, o YAML já está preparado para isso porque usa KeyFormat: ppk.",
           "Se a origem for Linux ou Mac, troque KeyFormat: ppk para KeyFormat: pem no YAML."
         ],
+        "functionsTitle": "Funções",
+        "functionsNotes": [
+          "Load Balancer: recebe o tráfego.",
+          "Listener: define como escutar e o que fazer com esse tráfego.",
+          "Target Group: indica para quais servidores ou destinos enviá-lo."
+        ],
         "keyPairTitle": "Baixar a Key Pair",
         "keyPairIntro": "Use estes comandos para gravar o arquivo minha-key-for-launch-template.ppk ou minha-key-for-launch-template.pem, dependendo da origem.",
         "instanceIpTitle": "Consultar o IP das EC2",

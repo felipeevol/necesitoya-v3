@@ -119,6 +119,12 @@
           "If the source is Windows, the YAML is already prepared because it uses KeyFormat: ppk.",
           "If the source is Linux or Mac, change KeyFormat: ppk to KeyFormat: pem in the YAML."
         ],
+        "functionsTitle": "Functions",
+        "functionsNotes": [
+          "Load Balancer: receives the traffic.",
+          "Listener: defines how to listen and what to do with that traffic.",
+          "Target Group: indicates which servers or destinations should receive it."
+        ],
         "keyPairTitle": "Download the Key Pair",
         "keyPairIntro": "Use these commands to write minha-key-for-launch-template.ppk or minha-key-for-launch-template.pem, depending on the source.",
         "instanceIpTitle": "Check the EC2 IP addresses",

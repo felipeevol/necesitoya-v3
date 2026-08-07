@@ -218,6 +218,14 @@
                   <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.sshNotes">{{ item }}</li>
                 </ul>
               </section>
+              <section>
+                <h3>{{ currentPage.files.loadBalancerAutoScaling.functionsTitle }}</h3>
+                <ul class="check-list">
+                  <li *ngFor="let item of currentPage.files.loadBalancerAutoScaling.functionsNotes">
+                    {{ item }}
+                  </li>
+                </ul>
+              </section>
             </div>
           </div>
         </div>
