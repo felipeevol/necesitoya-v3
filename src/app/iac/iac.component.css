@@ -369,6 +369,20 @@
   background: #f8fafc;
 }
 
+.command-section-combined {
+  display: grid;
+  gap: 22px;
+}
+
+.command-item + .command-item {
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.command-item h3 {
+  margin-top: 0;
+}
+
 .learning-points {
   border-color: rgba(59, 130, 246, 0.28);
   border-radius: 22px;

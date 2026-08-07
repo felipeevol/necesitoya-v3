@@ -354,22 +354,24 @@
           </svg>
         </div>
 
-        <section class="command-section">
-          <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairTitle }}</h3>
-          <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIntro }}</p>
-          <ng-container
-            [ngTemplateOutlet]="commandBlock"
-            [ngTemplateOutletContext]="{ group: 'keyPair' }">
-          </ng-container>
-        </section>
+        <section class="command-section command-section-combined">
+          <div class="command-item">
+            <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairTitle }}</h3>
+            <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIntro }}</p>
+            <ng-container
+              [ngTemplateOutlet]="commandBlock"
+              [ngTemplateOutletContext]="{ group: 'keyPair' }">
+            </ng-container>
+          </div>
 
-        <section class="command-section">
-          <h3>{{ currentPage.files.loadBalancerAutoScaling.instanceIpTitle }}</h3>
-          <p>{{ currentPage.files.loadBalancerAutoScaling.instanceIpIntro }}</p>
-          <ng-container
-            [ngTemplateOutlet]="commandBlock"
-            [ngTemplateOutletContext]="{ group: 'instanceIp' }">
-          </ng-container>
+          <div class="command-item">
+            <h3>{{ currentPage.files.loadBalancerAutoScaling.instanceIpTitle }}</h3>
+            <p>{{ currentPage.files.loadBalancerAutoScaling.instanceIpIntro }}</p>
+            <ng-container
+              [ngTemplateOutlet]="commandBlock"
+              [ngTemplateOutletContext]="{ group: 'instanceIp' }">
+            </ng-container>
+          </div>
         </section>
 
         <section class="learning-points">
