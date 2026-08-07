@@ -119,7 +119,7 @@
           "Si el origen es Windows, el YAML ya está preparado porque usa KeyFormat: ppk.",
           "Si el origen es Linux o Mac, cambia KeyFormat: ppk por KeyFormat: pem en el YAML."
         ],
-        "functionsTitle": "Funciones",
+        "functionsTitle": "Responsabilidad de los elementos:",
         "functionsNotes": [
           "Load Balancer: recibe el tráfico.",
           "Listener: define cómo escuchar y qué hacer con ese tráfico.",
