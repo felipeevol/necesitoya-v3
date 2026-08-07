@@ -125,6 +125,7 @@
           "Listener: define cómo escuchar y qué hacer con ese tráfico.",
           "Target Group: indica a qué servidores o destinos enviarlo."
         ],
+        "actionsTitle": "Acciones que puedes hacer en este entorno",
         "keyPairTitle": "Descargar la Key Pair",
         "keyPairIntro": "Usa estos comandos para guardar el archivo minha-key-for-launch-template.ppk o minha-key-for-launch-template.pem, dependiendo del origen.",
         "instanceIpTitle": "Consultar las IP de las EC2",

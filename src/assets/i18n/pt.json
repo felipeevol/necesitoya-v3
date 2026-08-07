@@ -125,6 +125,7 @@
           "Listener: define como escutar e o que fazer com esse tráfego.",
           "Target Group: indica para quais servidores ou destinos enviá-lo."
         ],
+        "actionsTitle": "Ações que você pode fazer neste ambiente",
         "keyPairTitle": "Baixar a Key Pair",
         "keyPairIntro": "Use estes comandos para gravar o arquivo minha-key-for-launch-template.ppk ou minha-key-for-launch-template.pem, dependendo da origem.",
         "instanceIpTitle": "Consultar o IP das EC2",
