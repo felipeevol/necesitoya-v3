@@ -130,6 +130,7 @@
         "keyPairIntro": "Use estes comandos para gravar o arquivo minha-key-for-launch-template.ppk ou minha-key-for-launch-template.pem, dependendo da origem.",
         "instanceIpTitle": "Consultar o IP das EC2",
         "keyPairIpTitle": "O que fazer com um Key Pair e um IP?",
+        "keyPairIpIntro": "Com o Pair Key do primeiro comando e um dos IPs do segundo comando, você poderá acessar uma das EC2 via SSH e executar comandos nela.",
         "instanceIpIntro": "Depois do deploy, execute o comando abaixo para listar as instâncias EC2 em execução.",
         "highlights": [
           "Podemos ter mais de um Security Group, cada um com configurações diferentes.",
