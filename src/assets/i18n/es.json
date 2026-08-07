@@ -129,6 +129,7 @@
         "keyPairTitle": "Descargar la Key Pair",
         "keyPairIntro": "Usa estos comandos para guardar el archivo minha-key-for-launch-template.ppk o minha-key-for-launch-template.pem, dependiendo del origen.",
         "instanceIpTitle": "Consultar las IP de las EC2",
+        "keyPairIpTitle": "¿Qué hacer con una Key Pair y una IP?",
         "instanceIpIntro": "Después del despliegue, ejecuta el comando siguiente para listar las instancias EC2 en ejecución.",
         "highlights": [
           "Podemos tener más de un Security Group, cada uno con configuraciones diferentes.",
