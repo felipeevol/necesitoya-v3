@@ -181,7 +181,16 @@
           </ng-container>
 
           <h3>{{ currentPage.files.loadBalancerAutoScaling.stopInstanceTitle }}</h3>
-          <p>{{ currentPage.files.loadBalancerAutoScaling.stopInstanceIntro }}</p>
+          <p>
+            {{ currentPage.files.loadBalancerAutoScaling.stopInstanceIntroPrefix }}
+            <a
+              routerLink="/recursos_iac"
+              [queryParams]="{ iacFile: 'AutoScaling1.yaml' }"
+              target="_blank"
+              rel="noopener noreferrer"
+              >AutoScaling1.yaml</a
+            >{{ currentPage.files.loadBalancerAutoScaling.stopInstanceIntroSuffix }}
+          </p>
           <ng-container
             [ngTemplateOutlet]="commandBlock"
             [ngTemplateOutletContext]="{ group: 'stopInstance' }">
