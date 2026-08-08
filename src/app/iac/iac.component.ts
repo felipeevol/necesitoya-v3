@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SiteLanguageService } from '../shared/site-language.service';
 import { Translation } from '../shared/site-translations';
+import { AutoScalingDetailComponent } from './auto-scaling-detail/auto-scaling-detail.component';
+import { CommandGroup, CommandPlatform, getIacCommand } from './iac-command.model';
+import { LoadBalancerAutoScalingDetailComponent } from './load-balancer-auto-scaling-detail/load-balancer-auto-scaling-detail.component';
 
 const iacFiles = [
   {
@@ -20,13 +23,11 @@ const iacFiles = [
 type IacFile = (typeof iacFiles)[number];
 type IacFileName = IacFile['fileName'];
 type IacFilter = 'all' | 'autoscaling' | 'loadbalancer';
-type CommandGroup = 'keyPair' | 'instanceIp' | 'keyPairIp';
-type CommandPlatform = 'windows' | 'bash';
 
 @Component({
   selector: 'app-iac',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, AutoScalingDetailComponent, LoadBalancerAutoScalingDetailComponent],
   templateUrl: './iac.component.html',
   styleUrl: './iac.component.css',
 })
@@ -36,48 +37,6 @@ export class IacComponent {
 
   readonly files = iacFiles;
   readonly filters: ReadonlyArray<IacFilter> = ['all', 'autoscaling', 'loadbalancer'];
-  readonly keyPairCommands = {
-    windows: `$KeyId = aws ec2 describe-key-pairs \`
-  --key-names minha-key-for-launch-template \`
-  --query "KeyPairs[0].KeyPairId" \`
-  --output text
-
-aws ssm get-parameter \`
-  --name "/ec2/keypair/$KeyId" \`
-  --with-decryption \`
-  --query "Parameter.Value" \`
-  --output text | Set-Content -NoNewline -Encoding ascii minha-key-for-launch-template.ppk`,
-    bash: `export MSYS_NO_PATHCONV=1
-
-KEY_ID=$(aws ec2 describe-key-pairs \\
-  --key-names minha-key-for-launch-template \\
-  --query "KeyPairs[0].KeyPairId" \\
-  --output text)
-
-aws ssm get-parameter \\
-  --name "/ec2/keypair/$KEY_ID" \\
-  --with-decryption \\
-  --query "Parameter.Value" \\
-  --output text > minha-key-for-launch-template.pem`,
-  } as const;
-  readonly instanceIpCommands = {
-    windows: `aws ec2 describe-instances \`
-  --filters \`
-  "Name=tag:Name,Values=MyAutoScalingGroup" \`
-  "Name=instance-state-name,Values=running" \`
-  --query "Reservations[].Instances[].{InstanceId:InstanceId,PublicIP:PublicIpAddress}" \`
-  --output table`,
-    bash: `aws ec2 describe-instances \\
-  --filters \\
-    "Name=tag:Name,Values=MyAutoScalingGroup" \\
-    "Name=instance-state-name,Values=running" \\
-  --query "Reservations[].Instances[].{InstanceId:InstanceId,PublicIP:PublicIpAddress}" \\
-  --output table`,
-  } as const;
-  readonly keyPairIpCommands = `sudo su
-sudo dnf update -y
-sudo dnf install stress -y
-stress --cpu 2 --timeout 300s`;
 
   activeFilters = new Set<IacFilter>(['all', 'autoscaling', 'loadbalancer']);
   selectedFileName: IacFileName = 'AutoScaling1.yaml';
@@ -172,22 +131,8 @@ stress --cpu 2 --timeout 300s`;
     };
   }
 
-  isCommandPlatformActive(group: CommandGroup, platform: CommandPlatform): boolean {
-    return this.activeCommandPlatform[group] === platform;
-  }
-
   getCommand(group: CommandGroup, platformOverride?: CommandPlatform): string {
-    const platform = platformOverride ?? this.activeCommandPlatform[group];
-
-    if (group === 'keyPair') {
-      return this.keyPairCommands[platform];
-    }
-
-    if (group === 'instanceIp') {
-      return this.instanceIpCommands[platform];
-    }
-
-    return this.keyPairIpCommands;
+    return getIacCommand(group, platformOverride ?? this.activeCommandPlatform[group]);
   }
 
   async copyCommand(group: CommandGroup, platformOverride?: CommandPlatform): Promise<void> {
