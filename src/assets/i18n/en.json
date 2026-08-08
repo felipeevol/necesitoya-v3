@@ -194,8 +194,7 @@
         "stopInstanceIntroSuffix": ", another EC2 will NOT be created automatically, because the configuration here is different.",
         "stopInstanceBrowserNote": "Go back and observe the Load Balancer behavior in the browser with the previous link. Now it no longer changes IP after you refresh.",
         "keyPairIpTitle": "Access the EC2 and put it under load",
-        "keyPairIpIntro": "Using the downloaded Key Pair and the IP of the EC2 instance that is still available, access the EC2 instance via SSH and run the following commands below.",
-        "keyPairIpCommandsIntro": "Auto Scaling is configured to add a new EC2 instance when there is CPU load. Therefore, this command will simulate that.",
+        "keyPairIpIntro": "Using the downloaded Key Pair and the IP of the EC2 instance that is still available, access the EC2 instance via SSH and run the following commands below. Auto Scaling is configured to add a new EC2 instance when there is CPU load. Therefore, this command will simulate that.",
         "keyPairIpBrowserNote": "Notice that a new EC2 instance will be added. You can also observe that refreshing the browser on the previous link will make the IP change again.",
         "instanceIpIntro": "After deployment, run the command below to list the running EC2 instances.",
         "highlights": [
