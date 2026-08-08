@@ -171,13 +171,13 @@ aws ssm get-parameter \\
     return this.activeCommandPlatform[group] === platform;
   }
 
-  getCommand(group: CommandGroup): string {
-    const platform = this.activeCommandPlatform[group];
+  getCommand(group: CommandGroup, platformOverride?: CommandPlatform): string {
+    const platform = platformOverride ?? this.activeCommandPlatform[group];
     return group === 'keyPair' ? this.keyPairCommands[platform] : this.instanceIpCommands[platform];
   }
 
-  async copyCommand(group: CommandGroup): Promise<void> {
-    const command = this.getCommand(group);
+  async copyCommand(group: CommandGroup, platformOverride?: CommandPlatform): Promise<void> {
+    const command = this.getCommand(group, platformOverride);
 
     try {
       await navigator.clipboard.writeText(command);

@@ -376,7 +376,11 @@
           <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIpCommandsIntro }}</p>
           <ng-container
             [ngTemplateOutlet]="commandBlock"
-            [ngTemplateOutletContext]="{ group: 'instanceIp' }">
+            [ngTemplateOutletContext]="{
+              group: 'instanceIp',
+              platform: 'bash',
+              singleTabLabel: currentPage.commands.linux
+            }">
           </ng-container>
         </section>
 
@@ -397,9 +401,18 @@
   </section>
 </main>
 
-<ng-template #commandBlock let-group="group">
+<ng-template #commandBlock let-group="group" let-platform="platform" let-singleTabLabel="singleTabLabel">
   <div class="code-tabs">
     <div class="tab-list" role="tablist">
+      <button
+        *ngIf="singleTabLabel; else platformTabs"
+        type="button"
+        class="tab-button is-active"
+        role="tab"
+        aria-selected="true">
+        {{ singleTabLabel }}
+      </button>
+      <ng-template #platformTabs>
       <button
         type="button"
         class="tab-button"
@@ -418,6 +431,7 @@
         (click)="setCommandPlatform(group, 'bash')">
         {{ currentPage.commands.bash }}
       </button>
+      </ng-template>
     </div>
     <div class="tab-panel is-active" role="tabpanel">
       <div class="code-block">
@@ -429,14 +443,14 @@
             ? currentPage.commands.copied
             : currentPage.commands.copy"
           [attr.title]="copiedCommand === group ? currentPage.commands.copied : currentPage.commands.copy"
-          (click)="copyCommand(group)">
+          (click)="copyCommand(group, platform)">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path
               fill="currentColor"
               d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
           </svg>
         </button>
-        <pre><code>{{ getCommand(group) }}</code></pre>
+        <pre><code>{{ getCommand(group, platform) }}</code></pre>
       </div>
     </div>
   </div>

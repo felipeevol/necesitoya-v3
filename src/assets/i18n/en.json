@@ -88,6 +88,7 @@
     "commands": {
       "windows": "Windows (PowerShell)",
       "bash": "Linux or Mac (Bash)",
+      "linux": "Linux",
       "copy": "Copy",
       "copied": "Copied"
     },
