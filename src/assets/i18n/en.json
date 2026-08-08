@@ -131,6 +131,7 @@
         "instanceIpTitle": "Check the EC2 IP addresses",
         "keyPairIpTitle": "What to do with a Key Pair and an IP?",
         "keyPairIpIntro": "With the Pair Key from the first command and one of the IPs from the second command, you can access one of the EC2 instances via SSH and run commands on it.",
+        "keyPairIpCommandsIntro": "Therefore, as soon as you access one of the EC2 instances, run the following commands:",
         "instanceIpIntro": "After deployment, run the command below to list the running EC2 instances.",
         "highlights": [
           "You can have more than one Security Group, each with different settings.",

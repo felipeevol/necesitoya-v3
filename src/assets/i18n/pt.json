@@ -131,6 +131,7 @@
         "instanceIpTitle": "Consultar o IP das EC2",
         "keyPairIpTitle": "O que fazer com um Key Pair e um IP?",
         "keyPairIpIntro": "Com o Pair Key do primeiro comando e um dos IPs do segundo comando, você poderá acessar uma das EC2 via SSH e executar comandos nela.",
+        "keyPairIpCommandsIntro": "Portanto, assim que acessar uma das EC2, execute os seguintes comandos:",
         "instanceIpIntro": "Depois do deploy, execute o comando abaixo para listar as instâncias EC2 em execução.",
         "highlights": [
           "Podemos ter mais de um Security Group, cada um com configurações diferentes.",

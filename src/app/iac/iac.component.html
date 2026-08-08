@@ -373,6 +373,11 @@
 
           <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairIpTitle }}</h3>
           <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIpIntro }}</p>
+          <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIpCommandsIntro }}</p>
+          <ng-container
+            [ngTemplateOutlet]="commandBlock"
+            [ngTemplateOutletContext]="{ group: 'instanceIp' }">
+          </ng-container>
         </section>
 
         <section class="learning-points">
