@@ -43,10 +43,9 @@
         <div class="architecture">
           <svg class="architecture-diagram" viewBox="0 0 1100 940" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
             aria-labelledby="loadbalancer-autoscaling-diagram-title loadbalancer-autoscaling-diagram-desc">
-            <title id="loadbalancer-autoscaling-diagram-title">Arquitetura AWS criada pelo LoadBalancerAutoScaling1.yaml</title>
+            <title id="loadbalancer-autoscaling-diagram-title">{{ currentPage.files.loadBalancerAutoScaling.diagram.title }}</title>
             <desc id="loadbalancer-autoscaling-diagram-desc">
-              VPC publica com Internet Gateway, Application Load Balancer, listener HTTP,
-              target group, Auto Scaling Group e duas instancias EC2 distribuidas em duas AZs.
+              {{ currentPage.files.loadBalancerAutoScaling.diagram.description }}
             </desc>
             <defs>
               <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
@@ -90,70 +89,70 @@
 
             <rect x="2" y="2" width="1096" height="936" rx="28" class="diagram-container"></rect>
             <svg x="58" y="44" width="48" height="48" class="aws-icon-image"><use href="#lb-aws-vpc-icon" xlink:href="#lb-aws-vpc-icon"></use></svg>
-            <text x="118" y="78" class="diagram-title">AWS Cloud - VPC 172.31.0.0/16</text>
+            <text x="118" y="78" class="diagram-title">{{ currentPage.files.loadBalancerAutoScaling.diagram.cloudTitle }}</text>
 
             <rect x="430" y="112" width="240" height="86" rx="18" class="diagram-node"></rect>
             <svg x="452" y="131" width="48" height="48" class="aws-icon-image"><use href="#lb-aws-internet-gateway-icon" xlink:href="#lb-aws-internet-gateway-icon"></use></svg>
-            <text x="518" y="145" class="diagram-label">Internet Gateway</text>
-            <text x="518" y="167" class="diagram-small">Entrada/saida publica</text>
-            <text x="518" y="185" class="diagram-small">Rota 0.0.0.0/0</text>
+            <text x="518" y="145" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.internetGatewayLabel }}</text>
+            <text x="518" y="167" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.publicIngressEgress }}</text>
+            <text x="518" y="185" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.defaultRoute }}</text>
 
             <rect x="110" y="126" width="268" height="64" rx="18" class="diagram-node"></rect>
             <svg x="129" y="134" width="48" height="48" class="aws-icon-image"><use href="#lb-aws-security-group-icon" xlink:href="#lb-aws-security-group-icon"></use></svg>
-            <text x="188" y="150" class="diagram-label">SG Load Balancer</text>
-            <text x="188" y="172" class="diagram-small">HTTP 80 vindo da Internet</text>
+            <text x="188" y="150" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.loadBalancerSecurityGroupLabel }}</text>
+            <text x="188" y="172" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.loadBalancerSecurityGroupRule }}</text>
 
             <rect x="110" y="226" width="880" height="76" rx="20" class="diagram-node"></rect>
             <image x="138" y="240" width="48" height="48" href="/aws-icons/application-load-balancer.svg" xlink:href="/aws-icons/application-load-balancer.svg"></image>
-            <text x="204" y="256" class="diagram-label">Application Load Balancer - my-alb</text>
-            <text x="204" y="278" class="diagram-small">Internet-facing | HTTP 80 | SG sg-ec2-lb aberto para 0.0.0.0/0</text>
+            <text x="204" y="256" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.albLabel }}</text>
+            <text x="204" y="278" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.albRule }}</text>
             <rect x="760" y="242" width="184" height="44" rx="14" class="diagram-asg"></rect>
-            <text x="784" y="260" class="diagram-label">Listener HTTP :80</text>
-            <text x="784" y="280" class="diagram-small">Forward para Target Group</text>
+            <text x="784" y="260" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.listenerLabel }}</text>
+            <text x="784" y="280" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.listenerRule }}</text>
 
             <path d="M550 198 V226" class="diagram-arrow-soft"></path>
 
             <rect x="84" y="350" width="426" height="188" rx="22" class="diagram-subnet"></rect>
-            <text x="112" y="384" class="diagram-label">Public Subnet1 - AZ 1</text>
-            <text x="112" y="406" class="diagram-small">172.31.0.0/20 | Public IP on launch</text>
+            <text x="112" y="384" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.subnet1Label }}</text>
+            <text x="112" y="406" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.subnet1Cidr }}</text>
 
             <rect x="590" y="350" width="426" height="188" rx="22" class="diagram-subnet"></rect>
-            <text x="618" y="384" class="diagram-label">Public Subnet2 - AZ 2</text>
-            <text x="618" y="406" class="diagram-small">172.31.16.0/20 | Public IP on launch</text>
+            <text x="618" y="384" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.subnet2Label }}</text>
+            <text x="618" y="406" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.subnet2Cidr }}</text>
 
             <path d="M390 302 V326 H298 V350" class="diagram-arrow-soft"></path>
             <path d="M710 302 V326 H804 V350" class="diagram-arrow-soft"></path>
 
             <rect x="122" y="444" width="230" height="62" rx="16" class="diagram-node"></rect>
             <svg x="144" y="451" width="48" height="48" class="aws-icon-image"><use href="#lb-aws-ec2-instance-icon" xlink:href="#lb-aws-ec2-instance-icon"></use></svg>
-            <text x="204" y="469" class="diagram-label">EC2 Instance</text>
-            <text x="204" y="491" class="diagram-small">Apache + /health.html</text>
+            <text x="204" y="469" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.ec2InstanceLabel }}</text>
+            <text x="204" y="491" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.ec2HealthEndpoint }}</text>
 
             <rect x="712" y="444" width="230" height="62" rx="16" class="diagram-node"></rect>
             <svg x="734" y="451" width="48" height="48" class="aws-icon-image"><use href="#lb-aws-ec2-instance-icon" xlink:href="#lb-aws-ec2-instance-icon"></use></svg>
-            <text x="794" y="469" class="diagram-label">EC2 Instance</text>
-            <text x="794" y="491" class="diagram-small">Apache + /health.html</text>
+            <text x="794" y="469" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.ec2InstanceLabel }}</text>
+            <text x="794" y="491" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.ec2HealthEndpoint }}</text>
 
             <rect x="292" y="588" width="516" height="90" rx="20" class="diagram-asg"></rect>
             <svg x="320" y="609" width="48" height="48" class="aws-icon-image"><use href="#lb-aws-ec2-auto-scaling-icon" xlink:href="#lb-aws-ec2-auto-scaling-icon"></use></svg>
-            <text x="386" y="618" class="diagram-label">Auto Scaling Group</text>
-            <text x="386" y="640" class="diagram-small">Min 1 | Desired 2 | Max 2 | HealthCheckType ELB</text>
-            <text x="386" y="660" class="diagram-small">Target tracking: CPU media em 30%</text>
+            <text x="386" y="618" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.autoScalingGroupLabel }}</text>
+            <text x="386" y="640" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.autoScalingCapacity }}</text>
+            <text x="386" y="660" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.targetTracking }}</text>
 
             <rect x="382" y="724" width="336" height="66" rx="18" class="diagram-node"></rect>
             <image x="398" y="733" width="48" height="48" href="/aws-icons/elastic-load-balancing.svg" xlink:href="/aws-icons/elastic-load-balancing.svg"></image>
-            <text x="462" y="750" class="diagram-label">Target Group - my-target-group</text>
-            <text x="462" y="772" class="diagram-small">HTTP 80 | Health check /health.html</text>
+            <text x="462" y="750" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.targetGroupLabel }}</text>
+            <text x="462" y="772" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.targetGroupHealthCheck }}</text>
 
             <rect x="416" y="832" width="268" height="64" rx="18" class="diagram-node"></rect>
             <svg x="435" y="840" width="48" height="48" class="aws-icon-image"><use href="#lb-aws-security-group-icon" xlink:href="#lb-aws-security-group-icon"></use></svg>
-            <text x="494" y="856" class="diagram-label">SG EC2 Web</text>
-            <text x="494" y="878" class="diagram-small">SSH 22 + HTTP 80 do ALB</text>
+            <text x="494" y="856" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.ec2SecurityGroupLabel }}</text>
+            <text x="494" y="878" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.ec2SecurityGroupRule }}</text>
 
             <rect x="732" y="832" width="268" height="64" rx="18" class="diagram-node"></rect>
             <svg x="751" y="840" width="48" height="48" class="aws-icon-image"><use href="#lb-aws-ec2-launch-template-icon" xlink:href="#lb-aws-ec2-launch-template-icon"></use></svg>
-            <text x="810" y="856" class="diagram-label">Launch Template</text>
-            <text x="810" y="878" class="diagram-small">AMI + t3.micro/t3.small + key pair</text>
+            <text x="810" y="856" class="diagram-label">{{ currentPage.files.loadBalancerAutoScaling.diagram.launchTemplateLabel }}</text>
+            <text x="810" y="878" class="diagram-small">{{ currentPage.files.loadBalancerAutoScaling.diagram.launchTemplateDetails }}</text>
 
             <path d="M314 588 V550 H237 V506" class="diagram-arrow"></path>
             <path d="M786 588 V550 H827 V506" class="diagram-arrow"></path>
