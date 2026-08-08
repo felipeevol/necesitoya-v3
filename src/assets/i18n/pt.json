@@ -195,7 +195,7 @@
         "stopInstanceBrowserNote": "Volte a observar o funcionamento do Load Balancer no browser com o link de antes. Agora NÃO muda mais de IP após você dar refresh.",
         "keyPairIpTitle": "Acesse a EC2 e coloque carga",
         "keyPairIpIntro": "Usando o Key Pair baixado e o IP da EC2 ainda disponível, acesse a EC2 via SSH e execute os seguintes comandos abaixo. O Auto Scaling está configurado para adicionar uma nova EC2 em caso de carga na CPU. Portanto este comando fará uma simulação disso.",
-        "keyPairIpBrowserNote": "Observe que uma nova EC2 será adicionada. E pode observar também que o refresh no browser no link anterior fará com que o IP mude novamente.",
+        "keyPairIpBrowserNote": "Observe que um tempo após o stress começar, uma nova EC2 será adicionada. E pode observar também que o refresh no browser no link anterior fará com que o IP mude novamente.",
         "instanceIpIntro": "Depois do deploy, execute o comando abaixo para listar as instâncias EC2 em execução.",
         "highlights": [
           "Podemos ter mais de um Security Group, cada um com configurações diferentes.",
