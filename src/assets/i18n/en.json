@@ -193,7 +193,7 @@
         "stopInstanceIntroPrefix": "Now, stop one of the EC2s with the command below and, unlike ",
         "stopInstanceIntroSuffix": ", another EC2 will NOT be created automatically, because the configuration here is different.",
         "stopInstanceBrowserNote": "Go back and observe the Load Balancer behavior in the browser with the previous link. Now it no longer changes IP after you refresh.",
-        "keyPairIpTitle": "What to do with a Key Pair and an IP?",
+        "keyPairIpTitle": "Access the EC2 and put it under load",
         "keyPairIpIntro": "With the Pair Key from the first command and one of the IPs from the second command, you can access one of the EC2 instances via SSH and run commands on it.",
         "keyPairIpCommandsIntro": "Therefore, as soon as you access one of the EC2 instances, run the following commands:",
         "instanceIpIntro": "After deployment, run the command below to list the running EC2 instances.",
@@ -201,7 +201,8 @@
           "You can have more than one Security Group, each with different settings.",
           "An EC2 instance can have a startup script that runs only once when the instance is created.",
           "The Target Group uses health checks to keep only healthy instances behind the Load Balancer.",
-          "Auto Scaling can use different criteria to add a new EC2 instance."
+          "Auto Scaling can use different criteria to add a new EC2 instance.",
+          "The Load Balancer distributes the workload across the EC2 instances that are available at the moment"
         ]
       }
     }

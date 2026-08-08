@@ -193,7 +193,7 @@
         "stopInstanceIntroPrefix": "Ahora, detén una de las EC2 con el comando siguiente y, a diferencia de ",
         "stopInstanceIntroSuffix": ", NO se creará otra EC2 automáticamente, porque la configuración aquí es diferente.",
         "stopInstanceBrowserNote": "Vuelve a observar el funcionamiento del Load Balancer en el navegador con el enlace anterior. Ahora ya NO cambia de IP después de hacer refresh.",
-        "keyPairIpTitle": "¿Qué hacer con una Key Pair y una IP?",
+        "keyPairIpTitle": "Accede a la EC2 y genera carga",
         "keyPairIpIntro": "Con el Pair Key del primer comando y una de las IP del segundo comando, podrás acceder a una de las EC2 vía SSH y ejecutar comandos en ella.",
         "keyPairIpCommandsIntro": "Por lo tanto, en cuanto accedas a una de las EC2, ejecuta los siguientes comandos:",
         "instanceIpIntro": "Después del despliegue, ejecuta el comando siguiente para listar las instancias EC2 en ejecución.",
@@ -201,7 +201,8 @@
           "Podemos tener más de un Security Group, cada uno con configuraciones diferentes.",
           "Una EC2 puede tener un script de inicialización que se ejecuta solo una vez cuando se crea la instancia.",
           "El Target Group usa health checks para mantener solo instancias saludables detrás del Load Balancer.",
-          "Podemos tener diferentes criterios para que Auto Scaling agregue una nueva EC2."
+          "Podemos tener diferentes criterios para que Auto Scaling agregue una nueva EC2.",
+          "El Load Balancer divide la carga de trabajo entre las EC2 que están disponibles en ese momento"
         ]
       }
     }
