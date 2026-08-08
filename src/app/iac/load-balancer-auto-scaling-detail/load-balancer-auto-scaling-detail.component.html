@@ -173,18 +173,18 @@
             [ngTemplateOutletContext]="{ group: 'loadBalancerAccess' }">
           </ng-container>
 
-          <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairTitle }}</h3>
-          <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIntro }}</p>
-          <ng-container
-            [ngTemplateOutlet]="commandBlock"
-            [ngTemplateOutletContext]="{ group: 'keyPair' }">
-          </ng-container>
-
           <h3>{{ currentPage.files.loadBalancerAutoScaling.instanceIpTitle }}</h3>
           <p>{{ currentPage.files.loadBalancerAutoScaling.instanceIpIntro }}</p>
           <ng-container
             [ngTemplateOutlet]="commandBlock"
             [ngTemplateOutletContext]="{ group: 'instanceIp' }">
+          </ng-container>
+
+          <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairTitle }}</h3>
+          <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIntro }}</p>
+          <ng-container
+            [ngTemplateOutlet]="commandBlock"
+            [ngTemplateOutletContext]="{ group: 'keyPair' }">
           </ng-container>
 
           <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairIpTitle }}</h3>
