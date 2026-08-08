@@ -128,7 +128,7 @@
         "actionsTitle": "What you can do and observe in this environment",
         "instanceIpTitle": "Check the created EC2 instances",
         "instanceIpIntro": "After deployment, run the command below to list the running EC2 instances.",
-        "stopInstanceTitle": "For one of the EC2s",
+        "stopInstanceTitle": "Stop one of the EC2s",
         "stopInstanceIntro": "Now, stop one of the EC2s with the command below and use the previous command to observe that another EC2 will be created automatically."
       },
       "loadBalancerAutoScaling": {

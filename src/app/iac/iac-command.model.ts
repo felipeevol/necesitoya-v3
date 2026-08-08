@@ -42,24 +42,11 @@ const instanceIpCommands = {
 } as const;
 
 const stopInstanceCommands = {
-  windows: `$InstanceId = aws ec2 describe-instances \`
-  --filters \`
-  "Name=tag:Name,Values=MyAutoScalingGroup" \`
-  "Name=instance-state-name,Values=running" \`
-  --query "Reservations[].Instances[].InstanceId | [0]" \`
-  --output text
+  windows: `$InstanceId = "<InstanceId>"
 
 aws ec2 stop-instances \`
   --instance-ids $InstanceId`,
-  bash: `INSTANCE_ID=$(aws ec2 describe-instances \\
-  --filters \\
-    "Name=tag:Name,Values=MyAutoScalingGroup" \\
-    "Name=instance-state-name,Values=running" \\
-  --query "Reservations[].Instances[].InstanceId | [0]" \\
-  --output text)
-
-aws ec2 stop-instances \\
-  --instance-ids "$INSTANCE_ID"`,
+  bash: `aws ec2 stop-instances --instance-ids <InstanceId>`,
 } as const;
 
 const keyPairIpCommands = `sudo su

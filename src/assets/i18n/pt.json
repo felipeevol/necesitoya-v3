@@ -128,7 +128,7 @@
         "actionsTitle": "O que você pode fazer e observar neste ambiente",
         "instanceIpTitle": "Consultar as instâncias EC2 criadas",
         "instanceIpIntro": "Depois do deploy, execute o comando abaixo para listar as instâncias EC2 em execução.",
-        "stopInstanceTitle": "Para uma das EC2s",
+        "stopInstanceTitle": "Pare uma das EC2s",
         "stopInstanceIntro": "Agora, pare uma das EC2s com o comando abaixo e observe com o comando anterior que outra EC2 será criada automaticamente."
       },
       "loadBalancerAutoScaling": {
