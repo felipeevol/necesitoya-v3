@@ -200,7 +200,8 @@
         "highlights": [
           "You can have more than one Security Group, each with different settings.",
           "An EC2 instance can have a startup script that runs only once when the instance is created.",
-          "The Target Group uses health checks to keep only healthy instances behind the Load Balancer."
+          "The Target Group uses health checks to keep only healthy instances behind the Load Balancer.",
+          "Auto Scaling can use different criteria to add a new EC2 instance."
         ]
       }
     }

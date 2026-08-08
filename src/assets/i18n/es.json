@@ -200,7 +200,8 @@
         "highlights": [
           "Podemos tener más de un Security Group, cada uno con configuraciones diferentes.",
           "Una EC2 puede tener un script de inicialización que se ejecuta solo una vez cuando se crea la instancia.",
-          "El Target Group usa health checks para mantener solo instancias saludables detrás del Load Balancer."
+          "El Target Group usa health checks para mantener solo instancias saludables detrás del Load Balancer.",
+          "Podemos tener diferentes criterios para que Auto Scaling agregue una nueva EC2."
         ]
       }
     }
