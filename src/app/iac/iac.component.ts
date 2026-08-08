@@ -43,6 +43,7 @@ export class IacComponent {
   activeCommandPlatform: Record<CommandGroup, CommandPlatform> = {
     keyPair: 'windows',
     instanceIp: 'windows',
+    loadBalancerAccess: 'windows',
     keyPairIp: 'bash',
     stopInstance: 'windows',
   };

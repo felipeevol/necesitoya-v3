@@ -1,4 +1,4 @@
-export type CommandGroup = 'keyPair' | 'instanceIp' | 'keyPairIp' | 'stopInstance';
+export type CommandGroup = 'keyPair' | 'instanceIp' | 'loadBalancerAccess' | 'keyPairIp' | 'stopInstance';
 export type CommandPlatform = 'windows' | 'bash';
 
 const keyPairCommands = {
@@ -41,6 +41,15 @@ const instanceIpCommands = {
   --output table`,
 } as const;
 
+const loadBalancerAccessCommands = {
+  windows: `$dns = aws elbv2 describe-load-balancers --names my-alb --query "LoadBalancers[0].DNSName" --output text
+"http://$dns"`,
+  bash: `echo "http://$(aws elbv2 describe-load-balancers \\
+  --names my-alb \\
+  --query 'LoadBalancers[0].DNSName' \\
+  --output text)"`,
+} as const;
+
 const stopInstanceCommands = {
   windows: `$InstanceId = "<InstanceId>"
 
@@ -61,6 +70,10 @@ export function getIacCommand(group: CommandGroup, platform: CommandPlatform): s
 
   if (group === 'instanceIp') {
     return instanceIpCommands[platform];
+  }
+
+  if (group === 'loadBalancerAccess') {
+    return loadBalancerAccessCommands[platform];
   }
 
   if (group === 'stopInstance') {

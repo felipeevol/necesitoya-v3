@@ -166,6 +166,13 @@
         <section class="command-section command-section-featured command-section-combined">
           <h2>{{ currentPage.files.loadBalancerAutoScaling.actionsTitle }}</h2>
 
+          <h3>{{ currentPage.files.loadBalancerAutoScaling.loadBalancerAccessTitle }}</h3>
+          <p>{{ currentPage.files.loadBalancerAutoScaling.loadBalancerAccessIntro }}</p>
+          <ng-container
+            [ngTemplateOutlet]="commandBlock"
+            [ngTemplateOutletContext]="{ group: 'loadBalancerAccess' }">
+          </ng-container>
+
           <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairTitle }}</h3>
           <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIntro }}</p>
           <ng-container

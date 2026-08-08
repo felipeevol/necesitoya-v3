@@ -184,9 +184,11 @@
           "Target Group: indicates which servers or destinations should receive it."
         ],
         "actionsTitle": "What you can do and observe in this environment",
+        "loadBalancerAccessTitle": "Access Load Balancer",
+        "loadBalancerAccessIntro": "You can verify that 2 EC2 instances were created. Using the command below, copy and paste the result into a browser and observe that each time you refresh, the IP changes.",
         "keyPairTitle": "Download the Key Pair",
         "keyPairIntro": "Use these commands to write minha-key-for-launch-template.ppk or minha-key-for-launch-template.pem, depending on the source.",
-        "instanceIpTitle": "Check the created EC2 instances",
+        "instanceIpTitle": "Check the created EC2 instances and their IPs",
         "keyPairIpTitle": "What to do with a Key Pair and an IP?",
         "keyPairIpIntro": "With the Pair Key from the first command and one of the IPs from the second command, you can access one of the EC2 instances via SSH and run commands on it.",
         "keyPairIpCommandsIntro": "Therefore, as soon as you access one of the EC2 instances, run the following commands:",
