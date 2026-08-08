@@ -85,6 +85,10 @@
   line-height: 1.65;
 }
 
+.resource-card .learning-context {
+  font-weight: 400;
+}
+
 .resource-card strong {
   color: var(--accent);
 }
