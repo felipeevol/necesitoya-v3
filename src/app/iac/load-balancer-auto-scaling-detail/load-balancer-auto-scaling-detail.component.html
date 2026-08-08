@@ -180,6 +180,13 @@
             [ngTemplateOutletContext]="{ group: 'instanceIp' }">
           </ng-container>
 
+          <h3>{{ currentPage.files.loadBalancerAutoScaling.stopInstanceTitle }}</h3>
+          <p>{{ currentPage.files.loadBalancerAutoScaling.stopInstanceIntro }}</p>
+          <ng-container
+            [ngTemplateOutlet]="commandBlock"
+            [ngTemplateOutletContext]="{ group: 'stopInstance' }">
+          </ng-container>
+
           <h3>{{ currentPage.files.loadBalancerAutoScaling.keyPairTitle }}</h3>
           <p>{{ currentPage.files.loadBalancerAutoScaling.keyPairIntro }}</p>
           <ng-container

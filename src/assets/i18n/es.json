@@ -189,6 +189,8 @@
         "keyPairTitle": "Descargar la Key Pair",
         "keyPairIntro": "Usa estos comandos para guardar el archivo minha-key-for-launch-template.ppk o minha-key-for-launch-template.pem, dependiendo del origen.",
         "instanceIpTitle": "Consultar las instancias EC2 creadas y sus IPs",
+        "stopInstanceTitle": "Detén una de las EC2",
+        "stopInstanceIntro": "Ahora, detén una de las EC2 con el comando siguiente y observa con el comando anterior que otra EC2 se creará automáticamente.",
         "keyPairIpTitle": "¿Qué hacer con una Key Pair y una IP?",
         "keyPairIpIntro": "Con el Pair Key del primer comando y una de las IP del segundo comando, podrás acceder a una de las EC2 vía SSH y ejecutar comandos en ella.",
         "keyPairIpCommandsIntro": "Por lo tanto, en cuanto accedas a una de las EC2, ejecuta los siguientes comandos:",
