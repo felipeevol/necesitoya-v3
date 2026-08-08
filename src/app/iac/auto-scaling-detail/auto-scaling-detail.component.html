@@ -119,6 +119,13 @@
             [ngTemplateOutlet]="commandBlock"
             [ngTemplateOutletContext]="{ group: 'instanceIp' }">
           </ng-container>
+
+          <h3>{{ currentPage.files.autoScaling.stopInstanceTitle }}</h3>
+          <p>{{ currentPage.files.autoScaling.stopInstanceIntro }}</p>
+          <ng-container
+            [ngTemplateOutlet]="commandBlock"
+            [ngTemplateOutletContext]="{ group: 'stopInstance' }">
+          </ng-container>
         </section>
 
         <section class="learning-points">

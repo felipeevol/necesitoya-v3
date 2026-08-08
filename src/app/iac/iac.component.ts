@@ -44,6 +44,7 @@ export class IacComponent {
     keyPair: 'windows',
     instanceIp: 'windows',
     keyPairIp: 'bash',
+    stopInstance: 'windows',
   };
   copiedCommand: CommandGroup | null = null;
 
