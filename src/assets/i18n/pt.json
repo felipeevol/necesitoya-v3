@@ -192,6 +192,7 @@
         "stopInstanceTitle": "Pare uma das EC2s",
         "stopInstanceIntroPrefix": "Agora, pare uma das EC2s com o comando abaixo e, diferentemente de ",
         "stopInstanceIntroSuffix": ", NÃO se criará outra EC2 automaticamente, porque a configuração aqui é diferente.",
+        "stopInstanceBrowserNote": "Volte a observar o funcionamento do Load Balancer no browser com o link de antes. Agora NÃO muda mais de IP após você dar refresh.",
         "keyPairIpTitle": "O que fazer com um Key Pair e um IP?",
         "keyPairIpIntro": "Com o Pair Key do primeiro comando e um dos IPs do segundo comando, você poderá acessar uma das EC2 via SSH e executar comandos nela.",
         "keyPairIpCommandsIntro": "Portanto, assim que acessar uma das EC2, execute os seguintes comandos:",
