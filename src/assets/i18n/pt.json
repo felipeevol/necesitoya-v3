@@ -190,7 +190,7 @@
         "keyPairIntro": "Use estes comandos para gravar o arquivo minha-key-for-launch-template.ppk ou minha-key-for-launch-template.pem, dependendo da origem.",
         "instanceIpTitle": "Consultar as instâncias EC2 criadas e seus IPs",
         "stopInstanceTitle": "Pare uma das EC2s",
-        "stopInstanceIntro": "Agora, pare uma das EC2s com o comando abaixo e observe com o comando anterior que outra EC2 será criada automaticamente.",
+        "stopInstanceIntro": "Agora, pare uma das EC2s com o comando abaixo e, diferentemente de AutoScaling1.yaml, NÃO se criará outra EC2 automaticamente, porque a configuração aqui é diferente.",
         "keyPairIpTitle": "O que fazer com um Key Pair e um IP?",
         "keyPairIpIntro": "Com o Pair Key do primeiro comando e um dos IPs do segundo comando, você poderá acessar uma das EC2 via SSH e executar comandos nela.",
         "keyPairIpCommandsIntro": "Portanto, assim que acessar uma das EC2, execute os seguintes comandos:",
