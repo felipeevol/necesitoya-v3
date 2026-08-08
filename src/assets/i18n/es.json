@@ -125,7 +125,7 @@
           "El Security Group asociado al Launch Template se propaga automáticamente a las instancias EC2."
         ],
         "actionsTitle": "Qué puedes hacer y observar en este entorno",
-        "instanceIpTitle": "Consultar las IP de las EC2",
+        "instanceIpTitle": "Consultar las instancias EC2 creadas",
         "instanceIpIntro": "Después del despliegue, ejecuta el comando siguiente para listar las instancias EC2 en ejecución."
       },
       "loadBalancerAutoScaling": {
@@ -183,7 +183,7 @@
         "actionsTitle": "Qué puedes hacer y observar en este entorno",
         "keyPairTitle": "Descargar la Key Pair",
         "keyPairIntro": "Usa estos comandos para guardar el archivo minha-key-for-launch-template.ppk o minha-key-for-launch-template.pem, dependiendo del origen.",
-        "instanceIpTitle": "Consultar las IP de las EC2",
+        "instanceIpTitle": "Consultar las instancias EC2 creadas",
         "keyPairIpTitle": "¿Qué hacer con una Key Pair y una IP?",
         "keyPairIpIntro": "Con el Pair Key del primer comando y una de las IP del segundo comando, podrás acceder a una de las EC2 vía SSH y ejecutar comandos en ella.",
         "keyPairIpCommandsIntro": "Por lo tanto, en cuanto accedas a una de las EC2, ejecuta los siguientes comandos:",
