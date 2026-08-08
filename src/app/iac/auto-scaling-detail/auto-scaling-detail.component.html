@@ -13,7 +13,7 @@
             <title id="autoscaling-diagram-title">Arquitetura AWS criada pelo AutoScaling1.yaml</title>
             <desc id="autoscaling-diagram-desc">
               VPC com Internet Gateway, security group, launch template e Auto Scaling Group
-              distribuindo duas instÃ¢ncias EC2 entre duas sub-redes pÃºblicas.
+              distribuindo duas instâncias EC2 entre duas sub-redes públicas.
             </desc>
             <defs>
               <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
@@ -61,14 +61,14 @@
             <rect x="430" y="118" width="240" height="86" rx="18" class="diagram-node"></rect>
             <svg x="452" y="137" width="48" height="48" class="aws-icon-image"><use href="#aws-internet-gateway-icon" xlink:href="#aws-internet-gateway-icon"></use></svg>
             <text x="518" y="151" class="diagram-label">Internet Gateway</text>
-            <text x="518" y="173" class="diagram-small">Entrada/saÃ­da pÃºblica</text>
+            <text x="518" y="173" class="diagram-small">Entrada/saída pública</text>
             <text x="518" y="191" class="diagram-small">Rota 0.0.0.0/0</text>
 
             <rect x="272" y="604" width="232" height="96" rx="18" class="diagram-node"></rect>
             <svg x="292" y="628" width="48" height="48" class="aws-icon-image"><use href="#aws-security-group-icon" xlink:href="#aws-security-group-icon"></use></svg>
             <text x="352" y="640" class="diagram-label">Security Group</text>
             <text x="352" y="662" class="diagram-small">HTTP 80</text>
-            <text x="352" y="680" class="diagram-small">Aberto Ã  Internet</text>
+            <text x="352" y="680" class="diagram-small">Aberto à Internet</text>
 
             <rect x="604" y="604" width="252" height="96" rx="18" class="diagram-node"></rect>
             <svg x="624" y="628" width="48" height="48" class="aws-icon-image"><use href="#aws-ec2-launch-template-icon" xlink:href="#aws-ec2-launch-template-icon"></use></svg>
@@ -102,7 +102,7 @@
             <rect x="292" y="484" width="516" height="74" rx="20" class="diagram-asg"></rect>
             <svg x="320" y="497" width="48" height="48" class="aws-icon-image"><use href="#aws-ec2-auto-scaling-icon" xlink:href="#aws-ec2-auto-scaling-icon"></use></svg>
             <text x="386" y="514" class="diagram-label">Auto Scaling Group</text>
-            <text x="386" y="536" class="diagram-small">Min 2 | Desired 2 | Max 2 | DistribuÃ­do entre duas AZs</text>
+            <text x="386" y="536" class="diagram-small">Min 2 | Desired 2 | Max 2 | Distribuído entre duas AZs</text>
 
             <path d="M388 604 V558" class="diagram-arrow"></path>
             <path d="M730 604 V558" class="diagram-arrow"></path>
