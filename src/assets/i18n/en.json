@@ -184,7 +184,7 @@
           "Target Group: indicates which servers or destinations should receive it."
         ],
         "actionsTitle": "What you can do and observe in this environment",
-        "loadBalancerAccessTitle": "Access Load Balancer",
+        "loadBalancerAccessTitle": "Access the Load Balancer via browser",
         "loadBalancerAccessIntro": "You can verify that 2 EC2 instances were created. Using the command below, copy and paste the result into a browser and observe that each time you refresh, the IP changes.",
         "keyPairTitle": "Download the Key Pair",
         "keyPairIntro": "Use these commands to write minha-key-for-launch-template.ppk or minha-key-for-launch-template.pem, depending on the source.",

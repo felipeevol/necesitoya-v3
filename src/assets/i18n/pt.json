@@ -184,7 +184,7 @@
           "Target Group: indica para quais servidores ou destinos enviá-lo."
         ],
         "actionsTitle": "O que você pode fazer e observar neste ambiente",
-        "loadBalancerAccessTitle": "Acessar Load Balancer",
+        "loadBalancerAccessTitle": "Acessar o Load Balancer via browser",
         "loadBalancerAccessIntro": "Você pode verificar que foram criadas 2 EC2s. Usando o comando abaixo, copie e cole o resultado num browser e observe que a cada refresh que você dá, o IP muda.",
         "keyPairTitle": "Baixar a Key Pair",
         "keyPairIntro": "Use estes comandos para gravar o arquivo minha-key-for-launch-template.ppk ou minha-key-for-launch-template.pem, dependendo da origem.",
