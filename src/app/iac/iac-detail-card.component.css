@@ -353,6 +353,10 @@
   z-index: 1;
 }
 
+.code-tabs .tab-panel {
+  margin-top: -1px;
+}
+
 .code-tabs .tab-button {
   appearance: none;
   border: 1px solid var(--border);
@@ -378,8 +382,6 @@
 .code-tabs .tab-button.is-active {
   position: relative;
   z-index: 2;
-  margin-bottom: -1px;
-  padding-bottom: 9px;
   color: var(--accent);
   background: #ffffff;
 }
