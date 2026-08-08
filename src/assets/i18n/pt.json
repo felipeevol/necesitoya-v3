@@ -123,7 +123,10 @@
         "highlights": [
           "Se uma EC2 parar de responder, outra será criada automaticamente; pode testar finalizando uma das EC2 criadas.",
           "O Security Group associado ao Launch Template é propagado automaticamente para as instâncias EC2."
-        ]
+        ],
+        "actionsTitle": "O que você pode fazer e observar neste ambiente",
+        "instanceIpTitle": "Consultar o IP das EC2",
+        "instanceIpIntro": "Depois do deploy, execute o comando abaixo para listar as instâncias EC2 em execução."
       },
       "loadBalancerAutoScaling": {
         "label": "Load Balancer + Auto Scaling",

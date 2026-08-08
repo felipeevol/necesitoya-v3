@@ -63,7 +63,11 @@
     <div class="layout">
       <app-auto-scaling-detail
         *ngIf="selectedFileName === 'AutoScaling1.yaml'"
-        [currentPage]="currentPage">
+        [currentPage]="currentPage"
+        [activeCommandPlatform]="activeCommandPlatform"
+        [copiedCommand]="copiedCommand"
+        (commandPlatformChange)="setCommandPlatform($event.group, $event.platform)"
+        (commandCopy)="copyCommand($event.group, $event.platform)">
       </app-auto-scaling-detail>
 
       <app-load-balancer-auto-scaling-detail

@@ -110,6 +110,17 @@
           </svg>
         </div>
 
+        <section class="command-section command-section-featured command-section-combined">
+          <h2>{{ currentPage.files.autoScaling.actionsTitle }}</h2>
+
+          <h3>{{ currentPage.files.autoScaling.instanceIpTitle }}</h3>
+          <p>{{ currentPage.files.autoScaling.instanceIpIntro }}</p>
+          <ng-container
+            [ngTemplateOutlet]="commandBlock"
+            [ngTemplateOutletContext]="{ group: 'instanceIp' }">
+          </ng-container>
+        </section>
+
         <section class="learning-points">
           <div class="learning-heading">
             <span class="learning-heading-icon" aria-hidden="true">&#9733;</span>
@@ -123,3 +134,57 @@
           </ul>
         </section>
       </article>
+<ng-template #commandBlock let-group="group" let-platform="platform" let-singleTabLabel="singleTabLabel">
+  <div class="code-tabs">
+    <div class="tab-list" role="tablist">
+      <button
+        *ngIf="singleTabLabel; else platformTabs"
+        type="button"
+        class="tab-button is-active"
+        role="tab"
+        aria-selected="true">
+        {{ singleTabLabel }}
+      </button>
+      <ng-template #platformTabs>
+      <button
+        type="button"
+        class="tab-button"
+        role="tab"
+        [class.is-active]="isCommandPlatformActive(group, 'windows')"
+        [attr.aria-selected]="isCommandPlatformActive(group, 'windows')"
+        (click)="setCommandPlatform(group, 'windows')">
+        {{ currentPage.commands.windows }}
+      </button>
+      <button
+        type="button"
+        class="tab-button"
+        role="tab"
+        [class.is-active]="isCommandPlatformActive(group, 'bash')"
+        [attr.aria-selected]="isCommandPlatformActive(group, 'bash')"
+        (click)="setCommandPlatform(group, 'bash')">
+        {{ currentPage.commands.bash }}
+      </button>
+      </ng-template>
+    </div>
+    <div class="tab-panel is-active" role="tabpanel">
+      <div class="code-block">
+        <button
+          type="button"
+          class="copy-code-button"
+          [class.is-copied]="copiedCommand === group"
+          [attr.aria-label]="copiedCommand === group
+            ? currentPage.commands.copied
+            : currentPage.commands.copy"
+          [attr.title]="copiedCommand === group ? currentPage.commands.copied : currentPage.commands.copy"
+          (click)="copyCommand(group, platform)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1Zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2Zm0 16H8V7h11v14Z" />
+          </svg>
+        </button>
+        <pre><code>{{ getCommand(group, platform) }}</code></pre>
+      </div>
+    </div>
+  </div>
+</ng-template>

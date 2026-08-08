@@ -123,7 +123,10 @@
         "highlights": [
           "If an EC2 instance stops responding, another one is created automatically; you can test this by terminating one of the created EC2 instances.",
           "The Security Group attached to the Launch Template is automatically propagated to the EC2 instances."
-        ]
+        ],
+        "actionsTitle": "What you can do and observe in this environment",
+        "instanceIpTitle": "Check the EC2 IP addresses",
+        "instanceIpIntro": "After deployment, run the command below to list the running EC2 instances."
       },
       "loadBalancerAutoScaling": {
         "label": "Load Balancer + Auto Scaling",
