@@ -126,7 +126,7 @@
           "Listener: defines how to listen and what to do with that traffic.",
           "Target Group: indicates which servers or destinations should receive it."
         ],
-        "actionsTitle": "Actions that you can do in this environment",
+        "actionsTitle": "What you can do and observe in this environment",
         "keyPairTitle": "Download the Key Pair",
         "keyPairIntro": "Use these commands to write minha-key-for-launch-template.ppk or minha-key-for-launch-template.pem, depending on the source.",
         "instanceIpTitle": "Check the EC2 IP addresses",
