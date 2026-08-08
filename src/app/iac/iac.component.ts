@@ -20,7 +20,7 @@ const iacFiles = [
 type IacFile = (typeof iacFiles)[number];
 type IacFileName = IacFile['fileName'];
 type IacFilter = 'all' | 'autoscaling' | 'loadbalancer';
-type CommandGroup = 'keyPair' | 'instanceIp';
+type CommandGroup = 'keyPair' | 'instanceIp' | 'keyPairIp';
 type CommandPlatform = 'windows' | 'bash';
 
 @Component({
@@ -74,12 +74,17 @@ aws ssm get-parameter \\
   --query "Reservations[].Instances[].{InstanceId:InstanceId,PublicIP:PublicIpAddress}" \\
   --output table`,
   } as const;
+  readonly keyPairIpCommands = `sudo su
+sudo dnf update -y
+sudo dnf install stress -y
+stress --cpu 2 --timeout 300s`;
 
   activeFilters = new Set<IacFilter>(['all', 'autoscaling', 'loadbalancer']);
   selectedFileName: IacFileName = 'AutoScaling1.yaml';
   activeCommandPlatform: Record<CommandGroup, CommandPlatform> = {
     keyPair: 'windows',
     instanceIp: 'windows',
+    keyPairIp: 'bash',
   };
   copiedCommand: CommandGroup | null = null;
 
@@ -173,7 +178,16 @@ aws ssm get-parameter \\
 
   getCommand(group: CommandGroup, platformOverride?: CommandPlatform): string {
     const platform = platformOverride ?? this.activeCommandPlatform[group];
-    return group === 'keyPair' ? this.keyPairCommands[platform] : this.instanceIpCommands[platform];
+
+    if (group === 'keyPair') {
+      return this.keyPairCommands[platform];
+    }
+
+    if (group === 'instanceIp') {
+      return this.instanceIpCommands[platform];
+    }
+
+    return this.keyPairIpCommands;
   }
 
   async copyCommand(group: CommandGroup, platformOverride?: CommandPlatform): Promise<void> {
