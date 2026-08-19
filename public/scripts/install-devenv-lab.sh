@@ -5,6 +5,7 @@ labName=$2
 winip=$3
 winpassword=$4
 
+sudo su -
 dnf install -y python3 python3-pip
 
 cd /home/ec2-user
