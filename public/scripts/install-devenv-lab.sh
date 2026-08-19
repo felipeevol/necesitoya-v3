@@ -5,12 +5,10 @@ labName=$2
 winip=$3
 winpassword=$4
 
-yum -y install python35 python35-pip
-alternatives --set python /usr/bin/python3.5
+dnf install -y python3 python3-pip
 
 cd /home/ec2-user
 pip install filechunkio boto3
-yum remove -y java-1.7.0-openjdk
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel
 echo 'JAVA_HOME=/usr' >> /home/ec2-user/.bash_profile
 echo 'export JAVA_HOME' >> /home/ec2-user/.bash_profile
