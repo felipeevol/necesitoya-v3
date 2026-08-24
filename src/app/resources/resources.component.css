@@ -52,6 +52,10 @@
   gap: 24px;
 }
 
+.resources-grid-duplicate {
+  margin-top: 24px;
+}
+
 .resource-card {
   display: flex;
   min-height: 240px;
