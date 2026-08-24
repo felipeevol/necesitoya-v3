@@ -1,0 +1,83 @@
+<section class="iac-hero">
+  <div class="container hero-grid">
+    <div class="hero">
+      <span class="badge">{{ currentPage.badge }}</span>
+      <h1>{{ currentPage.title }}</h1>
+      <p>{{ currentPage.subtitle }}</p>
+    </div>
+    <div class="hero-side">
+      <div class="hero-card filter-card">
+        <div class="filter-card-header">
+          <h2>{{ currentPage.filtersTitle }}</h2>
+          <button
+            type="button"
+            class="filter-switch all-filter-switch"
+            [class.active]="isFilterActive('all')"
+            role="switch"
+            [attr.aria-checked]="isFilterActive('all')"
+            (click)="setFilter('all')">
+            <span class="filter-switch-track" aria-hidden="true">
+              <span class="filter-switch-thumb"></span>
+            </span>
+            <span class="filter-switch-label">{{ currentPage.filters.all }}</span>
+          </button>
+        </div>
+        <div class="filter-list" role="group" [attr.aria-label]="currentPage.filtersTitle">
+          <button
+            *ngFor="let filter of categoryFilters"
+            type="button"
+            class="filter-switch"
+            [class.active]="isFilterActive(filter)"
+            role="switch"
+            [attr.aria-checked]="isFilterActive(filter)"
+            (click)="setFilter(filter)">
+            <span class="filter-switch-track" aria-hidden="true">
+              <span class="filter-switch-thumb"></span>
+            </span>
+            <span class="filter-switch-label">{{ currentPage.filters[filter] }}</span>
+          </button>
+        </div>
+      </div>
+      <aside class="card file-card">
+        <h2>{{ currentPage.filesTitle }}</h2>
+        <label *ngFor="let file of visibleFiles" class="file-option">
+          <input
+            type="radio"
+            name="iacFile"
+            [checked]="selectedFileName === file.fileName"
+            (change)="selectFile(file.fileName)">
+          <span>
+            <strong>{{ file.fileName }}</strong>
+          </span>
+        </label>
+        <a class="download-link" [href]="'download/' + selectedFile.fileName" download>
+          {{ currentPage.downloadSelected }}
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<main class="iac-content">
+  <section class="container">
+    <div class="layout">
+      <app-auto-scaling-detail
+        *ngIf="selectedFileName === 'AutoScaling1.yaml'"
+        [currentPage]="currentPage"
+        [activeCommandPlatform]="activeCommandPlatform"
+        [copiedCommand]="copiedCommand"
+        (commandPlatformChange)="setCommandPlatform($event.group, $event.platform)"
+        (commandCopy)="copyCommand($event.group, $event.platform)">
+      </app-auto-scaling-detail>
+
+      <app-load-balancer-auto-scaling-detail
+        *ngIf="selectedFileName === 'LoadBalancerAutoScaling1.yaml'"
+        [currentPage]="currentPage"
+        [activeCommandPlatform]="activeCommandPlatform"
+        [copiedCommand]="copiedCommand"
+        (commandPlatformChange)="setCommandPlatform($event.group, $event.platform)"
+        (commandCopy)="copyCommand($event.group, $event.platform)">
+      </app-load-balancer-auto-scaling-detail>
+    </div>
+  </section>
+</main>
