@@ -58,7 +58,7 @@
     "iac": {
       "badge": "IaC",
       "title": "Infrastructure as Code para AWS",
-      "description": "Veja templates CloudFormation com explicação técnica, diagramas e downloads dos arquivos YAML.",
+      "description": "Templates CloudFormation com explicação técnica, diagramas e downloads dos arquivos YAML.",
       "learningContext": "A ideia destes recursos não é dar um passo-a-passo em detalhes, mas facilitar a criação de ambientes de aprendizado (e sua remoção) onde você pode observar os comportamentos dos elementos. Exige uma certa familiaridade com AWS, que você já tenha uma conta com usuário IAM com Access Key/Secret Access Key para acesso via CLI. Apesar que muitas das ações e observações também poderão ser feitas via console.",
       "linkText": "Abrir recursos IaC"
     }
