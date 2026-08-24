@@ -61,6 +61,7 @@
       "title": "Infrastructure as Code for AWS",
       "errorsTitle": "Infrastructure as Code for AWS - Errors",
       "description": "CloudFormation templates with technical explanations, diagrams, and YAML downloads.",
+      "errorsDescription": "AWS CloudFormation Error Cases",
       "learningContext": "The idea behind these resources is not to provide a detailed step-by-step guide, but to make it easier to create learning environments (and remove them) where you can observe how the elements behave. It requires some familiarity with AWS, and that you already have an account with an IAM user with an Access Key/Secret Access Key for CLI access. Many of the actions and observations can also be done through the console.",
       "linkText": "Open IaC resources"
     }
