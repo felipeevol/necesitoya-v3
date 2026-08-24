@@ -63,6 +63,7 @@
       "description": "Templates CloudFormation com explicação técnica, diagramas e downloads dos arquivos YAML.",
       "errorsDescription": "Casos de erro do AWS CloudFormation",
       "learningContext": "A ideia destes recursos não é dar um passo-a-passo em detalhes, mas facilitar a criação de ambientes de aprendizado (e sua remoção) onde você pode observar os comportamentos dos elementos. Exige uma certa familiaridade com AWS, que você já tenha uma conta com usuário IAM com Access Key/Secret Access Key para acesso via CLI. Apesar que muitas das ações e observações também poderão ser feitas via console.",
+      "errorsLearningContext": "Erros que encontrei ao criar ambientes com AWS CloudFormation ou ao usar o AWS SDK.",
       "linkText": "Abrir recursos IaC"
     }
   },

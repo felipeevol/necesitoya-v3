@@ -48,16 +48,13 @@
 
 .resources-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
   gap: 24px;
-}
-
-.resources-grid-duplicate {
-  margin-top: 24px;
 }
 
 .resource-card {
   display: flex;
+  width: 100%;
   min-height: 240px;
   flex-direction: column;
   align-items: flex-start;
