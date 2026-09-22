@@ -31,4 +31,8 @@ export const routes: Routes = [
     path: 'recursos_iac_errors',
     component: IacErrorsComponent,
   },
+  {
+    path: 'recursos_iac_errors',
+    component: IacErrorsComponent,
+  },
 ];
