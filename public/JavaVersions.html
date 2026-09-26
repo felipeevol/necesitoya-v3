@@ -25,7 +25,7 @@
     #cy {
       width: 100%;
       height: 100%;
-      min-width: 1800px;
+      min-width: 6600px;
       min-height: 950px;
       display: block;
       position: relative;
@@ -140,13 +140,29 @@
 	  var coluna3 = 950;
 	  var coluna4 = 1250;
 	  var coluna5 = 1550;
+	  var coluna6 = 1850;
+	  var coluna7 = 2150;
+	  var coluna8 = 2450;
+	  var coluna9 = 2750;
+	  var coluna10 = 3050;
+	  var coluna11 = 3350;
+	  var coluna12 = 3650;
+	  var coluna13 = 3950;
+	  var coluna14 = 4250;
+	  var coluna15 = 4550;
+	  var coluna16 = 4850;
+	  var coluna17 = 5150;
+	  var coluna18 = 5450;
+	  var coluna19 = 5750;
+	  var coluna20 = 6050;
+	  var coluna21 = 6350;
 
       var cy = cytoscape({
         container: chartContainer,
         elements: [
 
           // Coluna 1
-          { data: { id: 'Java 1.4 and Previous', name: 'Java 1.4 and Previous', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: 350, y: linha1 } },
+          { data: { id: 'Java 1.4 and Previous', name: 'Java 1.4 and Previous', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: 350, y: linha1 } },
           { data: { id: 'Classes and objects', name: 'Classes and objects', linkURL: '', rightLinkURL: '' }, position: { x: 350, y: linha2 } },
           { data: { id: 'Package and import', name: 'Package and import', linkURL: '', rightLinkURL: '' }, position: { x: 350, y: linha3 } },
           { data: { id: 'Constructors, attributes and methods', name: 'Constructors, attributes and methods', linkURL: '', rightLinkURL: '' }, position: { x: 350, y: linha4 } },
@@ -164,7 +180,7 @@
           { data: { id: 'Threads', name: 'Threads', linkURL: '', rightLinkURL: '' }, position: { x: 350, y: linha16 } },
 
           // Coluna 2
-          { data: { id: 'Java 5', name: 'Java 5', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna2, y: linha1 } },
+          { data: { id: 'Java 5', name: 'Java 5', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna2, y: linha1 } },
           { data: { id: 'Versioning number', name: 'Versioning number', linkURL: '', rightLinkURL: '' }, position: { x: coluna2, y: linha2 } },
           { data: { id: 'Generics', name: 'Generics', linkURL: '', rightLinkURL: '' }, position: { x: coluna2, y: linha3 } },
           { data: { id: 'Annotations', name: 'Annotations', linkURL: '', rightLinkURL: '' }, position: { x: coluna2, y: linha4 } },
@@ -207,6 +223,142 @@
           { data: { id: 'Diamond operator in anonymous classes', name: 'Diamond operator in anonymous classes', linkURL: '', rightLinkURL: '' }, position: { x: coluna5, y: linha12 } },
           { data: { id: 'JShell', name: 'JShell', linkURL: '', rightLinkURL: '' }, position: { x: coluna5, y: linha13 } },
           { data: { id: 'JLink', name: 'JLink', linkURL: '', rightLinkURL: '' }, position: { x: coluna5, y: linha14 } },
+
+		  // Coluna 6
+          { data: { id: 'Java 10', name: 'Java 10', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna6, y: linha1 } },
+          { data: { id: 'Local-variable type inference', name: 'Local-variable type inference', linkURL: '', rightLinkURL: '' }, position: { x: coluna6, y: linha2 } },
+          { data: { id: 'Unmodifiable collection copies', name: 'Unmodifiable collection copies', linkURL: '', rightLinkURL: '' }, position: { x: coluna6, y: linha3 } },
+          { data: { id: 'Unmodifiable collectors', name: 'Unmodifiable collectors', linkURL: '', rightLinkURL: '' }, position: { x: coluna6, y: linha4 } },
+          { data: { id: 'Optional.orElseThrow()', name: 'Optional.orElseThrow()', linkURL: '', rightLinkURL: '' }, position: { x: coluna6, y: linha5 } },
+
+		  // Coluna 7
+          { data: { id: 'Java 11', name: 'Java 11', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna7, y: linha1 } },
+          { data: { id: 'HTTP Client API', name: 'HTTP Client API', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha2 } },
+          { data: { id: 'String isBlank lines strip repeat', name: 'String isBlank lines strip repeat', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha3 } },
+          { data: { id: 'Files readString writeString', name: 'Files readString writeString', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha4 } },
+          { data: { id: 'var in lambda parameters', name: 'var in lambda parameters', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha5 } },
+          { data: { id: 'Optional.isEmpty()', name: 'Optional.isEmpty()', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha6 } },
+          { data: { id: 'Single-file source-code launch', name: 'Single-file source-code launch', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha7 } },
+
+		  // Coluna 8
+          { data: { id: 'Java 12', name: 'Java 12', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna8, y: linha1 } },
+          { data: { id: 'Switch expressions preview', name: 'Switch expressions preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha2 } },
+          { data: { id: 'Collectors.teeing()', name: 'Collectors.teeing()', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha3 } },
+          { data: { id: 'String.indent()', name: 'String.indent()', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha4 } },
+          { data: { id: 'String.transform()', name: 'String.transform()', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha5 } },
+          { data: { id: 'Files.mismatch()', name: 'Files.mismatch()', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha6 } },
+
+		  // Coluna 9
+          { data: { id: 'Java 13', name: 'Java 13', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna9, y: linha1 } },
+          { data: { id: 'Text blocks preview', name: 'Text blocks preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna9, y: linha2 } },
+          { data: { id: 'Switch expressions yield', name: 'Switch expressions yield', linkURL: '', rightLinkURL: '' }, position: { x: coluna9, y: linha3 } },
+          { data: { id: 'Socket API reimplementation', name: 'Socket API reimplementation', linkURL: '', rightLinkURL: '' }, position: { x: coluna9, y: linha4 } },
+
+		  // Coluna 10
+          { data: { id: 'Java 14', name: 'Java 14', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna10, y: linha1 } },
+          { data: { id: 'Switch expressions', name: 'Switch expressions', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha2 } },
+          { data: { id: 'Records preview', name: 'Records preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha3 } },
+          { data: { id: 'Pattern matching instanceof preview', name: 'Pattern matching instanceof preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha4 } },
+          { data: { id: 'Helpful NullPointerExceptions', name: 'Helpful NullPointerExceptions', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha5 } },
+          { data: { id: 'Text blocks second preview', name: 'Text blocks second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha6 } },
+
+		  // Coluna 11
+          { data: { id: 'Java 15', name: 'Java 15', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna11, y: linha1 } },
+          { data: { id: 'Text blocks', name: 'Text blocks', linkURL: '', rightLinkURL: '' }, position: { x: coluna11, y: linha2 } },
+          { data: { id: 'Sealed classes preview', name: 'Sealed classes preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna11, y: linha3 } },
+          { data: { id: 'Records second preview', name: 'Records second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna11, y: linha4 } },
+          { data: { id: 'Hidden classes', name: 'Hidden classes', linkURL: '', rightLinkURL: '' }, position: { x: coluna11, y: linha5 } },
+
+		  // Coluna 12
+          { data: { id: 'Java 16', name: 'Java 16', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna12, y: linha1 } },
+          { data: { id: 'Records', name: 'Records', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha2 } },
+          { data: { id: 'Pattern matching instanceof', name: 'Pattern matching instanceof', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha3 } },
+          { data: { id: 'Stream.toList()', name: 'Stream.toList()', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha4 } },
+          { data: { id: 'Sealed classes second preview', name: 'Sealed classes second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha5 } },
+          { data: { id: 'Unix-domain socket channels', name: 'Unix-domain socket channels', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha6 } },
+
+		  // Coluna 13
+          { data: { id: 'Java 17', name: 'Java 17', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna13, y: linha1 } },
+          { data: { id: 'Sealed classes', name: 'Sealed classes', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha2 } },
+          { data: { id: 'Pattern matching switch preview', name: 'Pattern matching switch preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha3 } },
+          { data: { id: 'Enhanced pseudo-random generators', name: 'Enhanced pseudo-random generators', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha4 } },
+          { data: { id: 'Context-specific deserialization filters', name: 'Context-specific deserialization filters', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha5 } },
+          { data: { id: 'Foreign Function and Memory incubator', name: 'Foreign Function and Memory incubator', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha6 } },
+
+		  // Coluna 14
+          { data: { id: 'Java 18', name: 'Java 18', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna14, y: linha1 } },
+          { data: { id: 'UTF-8 by default', name: 'UTF-8 by default', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha2 } },
+          { data: { id: 'Simple Web Server', name: 'Simple Web Server', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha3 } },
+          { data: { id: 'Code snippets in JavaDoc', name: 'Code snippets in JavaDoc', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha4 } },
+          { data: { id: 'Pattern matching switch second preview', name: 'Pattern matching switch second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha5 } },
+          { data: { id: 'Vector API third incubator', name: 'Vector API third incubator', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha6 } },
+
+		  // Coluna 15
+          { data: { id: 'Java 19', name: 'Java 19', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna15, y: linha1 } },
+          { data: { id: 'Virtual threads preview', name: 'Virtual threads preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha2 } },
+          { data: { id: 'Record patterns preview', name: 'Record patterns preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha3 } },
+          { data: { id: 'Pattern matching switch third preview', name: 'Pattern matching switch third preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha4 } },
+          { data: { id: 'Structured concurrency incubator', name: 'Structured concurrency incubator', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha5 } },
+          { data: { id: 'Foreign Function and Memory preview', name: 'Foreign Function and Memory preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha6 } },
+
+		  // Coluna 16
+          { data: { id: 'Java 20', name: 'Java 20', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna16, y: linha1 } },
+          { data: { id: 'Scoped values incubator', name: 'Scoped values incubator', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha2 } },
+          { data: { id: 'Record patterns second preview', name: 'Record patterns second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha3 } },
+          { data: { id: 'Pattern matching switch fourth preview', name: 'Pattern matching switch fourth preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha4 } },
+          { data: { id: 'Virtual threads second preview', name: 'Virtual threads second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha5 } },
+          { data: { id: 'Structured concurrency second incubator', name: 'Structured concurrency second incubator', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha6 } },
+          { data: { id: 'Foreign Function and Memory second preview', name: 'Foreign Function and Memory second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha7 } },
+
+		  // Coluna 17
+          { data: { id: 'Java 21', name: 'Java 21', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna17, y: linha1 } },
+          { data: { id: 'Virtual threads', name: 'Virtual threads', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha2 } },
+          { data: { id: 'Sequenced collections', name: 'Sequenced collections', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha3 } },
+          { data: { id: 'Record patterns', name: 'Record patterns', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha4 } },
+          { data: { id: 'Pattern matching switch', name: 'Pattern matching switch', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha5 } },
+          { data: { id: 'String templates preview', name: 'String templates preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha6 } },
+          { data: { id: 'Unnamed patterns and variables preview', name: 'Unnamed patterns and variables preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha7 } },
+          { data: { id: 'Scoped values preview', name: 'Scoped values preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha8 } },
+
+		  // Coluna 18
+          { data: { id: 'Java 22', name: 'Java 22', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna18, y: linha1 } },
+          { data: { id: 'Unnamed variables and patterns', name: 'Unnamed variables and patterns', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha2 } },
+          { data: { id: 'Foreign Function and Memory API', name: 'Foreign Function and Memory API', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha3 } },
+          { data: { id: 'Stream gatherers preview', name: 'Stream gatherers preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha4 } },
+          { data: { id: 'Class-File API preview', name: 'Class-File API preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha5 } },
+          { data: { id: 'Statements before super preview', name: 'Statements before super preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha6 } },
+          { data: { id: 'Implicit classes second preview', name: 'Implicit classes second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha7 } },
+          { data: { id: 'String templates second preview', name: 'String templates second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha8 } },
+
+		  // Coluna 19
+          { data: { id: 'Java 23', name: 'Java 23', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna19, y: linha1 } },
+          { data: { id: 'Primitive types in patterns preview', name: 'Primitive types in patterns preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha2 } },
+          { data: { id: 'Module import declarations preview', name: 'Module import declarations preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha3 } },
+          { data: { id: 'Markdown documentation comments', name: 'Markdown documentation comments', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha4 } },
+          { data: { id: 'Stream gatherers second preview', name: 'Stream gatherers second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha5 } },
+          { data: { id: 'Class-File API second preview', name: 'Class-File API second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha6 } },
+          { data: { id: 'Implicit classes third preview', name: 'Implicit classes third preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha7 } },
+          { data: { id: 'Flexible constructor bodies preview', name: 'Flexible constructor bodies preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha8 } },
+
+		  // Coluna 20
+          { data: { id: 'Java 24', name: 'Java 24', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna20, y: linha1 } },
+          { data: { id: 'Stream gatherers', name: 'Stream gatherers', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha2 } },
+          { data: { id: 'Class-File API', name: 'Class-File API', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha3 } },
+          { data: { id: 'Scoped values fourth preview', name: 'Scoped values fourth preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha4 } },
+          { data: { id: 'Flexible constructor bodies second preview', name: 'Flexible constructor bodies second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha5 } },
+          { data: { id: 'Primitive patterns second preview', name: 'Primitive patterns second preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha6 } },
+          { data: { id: 'Quantum-resistant KEM API', name: 'Quantum-resistant KEM API', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha7 } },
+          { data: { id: 'Quantum-resistant signatures', name: 'Quantum-resistant signatures', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha8 } },
+
+		  // Coluna 21
+          { data: { id: 'Java 25', name: 'Java 25', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna21, y: linha1 } },
+          { data: { id: 'Compact source files and instance main', name: 'Compact source files and instance main', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha2 } },
+          { data: { id: 'Flexible constructor bodies', name: 'Flexible constructor bodies', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha3 } },
+          { data: { id: 'Module import declarations', name: 'Module import declarations', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha4 } },
+          { data: { id: 'Scoped values', name: 'Scoped values', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha5 } },
+          { data: { id: 'Stable values preview', name: 'Stable values preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha6 } },
+          { data: { id: 'Structured concurrency fifth preview', name: 'Structured concurrency fifth preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha7 } },
+          { data: { id: 'Primitive patterns third preview', name: 'Primitive patterns third preview', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha8 } },
 
         ],
         style: [
