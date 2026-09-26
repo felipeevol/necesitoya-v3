@@ -162,7 +162,7 @@
         elements: [
 
           // Coluna 1
-          { data: { id: 'Java 1.4 and Previous', name: 'Java 1.4 and Previous', description: 'Base clasica de Java antes de generics y lambdas.<br>Ej: class Persona { String nombre; }', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: 350, y: linha1 } },
+          { data: { id: 'Java 1.4 and Previous', name: 'Java 1.4 and Previous', description: 'Base clasica de Java antes de generics y lambdas.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: 350, y: linha1 } },
           { data: { id: 'Classes and objects', name: 'Classes and objects', description: 'Define tipos y crea instancias con estado y comportamiento.<br>Ej: Persona p = new Persona();', linkURL: '', rightLinkURL: '' }, position: { x: 350, y: linha2 } },
           { data: { id: 'Package and import', name: 'Package and import', description: 'Organiza clases y permite usar tipos de otros paquetes.<br>Ej: import java.util.List;', linkURL: '', rightLinkURL: '' }, position: { x: 350, y: linha3 } },
           { data: { id: 'Constructors, attributes and methods', name: 'Constructors, attributes and methods', description: 'Inicializa objetos y agrupa datos con operaciones.<br>Ej: Persona(String n) { nombre = n; }', linkURL: '', rightLinkURL: '' }, position: { x: 350, y: linha4 } },
@@ -180,7 +180,7 @@
           { data: { id: 'Threads', name: 'Threads', description: 'Ejecuta tareas concurrentes dentro del mismo proceso.<br>Ej: new Thread(tarea).start();', linkURL: '', rightLinkURL: '' }, position: { x: 350, y: linha16 } },
 
           // Coluna 2
-          { data: { id: 'Java 5', name: 'Java 5', description: 'Version que modernizo tipos, metadatos y concurrencia.<br>Ej: List<String>, enum Dia, @Override.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna2, y: linha1 } },
+          { data: { id: 'Java 5', name: 'Java 5', description: 'Version que modernizo tipos, metadatos y concurrencia.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna2, y: linha1 } },
           { data: { id: 'Versioning number', name: 'Versioning number', description: 'Introduce el esquema 5.0 para nombrar la plataforma.<br>Ej: Java 5 tambien fue Java 1.5.', linkURL: '', rightLinkURL: '' }, position: { x: coluna2, y: linha2 } },
           { data: { id: 'Generics', name: 'Generics', description: 'Agrega tipos parametrizados para colecciones mas seguras.<br>Ej: List<String> evita casts al leer.', linkURL: '', rightLinkURL: '' }, position: { x: coluna2, y: linha3 } },
           { data: { id: 'Annotations', name: 'Annotations', description: 'Adjunta metadatos al codigo para herramientas y frameworks.<br>Ej: @Override marca sobrescritura.', linkURL: '', rightLinkURL: '' }, position: { x: coluna2, y: linha4 } },
@@ -191,7 +191,7 @@
           { data: { id: 'Concurrency utilities', name: 'Concurrency utilities', description: 'Agrega executors, locks y colecciones thread-safe.<br>Ej: Executors.newFixedThreadPool(4);', linkURL: '', rightLinkURL: '' }, position: { x: coluna2, y: linha9 } },
 
           // Coluna 3
-          { data: { id: 'Java 7', name: 'Java 7', description: 'Version enfocada en sintaxis mas limpia e IO moderno.<br>Ej: try-with-resources y switch con String.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna3, y: linha1 } },
+          { data: { id: 'Java 7', name: 'Java 7', description: 'Version enfocada en sintaxis mas limpia e IO moderno.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna3, y: linha1 } },
           { data: { id: 'Try-with-resources', name: 'Try-with-resources', description: 'Cierra recursos automaticamente al salir del bloque try.<br>Ej: try (var in = Files.newInputStream(p)) { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna3, y: linha2 } },
           { data: { id: 'Diamond operator', name: 'Diamond operator', description: 'Infiere tipos genericos en constructores con <>.<br>Ej: new ArrayList<>();', linkURL: '', rightLinkURL: '' }, position: { x: coluna3, y: linha3 } },
           { data: { id: 'NIO.2', name: 'NIO.2', description: 'Mejora archivos, rutas y operaciones del sistema de archivos.<br>Ej: Path p = Path.of("app.txt");', linkURL: '', rightLinkURL: '' }, position: { x: coluna3, y: linha4 } },
@@ -202,14 +202,14 @@
           { data: { id: '@SafeVarargs', name: '@SafeVarargs', description: 'Marca varargs genericos como seguros contra heap pollution.<br>Ej: @SafeVarargs static <T> void add(T... v)', linkURL: '', rightLinkURL: '' }, position: { x: coluna3, y: linha9 } },
 
           // Coluna 4
-          { data: { id: 'Java 8', name: 'Java 8', description: 'LTS que introdujo programacion funcional y nueva fecha.<br>Ej: list.stream().filter(x -> x > 0).toList().', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna4, y: linha1 } },
+          { data: { id: 'Java 8', name: 'Java 8', description: 'LTS que introdujo programacion funcional y nueva fecha.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna4, y: linha1 } },
           { data: { id: 'Streams and lambda', name: 'Streams and lambda', description: 'Procesa datos con funciones y pipelines declarativos.<br>Ej: nums.stream().map(n -> n * 2);', linkURL: '', rightLinkURL: '' }, position: { x: coluna4, y: linha2 } },
           { data: { id: 'Optionals', name: 'Optionals', description: 'Representa valores que pueden faltar sin usar null.<br>Ej: Optional.ofNullable(nombre).orElse("N/A");', linkURL: '', rightLinkURL: '' }, position: { x: coluna4, y: linha3 } },
           { data: { id: 'Default methods', name: 'Default methods', description: 'Permite metodos con implementacion dentro de interfaces.<br>Ej: default int size() { return 0; }', linkURL: '', rightLinkURL: '' }, position: { x: coluna4, y: linha4 } },
           { data: { id: 'New Java Data and Time API', name: 'New Java Data and Time API', description: 'API moderna e inmutable para fechas, horas y zonas.<br>Ej: LocalDate.now().plusDays(1);', linkURL: '', rightLinkURL: '' }, position: { x: coluna4, y: linha5 } },
 
 		  // Coluna 5
-          { data: { id: 'Java 9', name: 'Java 9', description: 'Version que modularizo el JDK y mejoro APIs base.<br>Ej: module-info.java y List.of(...).', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna5, y: linha1 } },
+          { data: { id: 'Java 9', name: 'Java 9', description: 'Version que modularizo el JDK y mejoro APIs base.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna5, y: linha1 } },
           { data: { id: 'Java Module System', name: 'Java Module System', description: 'Divide aplicaciones en modulos con dependencias explicitas.<br>Ej: module app { requires java.sql; }', linkURL: '', rightLinkURL: '' }, position: { x: coluna5, y: linha2 } },
           { data: { id: 'Immutable collections', name: 'Immutable collections', description: 'Crea listas, sets y mapas inmutables con metodos of.<br>Ej: List.of("a", "b");', linkURL: '', rightLinkURL: '' }, position: { x: coluna5, y: linha3 } },
           { data: { id: 'Improved try-with-resources', name: 'Improved try-with-resources', description: 'Permite usar variables finales ya declaradas en try.<br>Ej: try (reader) { return reader.read(); }', linkURL: '', rightLinkURL: '' }, position: { x: coluna5, y: linha4 } },
@@ -225,14 +225,14 @@
           { data: { id: 'JLink', name: 'JLink', description: 'Crea runtimes Java personalizados con modulos necesarios.<br>Ej: jlink --add-modules app --output runtime', linkURL: '', rightLinkURL: '' }, position: { x: coluna5, y: linha14 } },
 
 		  // Coluna 6
-          { data: { id: 'Java 10', name: 'Java 10', description: 'Version corta centrada en inferencia local y colecciones.<br>Ej: var texto = "hola";', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna6, y: linha1 } },
+          { data: { id: 'Java 10', name: 'Java 10', description: 'Version corta centrada en inferencia local y colecciones.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna6, y: linha1 } },
           { data: { id: 'Local-variable type inference', name: 'Local-variable type inference', description: 'Permite var para inferir tipos de variables locales.<br>Ej: var nombres = List.of("Ana");', linkURL: '', rightLinkURL: '' }, position: { x: coluna6, y: linha2 } },
           { data: { id: 'Unmodifiable collection copies', name: 'Unmodifiable collection copies', description: 'Copia colecciones en versiones inmutables con copyOf.<br>Ej: List.copyOf(lista);', linkURL: '', rightLinkURL: '' }, position: { x: coluna6, y: linha3 } },
           { data: { id: 'Unmodifiable collectors', name: 'Unmodifiable collectors', description: 'Recolecta streams directamente en colecciones inmutables.<br>Ej: stream.collect(toUnmodifiableList());', linkURL: '', rightLinkURL: '' }, position: { x: coluna6, y: linha4 } },
           { data: { id: 'Optional.orElseThrow()', name: 'Optional.orElseThrow()', description: 'Lanza NoSuchElementException si el Optional esta vacio.<br>Ej: usuario.orElseThrow();', linkURL: '', rightLinkURL: '' }, position: { x: coluna6, y: linha5 } },
 
 		  // Coluna 7
-          { data: { id: 'Java 11', name: 'Java 11', description: 'LTS con cliente HTTP estable y mejoras de strings.<br>Ej: " ".isBlank() y HttpClient estable.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna7, y: linha1 } },
+          { data: { id: 'Java 11', name: 'Java 11', description: 'LTS con cliente HTTP estable y mejoras de strings.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna7, y: linha1 } },
           { data: { id: 'HTTP Client API', name: 'HTTP Client API', description: 'Cliente HTTP/2 estandar con llamadas sync y async.<br>Ej: client.send(request, BodyHandlers.ofString());', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha2 } },
           { data: { id: 'String isBlank lines strip repeat', name: 'String isBlank lines strip repeat', description: 'Nuevos metodos para revisar, dividir y repetir texto.<br>Ej: " hi ".strip().repeat(2);', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha3 } },
           { data: { id: 'Files readString writeString', name: 'Files readString writeString', description: 'Lee y escribe archivos completos como String facilmente.<br>Ej: Files.writeString(path, "hola");', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha4 } },
@@ -241,7 +241,7 @@
           { data: { id: 'Single-file source-code launch', name: 'Single-file source-code launch', description: 'Ejecuta un archivo .java sin compilarlo antes manualmente.<br>Ej: java Hola.java', linkURL: '', rightLinkURL: '' }, position: { x: coluna7, y: linha7 } },
 
 		  // Coluna 8
-          { data: { id: 'Java 12', name: 'Java 12', description: 'Version con previews de switch y pequenas APIs utiles.<br>Ej: switch preview y Collectors.teeing().', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna8, y: linha1 } },
+          { data: { id: 'Java 12', name: 'Java 12', description: 'Version con previews de switch y pequenas APIs utiles.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna8, y: linha1 } },
           { data: { id: 'Switch expressions preview', name: 'Switch expressions preview', description: 'Permite que switch devuelva valores como expresion.<br>Ej: var r = switch (dia) { case LUNES -> 1; };', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha2 } },
           { data: { id: 'Collectors.teeing()', name: 'Collectors.teeing()', description: 'Combina dos collectors y fusiona sus resultados.<br>Ej: teeing(counting(), maxBy(c), Resultado::new)', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha3 } },
           { data: { id: 'String.indent()', name: 'String.indent()', description: 'Ajusta sangria de cada linea dentro de un String.<br>Ej: texto.indent(2);', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha4 } },
@@ -249,13 +249,13 @@
           { data: { id: 'Files.mismatch()', name: 'Files.mismatch()', description: 'Encuentra la primera diferencia entre dos archivos.<br>Ej: Files.mismatch(a, b) == -1', linkURL: '', rightLinkURL: '' }, position: { x: coluna8, y: linha6 } },
 
 		  // Coluna 9
-          { data: { id: 'Java 13', name: 'Java 13', description: 'Version con bloques de texto y switch preview refinado.<br>Ej: """texto""" y yield en switch.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna9, y: linha1 } },
+          { data: { id: 'Java 13', name: 'Java 13', description: 'Version con bloques de texto y switch preview refinado.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna9, y: linha1 } },
           { data: { id: 'Text blocks preview', name: 'Text blocks preview', description: 'Permite strings multilinea con comillas triples.<br>Ej: String json = """{ "a": 1 }""";', linkURL: '', rightLinkURL: '' }, position: { x: coluna9, y: linha2 } },
           { data: { id: 'Switch expressions yield', name: 'Switch expressions yield', description: 'Usa yield para devolver valores desde bloques switch.<br>Ej: yield total + iva;', linkURL: '', rightLinkURL: '' }, position: { x: coluna9, y: linha3 } },
           { data: { id: 'Socket API reimplementation', name: 'Socket API reimplementation', description: 'Reescribe sockets clasicos sobre implementacion moderna.<br>Ej: Socket mantiene API, cambia por dentro.', linkURL: '', rightLinkURL: '' }, position: { x: coluna9, y: linha4 } },
 
 		  // Coluna 10
-          { data: { id: 'Java 14', name: 'Java 14', description: 'Version que estabilizo switch y probo records.<br>Ej: records preview y NPEs mas claros.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna10, y: linha1 } },
+          { data: { id: 'Java 14', name: 'Java 14', description: 'Version que estabilizo switch y probo records.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna10, y: linha1 } },
           { data: { id: 'Switch expressions', name: 'Switch expressions', description: 'Switch puede devolver valores con sintaxis mas compacta.<br>Ej: var tipo = switch (n) { case 1 -> "uno"; };', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha2 } },
           { data: { id: 'Records preview', name: 'Records preview', description: 'Clases compactas para datos inmutables con poco codigo.<br>Ej: record Punto(int x, int y) { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha3 } },
           { data: { id: 'Pattern matching instanceof preview', name: 'Pattern matching instanceof preview', description: 'Combina instanceof con declaracion automatica de variable.<br>Ej: if (obj instanceof String s) { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha4 } },
@@ -263,14 +263,14 @@
           { data: { id: 'Text blocks second preview', name: 'Text blocks second preview', description: 'Refina strings multilinea antes de su version final.<br>Ej: """linea 1\nlinea 2"""', linkURL: '', rightLinkURL: '' }, position: { x: coluna10, y: linha6 } },
 
 		  // Coluna 11
-          { data: { id: 'Java 15', name: 'Java 15', description: 'Version con text blocks finales y sealed preview.<br>Ej: text blocks finales y sealed preview.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna11, y: linha1 } },
+          { data: { id: 'Java 15', name: 'Java 15', description: 'Version con text blocks finales y sealed preview.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna11, y: linha1 } },
           { data: { id: 'Text blocks', name: 'Text blocks', description: 'Strings multilinea finales con formato mas natural.<br>Ej: String sql = """select * from users""";', linkURL: '', rightLinkURL: '' }, position: { x: coluna11, y: linha2 } },
           { data: { id: 'Sealed classes preview', name: 'Sealed classes preview', description: 'Limita que clases pueden extender o implementar un tipo.<br>Ej: sealed class Shape permits Circle { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna11, y: linha3 } },
           { data: { id: 'Records second preview', name: 'Records second preview', description: 'Refina records como clases concisas para transportar datos.<br>Ej: record User(String name) { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna11, y: linha4 } },
           { data: { id: 'Hidden classes', name: 'Hidden classes', description: 'Clases no visibles pensadas para frameworks y runtimes.<br>Ej: proxies dinamicos para frameworks.', linkURL: '', rightLinkURL: '' }, position: { x: coluna11, y: linha5 } },
 
 		  // Coluna 12
-          { data: { id: 'Java 16', name: 'Java 16', description: 'Version que hizo finales records y pattern instanceof.<br>Ej: record final y instanceof con patron.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna12, y: linha1 } },
+          { data: { id: 'Java 16', name: 'Java 16', description: 'Version que hizo finales records y pattern instanceof.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna12, y: linha1 } },
           { data: { id: 'Records', name: 'Records', description: 'Define datos inmutables con constructor y accesores automaticos.<br>Ej: record User(String name, int age) { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha2 } },
           { data: { id: 'Pattern matching instanceof', name: 'Pattern matching instanceof', description: 'Evita casts manuales despues de comprobar instanceof.<br>Ej: if (obj instanceof String s) s.length();', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha3 } },
           { data: { id: 'Stream.toList()', name: 'Stream.toList()', description: 'Convierte un stream en lista con metodo directo.<br>Ej: var list = stream.toList();', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha4 } },
@@ -278,7 +278,7 @@
           { data: { id: 'Unix-domain socket channels', name: 'Unix-domain socket channels', description: 'Comunica procesos locales usando sockets de dominio Unix.<br>Ej: UnixDomainSocketAddress.of("/tmp/app.sock")', linkURL: '', rightLinkURL: '' }, position: { x: coluna12, y: linha6 } },
 
 		  // Coluna 13
-          { data: { id: 'Java 17', name: 'Java 17', description: 'LTS con sealed classes y nuevas APIs de seguridad.<br>Ej: sealed classes finales en una version LTS.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna13, y: linha1 } },
+          { data: { id: 'Java 17', name: 'Java 17', description: 'LTS con sealed classes y nuevas APIs de seguridad.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna13, y: linha1 } },
           { data: { id: 'Sealed classes', name: 'Sealed classes', description: 'Restringe subclases permitidas para modelar dominios cerrados.<br>Ej: sealed interface Pago permits Pix, Tarjeta { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha2 } },
           { data: { id: 'Pattern matching switch preview', name: 'Pattern matching switch preview', description: 'Permite switch sobre tipos y patrones de objetos.<br>Ej: case String s -> s.length();', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha3 } },
           { data: { id: 'Enhanced pseudo-random generators', name: 'Enhanced pseudo-random generators', description: 'Nuevas interfaces y algoritmos para numeros aleatorios.<br>Ej: RandomGenerator.of("L64X128MixRandom")', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha4 } },
@@ -286,7 +286,7 @@
           { data: { id: 'Foreign Function and Memory incubator', name: 'Foreign Function and Memory incubator', description: 'Accede a codigo nativo y memoria externa desde Java.<br>Ej: leer memoria nativa con MemorySegment.', linkURL: '', rightLinkURL: '' }, position: { x: coluna13, y: linha6 } },
 
 		  // Coluna 14
-          { data: { id: 'Java 18', name: 'Java 18', description: 'Version con UTF-8 por defecto y servidor simple.<br>Ej: UTF-8 por defecto y jwebserver.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna14, y: linha1 } },
+          { data: { id: 'Java 18', name: 'Java 18', description: 'Version con UTF-8 por defecto y servidor simple.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna14, y: linha1 } },
           { data: { id: 'UTF-8 by default', name: 'UTF-8 by default', description: 'Usa UTF-8 como charset predeterminado en la plataforma.<br>Ej: new String(bytes) usa UTF-8 por defecto.', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha2 } },
           { data: { id: 'Simple Web Server', name: 'Simple Web Server', description: 'Servidor HTTP pequeno para archivos estaticos y pruebas.<br>Ej: jwebserver -p 8000', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha3 } },
           { data: { id: 'Code snippets in JavaDoc', name: 'Code snippets in JavaDoc', description: 'Permite ejemplos de codigo validados dentro de JavaDoc.<br>Ej: {@snippet : int x = 1; }', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha4 } },
@@ -294,7 +294,7 @@
           { data: { id: 'Vector API third incubator', name: 'Vector API third incubator', description: 'Opera datos en paralelo usando instrucciones vectoriales.<br>Ej: sumar arrays con IntVector.', linkURL: '', rightLinkURL: '' }, position: { x: coluna14, y: linha6 } },
 
 		  // Coluna 15
-          { data: { id: 'Java 19', name: 'Java 19', description: 'Version que inicio virtual threads y concurrencia estructurada.<br>Ej: Thread.startVirtualThread(...).', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna15, y: linha1 } },
+          { data: { id: 'Java 19', name: 'Java 19', description: 'Version que inicio virtual threads y concurrencia estructurada.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna15, y: linha1 } },
           { data: { id: 'Virtual threads preview', name: 'Virtual threads preview', description: 'Hilos livianos para manejar muchas tareas bloqueantes.<br>Ej: Thread.startVirtualThread(tarea);', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha2 } },
           { data: { id: 'Record patterns preview', name: 'Record patterns preview', description: 'Desestructura records directamente en patrones.<br>Ej: if (p instanceof Point(int x, int y)) { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha3 } },
           { data: { id: 'Pattern matching switch third preview', name: 'Pattern matching switch third preview', description: 'Tercer preview de switch con patrones y null.<br>Ej: case null -> "sin dato";', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha4 } },
@@ -302,7 +302,7 @@
           { data: { id: 'Foreign Function and Memory preview', name: 'Foreign Function and Memory preview', description: 'Preview para llamar codigo nativo y usar memoria externa.<br>Ej: Linker.nativeLinker();', linkURL: '', rightLinkURL: '' }, position: { x: coluna15, y: linha6 } },
 
 		  // Coluna 16
-          { data: { id: 'Java 20', name: 'Java 20', description: 'Version de refinamiento para previews modernas.<br>Ej: mas previews de Loom, FFM y patrones.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna16, y: linha1 } },
+          { data: { id: 'Java 20', name: 'Java 20', description: 'Version de refinamiento para previews modernas.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna16, y: linha1 } },
           { data: { id: 'Scoped values incubator', name: 'Scoped values incubator', description: 'Comparte datos inmutables dentro de un ambito de ejecucion.<br>Ej: ScopedValue.where(USER, u).run(tarea);', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha2 } },
           { data: { id: 'Record patterns second preview', name: 'Record patterns second preview', description: 'Mejora desestructuracion de records en patrones.<br>Ej: Point(int x, int y) en switch.', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha3 } },
           { data: { id: 'Pattern matching switch fourth preview', name: 'Pattern matching switch fourth preview', description: 'Cuarto preview de switch con cobertura de patrones.<br>Ej: switch (obj) { case String s -> s; }', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha4 } },
@@ -311,7 +311,7 @@
           { data: { id: 'Foreign Function and Memory second preview', name: 'Foreign Function and Memory second preview', description: 'Segundo preview de acceso seguro a codigo y memoria nativos.<br>Ej: Arena.ofConfined() gestiona memoria.', linkURL: '', rightLinkURL: '' }, position: { x: coluna16, y: linha7 } },
 
 		  // Coluna 17
-          { data: { id: 'Java 21', name: 'Java 21', description: 'LTS con virtual threads y patrones mas expresivos.<br>Ej: virtual threads, record patterns y switch final.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna17, y: linha1 } },
+          { data: { id: 'Java 21', name: 'Java 21', description: 'LTS con virtual threads y patrones mas expresivos.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna17, y: linha1 } },
           { data: { id: 'Virtual threads', name: 'Virtual threads', description: 'Hilos livianos finales para alta concurrencia bloqueante.<br>Ej: try (var ex = newVirtualThreadPerTaskExecutor())', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha2 } },
           { data: { id: 'Sequenced collections', name: 'Sequenced collections', description: 'Colecciones con orden definido y acceso a primero y ultimo.<br>Ej: list.getFirst(); list.reversed();', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha3 } },
           { data: { id: 'Record patterns', name: 'Record patterns', description: 'Desestructura records en instanceof, switch y patrones.<br>Ej: case Point(int x, int y) -> x + y;', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha4 } },
@@ -321,7 +321,7 @@
           { data: { id: 'Scoped values preview', name: 'Scoped values preview', description: 'Preview para datos compartidos de forma segura por ambito.<br>Ej: ScopedValue.where(ID, 7).run(tarea);', linkURL: '', rightLinkURL: '' }, position: { x: coluna17, y: linha8 } },
 
 		  // Coluna 18
-          { data: { id: 'Java 22', name: 'Java 22', description: 'Version con FFM final y nuevas previews de lenguaje.<br>Ej: FFM final y gatherers preview.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna18, y: linha1 } },
+          { data: { id: 'Java 22', name: 'Java 22', description: 'Version con FFM final y nuevas previews de lenguaje.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna18, y: linha1 } },
           { data: { id: 'Unnamed variables and patterns', name: 'Unnamed variables and patterns', description: 'Permite _ para valores deliberadamente no usados.<br>Ej: for (var _ : lista) { contar++; }', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha2 } },
           { data: { id: 'Foreign Function and Memory API', name: 'Foreign Function and Memory API', description: 'API final para llamar funciones nativas y manejar memoria.<br>Ej: SymbolLookup.libraryLookup("c", arena)', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha3 } },
           { data: { id: 'Stream gatherers preview', name: 'Stream gatherers preview', description: 'Crea operaciones intermedias personalizadas para streams.<br>Ej: stream.gather(Gatherers.windowFixed(3));', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha4 } },
@@ -331,7 +331,7 @@
           { data: { id: 'String templates second preview', name: 'String templates second preview', description: 'Refina interpolacion segura y procesable de strings.<br>Ej: procesar plantillas antes de concatenar.', linkURL: '', rightLinkURL: '' }, position: { x: coluna18, y: linha8 } },
 
 		  // Coluna 19
-          { data: { id: 'Java 23', name: 'Java 23', description: 'Version con Markdown JavaDoc y nuevas previews.<br>Ej: JavaDoc Markdown y mas APIs preview.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna19, y: linha1 } },
+          { data: { id: 'Java 23', name: 'Java 23', description: 'Version con Markdown JavaDoc y nuevas previews.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna19, y: linha1 } },
           { data: { id: 'Primitive types in patterns preview', name: 'Primitive types in patterns preview', description: 'Permite tipos primitivos en patrones y switch.<br>Ej: case int i -> i * 2;', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha2 } },
           { data: { id: 'Module import declarations preview', name: 'Module import declarations preview', description: 'Importa todos los paquetes exportados por un modulo.<br>Ej: import module java.base;', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha3 } },
           { data: { id: 'Markdown documentation comments', name: 'Markdown documentation comments', description: 'Permite escribir JavaDoc con sintaxis Markdown.<br>Ej: /// **Texto** en JavaDoc.', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha4 } },
@@ -341,7 +341,7 @@
           { data: { id: 'Flexible constructor bodies preview', name: 'Flexible constructor bodies preview', description: 'Permite codigo antes de super bajo reglas seguras.<br>Ej: if (x < 0) throw...; super(x);', linkURL: '', rightLinkURL: '' }, position: { x: coluna19, y: linha8 } },
 
 		  // Coluna 20
-          { data: { id: 'Java 24', name: 'Java 24', description: 'Version con stream gatherers y APIs criptograficas nuevas.<br>Ej: gatherers finales y criptografia post-cuantica.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna20, y: linha1 } },
+          { data: { id: 'Java 24', name: 'Java 24', description: 'Version con stream gatherers y APIs criptograficas nuevas.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna20, y: linha1 } },
           { data: { id: 'Stream gatherers', name: 'Stream gatherers', description: 'Operaciones intermedias personalizadas para pipelines stream.<br>Ej: stream.gather(Gatherers.scan(...));', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha2 } },
           { data: { id: 'Class-File API', name: 'Class-File API', description: 'API final para leer, crear y transformar archivos .class.<br>Ej: ClassFile.of().parse(bytes);', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha3 } },
           { data: { id: 'Scoped values fourth preview', name: 'Scoped values fourth preview', description: 'Cuarto preview para compartir datos por ambito.<br>Ej: ScopedValue.where(LOCALE, es).call(tarea);', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha4 } },
@@ -351,7 +351,7 @@
           { data: { id: 'Quantum-resistant signatures', name: 'Quantum-resistant signatures', description: 'Firmas digitales preparadas contra ataques cuanticos.<br>Ej: firmar datos con ML-DSA.', linkURL: '', rightLinkURL: '' }, position: { x: coluna20, y: linha8 } },
 
 		  // Coluna 21
-          { data: { id: 'Java 25', name: 'Java 25', description: 'LTS con mejoras para codigo inicial y concurrencia.<br>Ej: archivos compactos y scoped values finales.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna21, y: linha1 } },
+          { data: { id: 'Java 25', name: 'Java 25', description: 'LTS con mejoras para codigo inicial y concurrencia.', linkURL: '', rightLinkURL: '', category: 'title_lts' }, position: { x: coluna21, y: linha1 } },
           { data: { id: 'Compact source files and instance main', name: 'Compact source files and instance main', description: 'Permite programas simples sin clase publica ni main static.<br>Ej: void main() { println("Hola"); }', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha2 } },
           { data: { id: 'Flexible constructor bodies', name: 'Flexible constructor bodies', description: 'Permite validaciones antes de llamar super en constructores.<br>Ej: validar(x); super(x);', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha3 } },
           { data: { id: 'Module import declarations', name: 'Module import declarations', description: 'Importa paquetes exportados por un modulo con una declaracion.<br>Ej: import module java.sql;', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha4 } },
