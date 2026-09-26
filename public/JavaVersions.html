@@ -202,9 +202,31 @@
         layout: {
           name: "preset", idealEdgeLength: 100, nodeOverlap: 20, refresh: 20, fit: true, padding: 10, randomize: false, componentSpacing: 100, nodeRepulsion: 400000, edgeElasticity: 100, nestingFactor: 5, gravity: 80, numIter: 1000, initialTemp: 200, coolingFactor: 0.95, minTemp: 1.0
         },
-		autoungrabify: true
+		autoungrabify: true,
+        userZoomingEnabled: false
       });
       cy.pan({ x: cy.pan().x - 80, y: cy.pan().y });
+
+      cy.container().addEventListener("wheel", function (evt) {
+        if (!evt.ctrlKey) {
+          return;
+        }
+
+        evt.preventDefault();
+
+        var zoomFactor = Math.pow(1.05, -evt.deltaY / 100);
+        var nextZoom = cy.zoom() * zoomFactor;
+        nextZoom = Math.max(cy.minZoom(), Math.min(cy.maxZoom(), nextZoom));
+        var rect = cy.container().getBoundingClientRect();
+
+        cy.zoom({
+          level: nextZoom,
+          renderedPosition: {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+          }
+        });
+      }, { passive: false });
 
       // Tooltip events
       cy.on("mouseover", "node", function (evt) {
