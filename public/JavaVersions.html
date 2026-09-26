@@ -204,6 +204,7 @@
         },
 		autoungrabify: true
       });
+      cy.pan({ x: cy.pan().x - 80, y: cy.pan().y });
 
       // Tooltip events
       cy.on("mouseover", "node", function (evt) {
