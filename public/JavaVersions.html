@@ -7,14 +7,6 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233b82f6;stop-opacity:1' /><stop offset='100%' style='stop-color:%238b5cf6;stop-opacity:1' /></linearGradient></defs><circle cx='100' cy='100' r='100' fill='url(%23grad)'/><text x='100' y='135' font-size='110' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial, sans-serif'>PJ</text></svg>" type="image/svg+xml">
   <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ENBGYS73XR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4R0N7JB6F7');
-  </script>
   <style>
     body {
       font-family: helvetica;
@@ -103,25 +95,6 @@
 <body>
   <div id="cy"></div>
   <div id="tooltip"></div> <!-- Tooltip element -->
-  <div id="legend" style="position: absolute; top: 10px; right: 10px; background: white; border: 1px solid #ccc; padding: 10px; font-size: 14px; z-index: 10;">
-    <table>
-      <tr>
-        <td><strong>Actions:</strong></td>
-      </tr>
-      <tr>
-        <td>Drag - to move the diagram</td>
-      </tr>
-      <tr>
-        <td>Click - Fast explanation</td><td width="10px"></td>
-      </tr>
-      <tr>
-        <td>Right click - To see examples</td><td width="10px"></td>
-      </tr>
-	  <tr>
-        <td>Double click - To open documentation</td><td width="10px"></td>
-      </tr>
-    </table>
-  </div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -231,7 +204,6 @@
         },
 		autoungrabify: true
       });
-      cy.pan({ y: 100 });
 
       // Tooltip events
       cy.on("mouseover", "node", function (evt) {
