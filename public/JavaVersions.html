@@ -25,7 +25,7 @@
     #cy {
       width: 100%;
       height: 100%;
-      min-width: 7600px;
+      min-width: 8500px;
       min-height: 950px;
       display: block;
       position: relative;
@@ -157,6 +157,8 @@
 	  var coluna19 = 6450;
 	  var coluna20 = 6850;
 	  var coluna21 = 7250;
+	  var coluna22 = 7650;
+	  var coluna23 = 8050;
 
       var cy = cytoscape({
         container: chartContainer,
@@ -360,6 +362,28 @@
           { data: { id: 'Stable values preview', name: 'Stable values preview', description: 'Values initialized once with efficient and safe reads.<br>Example: compute once and reuse safely.', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha6 } },
           { data: { id: 'Structured concurrency fifth preview', name: 'Structured concurrency fifth preview', description: 'Coordinates concurrent subtasks with a shared lifecycle.<br>Example: scope.fork(task); scope.join();', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha7 } },
           { data: { id: 'Primitive patterns third preview', name: 'Primitive patterns third preview', description: 'Third preview of patterns with primitive types.<br>Example: switch (n) { case int i -> i; }', linkURL: '', rightLinkURL: '' }, position: { x: coluna21, y: linha8 } },
+
+		  // Coluna 22
+          { data: { id: 'Java 26', name: 'Java 26', description: 'Short-term release with HTTP/3, primitive patterns previews, and runtime improvements.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna22, y: linha1 } },
+          { data: { id: 'HTTP/3 for HTTP Client API', name: 'HTTP/3 for HTTP Client API', description: 'Lets HttpClient talk to HTTP/3 servers with minimal code changes.<br>Example: HttpClient.newHttpClient().send(request, handler);', linkURL: '', rightLinkURL: '' }, position: { x: coluna22, y: linha2 } },
+          { data: { id: 'Primitive patterns fourth preview', name: 'Primitive patterns fourth preview', description: 'Allows primitive types in patterns, instanceof, and switch.<br>Example: switch (value) { case int i -> i; }', linkURL: '', rightLinkURL: '' }, position: { x: coluna22, y: linha3 } },
+          { data: { id: 'Lazy constants second preview', name: 'Lazy constants second preview', description: 'Provides constants initialized lazily but optimized like final data.<br>Example: define a value once and compute it only when needed.', linkURL: '', rightLinkURL: '' }, position: { x: coluna22, y: linha4 } },
+          { data: { id: 'Structured concurrency sixth preview', name: 'Structured concurrency sixth preview', description: 'Refines task scopes for safer cancellation and error handling.<br>Example: fork subtasks and join them as one operation.', linkURL: '', rightLinkURL: '' }, position: { x: coluna22, y: linha5 } },
+          { data: { id: 'PEM encodings second preview', name: 'PEM encodings second preview', description: 'Encodes and decodes keys, certificates, and CRLs as PEM.<br>Example: read a PEM certificate into Java crypto objects.', linkURL: '', rightLinkURL: '' }, position: { x: coluna22, y: linha6 } },
+          { data: { id: 'Process AutoCloseable', name: 'Process AutoCloseable', description: 'Allows processes to be closed automatically with try-with-resources.<br>Example: try (Process p = builder.start()) { }', linkURL: '', rightLinkURL: '' }, position: { x: coluna22, y: linha7 } },
+          { data: { id: 'Comparator min max', name: 'Comparator min max', description: 'Adds Comparator helpers to choose the smaller or larger value.<br>Example: comparator.max(a, b);', linkURL: '', rightLinkURL: '' }, position: { x: coluna22, y: linha8 } },
+          { data: { id: 'AOT object caching any GC', name: 'AOT object caching any GC', description: 'Improves startup and warmup by caching objects across any GC.<br>Example: apps start faster after AOT cache creation.', linkURL: '', rightLinkURL: '' }, position: { x: coluna22, y: linha9 } },
+
+		  // Coluna 23
+          { data: { id: 'Java 27', name: 'Java 27', description: 'Short-term release with compact objects, stronger TLS, and refined previews.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: coluna23, y: linha1 } },
+          { data: { id: 'Primitive patterns fifth preview', name: 'Primitive patterns fifth preview', description: 'Further refines primitive patterns for instanceof and switch.<br>Example: case long l -> l;', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha2 } },
+          { data: { id: 'Lazy constants third preview', name: 'Lazy constants third preview', description: 'Continues the lazy constants API for delayed one-time values.<br>Example: initialize expensive data only on first use.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha3 } },
+          { data: { id: 'Structured concurrency seventh preview', name: 'Structured concurrency seventh preview', description: 'Refines structured task coordination and cancellation.<br>Example: treat several subtasks as one unit of work.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha4 } },
+          { data: { id: 'Post-quantum TLS key exchange', name: 'Post-quantum TLS key exchange', description: 'Uses hybrid quantum-resistant TLS 1.3 key exchange by default.<br>Example: javax.net.ssl clients benefit without code changes.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha5 } },
+          { data: { id: 'PEM encodings third preview', name: 'PEM encodings third preview', description: 'Refines APIs for PEM keys, certificates, and revocation lists.<br>Example: parse PEM text into crypto objects.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha6 } },
+          { data: { id: 'Compact object headers by default', name: 'Compact object headers by default', description: 'Reduces object header size to lower memory use with no code changes.<br>Example: object-heavy apps use less heap.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha7 } },
+          { data: { id: 'G1 default everywhere', name: 'G1 default everywhere', description: 'Makes G1 the default garbage collector in every environment.<br>Example: consistent default GC behavior in small containers.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha8 } },
+          { data: { id: 'JFR data redaction', name: 'JFR data redaction', description: 'Redacts sensitive arguments, environment variables, and properties in recordings.<br>Example: safer production JFR captures.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha9 } },
 
         ],
         style: [
