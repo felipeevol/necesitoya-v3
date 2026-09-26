@@ -376,18 +376,20 @@
 
       function fitGraphToVisibleArea() {
         var padding = 10;
-        var graphBounds = cy.elements().boundingBox();
+        var initialVisibleBounds = cy.nodes().filter(function (node) {
+          return node.position("x") <= coluna6;
+        }).boundingBox();
         var visibleWidth = chartScroll.clientWidth;
         var visibleHeight = chartScroll.clientHeight;
         var zoom = Math.min(
-          (visibleWidth - (padding * 2)) / graphBounds.w,
-          (visibleHeight - (padding * 2)) / graphBounds.h
+          (visibleWidth - (padding * 2)) / initialVisibleBounds.w,
+          (visibleHeight - (padding * 2)) / initialVisibleBounds.h
         );
 
         cy.zoom(zoom);
         cy.pan({
-          x: ((visibleWidth - (zoom * (graphBounds.x1 + graphBounds.x2))) / 2) - 80,
-          y: (visibleHeight - (zoom * (graphBounds.y1 + graphBounds.y2))) / 2
+          x: (visibleWidth - (zoom * (initialVisibleBounds.x1 + initialVisibleBounds.x2))) / 2,
+          y: (visibleHeight - (zoom * (initialVisibleBounds.y1 + initialVisibleBounds.y2))) / 2
         });
       }
 
