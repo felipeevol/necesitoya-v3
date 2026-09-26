@@ -13,15 +13,22 @@
       font-size: 14px;
       margin: 0;
       padding: 0;
+      overflow: hidden;
+    }
+
+    #chart-scroll {
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
     }
 
     #cy {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
+      min-width: 1800px;
+      min-height: 950px;
       display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;
       z-index: 999;
     }
 
@@ -93,12 +100,16 @@
 </head>
 
 <body>
-  <div id="cy"></div>
+  <div id="chart-scroll">
+    <div id="cy"></div>
+  </div>
   <div id="tooltip"></div> <!-- Tooltip element -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
 
       console.log("DOM Carregado. Inicializando Cytoscape (v9)...");
+      var chartScroll = document.getElementById("chart-scroll");
+      var chartContainer = document.getElementById("cy");
       var tooltipDiv = document.getElementById("tooltip");
 
       var separador = 50;
@@ -126,7 +137,7 @@
 	  var coluna5 = 1550;
 
       var cy = cytoscape({
-        container: document.getElementById("cy"),
+        container: chartContainer,
         elements: [
 
           // Coluna 1
@@ -200,12 +211,31 @@
           { selector: "node[category = 'title']", style: { "background-color": "#F89820", "color": "#fff" } }
         ],
         layout: {
-          name: "preset", idealEdgeLength: 100, nodeOverlap: 20, refresh: 20, fit: true, padding: 10, randomize: false, componentSpacing: 100, nodeRepulsion: 400000, edgeElasticity: 100, nestingFactor: 5, gravity: 80, numIter: 1000, initialTemp: 200, coolingFactor: 0.95, minTemp: 1.0
+          name: "preset", idealEdgeLength: 100, nodeOverlap: 20, refresh: 20, fit: false, padding: 10, randomize: false, componentSpacing: 100, nodeRepulsion: 400000, edgeElasticity: 100, nestingFactor: 5, gravity: 80, numIter: 1000, initialTemp: 200, coolingFactor: 0.95, minTemp: 1.0
         },
 		autoungrabify: true,
         userZoomingEnabled: false
       });
-      cy.pan({ x: cy.pan().x - 80, y: cy.pan().y });
+
+      function fitGraphToVisibleArea() {
+        var padding = 10;
+        var graphBounds = cy.elements().boundingBox();
+        var visibleWidth = chartScroll.clientWidth;
+        var visibleHeight = chartScroll.clientHeight;
+        var zoom = Math.min(
+          (visibleWidth - (padding * 2)) / graphBounds.w,
+          (visibleHeight - (padding * 2)) / graphBounds.h
+        );
+
+        cy.zoom(zoom);
+        cy.pan({
+          x: ((visibleWidth - (zoom * (graphBounds.x1 + graphBounds.x2))) / 2) - 80,
+          y: (visibleHeight - (zoom * (graphBounds.y1 + graphBounds.y2))) / 2
+        });
+      }
+
+      fitGraphToVisibleArea();
+      window.addEventListener("resize", fitGraphToVisibleArea);
 
       cy.container().addEventListener("wheel", function (evt) {
         if (!evt.ctrlKey) {
