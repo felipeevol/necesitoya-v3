@@ -30,6 +30,11 @@
       display: block;
       position: relative;
       z-index: 999;
+      cursor: grab;
+    }
+
+    #cy.is-node-panning {
+      cursor: grabbing;
     }
 
     /* Default styles for nodes and edges */
@@ -237,6 +242,105 @@
       fitGraphToVisibleArea();
       window.addEventListener("resize", fitGraphToVisibleArea);
 
+      var nodePanState = {
+        active: false,
+        lastX: 0,
+        lastY: 0,
+        moved: false
+      };
+      var suppressNextNodeTap = false;
+
+      function getPointerPoint(evt) {
+        if (evt.touches && evt.touches.length > 0) {
+          return { x: evt.touches[0].clientX, y: evt.touches[0].clientY };
+        }
+
+        if (evt.changedTouches && evt.changedTouches.length > 0) {
+          return { x: evt.changedTouches[0].clientX, y: evt.changedTouches[0].clientY };
+        }
+
+        if (typeof evt.clientX === "number" && typeof evt.clientY === "number") {
+          return { x: evt.clientX, y: evt.clientY };
+        }
+
+        return null;
+      }
+
+      function preventNodePanDefault(evt) {
+        if (!evt) {
+          return;
+        }
+
+        evt.preventDefault();
+        evt.stopPropagation();
+      }
+
+      function startNodePan(evt) {
+        var point = getPointerPoint(evt.originalEvent);
+        if (!point) {
+          return;
+        }
+
+        nodePanState.active = true;
+        nodePanState.lastX = point.x;
+        nodePanState.lastY = point.y;
+        nodePanState.moved = false;
+        chartContainer.classList.add("is-node-panning");
+        tooltipDiv.style.display = "none";
+        preventNodePanDefault(evt.originalEvent);
+      }
+
+      function continueNodePan(evt) {
+        if (!nodePanState.active) {
+          return;
+        }
+
+        var point = getPointerPoint(evt);
+        if (!point) {
+          return;
+        }
+
+        var deltaX = point.x - nodePanState.lastX;
+        var deltaY = point.y - nodePanState.lastY;
+
+        if (deltaX !== 0 || deltaY !== 0) {
+          cy.panBy({ x: deltaX, y: deltaY });
+          nodePanState.lastX = point.x;
+          nodePanState.lastY = point.y;
+
+          if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+            nodePanState.moved = true;
+            suppressNextNodeTap = true;
+          }
+        }
+
+        preventNodePanDefault(evt);
+      }
+
+      function stopNodePan(evt) {
+        if (!nodePanState.active) {
+          return;
+        }
+
+        nodePanState.active = false;
+        chartContainer.classList.remove("is-node-panning");
+
+        if (nodePanState.moved) {
+          window.setTimeout(function () {
+            suppressNextNodeTap = false;
+          }, 350);
+        }
+
+        preventNodePanDefault(evt);
+      }
+
+      cy.on("mousedown touchstart", "node", startNodePan);
+      window.addEventListener("mousemove", continueNodePan, { passive: false });
+      window.addEventListener("touchmove", continueNodePan, { passive: false });
+      window.addEventListener("mouseup", stopNodePan);
+      window.addEventListener("touchend", stopNodePan);
+      window.addEventListener("touchcancel", stopNodePan);
+
       cy.container().addEventListener("wheel", function (evt) {
         if (!evt.ctrlKey) {
           return;
@@ -279,6 +383,11 @@
       let lastClickTime = 0;
 
       cy.on("tap", "node", function (evt) {
+        if (suppressNextNodeTap) {
+          suppressNextNodeTap = false;
+          return;
+        }
+
         var tappedNode = evt.target;
         console.log("Nó clicado (v9):", tappedNode.id());
 
