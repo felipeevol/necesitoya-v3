@@ -71,7 +71,7 @@
       "badge": "JAVA VERSIONS",
       "title": "Java Versions Diagram",
       "description": "A visual timeline to compare Java releases and identify LTS versions.",
-      "learningContext": "A visual timeline to compare Java releases and identify LTS versions.",
+      "learningContext": "Use the chart to see how Java versions evolved over time, understand which releases receive long-term support, and plan upgrades with more context about each LTS cycle.",
       "linkText": "Open Java Versions Diagram"
     }
   },
