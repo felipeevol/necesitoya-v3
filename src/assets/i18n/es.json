@@ -66,6 +66,13 @@
       "errorsLearningContext": "Errores que encontré al crear entornos con AWS CloudFormation o al usar el AWS SDK.",
       "examplesLinkText": "Abrir ejemplos de IaC para AWS",
       "linkText": "Abrir errores de IaC para AWS"
+    },
+    "javaVersions": {
+      "badge": "VERSIONES DE JAVA",
+      "title": "Diagrama de versiones de Java",
+      "description": "Diagrama de versiones de Java",
+      "learningContext": "Una línea de tiempo visual para comparar releases de Java e identificar versiones LTS.",
+      "linkText": "Abrir diagrama de versiones de Java"
     }
   },
   "iacPage": {

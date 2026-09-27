@@ -66,6 +66,13 @@
       "errorsLearningContext": "Errors I’ve encountered while creating environments with AWS CloudFormation or using the AWS SDK.",
       "examplesLinkText": "Open IaC for AWS examples",
       "linkText": "Open IaC for AWS errors"
+    },
+    "javaVersions": {
+      "badge": "JAVA VERSIONS",
+      "title": "Java Versions Diagram",
+      "description": "Java Versions Diagram",
+      "learningContext": "A visual timeline to compare Java releases and identify LTS versions.",
+      "linkText": "Open Java Versions Diagram"
     }
   },
   "iacPage": {
