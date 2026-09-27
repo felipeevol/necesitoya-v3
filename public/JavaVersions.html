@@ -167,17 +167,17 @@
 
 <body>
   <div class="language-switcher" aria-label="Language selector">
-    <button class="language-button active" type="button" aria-label="English" title="English" aria-pressed="true">
+    <button class="language-button active" type="button" data-language="en" aria-label="English" title="English" aria-pressed="true">
       <span aria-hidden="true" class="flag-icon">
         <img src="assets/flags/en.svg" alt="">
       </span>
     </button>
-    <button class="language-button" type="button" aria-label="Español" title="Español" aria-pressed="false">
+    <button class="language-button" type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false">
       <span aria-hidden="true" class="flag-icon">
         <img src="assets/flags/es.svg" alt="">
       </span>
     </button>
-    <button class="language-button" type="button" aria-label="Português" title="Português" aria-pressed="false">
+    <button class="language-button" type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="false">
       <span aria-hidden="true" class="flag-icon">
         <img src="assets/flags/pt.svg" alt="">
       </span>
@@ -474,6 +474,281 @@
         },
 		autoungrabify: true,
         userZoomingEnabled: false
+      });
+
+      var languageButtons = Array.prototype.slice.call(document.querySelectorAll(".language-button"));
+      var releaseDateTranslations = {
+        en: {},
+        es: {
+          "Feb/2002": "feb/2002",
+          "Sept/2004": "sept/2004",
+          "Jul/2011": "jul/2011",
+          "Mar/2014": "mar/2014",
+          "Sept/2017": "sept/2017",
+          "Mar/2018": "mar/2018",
+          "Sept/2018": "sept/2018",
+          "Mar/2019": "mar/2019",
+          "Sept/2019": "sept/2019",
+          "Mar/2020": "mar/2020",
+          "Sept/2020": "sept/2020",
+          "Mar/2021": "mar/2021",
+          "Sept/2021": "sept/2021",
+          "Mar/2022": "mar/2022",
+          "Sept/2022": "sept/2022",
+          "Mar/2023": "mar/2023",
+          "Sept/2023": "sept/2023",
+          "Mar/2024": "mar/2024",
+          "Sept/2024": "sept/2024",
+          "Mar/2025": "mar/2025",
+          "Sept/2025": "sept/2025",
+          "Mar/2026": "mar/2026",
+          "Sept/2026": "sept/2026"
+        },
+        pt: {
+          "Feb/2002": "fev/2002",
+          "Sept/2004": "set/2004",
+          "Jul/2011": "jul/2011",
+          "Mar/2014": "mar/2014",
+          "Sept/2017": "set/2017",
+          "Mar/2018": "mar/2018",
+          "Sept/2018": "set/2018",
+          "Mar/2019": "mar/2019",
+          "Sept/2019": "set/2019",
+          "Mar/2020": "mar/2020",
+          "Sept/2020": "set/2020",
+          "Mar/2021": "mar/2021",
+          "Sept/2021": "set/2021",
+          "Mar/2022": "mar/2022",
+          "Sept/2022": "set/2022",
+          "Mar/2023": "mar/2023",
+          "Sept/2023": "set/2023",
+          "Mar/2024": "mar/2024",
+          "Sept/2024": "set/2024",
+          "Mar/2025": "mar/2025",
+          "Sept/2025": "set/2025",
+          "Mar/2026": "mar/2026",
+          "Sept/2026": "set/2026"
+        }
+      };
+      var descriptionTranslations = {
+        "Java 1.4 and Previous": { es: `Base clásica de Java antes de genéricos y lambdas.`, pt: `Base clássica do Java antes de genéricos e lambdas.` },
+        "Classes and objects": { es: `Define tipos y crea instancias con estado y comportamiento.<br>Ejemplo: Person p = new Person();`, pt: `Define tipos e cria instâncias com estado e comportamento.<br>Exemplo: Person p = new Person();` },
+        "Package and import": { es: `Organiza clases y permite usar tipos de otros paquetes.<br>Ejemplo: import java.util.List;`, pt: `Organiza classes e permite usar tipos de outros pacotes.<br>Exemplo: import java.util.List;` },
+        "Constructors, attributes and methods": { es: `Inicializa objetos y agrupa datos con operaciones.<br>Ejemplo: Person(String n) { name = n; }`, pt: `Inicializa objetos e agrupa dados com operações.<br>Exemplo: Person(String n) { name = n; }` },
+        "Inheritance and encapsulation": { es: `Reutiliza código y protege detalles internos de la clase.<br>Ejemplo: class Dog extends Animal { }`, pt: `Reutiliza código e protege detalhes internos da classe.<br>Exemplo: class Dog extends Animal { }` },
+        "Abstract classes and interfaces": { es: `Modela contratos y bases compartidas para múltiples clases.<br>Ejemplo: interface Flyer { void fly(); }`, pt: `Modela contratos e bases compartilhadas para várias classes.<br>Exemplo: interface Flyer { void fly(); }` },
+        "Primitive types and arrays": { es: `Almacena valores simples y colecciones de tamaño fijo.<br>Ejemplo: int[] nums = {1, 2, 3};`, pt: `Armazena valores simples e coleções de tamanho fixo.<br>Exemplo: int[] nums = {1, 2, 3};` },
+        "Access modifiers": { es: `Controla quién puede ver clases, métodos y campos.<br>Ejemplo: private String password;`, pt: `Controla quem pode ver classes, métodos e campos.<br>Exemplo: private String password;` },
+        "Control flow and operators": { es: `Controla decisiones, bucles y cálculos dentro del programa.<br>Ejemplo: if (age >= 18) { ... }`, pt: `Controla decisões, loops e cálculos dentro do programa.<br>Exemplo: if (age >= 18) { ... }` },
+        "Polymorphism": { es: `Permite manejar diferentes objetos mediante un tipo común.<br>Ejemplo: Animal a = new Dog();`, pt: `Permite manipular objetos diferentes por meio de um tipo comum.<br>Exemplo: Animal a = new Dog();` },
+        "Main method and super": { es: `Punto de entrada y acceso a miembros de la superclase.<br>Ejemplo: public static void main(String[] args)`, pt: `Ponto de entrada e acesso a membros da superclasse.<br>Exemplo: public static void main(String[] args)` },
+        "Exceptions": { es: `Maneja errores y flujos excepcionales de forma estructurada.<br>Ejemplo: catch (IOException e) { ... }`, pt: `Trata erros e fluxos excepcionais de forma estruturada.<br>Exemplo: catch (IOException e) { ... }` },
+        "Standard library": { es: `APIs integradas para tareas comunes del lenguaje.<br>Ejemplo: Math.max(3, 7);`, pt: `APIs integradas para tarefas comuns da linguagem.<br>Exemplo: Math.max(3, 7);` },
+        "Collections": { es: `Estructuras como listas, mapas y conjuntos para datos.<br>Ejemplo: List<String> names = new ArrayList<>();`, pt: `Estruturas como listas, mapas e conjuntos para dados.<br>Exemplo: List<String> names = new ArrayList<>();` },
+        "Input and output": { es: `Lee y escribe archivos, entrada de consola, redes y flujos de datos.<br>Ejemplo: Files.readString(path);`, pt: `Lê e escreve arquivos, entrada de console, redes e fluxos de dados.<br>Exemplo: Files.readString(path);` },
+        "Threads": { es: `Ejecuta tareas concurrentes dentro del mismo proceso.<br>Ejemplo: new Thread(task).start();`, pt: `Executa tarefas concorrentes dentro do mesmo processo.<br>Exemplo: new Thread(task).start();` },
+        "Java 5": { es: `Versión que modernizó tipos, metadatos y concurrencia.`, pt: `Versão que modernizou tipos, metadados e concorrência.` },
+        "Versioning number": { es: `Introduce el esquema 5.0 para nombrar la plataforma.<br>Ejemplo: Java 5 también era Java 1.5.`, pt: `Introduz o esquema 5.0 para nomear a plataforma.<br>Exemplo: Java 5 também era Java 1.5.` },
+        "Generics": { es: `Agrega tipos parametrizados para colecciones más seguras.<br>Ejemplo: List<String> evita conversiones al leer.`, pt: `Adiciona tipos parametrizados para coleções mais seguras.<br>Exemplo: List<String> evita conversões ao ler.` },
+        "Annotations": { es: `Adjunta metadatos al código para herramientas y frameworks.<br>Ejemplo: @Override marca una sobrescritura.`, pt: `Anexa metadados ao código para ferramentas e frameworks.<br>Exemplo: @Override marca uma sobrescrita.` },
+        "Enums": { es: `Define conjuntos fijos de constantes con su propio tipo.<br>Ejemplo: enum Day { MONDAY, TUESDAY }`, pt: `Define conjuntos fixos de constantes com seu próprio tipo.<br>Exemplo: enum Day { MONDAY, TUESDAY }` },
+        "Varargs": { es: `Permite métodos con un número variable de argumentos.<br>Ejemplo: void log(String... messages)`, pt: `Permite métodos com um número variável de argumentos.<br>Exemplo: void log(String... messages)` },
+        "Enhanced for-loop": { es: `Itera arrays y colecciones sin índices manuales.<br>Ejemplo: for (String s : list) { }`, pt: `Itera arrays e coleções sem índices manuais.<br>Exemplo: for (String s : list) { }` },
+        "Autoboxing / unboxing": { es: `Convierte automáticamente entre primitivos y wrappers.<br>Ejemplo: Integer n = 10; int x = n;`, pt: `Converte automaticamente entre primitivos e wrappers.<br>Exemplo: Integer n = 10; int x = n;` },
+        "Concurrency utilities": { es: `Agrega executors, locks y colecciones seguras para hilos.<br>Ejemplo: Executors.newFixedThreadPool(4);`, pt: `Adiciona executors, locks e coleções seguras para threads.<br>Exemplo: Executors.newFixedThreadPool(4);` },
+        "Java 7": { es: `Versión centrada en sintaxis más limpia y E/S moderna.`, pt: `Versão focada em sintaxe mais limpa e E/S moderna.` },
+        "Try-with-resources": { es: `Cierra recursos automáticamente al salir del bloque try.<br>Ejemplo: try (var in = Files.newInputStream(p)) { }`, pt: `Fecha recursos automaticamente ao sair do bloco try.<br>Exemplo: try (var in = Files.newInputStream(p)) { }` },
+        "Diamond operator": { es: `Infiere tipos genéricos en constructores con <>.<br>Ejemplo: new ArrayList<>();`, pt: `Infere tipos genéricos em construtores com <>.<br>Exemplo: new ArrayList<>();` },
+        "NIO.2": { es: `Mejora archivos, rutas y operaciones del sistema de archivos.<br>Ejemplo: Path p = Path.of("app.txt");`, pt: `Melhora arquivos, caminhos e operações do sistema de arquivos.<br>Exemplo: Path p = Path.of("app.txt");` },
+        "Binary integer literals": { es: `Permite escribir enteros en formato binario con 0b.<br>Ejemplo: int mask = 0b1010;`, pt: `Permite escrever inteiros em formato binário com 0b.<br>Exemplo: int mask = 0b1010;` },
+        "Switch with Strings": { es: `Permite valores String en instrucciones switch.<br>Ejemplo: switch (cmd) { case "run" -> ... }`, pt: `Permite valores String em instruções switch.<br>Exemplo: switch (cmd) { case "run" -> ... }` },
+        "Underscores in numeric literals": { es: `Mejora la legibilidad separando dígitos con guiones bajos.<br>Ejemplo: int million = 1_000_000;`, pt: `Melhora a legibilidade separando dígitos com underscores.<br>Exemplo: int million = 1_000_000;` },
+        "Catching multiple exception types": { es: `Captura varias excepciones en un solo bloque catch.<br>Ejemplo: catch (IOException | SQLException e)`, pt: `Captura várias exceções em um único bloco catch.<br>Exemplo: catch (IOException | SQLException e)` },
+        "@SafeVarargs": { es: `Marca varargs genéricos como seguros frente a contaminación del heap.<br>Ejemplo: @SafeVarargs static <T> void add(T... v)`, pt: `Marca varargs genéricos como seguros contra poluição do heap.<br>Exemplo: @SafeVarargs static <T> void add(T... v)` },
+        "Java 8": { es: `Versión LTS que introdujo programación funcional y una nueva API de fecha/hora.`, pt: `Versão LTS que introduziu programação funcional e uma nova API de data/hora.` },
+        "Streams and lambda": { es: `Procesa datos con funciones y pipelines declarativos.<br>Ejemplo: nums.stream().map(n -> n * 2);`, pt: `Processa dados com funções e pipelines declarativos.<br>Exemplo: nums.stream().map(n -> n * 2);` },
+        "Optionals": { es: `Representa valores que pueden faltar sin usar null.<br>Ejemplo: Optional.ofNullable(name).orElse("N/A");`, pt: `Representa valores que podem faltar sem usar null.<br>Exemplo: Optional.ofNullable(name).orElse("N/A");` },
+        "Default methods": { es: `Permite métodos con implementación dentro de interfaces.<br>Ejemplo: default int size() { return 0; }`, pt: `Permite métodos com implementação dentro de interfaces.<br>Exemplo: default int size() { return 0; }` },
+        "New Java Date and Time API": { es: `API moderna e inmutable para fechas, horas y zonas horarias.<br>Ejemplo: LocalDate.now().plusDays(1);`, pt: `API moderna e imutável para datas, horas e fusos horários.<br>Exemplo: LocalDate.now().plusDays(1);` },
+        "Java 9": { es: `Versión que modularizó el JDK y mejoró APIs centrales.`, pt: `Versão que modularizou o JDK e melhorou APIs centrais.` },
+        "Java Module System": { es: `Divide aplicaciones en módulos con dependencias explícitas.<br>Ejemplo: module app { requires java.sql; }`, pt: `Divide aplicações em módulos com dependências explícitas.<br>Exemplo: module app { requires java.sql; }` },
+        "Immutable collections": { es: `Crea listas, conjuntos y mapas inmutables con métodos de fábrica.<br>Ejemplo: List.of("a", "b");`, pt: `Cria listas, conjuntos e mapas imutáveis com métodos de fábrica.<br>Exemplo: List.of("a", "b");` },
+        "Improved try-with-resources": { es: `Permite usar variables final ya declaradas en try.<br>Ejemplo: try (reader) { return reader.read(); }`, pt: `Permite usar variáveis final já declaradas no try.<br>Exemplo: try (reader) { return reader.read(); }` },
+        "Private methods in interfaces": { es: `Reutiliza lógica interna entre métodos de una interfaz.<br>Ejemplo: private void validate() { }`, pt: `Reutiliza lógica interna entre métodos de uma interface.<br>Exemplo: private void validate() { }` },
+        "HTTP Client (incubator)": { es: `Primer cliente HTTP moderno con soporte asíncrono.<br>Ejemplo: HttpClient.newHttpClient();`, pt: `Primeiro cliente HTTP moderno com suporte assíncrono.<br>Exemplo: HttpClient.newHttpClient();` },
+        "@SafeVarargs extended": { es: `Permite @SafeVarargs en más métodos final y private.<br>Ejemplo: @SafeVarargs private final void m(T... v)`, pt: `Permite @SafeVarargs em mais métodos final e private.<br>Exemplo: @SafeVarargs private final void m(T... v)` },
+        "_ (underscore) is a reserved word": { es: `Reserva _ para uso futuro e impide usarlo como nombre.<br>Ejemplo: int _ = 1; ya no compila.`, pt: `Reserva _ para uso futuro e impede usá-lo como nome.<br>Exemplo: int _ = 1; não compila mais.` },
+        "Optional enhancements": { es: `Agrega ifPresentOrElse, or y stream a Optional.<br>Ejemplo: opt.ifPresentOrElse(ok, empty);`, pt: `Adiciona ifPresentOrElse, or e stream ao Optional.<br>Exemplo: opt.ifPresentOrElse(ok, empty);` },
+        "New Stream methods": { es: `Agrega takeWhile, dropWhile, ofNullable e iterate.<br>Ejemplo: stream.takeWhile(x -> x < 10);`, pt: `Adiciona takeWhile, dropWhile, ofNullable e iterate.<br>Exemplo: stream.takeWhile(x -> x < 10);` },
+        "Process API improvements": { es: `Mejora el control y la información sobre procesos del sistema.<br>Ejemplo: ProcessHandle.current().pid();`, pt: `Melhora o controle e as informações sobre processos do sistema.<br>Exemplo: ProcessHandle.current().pid();` },
+        "Diamond operator in anonymous classes": { es: `Permite <> también al crear clases anónimas genéricas.<br>Ejemplo: new Handler<>() { ... };`, pt: `Permite <> também ao criar classes anônimas genéricas.<br>Exemplo: new Handler<>() { ... };` },
+        "JShell": { es: `REPL interactivo para probar código Java rápidamente.<br>Ejemplo: jshell> 2 + 2`, pt: `REPL interativo para testar código Java rapidamente.<br>Exemplo: jshell> 2 + 2` },
+        "JLink": { es: `Crea runtimes Java personalizados con los módulos requeridos.<br>Ejemplo: jlink --add-modules app --output runtime`, pt: `Cria runtimes Java personalizados com os módulos necessários.<br>Exemplo: jlink --add-modules app --output runtime` },
+        "Java 10": { es: `Versión de corto plazo centrada en inferencia local y colecciones.`, pt: `Versão de curto prazo focada em inferência local e coleções.` },
+        "Local-variable type inference": { es: `Permite que var infiera tipos de variables locales.<br>Ejemplo: var names = List.of("Ana");`, pt: `Permite que var infira tipos de variáveis locais.<br>Exemplo: var names = List.of("Ana");` },
+        "Unmodifiable collection copies": { es: `Copia colecciones en versiones inmutables con copyOf.<br>Ejemplo: List.copyOf(list);`, pt: `Copia coleções para versões imutáveis com copyOf.<br>Exemplo: List.copyOf(list);` },
+        "Unmodifiable collectors": { es: `Recolecta streams directamente en colecciones inmutables.<br>Ejemplo: stream.collect(toUnmodifiableList());`, pt: `Coleta streams diretamente em coleções imutáveis.<br>Exemplo: stream.collect(toUnmodifiableList());` },
+        "Optional.orElseThrow()": { es: `Lanza NoSuchElementException si el Optional está vacío.<br>Ejemplo: user.orElseThrow();`, pt: `Lança NoSuchElementException se o Optional estiver vazio.<br>Exemplo: user.orElseThrow();` },
+        "Java 11": { es: `Versión LTS con cliente HTTP estable y mejoras en String.`, pt: `Versão LTS com cliente HTTP estável e melhorias em String.` },
+        "HTTP Client API": { es: `Cliente HTTP/2 estándar con llamadas síncronas y asíncronas.<br>Ejemplo: client.send(request, BodyHandlers.ofString());`, pt: `Cliente HTTP/2 padrão com chamadas síncronas e assíncronas.<br>Exemplo: client.send(request, BodyHandlers.ofString());` },
+        "String isBlank lines strip repeat": { es: `Nuevos métodos para inspeccionar, dividir y repetir texto.<br>Ejemplo: " hi ".strip().repeat(2);`, pt: `Novos métodos para inspecionar, dividir e repetir texto.<br>Exemplo: " hi ".strip().repeat(2);` },
+        "Files readString writeString": { es: `Lee y escribe archivos completos como valores String.<br>Ejemplo: Files.writeString(path, "hello");`, pt: `Lê e escreve arquivos inteiros como valores String.<br>Exemplo: Files.writeString(path, "hello");` },
+        "var in lambda parameters": { es: `Permite var en parámetros lambda para que puedan anotarse.<br>Ejemplo: (@Nonnull var s) -> s.trim()`, pt: `Permite var em parâmetros lambda para que possam ser anotados.<br>Exemplo: (@Nonnull var s) -> s.trim()` },
+        "Optional.isEmpty()": { es: `Comprueba directamente si un Optional está vacío.<br>Ejemplo: if (opt.isEmpty()) { ... }`, pt: `Verifica diretamente se um Optional está vazio.<br>Exemplo: if (opt.isEmpty()) { ... }` },
+        "Single-file source-code launch": { es: `Ejecuta un archivo .java sin compilarlo manualmente antes.<br>Ejemplo: java Hello.java`, pt: `Executa um arquivo .java sem compilá-lo manualmente antes.<br>Exemplo: java Hello.java` },
+        "Java 12": { es: `Versión con vistas previas de switch y pequeñas APIs útiles.`, pt: `Versão com previews de switch e pequenas APIs úteis.` },
+        "Switch expressions preview": { es: `Permite que switch devuelva valores como expresión.<br>Ejemplo: var r = switch (day) { case MONDAY -> 1; };`, pt: `Permite que switch retorne valores como expressão.<br>Exemplo: var r = switch (day) { case MONDAY -> 1; };` },
+        "Collectors.teeing()": { es: `Combina dos collectors y fusiona sus resultados.<br>Ejemplo: teeing(counting(), maxBy(c), Result::new)`, pt: `Combina dois collectors e mescla seus resultados.<br>Exemplo: teeing(counting(), maxBy(c), Result::new)` },
+        "String.indent()": { es: `Ajusta la sangría de cada línea dentro de un String.<br>Ejemplo: text.indent(2);`, pt: `Ajusta a indentação de cada linha dentro de uma String.<br>Exemplo: text.indent(2);` },
+        "String.transform()": { es: `Aplica una función al String y devuelve el resultado.<br>Ejemplo: name.transform(String::trim);`, pt: `Aplica uma função à String e retorna o resultado.<br>Exemplo: name.transform(String::trim);` },
+        "Files.mismatch()": { es: `Encuentra la primera diferencia entre dos archivos.<br>Ejemplo: Files.mismatch(a, b) == -1`, pt: `Encontra a primeira diferença entre dois arquivos.<br>Exemplo: Files.mismatch(a, b) == -1` },
+        "Java 13": { es: `Versión con text blocks y una vista previa refinada de switch.`, pt: `Versão com text blocks e um preview refinado de switch.` },
+        "Text blocks preview": { es: `Permite cadenas multilínea con triples comillas.<br>Ejemplo: String json = """{ "a": 1 }""";`, pt: `Permite strings multilinha com aspas triplas.<br>Exemplo: String json = """{ "a": 1 }""";` },
+        "Switch expressions yield": { es: `Usa yield para devolver valores desde bloques switch.<br>Ejemplo: yield total + tax;`, pt: `Usa yield para retornar valores de blocos switch.<br>Exemplo: yield total + tax;` },
+        "Socket API reimplementation": { es: `Reescribe sockets clásicos sobre una implementación moderna.<br>Ejemplo: Socket mantiene la API pero cambia internamente.`, pt: `Reescreve sockets clássicos sobre uma implementação moderna.<br>Exemplo: Socket mantém a API, mas muda internamente.` },
+        "Java 14": { es: `Versión que estabilizó expresiones switch y probó records.`, pt: `Versão que estabilizou expressões switch e testou records.` },
+        "Switch expressions": { es: `Switch puede devolver valores con una sintaxis más compacta.<br>Ejemplo: var type = switch (n) { case 1 -> "one"; };`, pt: `Switch pode retornar valores com sintaxe mais compacta.<br>Exemplo: var type = switch (n) { case 1 -> "one"; };` },
+        "Records preview": { es: `Clases compactas para datos inmutables con poco código.<br>Ejemplo: record Point(int x, int y) { }`, pt: `Classes compactas para dados imutáveis com pouco código.<br>Exemplo: record Point(int x, int y) { }` },
+        "Pattern matching instanceof preview": { es: `Combina instanceof con declaración automática de variables.<br>Ejemplo: if (obj instanceof String s) { }`, pt: `Combina instanceof com declaração automática de variáveis.<br>Exemplo: if (obj instanceof String s) { }` },
+        "Helpful NullPointerExceptions": { es: `Muestra qué expresión exacta causó un NullPointerException.<br>Ejemplo: indica qué parte de a.b.c era null.`, pt: `Mostra qual expressão exata causou um NullPointerException.<br>Exemplo: indica qual parte de a.b.c era null.` },
+        "Text blocks second preview": { es: `Refina cadenas multilínea antes de su versión final.<br>Ejemplo: """line 1\nline 2"""`, pt: `Refina strings multilinha antes da versão final.<br>Exemplo: """line 1\nline 2"""` },
+        "Java 15": { es: `Versión con text blocks finales y la vista previa de sealed classes.`, pt: `Versão com text blocks finais e o preview de sealed classes.` },
+        "Text blocks": { es: `Cadenas multilínea finales con formato más natural.<br>Ejemplo: String sql = """select * from users""";`, pt: `Strings multilinha finais com formatação mais natural.<br>Exemplo: String sql = """select * from users""";` },
+        "Sealed classes preview": { es: `Limita qué clases pueden extender o implementar un tipo.<br>Ejemplo: sealed class Shape permits Circle { }`, pt: `Limita quais classes podem estender ou implementar um tipo.<br>Exemplo: sealed class Shape permits Circle { }` },
+        "Records second preview": { es: `Refina records como clases concisas para transportar datos.<br>Ejemplo: record User(String name) { }`, pt: `Refina records como classes concisas para carregar dados.<br>Exemplo: record User(String name) { }` },
+        "Hidden classes": { es: `Clases no detectables destinadas a frameworks y runtimes.<br>Ejemplo: proxies dinámicos para frameworks.`, pt: `Classes não descobríveis destinadas a frameworks e runtimes.<br>Exemplo: proxies dinâmicos para frameworks.` },
+        "Java 16": { es: `Versión que finalizó records y pattern matching para instanceof.`, pt: `Versão que finalizou records e pattern matching para instanceof.` },
+        "Records": { es: `Define datos inmutables con constructor y accesores automáticos.<br>Ejemplo: record User(String name, int age) { }`, pt: `Define dados imutáveis com construtor e acessores automáticos.<br>Exemplo: record User(String name, int age) { }` },
+        "Pattern matching instanceof": { es: `Evita conversiones manuales después de comprobar instanceof.<br>Ejemplo: if (obj instanceof String s) s.length();`, pt: `Evita casts manuais depois de verificar instanceof.<br>Exemplo: if (obj instanceof String s) s.length();` },
+        "Stream.toList()": { es: `Convierte un stream en una lista con un método directo.<br>Ejemplo: var list = stream.toList();`, pt: `Converte um stream em uma lista com um método direto.<br>Exemplo: var list = stream.toList();` },
+        "Sealed classes second preview": { es: `Segunda vista previa para controlar jerarquías de herencia.<br>Ejemplo: sealed interface Expr permits Add, Num { }`, pt: `Segundo preview para controlar hierarquias de herança.<br>Exemplo: sealed interface Expr permits Add, Num { }` },
+        "Unix-domain socket channels": { es: `Permite que procesos locales se comuniquen con sockets de dominio Unix.<br>Ejemplo: UnixDomainSocketAddress.of("/tmp/app.sock")`, pt: `Permite que processos locais se comuniquem usando sockets de domínio Unix.<br>Exemplo: UnixDomainSocketAddress.of("/tmp/app.sock")` },
+        "Java 17": { es: `Versión LTS con sealed classes y nuevas APIs de seguridad.`, pt: `Versão LTS com sealed classes e novas APIs de segurança.` },
+        "Sealed classes": { es: `Restringe subclases permitidas para modelar dominios cerrados.<br>Ejemplo: sealed interface Payment permits Pix, Card { }`, pt: `Restringe subclasses permitidas para modelar domínios fechados.<br>Exemplo: sealed interface Payment permits Pix, Card { }` },
+        "Pattern matching switch preview": { es: `Permite switch sobre tipos de objetos y patrones.<br>Ejemplo: case String s -> s.length();`, pt: `Permite switch sobre tipos de objetos e padrões.<br>Exemplo: case String s -> s.length();` },
+        "Enhanced pseudo-random generators": { es: `Nuevas interfaces y algoritmos para números aleatorios.<br>Ejemplo: RandomGenerator.of("L64X128MixRandom")`, pt: `Novas interfaces e algoritmos para números aleatórios.<br>Exemplo: RandomGenerator.of("L64X128MixRandom")` },
+        "Context-specific deserialization filters": { es: `Filtra la deserialización por contexto para mayor seguridad.<br>Ejemplo: filtrar clases permitidas al deserializar.`, pt: `Filtra a desserialização por contexto para maior segurança.<br>Exemplo: filtrar classes permitidas ao desserializar.` },
+        "Foreign Function and Memory incubator": { es: `Accede a código nativo y memoria externa desde Java.<br>Ejemplo: leer memoria nativa con MemorySegment.`, pt: `Acessa código nativo e memória externa a partir do Java.<br>Exemplo: ler memória nativa com MemorySegment.` },
+        "Java 18": { es: `Versión con UTF-8 por defecto y un servidor simple.`, pt: `Versão com UTF-8 por padrão e um servidor simples.` },
+        "UTF-8 by default": { es: `Usa UTF-8 como charset predeterminado de la plataforma.<br>Ejemplo: new String(bytes) usa UTF-8 por defecto.`, pt: `Usa UTF-8 como charset padrão da plataforma.<br>Exemplo: new String(bytes) usa UTF-8 por padrão.` },
+        "Simple Web Server": { es: `Pequeño servidor HTTP para archivos estáticos y pruebas.<br>Ejemplo: jwebserver -p 8000`, pt: `Pequeno servidor HTTP para arquivos estáticos e testes.<br>Exemplo: jwebserver -p 8000` },
+        "Code snippets in JavaDoc": { es: `Permite ejemplos de código validados dentro de JavaDoc.<br>Ejemplo: {@snippet : int x = 1; }`, pt: `Permite exemplos de código validados dentro do JavaDoc.<br>Exemplo: {@snippet : int x = 1; }` },
+        "Pattern matching switch second preview": { es: `Segunda vista previa de switch con patrones de tipo.<br>Ejemplo: case Integer i -> i + 1;`, pt: `Segundo preview de switch com padrões de tipo.<br>Exemplo: case Integer i -> i + 1;` },
+        "Vector API third incubator": { es: `Opera datos en paralelo usando instrucciones vectoriales.<br>Ejemplo: sumar arrays con IntVector.`, pt: `Opera dados em paralelo usando instruções vetoriais.<br>Exemplo: somar arrays com IntVector.` },
+        "Java 19": { es: `Versión que inició virtual threads y structured concurrency.`, pt: `Versão que iniciou virtual threads e structured concurrency.` },
+        "Virtual threads preview": { es: `Hilos ligeros para manejar muchas tareas bloqueantes.<br>Ejemplo: Thread.startVirtualThread(task);`, pt: `Threads leves para lidar com muitas tarefas bloqueantes.<br>Exemplo: Thread.startVirtualThread(task);` },
+        "Record patterns preview": { es: `Desestructura records directamente en patrones.<br>Ejemplo: if (p instanceof Point(int x, int y)) { }`, pt: `Desestrutura records diretamente em padrões.<br>Exemplo: if (p instanceof Point(int x, int y)) { }` },
+        "Pattern matching switch third preview": { es: `Tercera vista previa de switch con patrones y null.<br>Ejemplo: case null -> "no data";`, pt: `Terceiro preview de switch com padrões e null.<br>Exemplo: case null -> "no data";` },
+        "Structured concurrency incubator": { es: `Agrupa tareas concurrentes como una unidad de trabajo.<br>Ejemplo: ejecutar subtareas dentro de un scope.`, pt: `Agrupa tarefas concorrentes como uma unidade de trabalho.<br>Exemplo: executar subtarefas dentro de um escopo.` },
+        "Foreign Function and Memory preview": { es: `Vista previa para llamar código nativo y usar memoria externa.<br>Ejemplo: Linker.nativeLinker();`, pt: `Preview para chamar código nativo e usar memória externa.<br>Exemplo: Linker.nativeLinker();` },
+        "Java 20": { es: `Versión de refinamiento para funciones modernas en vista previa.`, pt: `Versão de refinamento para recursos modernos em preview.` },
+        "Scoped values incubator": { es: `Comparte datos inmutables dentro de un scope de ejecución.<br>Ejemplo: ScopedValue.where(USER, u).run(task);`, pt: `Compartilha dados imutáveis dentro de um escopo de execução.<br>Exemplo: ScopedValue.where(USER, u).run(task);` },
+        "Record patterns second preview": { es: `Mejora la desestructuración de records en patrones.<br>Ejemplo: Point(int x, int y) in switch.`, pt: `Melhora a desestruturação de records em padrões.<br>Exemplo: Point(int x, int y) in switch.` },
+        "Pattern matching switch fourth preview": { es: `Cuarta vista previa de switch con cobertura de patrones.<br>Ejemplo: switch (obj) { case String s -> s; }`, pt: `Quarto preview de switch com cobertura de padrões.<br>Exemplo: switch (obj) { case String s -> s; }` },
+        "Virtual threads second preview": { es: `Refina hilos ligeros antes de estabilizarlos.<br>Ejemplo: Executors.newVirtualThreadPerTaskExecutor();`, pt: `Refina threads leves antes da estabilização.<br>Exemplo: Executors.newVirtualThreadPerTaskExecutor();` },
+        "Structured concurrency second incubator": { es: `Refina APIs para coordinar subtareas concurrentes.<br>Ejemplo: ShutdownOnFailure coordina subtareas.`, pt: `Refina APIs para coordenar subtarefas concorrentes.<br>Exemplo: ShutdownOnFailure coordena subtarefas.` },
+        "Foreign Function and Memory second preview": { es: `Segunda vista previa del acceso seguro a código nativo y memoria.<br>Ejemplo: Arena.ofConfined() administra memoria.`, pt: `Segundo preview de acesso seguro a código nativo e memória.<br>Exemplo: Arena.ofConfined() gerencia memória.` },
+        "Java 21": { es: `Versión LTS con virtual threads y patrones más expresivos.`, pt: `Versão LTS com virtual threads e padrões mais expressivos.` },
+        "Virtual threads": { es: `Hilos ligeros finales para cargas bloqueantes de alta concurrencia.<br>Ejemplo: try (var ex = newVirtualThreadPerTaskExecutor())`, pt: `Threads leves finais para cargas bloqueantes de alta concorrência.<br>Exemplo: try (var ex = newVirtualThreadPerTaskExecutor())` },
+        "Sequenced collections": { es: `Colecciones con orden definido y acceso al primero/último.<br>Ejemplo: list.getFirst(); list.reversed();`, pt: `Coleções com ordem definida e acesso ao primeiro/último.<br>Exemplo: list.getFirst(); list.reversed();` },
+        "Record patterns": { es: `Desestructura records en instanceof, switch y patrones.<br>Ejemplo: case Point(int x, int y) -> x + y;`, pt: `Desestrutura records em instanceof, switch e padrões.<br>Exemplo: case Point(int x, int y) -> x + y;` },
+        "Pattern matching switch": { es: `Switch final con patrones, tipos y comprobación exhaustiva.<br>Ejemplo: case String s -> s.toUpperCase();`, pt: `Switch final com padrões, tipos e verificação exaustiva.<br>Exemplo: case String s -> s.toUpperCase();` },
+        "String templates preview": { es: `Vista previa para interpolar expresiones en cadenas.<br>Ejemplo: STR."Hello \{name}"`, pt: `Preview para interpolar expressões em strings.<br>Exemplo: STR."Hello \{name}"` },
+        "Unnamed patterns and variables preview": { es: `Usa _ para ignorar variables o partes de patrones.<br>Ejemplo: catch (Exception _) { }`, pt: `Usa _ para ignorar variáveis ou partes de padrões.<br>Exemplo: catch (Exception _) { }` },
+        "Scoped values preview": { es: `Vista previa para compartir datos de forma segura por scope.<br>Ejemplo: ScopedValue.where(ID, 7).run(task);`, pt: `Preview para compartilhar dados com segurança por escopo.<br>Exemplo: ScopedValue.where(ID, 7).run(task);` },
+        "Java 22": { es: `Versión con FFM final y nuevas vistas previas del lenguaje.`, pt: `Versão com FFM final e novos previews da linguagem.` },
+        "Unnamed variables and patterns": { es: `Permite _ para valores deliberadamente no usados.<br>Ejemplo: for (var _ : list) { count++; }`, pt: `Permite _ para valores deliberadamente não usados.<br>Exemplo: for (var _ : list) { count++; }` },
+        "Foreign Function and Memory API": { es: `API final para llamar funciones nativas y administrar memoria.<br>Ejemplo: SymbolLookup.libraryLookup("c", arena)`, pt: `API final para chamar funções nativas e gerenciar memória.<br>Exemplo: SymbolLookup.libraryLookup("c", arena)` },
+        "Stream gatherers preview": { es: `Crea operaciones intermedias personalizadas para streams.<br>Ejemplo: stream.gather(Gatherers.windowFixed(3));`, pt: `Cria operações intermediárias personalizadas para streams.<br>Exemplo: stream.gather(Gatherers.windowFixed(3));` },
+        "Class-File API preview": { es: `Lee, genera y transforma archivos .class con una API estándar.<br>Ejemplo: leer métodos de un archivo .class.`, pt: `Lê, gera e transforma arquivos .class com uma API padrão.<br>Exemplo: ler métodos de um arquivo .class.` },
+        "Statements before super preview": { es: `Permite validar argumentos antes de llamar a super().<br>Ejemplo: validate(x); super(x);`, pt: `Permite validar argumentos antes de chamar super().<br>Exemplo: validate(x); super(x);` },
+        "Implicit classes second preview": { es: `Facilita programas pequeños sin declarar una clase explícita.<br>Ejemplo: void main() { println("Hello"); }`, pt: `Facilita programas pequenos sem declarar uma classe explícita.<br>Exemplo: void main() { println("Hello"); }` },
+        "String templates second preview": { es: `Refina la interpolación de cadenas segura y procesable.<br>Ejemplo: procesar plantillas antes de concatenar.`, pt: `Refina a interpolação de strings segura e processável.<br>Exemplo: processar templates antes de concatenar.` },
+        "Java 23": { es: `Versión con JavaDoc en Markdown y nuevas vistas previas.`, pt: `Versão com JavaDoc em Markdown e novos previews.` },
+        "Primitive types in patterns preview": { es: `Permite tipos primitivos en patrones y switch.<br>Ejemplo: case int i -> i * 2;`, pt: `Permite tipos primitivos em padrões e switch.<br>Exemplo: case int i -> i * 2;` },
+        "Module import declarations preview": { es: `Importa todos los paquetes exportados por un módulo.<br>Ejemplo: import module java.base;`, pt: `Importa todos os pacotes exportados por um módulo.<br>Exemplo: import module java.base;` },
+        "Markdown documentation comments": { es: `Permite escribir JavaDoc con sintaxis Markdown.<br>Ejemplo: /// **Texto** en JavaDoc.`, pt: `Permite escrever JavaDoc com sintaxe Markdown.<br>Exemplo: /// **Texto** no JavaDoc.` },
+        "Stream gatherers second preview": { es: `Refina operaciones intermedias personalizadas en streams.<br>Ejemplo: un gatherer personalizado para agrupar eventos.`, pt: `Refina operações intermediárias personalizadas em streams.<br>Exemplo: um gatherer personalizado para agrupar eventos.` },
+        "Class-File API second preview": { es: `Segunda vista previa para manipular bytecode de clases.<br>Ejemplo: transformar bytecode sin una biblioteca externa.`, pt: `Segundo preview para manipular bytecode de classes.<br>Exemplo: transformar bytecode sem uma biblioteca externa.` },
+        "Implicit classes third preview": { es: `Tercera vista previa para simplificar programas introductorios.<br>Ejemplo: un main() simple para ejemplos y clases iniciales.`, pt: `Terceiro preview para simplificar programas introdutórios.<br>Exemplo: um main() simples para exemplos e aulas iniciais.` },
+        "Flexible constructor bodies preview": { es: `Permite código antes de super bajo reglas seguras.<br>Ejemplo: if (x < 0) throw...; super(x);`, pt: `Permite código antes de super sob regras seguras.<br>Exemplo: if (x < 0) throw...; super(x);` },
+        "Java 24": { es: `Versión con stream gatherers y nuevas APIs criptográficas.`, pt: `Versão com stream gatherers e novas APIs criptográficas.` },
+        "Stream gatherers": { es: `Operaciones intermedias personalizadas para pipelines de streams.<br>Ejemplo: stream.gather(Gatherers.scan(...));`, pt: `Operações intermediárias personalizadas para pipelines de streams.<br>Exemplo: stream.gather(Gatherers.scan(...));` },
+        "Class-File API": { es: `API final para leer, crear y transformar archivos .class.<br>Ejemplo: ClassFile.of().parse(bytes);`, pt: `API final para ler, criar e transformar arquivos .class.<br>Exemplo: ClassFile.of().parse(bytes);` },
+        "Scoped values fourth preview": { es: `Cuarta vista previa para compartir datos por scope.<br>Ejemplo: ScopedValue.where(LOCALE, en).call(task);`, pt: `Quarto preview para compartilhar dados por escopo.<br>Exemplo: ScopedValue.where(LOCALE, en).call(task);` },
+        "Flexible constructor bodies second preview": { es: `Refina código que se ejecuta antes de super en constructores.<br>Ejemplo: comprobar argumentos antes de super(...).`, pt: `Refina código que executa antes de super em construtores.<br>Exemplo: verificar argumentos antes de super(...).` },
+        "Primitive patterns second preview": { es: `Refina patrones que aceptan tipos primitivos.<br>Ejemplo: case long l -> l;`, pt: `Refina padrões que aceitam tipos primitivos.<br>Exemplo: case long l -> l;` },
+        "Quantum-resistant KEM API": { es: `API para intercambio de claves resistente a ataques de computación cuántica.<br>Ejemplo: encapsular una clave con ML-KEM.`, pt: `API para troca de chaves resistente a ataques de computação quântica.<br>Exemplo: encapsular uma chave com ML-KEM.` },
+        "Quantum-resistant signatures": { es: `Firmas digitales preparadas contra ataques cuánticos.<br>Ejemplo: firmar datos con ML-DSA.`, pt: `Assinaturas digitais preparadas contra ataques quânticos.<br>Exemplo: assinar dados com ML-DSA.` },
+        "Java 25": { es: `Versión LTS con mejoras para código de principiantes y concurrencia.`, pt: `Versão LTS com melhorias para código de iniciantes e concorrência.` },
+        "Compact source files and instance main": { es: `Permite programas simples sin una clase pública o main estático.<br>Ejemplo: void main() { println("Hello"); }`, pt: `Permite programas simples sem uma classe pública ou main estático.<br>Exemplo: void main() { println("Hello"); }` },
+        "Flexible constructor bodies": { es: `Permite validación antes de llamar a super en constructores.<br>Ejemplo: validate(x); super(x);`, pt: `Permite validação antes de chamar super em construtores.<br>Exemplo: validate(x); super(x);` },
+        "Module import declarations": { es: `Importa paquetes exportados por un módulo con una sola declaración.<br>Ejemplo: import module java.sql;`, pt: `Importa pacotes exportados por um módulo com uma única declaração.<br>Exemplo: import module java.sql;` },
+        "Scoped values": { es: `Comparte datos inmutables por scope entre tareas relacionadas.<br>Ejemplo: ScopedValue.where(USER, u).run(task);`, pt: `Compartilha dados imutáveis por escopo entre tarefas relacionadas.<br>Exemplo: ScopedValue.where(USER, u).run(task);` },
+        "Stable values preview": { es: `Proporciona valores inicializados una vez con lecturas eficientes y seguras.<br>Ejemplo: calcular una vez y reutilizar con seguridad.`, pt: `Fornece valores inicializados uma vez com leituras eficientes e seguras.<br>Exemplo: calcular uma vez e reutilizar com segurança.` },
+        "Structured concurrency fifth preview": { es: `Coordina subtareas concurrentes con un ciclo de vida compartido.<br>Ejemplo: scope.fork(task); scope.join();`, pt: `Coordena subtarefas concorrentes com um ciclo de vida compartilhado.<br>Exemplo: scope.fork(task); scope.join();` },
+        "Primitive patterns third preview": { es: `Tercera vista previa de patrones con tipos primitivos.<br>Ejemplo: switch (n) { case int i -> i; }`, pt: `Terceiro preview de padrões com tipos primitivos.<br>Exemplo: switch (n) { case int i -> i; }` },
+        "Java 26": { es: `Versión de corto plazo con HTTP/3, vistas previas de patrones primitivos y mejoras de runtime.`, pt: `Versão de curto prazo com HTTP/3, previews de padrões primitivos e melhorias de runtime.` },
+        "HTTP/3 for HTTP Client API": { es: `Permite que HttpClient se comunique con servidores HTTP/3 con cambios mínimos de código.<br>Ejemplo: HttpClient.newHttpClient().send(request, handler);`, pt: `Permite que HttpClient se comunique com servidores HTTP/3 com mudanças mínimas no código.<br>Exemplo: HttpClient.newHttpClient().send(request, handler);` },
+        "Primitive patterns fourth preview": { es: `Permite tipos primitivos en patrones, instanceof y switch.<br>Ejemplo: switch (value) { case int i -> i; }`, pt: `Permite tipos primitivos em padrões, instanceof e switch.<br>Exemplo: switch (value) { case int i -> i; }` },
+        "Lazy constants second preview": { es: `Proporciona constantes inicializadas perezosamente pero optimizadas como datos final.<br>Ejemplo: definir un valor una vez y calcularlo solo cuando sea necesario.`, pt: `Fornece constantes inicializadas preguiçosamente, mas otimizadas como dados final.<br>Exemplo: definir um valor uma vez e calculá-lo só quando necessário.` },
+        "Structured concurrency sixth preview": { es: `Refina scopes de tareas para cancelación y manejo de errores más seguros.<br>Ejemplo: bifurcar subtareas y unirlas como una operación.`, pt: `Refina escopos de tarefas para cancelamento e tratamento de erros mais seguros.<br>Exemplo: bifurcar subtarefas e uni-las como uma operação.` },
+        "PEM encodings second preview": { es: `Codifica y decodifica claves, certificados y CRL como PEM.<br>Ejemplo: leer un certificado PEM en objetos criptográficos Java.`, pt: `Codifica e decodifica chaves, certificados e CRLs como PEM.<br>Exemplo: ler um certificado PEM em objetos criptográficos Java.` },
+        "Process AutoCloseable": { es: `Permite cerrar procesos automáticamente con try-with-resources.<br>Ejemplo: try (Process p = builder.start()) { }`, pt: `Permite fechar processos automaticamente com try-with-resources.<br>Exemplo: try (Process p = builder.start()) { }` },
+        "Comparator min max": { es: `Agrega ayudas de Comparator para elegir el valor menor o mayor.<br>Ejemplo: comparator.max(a, b);`, pt: `Adiciona auxiliares de Comparator para escolher o menor ou maior valor.<br>Exemplo: comparator.max(a, b);` },
+        "AOT object caching any GC": { es: `Mejora el arranque y calentamiento al cachear objetos con cualquier GC.<br>Ejemplo: las apps inician más rápido tras crear caché AOT.`, pt: `Melhora a inicialização e o aquecimento ao armazenar objetos em cache com qualquer GC.<br>Exemplo: apps iniciam mais rápido após a criação de cache AOT.` },
+        "Java 27": { es: `Versión de corto plazo con objetos compactos, TLS más fuerte y vistas previas refinadas.`, pt: `Versão de curto prazo com objetos compactos, TLS mais forte e previews refinados.` },
+        "Primitive patterns fifth preview": { es: `Refina aún más patrones primitivos para instanceof y switch.<br>Ejemplo: case long l -> l;`, pt: `Refina ainda mais padrões primitivos para instanceof e switch.<br>Exemplo: case long l -> l;` },
+        "Lazy constants third preview": { es: `Continúa la API de lazy constants para valores únicos diferidos.<br>Ejemplo: inicializar datos costosos solo en el primer uso.`, pt: `Continua a API de lazy constants para valores únicos adiados.<br>Exemplo: inicializar dados caros apenas no primeiro uso.` },
+        "Structured concurrency seventh preview": { es: `Refina la coordinación y cancelación estructurada de tareas.<br>Ejemplo: tratar varias subtareas como una unidad de trabajo.`, pt: `Refina a coordenação e o cancelamento estruturado de tarefas.<br>Exemplo: tratar várias subtarefas como uma unidade de trabalho.` },
+        "Post-quantum TLS key exchange": { es: `Usa intercambio de claves TLS 1.3 híbrido y resistente a cuántica por defecto.<br>Ejemplo: clientes javax.net.ssl se benefician sin cambios de código.`, pt: `Usa troca de chaves TLS 1.3 híbrida e resistente à computação quântica por padrão.<br>Exemplo: clientes javax.net.ssl se beneficiam sem mudanças no código.` },
+        "PEM encodings third preview": { es: `Refina APIs para claves PEM, certificados y listas de revocación.<br>Ejemplo: analizar texto PEM en objetos criptográficos.`, pt: `Refina APIs para chaves PEM, certificados e listas de revogação.<br>Exemplo: analisar texto PEM em objetos criptográficos.` },
+        "Compact object headers by default": { es: `Reduce el tamaño del encabezado de objetos para bajar el uso de memoria sin cambios de código.<br>Ejemplo: apps con muchos objetos usan menos heap.`, pt: `Reduz o tamanho do cabeçalho de objetos para diminuir o uso de memória sem mudanças no código.<br>Exemplo: apps com muitos objetos usam menos heap.` },
+        "G1 default everywhere": { es: `Hace que G1 sea el recolector de basura predeterminado en todos los entornos.<br>Ejemplo: comportamiento de GC predeterminado consistente en contenedores pequeños.`, pt: `Torna o G1 o coletor de lixo padrão em todos os ambientes.<br>Exemplo: comportamento padrão de GC consistente em contêineres pequenos.` },
+        "JFR data redaction": { es: `Oculta argumentos, variables de entorno y propiedades sensibles en grabaciones.<br>Ejemplo: capturas JFR de producción más seguras.`, pt: `Oculta argumentos, variáveis de ambiente e propriedades sensíveis em gravações.<br>Exemplo: capturas JFR de produção mais seguras.` }
+      };
+
+      cy.nodes().forEach(function (node) {
+        node.data("nameEn", node.data("name"));
+        node.data("descriptionEn", node.data("description"));
+      });
+
+      function translateTitleName(originalName, language) {
+        if (language === "en" || originalName.indexOf(" - ") === -1) {
+          return originalName;
+        }
+
+        var separatorIndex = originalName.indexOf(" - ");
+        var prefix = originalName.substring(0, separatorIndex);
+        var suffix = originalName.substring(separatorIndex + 3);
+        var translatedSuffix = releaseDateTranslations[language][suffix] || suffix;
+        return prefix + " - " + translatedSuffix;
+      }
+
+      function applyLanguage(language) {
+        cy.batch(function () {
+          cy.nodes().forEach(function (node) {
+            var nodeTranslations = descriptionTranslations[node.id()];
+            node.data("name", translateTitleName(node.data("nameEn"), language));
+            node.data("description", language === "en"
+              ? node.data("descriptionEn")
+              : ((nodeTranslations && nodeTranslations[language]) || node.data("descriptionEn")));
+          });
+        });
+
+        languageButtons.forEach(function (button) {
+          var isActive = button.getAttribute("data-language") === language;
+          button.classList.toggle("active", isActive);
+          button.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+
+        document.documentElement.setAttribute("lang", language);
+      }
+
+      languageButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          applyLanguage(button.getAttribute("data-language"));
+        });
       });
 
       function fitGraphToVisibleArea() {
