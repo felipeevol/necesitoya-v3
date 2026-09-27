@@ -70,7 +70,7 @@
     "javaVersions": {
       "badge": "JAVA VERSIONS",
       "title": "Java Versions Diagram",
-      "description": "Java Versions Diagram",
+      "description": "A visual timeline to compare Java releases and identify LTS versions.",
       "learningContext": "A visual timeline to compare Java releases and identify LTS versions.",
       "linkText": "Open Java Versions Diagram"
     }

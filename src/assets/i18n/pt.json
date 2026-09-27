@@ -70,7 +70,7 @@
     "javaVersions": {
       "badge": "VERSÕES DO JAVA",
       "title": "Diagrama de versões do Java",
-      "description": "Diagrama de versões do Java",
+      "description": "Uma linha do tempo visual para comparar releases do Java e identificar versões LTS.",
       "learningContext": "Uma linha do tempo visual para comparar releases do Java e identificar versões LTS.",
       "linkText": "Abrir diagrama de versões do Java"
     }
