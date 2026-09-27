@@ -119,36 +119,69 @@
       backdrop-filter: blur(8px);
     }
 
-    .language-switcher__button {
-      border: 0;
-      padding: 8px 10px;
-      color: #334155;
-      background: transparent;
+    .language-button {
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      padding: 6px 8px;
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      line-height: 1;
       cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
     }
 
-    .language-switcher__button:hover {
-      color: #1d4ed8;
+    .language-button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(59, 130, 246, 0.38);
       background: #eff6ff;
     }
 
-    .language-switcher__button.is-active {
-      color: #fff;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    .language-button.active {
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.8);
       box-shadow: 0 4px 12px rgba(59, 130, 246, 0.28);
+    }
+
+    .flag-icon {
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 50%;
+      display: inline-block;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    }
+
+    .flag-icon img {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
   </style>
 </head>
 
 <body>
   <div class="language-switcher" aria-label="Language selector">
-    <button class="language-switcher__button is-active" type="button" aria-pressed="true">EN</button>
-    <button class="language-switcher__button" type="button" aria-pressed="false">ES</button>
-    <button class="language-switcher__button" type="button" aria-pressed="false">PT</button>
+    <button class="language-button active" type="button" aria-label="English" title="English" aria-pressed="true">
+      <span aria-hidden="true" class="flag-icon">
+        <img src="assets/flags/en.svg" alt="">
+      </span>
+    </button>
+    <button class="language-button" type="button" aria-label="Español" title="Español" aria-pressed="false">
+      <span aria-hidden="true" class="flag-icon">
+        <img src="assets/flags/es.svg" alt="">
+      </span>
+    </button>
+    <button class="language-button" type="button" aria-label="Português" title="Português" aria-pressed="false">
+      <span aria-hidden="true" class="flag-icon">
+        <img src="assets/flags/pt.svg" alt="">
+      </span>
+    </button>
   </div>
   <div id="chart-scroll">
     <div id="cy"></div>
