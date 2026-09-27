@@ -893,11 +893,19 @@
         });
       }, { passive: false });
 
+      function boldDescriptionExampleLine(description) {
+        if (!description) {
+          return "";
+        }
+
+        return description.replace(/<br>(Example:|Ejemplo:|Exemplo:)(.*)$/g, "<br><strong>$1$2</strong>");
+      }
+
       // Tooltip events
       cy.on("mouseover", "node", function (evt) {
         var node = evt.target;
         var nodeDescription = node.data("description");
-        tooltipDiv.innerHTML = nodeDescription;
+        tooltipDiv.innerHTML = boldDescriptionExampleLine(nodeDescription);
         tooltipDiv.style.display = "block";
         // Posiciona o tooltip perto do mouse
         // Adiciona um pequeno deslocamento para nÃ£o cobrir o cursor
