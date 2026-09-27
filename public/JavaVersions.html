@@ -745,11 +745,18 @@
         document.documentElement.setAttribute("lang", language);
       }
 
+      function getInitialLanguage() {
+        var language = new URLSearchParams(window.location.search).get("lang");
+        return ["en", "es", "pt"].indexOf(language) > -1 ? language : "en";
+      }
+
       languageButtons.forEach(function (button) {
         button.addEventListener("click", function () {
           applyLanguage(button.getAttribute("data-language"));
         });
       });
+
+      applyLanguage(getInitialLanguage());
 
       function fitGraphToVisibleArea() {
         var padding = 10;

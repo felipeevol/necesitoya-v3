@@ -16,4 +16,8 @@ export class ResourcesComponent {
   get currentTranslations(): Translation {
     return this.language.currentTranslations();
   }
+
+  get javaVersionsHref(): string {
+    return `/JavaVersions.html?lang=${this.language.currentLocale()}`;
+  }
 }
