@@ -41,7 +41,7 @@
     #cy {
       width: 100%;
       height: 100%;
-      min-width: 9000px;
+      min-width: 10800px;
       min-height: 1350px;
       display: block;
       position: relative;
@@ -270,28 +270,30 @@
 	  var linha15 = linha14 + separador;
 	  var linha16 = linha15 + separador;
 
-	  var coluna2 = 700;
-	  var coluna3 = 1050;
-	  var coluna4 = 1400;
-	  var coluna5 = 1750;
-	  var coluna6 = 2100;
-	  var coluna7 = 2450;
-	  var coluna8 = 2800;
-	  var coluna9 = 3150;
-	  var coluna10 = 3500;
-	  var coluna11 = 3850;
-	  var coluna12 = 4200;
-	  var coluna13 = 4550;
-	  var coluna14 = 4900;
-	  var coluna15 = 5250;
-	  var coluna16 = 5600;
-	  var coluna17 = 5950;
-	  var coluna18 = 6300;
-	  var coluna19 = 6650;
-	  var coluna20 = 7000;
-	  var coluna21 = 7350;
-	  var coluna22 = 7700;
-	  var coluna23 = 8050;
+	  var coluna1 = 350;
+	  var espacoHorizontalColunas = 430;
+	  var coluna2 = coluna1 + (espacoHorizontalColunas * 1);
+	  var coluna3 = coluna1 + (espacoHorizontalColunas * 2);
+	  var coluna4 = coluna1 + (espacoHorizontalColunas * 3);
+	  var coluna5 = coluna1 + (espacoHorizontalColunas * 4);
+	  var coluna6 = coluna1 + (espacoHorizontalColunas * 5);
+	  var coluna7 = coluna1 + (espacoHorizontalColunas * 6);
+	  var coluna8 = coluna1 + (espacoHorizontalColunas * 7);
+	  var coluna9 = coluna1 + (espacoHorizontalColunas * 8);
+	  var coluna10 = coluna1 + (espacoHorizontalColunas * 9);
+	  var coluna11 = coluna1 + (espacoHorizontalColunas * 10);
+	  var coluna12 = coluna1 + (espacoHorizontalColunas * 11);
+	  var coluna13 = coluna1 + (espacoHorizontalColunas * 12);
+	  var coluna14 = coluna1 + (espacoHorizontalColunas * 13);
+	  var coluna15 = coluna1 + (espacoHorizontalColunas * 14);
+	  var coluna16 = coluna1 + (espacoHorizontalColunas * 15);
+	  var coluna17 = coluna1 + (espacoHorizontalColunas * 16);
+	  var coluna18 = coluna1 + (espacoHorizontalColunas * 17);
+	  var coluna19 = coluna1 + (espacoHorizontalColunas * 18);
+	  var coluna20 = coluna1 + (espacoHorizontalColunas * 19);
+	  var coluna21 = coluna1 + (espacoHorizontalColunas * 20);
+	  var coluna22 = coluna1 + (espacoHorizontalColunas * 21);
+	  var coluna23 = coluna1 + (espacoHorizontalColunas * 22);
 
       var cy = cytoscape({
         container: chartContainer,
@@ -526,7 +528,7 @@
               "background-color": "transparent",
               "background-opacity": 0,
               "label": "data(label)",
-              "width": 250,
+              "width": 310,
               "height": 64,
               "padding": "16px",
               "shape": "roundrectangle",
@@ -535,7 +537,7 @@
               "font-size": 24,
               "font-weight": 600,
               "text-wrap": "wrap",
-              "text-max-width": 230,
+              "text-max-width": 290,
               "text-valign": "center",
               "text-halign": "center",
               "border-width": 0,
@@ -580,7 +582,7 @@
           {
             selector: "node[category = 'title_lts']",
             style: {
-              "width": 230,
+              "width": 290,
               "height": 86,
               "background-color": "rgba(18, 33, 53, 0.74)",
               "background-opacity": 1,
@@ -589,7 +591,7 @@
               "color": "#ffffff",
               "font-size": 26,
               "font-weight": 800,
-              "text-max-width": 190,
+              "text-max-width": 250,
               "shadow-blur": 30,
               "shadow-opacity": 1,
               "shadow-color": "rgba(37, 163, 255, 0.46)"
@@ -598,7 +600,7 @@
           {
             selector: "node[category = 'title']",
             style: {
-              "width": 230,
+              "width": 290,
               "height": 86,
               "background-color": "rgba(30, 28, 35, 0.74)",
               "background-opacity": 1,
@@ -607,7 +609,7 @@
               "color": "#ffffff",
               "font-size": 24,
               "font-weight": 800,
-              "text-max-width": 190,
+              "text-max-width": 250,
               "shadow-blur": 26,
               "shadow-opacity": 1,
               "shadow-color": "rgba(255, 132, 37, 0.34)"
