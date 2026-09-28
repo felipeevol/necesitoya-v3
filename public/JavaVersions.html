@@ -17,38 +17,80 @@
   </script>
   <style>
     body {
-      font-family: helvetica;
+      font-family: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 14px;
       margin: 0;
       padding: 0;
       overflow: hidden;
+      color: #eef7ff;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(36, 128, 213, 0.3), transparent 30%),
+        radial-gradient(circle at 90% 70%, rgba(255, 127, 24, 0.32), transparent 24%),
+        linear-gradient(135deg, #061323 0%, #071c30 42%, #02070f 100%);
     }
 
     #chart-scroll {
       width: 100vw;
       height: 100vh;
       overflow: auto;
+      background:
+        linear-gradient(100deg, rgba(2, 7, 15, 0.4), rgba(6, 19, 35, 0.72)),
+        repeating-linear-gradient(172deg, rgba(69, 144, 204, 0.09) 0 1px, transparent 1px 64px);
     }
 
     #cy {
       width: 100%;
       height: 100%;
-      min-width: 8500px;
-      min-height: 950px;
+      min-width: 9000px;
+      min-height: 1350px;
       display: block;
       position: relative;
       z-index: 999;
       cursor: grab;
+      background:
+        radial-gradient(circle at 10% 14%, rgba(36, 156, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 76% 12%, rgba(255, 125, 29, 0.16), transparent 22%),
+        linear-gradient(180deg, rgba(5, 17, 31, 0.14), rgba(1, 6, 13, 0.5));
     }
 
     #cy.is-node-panning {
       cursor: grabbing;
     }
 
+    .page-hero {
+      position: fixed;
+      top: 34px;
+      left: 42px;
+      z-index: 1000;
+      pointer-events: none;
+      text-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+    }
+
+    .page-hero h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4.7rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      color: #f7fbff;
+    }
+
+    .page-hero h1 span {
+      color: #ff8a24;
+      text-shadow: 0 0 28px rgba(255, 117, 24, 0.42);
+    }
+
+    .page-hero p {
+      max-width: 560px;
+      margin: 18px 0 0;
+      color: rgba(226, 239, 255, 0.82);
+      font-size: clamp(1rem, 1.8vw, 1.55rem);
+      font-weight: 500;
+      line-height: 1.28;
+    }
+
     /* Default styles for nodes and edges */
     .node-default-style {
-      background-color: #666;
-      /* Cor original */
+      background-color: transparent;
       label: data(name);
       width: label;
       height: label;
@@ -97,14 +139,15 @@
     #tooltip {
       position: absolute;
       display: none;
-      padding: 10px;
-      background-color: #f4fbff;
-      border: 2px solid #5aaecb;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 115, 150, 0.12);
+      max-width: 420px;
+      padding: 14px 16px;
+      background: rgba(7, 20, 36, 0.94);
+      border: 1px solid rgba(76, 188, 255, 0.42);
+      border-radius: 14px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35), 0 0 24px rgba(43, 166, 255, 0.18);
       font-size: 16px;
       line-height: 1.4;
-      color: #071922;
+      color: #eef7ff;
       z-index: 1000;
       /* Acima do canvas do Cytoscape */
       pointer-events: none;
@@ -120,17 +163,17 @@
       align-items: center;
       gap: 8px;
       padding: 8px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(59, 130, 246, 0.18);
+      background: rgba(6, 19, 35, 0.86);
+      border: 1px solid rgba(84, 190, 255, 0.24);
       border-radius: 999px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
       backdrop-filter: blur(8px);
     }
 
     .language-button {
-      border: 1px solid rgba(59, 130, 246, 0.18);
+      border: 1px solid rgba(84, 190, 255, 0.24);
       padding: 6px 8px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
@@ -146,14 +189,14 @@
 
     .language-button:hover {
       transform: translateY(-1px);
-      border-color: rgba(59, 130, 246, 0.38);
-      background: #eff6ff;
+      border-color: rgba(255, 132, 37, 0.8);
+      background: rgba(255, 132, 37, 0.16);
     }
 
     .language-button.active {
-      background: rgba(59, 130, 246, 0.12);
-      border-color: rgba(59, 130, 246, 0.8);
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.28);
+      background: rgba(39, 156, 255, 0.22);
+      border-color: rgba(83, 190, 255, 0.9);
+      box-shadow: 0 4px 16px rgba(39, 156, 255, 0.34);
     }
 
     .flag-icon {
@@ -191,6 +234,10 @@
       </span>
     </button>
   </div>
+  <div class="page-hero" aria-hidden="true">
+    <h1>Professional<span>Java</span></h1>
+    <p>Explore the new features of each Java version in a clear and organized way.</p>
+  </div>
   <div id="chart-scroll">
     <div id="cy"></div>
   </div>
@@ -203,9 +250,10 @@
       var chartContainer = document.getElementById("cy");
       var tooltipDiv = document.getElementById("tooltip");
 
-      var separador = 50;
-      var linha1 = 100;
-      var linha2 = linha1 + separador;
+      var separador = 72;
+      var linha1 = 150;
+      var firstFeatureOffset = 52;
+      var linha2 = linha1 + separador + firstFeatureOffset;
       var linha3 = linha2 + separador;
       var linha4 = linha3 + separador;
       var linha5 = linha4 + separador;
@@ -222,27 +270,27 @@
 	  var linha15 = linha14 + separador;
 	  var linha16 = linha15 + separador;
 
-	  var coluna2 = 650;
-	  var coluna3 = 950;
-	  var coluna4 = 1250;
-	  var coluna5 = 1550;
-	  var coluna6 = 1850;
-	  var coluna7 = 2150;
-	  var coluna8 = 2450;
-	  var coluna9 = 2750;
-	  var coluna10 = 3050;
-	  var coluna11 = 3350;
-	  var coluna12 = 3650;
-	  var coluna13 = 4050;
-	  var coluna14 = 4450;
-	  var coluna15 = 4850;
-	  var coluna16 = 5250;
-	  var coluna17 = 5650;
-	  var coluna18 = 6050;
-	  var coluna19 = 6450;
-	  var coluna20 = 6850;
-	  var coluna21 = 7250;
-	  var coluna22 = 7650;
+	  var coluna2 = 700;
+	  var coluna3 = 1050;
+	  var coluna4 = 1400;
+	  var coluna5 = 1750;
+	  var coluna6 = 2100;
+	  var coluna7 = 2450;
+	  var coluna8 = 2800;
+	  var coluna9 = 3150;
+	  var coluna10 = 3500;
+	  var coluna11 = 3850;
+	  var coluna12 = 4200;
+	  var coluna13 = 4550;
+	  var coluna14 = 4900;
+	  var coluna15 = 5250;
+	  var coluna16 = 5600;
+	  var coluna17 = 5950;
+	  var coluna18 = 6300;
+	  var coluna19 = 6650;
+	  var coluna20 = 7000;
+	  var coluna21 = 7350;
+	  var coluna22 = 7700;
 	  var coluna23 = 8050;
 
       var cy = cytoscape({
@@ -472,10 +520,106 @@
 
         ],
         style: [
-          { selector: "node", style: { "background-color": "#FFFACD", "label": "data(name)", "width": "label", "height": "label", "padding": "10px", "shape": "roundrectangle", "color": "black", "text-valign": "center", "text-halign": "center", "border-width": "2px", "border-color": "#333", "opacity": 1, "transition-property": "border-color, border-width", "transition-duration": "0.2s" } },
-          { selector: "edge", style: { "width": 0, "line-color": "#fff", "target-arrow-color": "#fff", "target-arrow-shape": "triangle", "curve-style": "bezier", "opacity": 1, "transition-property": "line-color, width", "transition-duration": "0.2s" } },
-          { selector: "node[category = 'title_lts']", style: { "background-color": "#007396", "color": "#fff" } },
-          { selector: "node[category = 'title']", style: { "background-color": "#F89820", "color": "#fff" } }
+          {
+            selector: "node",
+            style: {
+              "background-color": "transparent",
+              "background-opacity": 0,
+              "label": "data(label)",
+              "width": 250,
+              "height": 64,
+              "padding": "16px",
+              "shape": "roundrectangle",
+              "color": "#eaf6ff",
+              "font-family": "Inter, Segoe UI, Helvetica, Arial, sans-serif",
+              "font-size": 24,
+              "font-weight": 600,
+              "text-wrap": "wrap",
+              "text-max-width": 230,
+              "text-valign": "center",
+              "text-halign": "center",
+              "border-width": 0,
+              "border-color": "rgba(74, 181, 255, 0.62)",
+              "shadow-blur": 18,
+              "shadow-color": "rgba(32, 156, 255, 0.28)",
+              "shadow-opacity": 0,
+              "shadow-offset-x": 0,
+              "shadow-offset-y": 4,
+              "overlay-opacity": 0,
+              "opacity": 1,
+              "transition-property": "border-color, border-width, background-color",
+              "transition-duration": "0.2s"
+            }
+          },
+          {
+            selector: "edge",
+            style: {
+              "width": 0,
+              "line-color": "rgba(255, 255, 255, 0)",
+              "target-arrow-color": "rgba(255, 255, 255, 0)",
+              "target-arrow-shape": "none",
+              "curve-style": "straight",
+              "opacity": 1,
+              "transition-property": "line-color, width",
+              "transition-duration": "0.2s"
+            }
+          },
+          {
+            selector: "edge[kind = 'timeline']",
+            style: {
+              "width": 5,
+              "line-color": "#ff8a24",
+              "target-arrow-color": "#ff8a24",
+              "target-arrow-shape": "triangle",
+              "arrow-scale": 1.25,
+              "curve-style": "straight",
+              "opacity": 0.92,
+              "z-index": 0
+            }
+          },
+          {
+            selector: "node[category = 'title_lts']",
+            style: {
+              "width": 230,
+              "height": 86,
+              "background-color": "rgba(18, 33, 53, 0.74)",
+              "background-opacity": 1,
+              "border-width": 3,
+              "border-color": "#35aaff",
+              "color": "#ffffff",
+              "font-size": 26,
+              "font-weight": 800,
+              "text-max-width": 190,
+              "shadow-blur": 30,
+              "shadow-opacity": 1,
+              "shadow-color": "rgba(37, 163, 255, 0.46)"
+            }
+          },
+          {
+            selector: "node[category = 'title']",
+            style: {
+              "width": 230,
+              "height": 86,
+              "background-color": "rgba(30, 28, 35, 0.74)",
+              "background-opacity": 1,
+              "border-width": 2,
+              "border-color": "rgba(255, 138, 36, 0.74)",
+              "color": "#ffffff",
+              "font-size": 24,
+              "font-weight": 800,
+              "text-max-width": 190,
+              "shadow-blur": 26,
+              "shadow-opacity": 1,
+              "shadow-color": "rgba(255, 132, 37, 0.34)"
+            }
+          },
+          {
+            selector: "node[accent = 'orange']",
+            style: {
+              "border-color": "#ff8a24",
+              "shadow-color": "rgba(255, 132, 37, 0.38)"
+            }
+          }
         ],
         layout: {
           name: "preset", idealEdgeLength: 100, nodeOverlap: 20, refresh: 20, fit: false, padding: 10, randomize: false, componentSpacing: 100, nodeRepulsion: 400000, edgeElasticity: 100, nestingFactor: 5, gravity: 80, numIter: 1000, initialTemp: 200, coolingFactor: 0.95, minTemp: 1.0
@@ -483,6 +627,67 @@
 		autoungrabify: true,
         userZoomingEnabled: false
       });
+
+      function getFeatureIcon(name) {
+        var normalized = name.toLowerCase();
+
+        if (normalized.indexOf("lambda") > -1) return "λ";
+        if (normalized.indexOf("stream") > -1) return "≋";
+        if (normalized.indexOf("date") > -1 || normalized.indexOf("time") > -1) return "◷";
+        if (normalized.indexOf("http") > -1 || normalized.indexOf("web") > -1 || normalized.indexOf("socket") > -1) return "⌁";
+        if (normalized.indexOf("record") > -1 || normalized.indexOf("class") > -1 || normalized.indexOf("object") > -1) return "▣";
+        if (normalized.indexOf("pattern") > -1 || normalized.indexOf("switch") > -1) return "{}";
+        if (normalized.indexOf("thread") > -1 || normalized.indexOf("concurr") > -1 || normalized.indexOf("scoped") > -1) return "⇄";
+        if (normalized.indexOf("string") > -1 || normalized.indexOf("text") > -1 || normalized.indexOf("markdown") > -1) return "¶";
+        if (normalized.indexOf("file") > -1 || normalized.indexOf("input") > -1 || normalized.indexOf("output") > -1 || normalized.indexOf("nio") > -1) return "▤";
+        if (normalized.indexOf("security") > -1 || normalized.indexOf("tls") > -1 || normalized.indexOf("quantum") > -1 || normalized.indexOf("pem") > -1) return "◇";
+        if (normalized.indexOf("module") > -1 || normalized.indexOf("package") > -1 || normalized.indexOf("import") > -1) return "⬡";
+        if (normalized.indexOf("collection") > -1 || normalized.indexOf("list") > -1 || normalized.indexOf("map") > -1) return "▦";
+        if (normalized.indexOf("optional") > -1 || normalized.indexOf("null") > -1) return "?";
+        if (normalized.indexOf("annotation") > -1 || normalized.indexOf("javadoc") > -1) return "@";
+        if (normalized.indexOf("enum") > -1 || normalized.indexOf("constant") > -1) return "◆";
+        if (normalized.indexOf("constructor") > -1 || normalized.indexOf("method") > -1 || normalized.indexOf("interface") > -1) return "⚙";
+        if (normalized.indexOf("exception") > -1 || normalized.indexOf("error") > -1) return "!";
+        if (normalized.indexOf("performance") > -1 || normalized.indexOf("aot") > -1 || normalized.indexOf("gc") > -1 || normalized.indexOf("g1") > -1) return "↗";
+        return "✦";
+      }
+
+      function buildNodeLabel(name, category, icon) {
+        if (category === "title" || category === "title_lts") {
+          return name.replace(" - ", "\n");
+        }
+
+        return icon + "  " + name;
+      }
+
+      cy.nodes().forEach(function (node) {
+        var category = node.data("category");
+        var icon = category ? "" : getFeatureIcon(node.data("name"));
+        node.data("icon", icon);
+        node.data("label", buildNodeLabel(node.data("name"), category, icon));
+
+        if (!category && node.position("x") >= coluna17) {
+          node.data("accent", "orange");
+        }
+      });
+
+      var timelineNodes = cy.nodes().filter(function (node) {
+        return node.data("category") === "title" || node.data("category") === "title_lts";
+      }).sort(function (a, b) {
+        return a.position("x") - b.position("x");
+      });
+
+      for (var timelineIndex = 0; timelineIndex < timelineNodes.length - 1; timelineIndex++) {
+        cy.add({
+          group: "edges",
+          data: {
+            id: "timeline-" + timelineIndex,
+            source: timelineNodes[timelineIndex].id(),
+            target: timelineNodes[timelineIndex + 1].id(),
+            kind: "timeline"
+          }
+        });
+      }
 
       var languageButtons = Array.prototype.slice.call(document.querySelectorAll(".language-button"));
       var releaseDateTranslations = {
@@ -741,6 +946,7 @@
             node.data("description", language === "en"
               ? node.data("descriptionEn")
               : ((nodeTranslations && nodeTranslations[language]) || node.data("descriptionEn")));
+            node.data("label", buildNodeLabel(node.data("name"), node.data("category"), node.data("icon")));
           });
         });
 
@@ -772,16 +978,12 @@
           return node.position("x") <= coluna6;
         }).boundingBox();
         var visibleWidth = chartScroll.clientWidth;
-        var visibleHeight = chartScroll.clientHeight;
-        var zoom = Math.min(
-          (visibleWidth - (padding * 2)) / initialVisibleBounds.w,
-          (visibleHeight - (padding * 2)) / initialVisibleBounds.h
-        );
+        var zoom = Math.min(0.82, (visibleWidth - (padding * 2)) / initialVisibleBounds.w);
 
         cy.zoom(zoom);
         cy.pan({
           x: (visibleWidth - (zoom * (initialVisibleBounds.x1 + initialVisibleBounds.x2))) / 2,
-          y: (visibleHeight - (zoom * (initialVisibleBounds.y1 + initialVisibleBounds.y2))) / 2
+          y: 240 - (zoom * initialVisibleBounds.y1)
         });
       }
 
