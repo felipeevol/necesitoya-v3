@@ -1,7 +1,10 @@
 <header>
   <div class="container">
     <div class="header-content">
-      <a class="logo" routerLink="/">{{ currentTranslations.brandName }}</a>
+      <a class="logo" routerLink="/" [attr.aria-label]="currentTranslations.brandName">
+        <span class="logo-mark" aria-hidden="true">JP</span>
+        <span class="logo-wordmark">{{ currentTranslations.brandName }}</span>
+      </a>
       <div class="header-actions">
         <div class="language-switcher" [attr.aria-label]="currentTranslations.languages.label">
           <button
