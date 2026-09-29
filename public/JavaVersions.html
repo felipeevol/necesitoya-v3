@@ -158,18 +158,23 @@
 
     .language-switcher {
       position: fixed;
-      bottom: 16px;
-      right: 16px;
+      top: 8px;
+      left: 8px;
       z-index: 1100;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       padding: 8px;
       background: rgba(6, 19, 35, 0.86);
       border: 1px solid rgba(84, 190, 255, 0.24);
-      border-radius: 999px;
+      border-radius: 18px;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
       backdrop-filter: blur(8px);
+    }
+
+    .language-switcher:not(.open) .language-button:not(.active) {
+      display: none;
     }
 
     .language-button {
@@ -199,6 +204,7 @@
       background: rgba(39, 156, 255, 0.22);
       border-color: rgba(83, 190, 255, 0.9);
       box-shadow: 0 4px 16px rgba(39, 156, 255, 0.34);
+      order: -1;
     }
 
     .flag-icon {
@@ -220,17 +226,17 @@
 
 <body>
   <div class="language-switcher" aria-label="Language selector">
-    <button class="language-button active" type="button" data-language="en" aria-label="English" title="English" aria-pressed="true">
+    <button class="language-button active" type="button" data-language="en" aria-label="English" title="English" aria-pressed="true" aria-expanded="false">
       <span aria-hidden="true" class="flag-icon">
         <img src="assets/flags/en.svg" alt="">
       </span>
     </button>
-    <button class="language-button" type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false">
+    <button class="language-button" type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false" aria-expanded="false">
       <span aria-hidden="true" class="flag-icon">
         <img src="assets/flags/es.svg" alt="">
       </span>
     </button>
-    <button class="language-button" type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="false">
+    <button class="language-button" type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="false" aria-expanded="false">
       <span aria-hidden="true" class="flag-icon">
         <img src="assets/flags/pt.svg" alt="">
       </span>
@@ -594,6 +600,7 @@
         maxZoom: 1.8
       };
 
+      var languageSwitcher = document.querySelector(".language-switcher");
       var languageButtons = Array.prototype.slice.call(document.querySelectorAll(".language-button"));
       var releaseDateTranslations = {
         en: {},
@@ -1015,9 +1022,17 @@
           var isActive = button.getAttribute("data-language") === language;
           button.classList.toggle("active", isActive);
           button.setAttribute("aria-pressed", isActive ? "true" : "false");
+          button.setAttribute("aria-expanded", isActive && languageSwitcher.classList.contains("open") ? "true" : "false");
         });
 
         document.documentElement.setAttribute("lang", language);
+      }
+
+      function setLanguageMenuOpen(isOpen) {
+        languageSwitcher.classList.toggle("open", isOpen);
+        languageButtons.forEach(function (button) {
+          button.setAttribute("aria-expanded", button.classList.contains("active") && isOpen ? "true" : "false");
+        });
       }
 
       function getInitialLanguage() {
@@ -1026,9 +1041,26 @@
       }
 
       languageButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function (event) {
+          event.stopPropagation();
+          if (button.classList.contains("active")) {
+            setLanguageMenuOpen(!languageSwitcher.classList.contains("open"));
+            return;
+          }
+
           applyLanguage(button.getAttribute("data-language"));
+          setLanguageMenuOpen(false);
         });
+      });
+
+      document.addEventListener("click", function () {
+        setLanguageMenuOpen(false);
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          setLanguageMenuOpen(false);
+        }
       });
 
       applyLanguage(getInitialLanguage());
