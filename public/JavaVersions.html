@@ -131,6 +131,10 @@
       box-shadow: 0 4px 18px rgba(255, 132, 37, 0.38);
     }
 
+    .chart-node.lts-light {
+      box-shadow: 0 4px 30px rgba(37, 163, 255, 0.46);
+    }
+
     /* Tooltip Style */
     #tooltip {
       position: absolute;
@@ -569,6 +573,16 @@
         return a.position.x - b.position.x;
       });
 
+      var ltsColumnPositions = timelineNodes.filter(function (node) {
+        return node.category === "title_lts";
+      }).map(function (node) {
+        return node.position.x;
+      });
+
+      function isLtsFeatureNode(node) {
+        return !node.category && ltsColumnPositions.indexOf(node.position.x) > -1;
+      }
+
       var graphState = {
         zoom: 1,
         panX: 0,
@@ -886,6 +900,10 @@
 
           if (node.accent === "orange") {
             nodeElement.classList.add("accent-orange");
+          }
+
+          if (isLtsFeatureNode(node)) {
+            nodeElement.classList.add("lts-light");
           }
 
           node.element = nodeElement;
