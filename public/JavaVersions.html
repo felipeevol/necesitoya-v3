@@ -210,7 +210,6 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
 
-      console.log("DOM Carregado. Inicializando Cytoscape (v9)...");
       var chartScroll = document.getElementById("chart-scroll");
       var chartContainer = document.getElementById("cy");
       var tooltipDiv = document.getElementById("tooltip");
@@ -1095,12 +1094,10 @@
         // Adiciona um pequeno deslocamento para nÃ£o cobrir o cursor
         tooltipDiv.style.left = (evt.originalEvent.pageX + 15) + "px";
         tooltipDiv.style.top = (evt.originalEvent.pageY + 15) + "px";
-        console.log("Mouseover no nÃ³: " + node.id() + ", Tooltip: " + nodeDescription);
       });
 
       cy.on("mouseout", "node", function (evt) {
         tooltipDiv.style.display = "none";
-        console.log("Mouseout no nÃ³: " + evt.target.id());
       });
 
       let lastClickTime = 0;
@@ -1112,7 +1109,6 @@
         }
 
         var tappedNode = evt.target;
-        console.log("NÃ³ clicado (v9):", tappedNode.id());
 
         const now = new Date().getTime();
         const timeDiff = now - lastClickTime;
@@ -1123,7 +1119,6 @@
           // Agora, abre o link se existir
           var link = tappedNode.data("linkURL");
           if (link) {
-            console.log("Abrindo link: " + link);
             window.open(link, "_blank"); // Abre em uma nova aba
           }
 
@@ -1136,17 +1131,9 @@
         var tappedNode = evt.target;
         var link = tappedNode.data("rightLinkURL");
         if (link) {
-          console.log("Abrindo link: " + link);
           window.open(link, "_blank"); // Abre em uma nova aba
         }
       });
-
-      cy.on("tap", function (evt) {
-        if (evt.target === cy) {
-          resetAllStyles();
-        }
-      });
-
 
     });
 
