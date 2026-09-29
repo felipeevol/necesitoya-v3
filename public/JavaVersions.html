@@ -1069,7 +1069,8 @@
         var visibleWidth = chartScroll.clientWidth;
         var isSmallScreen = visibleWidth <= 640;
         var padding = isSmallScreen ? 18 : 10;
-        var initialHorizontalOffset = isSmallScreen ? 0 : 48;
+        var initialHorizontalOffset = isSmallScreen ? 16 : 72;
+        var initialVerticalOffset = 72;
         var lastInitialColumn = isSmallScreen ? coluna1 : coluna6;
         var initialVisibleBounds = getNodesBounds(graphNodes.filter(function (node) {
           return node.position.x <= lastInitialColumn;
@@ -1078,7 +1079,7 @@
         var availableWidth = Math.max(visibleWidth - (padding * 2), 1);
         graphState.zoom = Math.min(0.82, Math.max(graphState.minZoom, availableWidth / boundsWidth));
         graphState.panX = ((visibleWidth - (graphState.zoom * (initialVisibleBounds.x1 + initialVisibleBounds.x2))) / 2) + initialHorizontalOffset;
-        graphState.panY = 48 - (graphState.zoom * initialVisibleBounds.y1);
+        graphState.panY = initialVerticalOffset - (graphState.zoom * initialVisibleBounds.y1);
         applyGraphTransform();
       }
 
