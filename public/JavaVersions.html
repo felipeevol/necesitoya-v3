@@ -40,8 +40,8 @@
     #cy {
       width: 100%;
       height: 100%;
-      min-width: 10800px;
-      min-height: 1350px;
+      min-width: 12000px;
+      min-height: 1650px;
       display: block;
       position: relative;
       z-index: 999;
@@ -75,19 +75,19 @@
 
     .chart-node {
       position: absolute;
-      width: 310px;
-      min-height: 64px;
+      width: 350px;
+      min-height: 74px;
       transform: translate(-50%, -50%);
       display: flex;
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
-      padding: 12px 16px;
+      padding: 14px 18px;
       color: #eaf6ff;
       font-family: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 600;
-      line-height: 1.12;
+      line-height: 1.16;
       text-align: center;
       white-space: normal;
       overflow-wrap: anywhere;
@@ -102,8 +102,8 @@
 
     .chart-node.title,
     .chart-node.title-lts {
-      width: 290px;
-      min-height: 86px;
+      width: 330px;
+      min-height: 96px;
       color: #ffffff;
       font-weight: 800;
       white-space: pre-line;
@@ -114,7 +114,7 @@
       background: rgba(30, 28, 35, 0.74);
       border-width: 2px;
       border-color: rgba(255, 138, 36, 0.74);
-      font-size: 24px;
+      font-size: 28px;
       box-shadow: 0 4px 26px rgba(255, 132, 37, 0.34);
     }
 
@@ -122,7 +122,7 @@
       background: rgba(18, 33, 53, 0.74);
       border-width: 3px;
       border-color: #35aaff;
-      font-size: 26px;
+      font-size: 30px;
       box-shadow: 0 4px 30px rgba(37, 163, 255, 0.46);
     }
 
@@ -241,7 +241,7 @@
       var chartContainer = document.getElementById("cy");
       var tooltipDiv = document.getElementById("tooltip");
 
-      var separador = 72;
+      var separador = 86;
       var linha1 = 150;
       var firstFeatureOffset = 52;
       var linha2 = linha1 + separador + firstFeatureOffset;
@@ -262,7 +262,7 @@
 	  var linha16 = linha15 + separador;
 
 	  var coluna1 = 350;
-	  var espacoHorizontalColunas = 430;
+	  var espacoHorizontalColunas = 500;
 	  var coluna2 = coluna1 + (espacoHorizontalColunas * 1);
 	  var coluna3 = coluna1 + (espacoHorizontalColunas * 2);
 	  var coluna4 = coluna1 + (espacoHorizontalColunas * 3);
@@ -813,10 +813,15 @@
         chartContainer.style.transform = "translate(" + graphState.panX + "px, " + graphState.panY + "px) scale(" + graphState.zoom + ")";
       }
 
+      var titleHalfWidth = 165;
+      var nodeHalfWidth = 175;
+      var titleHalfHeight = 48;
+      var nodeHalfHeight = 37;
+
       function getNodesBounds(nodes) {
         return nodes.reduce(function (bounds, node) {
-          var halfWidth = node.category ? 145 : 155;
-          var halfHeight = node.category ? 43 : 32;
+          var halfWidth = node.category ? titleHalfWidth : nodeHalfWidth;
+          var halfHeight = node.category ? titleHalfHeight : nodeHalfHeight;
           return {
             x1: Math.min(bounds.x1, node.position.x - halfWidth),
             y1: Math.min(bounds.y1, node.position.y - halfHeight),
@@ -852,9 +857,9 @@
           var target = timelineNodes[timelineIndex + 1];
           var line = document.createElementNS(svgNS, "line");
           line.classList.add("timeline-line");
-          line.setAttribute("x1", source.position.x + 145);
+          line.setAttribute("x1", source.position.x + titleHalfWidth);
           line.setAttribute("y1", source.position.y);
-          line.setAttribute("x2", target.position.x - 155);
+          line.setAttribute("x2", target.position.x - titleHalfWidth);
           line.setAttribute("y2", target.position.y);
           line.setAttribute("marker-end", "url(#timeline-arrow)");
           timelineSvg.appendChild(line);
