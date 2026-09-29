@@ -562,7 +562,8 @@
           icon: icon,
           accent: !category ? "orange" : "",
           label: buildNodeLabel(element.data.name, category, icon),
-          position: element.position,
+          originalPosition: { x: element.position.x, y: element.position.y },
+          position: { x: element.position.x, y: element.position.y },
           element: null
         };
       });
@@ -831,11 +832,12 @@
       var nodeHalfWidth = 175;
       var titleHalfHeight = 48;
       var nodeHalfHeight = 37;
+      var nodeVisualGap = 22;
 
       function getNodesBounds(nodes) {
         return nodes.reduce(function (bounds, node) {
           var halfWidth = node.category ? titleHalfWidth : nodeHalfWidth;
-          var halfHeight = node.category ? titleHalfHeight : nodeHalfHeight;
+          var halfHeight = getNodeHalfHeight(node);
           return {
             x1: Math.min(bounds.x1, node.position.x - halfWidth),
             y1: Math.min(bounds.y1, node.position.y - halfHeight),
@@ -843,6 +845,62 @@
             y2: Math.max(bounds.y2, node.position.y + halfHeight)
           };
         }, { x1: Infinity, y1: Infinity, x2: -Infinity, y2: -Infinity });
+      }
+
+      function getNodeHalfHeight(node) {
+        if (node.element && node.element.offsetHeight) {
+          return node.element.offsetHeight / 2;
+        }
+
+        return node.category ? titleHalfHeight : nodeHalfHeight;
+      }
+
+      function updateChartHeight() {
+        var bounds = getNodesBounds(graphNodes);
+        chartContainer.style.minHeight = Math.max(2100, Math.ceil(bounds.y2 + 160)) + "px";
+      }
+
+      function applyColumnSpacing() {
+        var columns = {};
+
+        graphNodes.forEach(function (node) {
+          var columnKey = String(node.originalPosition.x);
+          if (!columns[columnKey]) {
+            columns[columnKey] = [];
+          }
+          columns[columnKey].push(node);
+        });
+
+        Object.keys(columns).forEach(function (columnKey) {
+          var columnNodes = columns[columnKey].sort(function (a, b) {
+            return a.originalPosition.y - b.originalPosition.y;
+          });
+          var previousNode = null;
+
+          columnNodes.forEach(function (node, index) {
+            node.position.x = node.originalPosition.x;
+
+            if (index < 2 || !previousNode) {
+              node.position.y = node.originalPosition.y;
+            } else {
+              node.position.y = Math.round(
+                previousNode.position.y
+                + getNodeHalfHeight(previousNode)
+                + getNodeHalfHeight(node)
+                + nodeVisualGap
+              );
+            }
+
+            if (node.element) {
+              node.element.style.left = node.position.x + "px";
+              node.element.style.top = node.position.y + "px";
+            }
+
+            previousNode = node;
+          });
+        });
+
+        updateChartHeight();
       }
 
       function renderTimeline() {
@@ -920,6 +978,8 @@
           node.element.textContent = node.label;
           node.element.setAttribute("aria-label", node.name);
         });
+
+        applyColumnSpacing();
       }
 
       renderTimeline();
