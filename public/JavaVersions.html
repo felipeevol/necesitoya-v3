@@ -556,7 +556,7 @@
           rightLinkURL: element.data.rightLinkURL,
           category: category,
           icon: icon,
-          accent: !category && element.position.x >= coluna17 ? "orange" : "",
+          accent: !category ? "orange" : "",
           label: buildNodeLabel(element.data.name, category, icon),
           position: element.position,
           element: null
