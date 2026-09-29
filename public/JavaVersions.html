@@ -1032,13 +1032,14 @@
 
       function fitGraphToVisibleArea() {
         var padding = 10;
+        var initialHorizontalOffset = 48;
         var initialVisibleBounds = getNodesBounds(graphNodes.filter(function (node) {
           return node.position.x <= coluna6;
         }));
         var visibleWidth = chartScroll.clientWidth;
         var boundsWidth = initialVisibleBounds.x2 - initialVisibleBounds.x1;
         graphState.zoom = Math.min(0.82, (visibleWidth - (padding * 2)) / boundsWidth);
-        graphState.panX = (visibleWidth - (graphState.zoom * (initialVisibleBounds.x1 + initialVisibleBounds.x2))) / 2;
+        graphState.panX = ((visibleWidth - (graphState.zoom * (initialVisibleBounds.x1 + initialVisibleBounds.x2))) / 2) + initialHorizontalOffset;
         graphState.panY = 48 - (graphState.zoom * initialVisibleBounds.y1);
         applyGraphTransform();
       }
