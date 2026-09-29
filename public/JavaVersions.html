@@ -1321,18 +1321,6 @@
       let lastClickTime = 0;
 
       graphNodes.forEach(function (node) {
-        node.element.addEventListener("mouseenter", function (evt) {
-          showTooltip(node, evt);
-        });
-
-        node.element.addEventListener("mousemove", function (evt) {
-          positionTooltip(evt);
-        });
-
-        node.element.addEventListener("mouseleave", function () {
-          tooltipDiv.style.display = "none";
-        });
-
         node.element.addEventListener("click", function (evt) {
           if (suppressNextNodeTap || new Date().getTime() - lastTouchTooltipTime < 400) {
             suppressNextNodeTap = false;
@@ -1357,6 +1345,18 @@
             window.open(node.rightLinkURL, "_blank");
           }
         });
+      });
+
+      document.addEventListener("click", function (evt) {
+        var clickTarget = evt.target && evt.target.nodeType === Node.TEXT_NODE
+          ? evt.target.parentElement
+          : evt.target;
+
+        if (clickTarget && clickTarget.closest && clickTarget.closest(".chart-node")) {
+          return;
+        }
+
+        tooltipDiv.style.display = "none";
       });
 
     });
