@@ -832,7 +832,7 @@
       var nodeHalfWidth = 175;
       var titleHalfHeight = 48;
       var nodeHalfHeight = 37;
-      var nodeVisualGap = 22;
+      var nodeVisualGap = 30;
 
       function getNodesBounds(nodes) {
         return nodes.reduce(function (bounds, node) {
@@ -912,8 +912,8 @@
         marker.setAttribute("viewBox", "0 0 10 10");
         marker.setAttribute("refX", "9");
         marker.setAttribute("refY", "5");
-        marker.setAttribute("markerWidth", "9");
-        marker.setAttribute("markerHeight", "9");
+        marker.setAttribute("markerWidth", "6");
+        marker.setAttribute("markerHeight", "6");
         marker.setAttribute("orient", "auto-start-reverse");
 
         var arrow = document.createElementNS(svgNS, "path");
