@@ -137,9 +137,11 @@
 
     /* Tooltip Style */
     #tooltip {
-      position: absolute;
+      position: fixed;
       display: none;
-      max-width: 420px;
+      max-width: min(420px, calc(100vw - 32px));
+      max-height: calc(100vh - 32px);
+      overflow: auto;
       padding: 14px 16px;
       background: rgba(7, 20, 36, 0.94);
       border: 1px solid rgba(76, 188, 255, 0.42);
@@ -964,6 +966,7 @@
             nodeElement.classList.add("lts-light");
           }
 
+          nodeElement.graphNode = node;
           node.element = nodeElement;
           chartContainer.appendChild(nodeElement);
         });
@@ -1055,9 +1058,16 @@
         lastX: 0,
         lastY: 0,
         moved: false,
-        targetNode: null
+        targetNode: null,
+        targetNodeData: null
+      };
+      var touchZoomState = {
+        active: false,
+        startDistance: 0,
+        startZoom: 1
       };
       var suppressNextNodeTap = false;
+      var lastTouchTooltipTime = 0;
 
       function getPointerPoint(evt) {
         if (evt.touches && evt.touches.length > 0) {
@@ -1084,7 +1094,77 @@
         evt.stopPropagation();
       }
 
+      function getTouchDistance(touches) {
+        var deltaX = touches[0].clientX - touches[1].clientX;
+        var deltaY = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
+      }
+
+      function getTouchCenter(touches) {
+        return {
+          x: (touches[0].clientX + touches[1].clientX) / 2,
+          y: (touches[0].clientY + touches[1].clientY) / 2
+        };
+      }
+
+      function clampZoom(zoom) {
+        return Math.max(graphState.minZoom, Math.min(graphState.maxZoom, zoom));
+      }
+
+      function zoomAtClientPoint(clientX, clientY, nextZoom) {
+        var rect = chartScroll.getBoundingClientRect();
+        var viewportX = clientX - rect.left;
+        var viewportY = clientY - rect.top;
+        var graphX = (viewportX - graphState.panX) / graphState.zoom;
+        var graphY = (viewportY - graphState.panY) / graphState.zoom;
+
+        graphState.panX = viewportX - (graphX * nextZoom);
+        graphState.panY = viewportY - (graphY * nextZoom);
+        graphState.zoom = nextZoom;
+        applyGraphTransform();
+      }
+
+      function startTouchZoom(evt) {
+        if (!evt.touches || evt.touches.length < 2) {
+          return false;
+        }
+
+        touchZoomState.active = true;
+        touchZoomState.startDistance = getTouchDistance(evt.touches);
+        touchZoomState.startZoom = graphState.zoom;
+        nodePanState.active = false;
+        nodePanState.moved = true;
+        chartContainer.classList.remove("is-node-panning");
+        tooltipDiv.style.display = "none";
+        preventNodePanDefault(evt);
+        return true;
+      }
+
+      function continueTouchZoom(evt) {
+        if (!evt.touches || evt.touches.length < 2) {
+          return false;
+        }
+
+        if (!touchZoomState.active) {
+          return startTouchZoom(evt);
+        }
+
+        var distance = getTouchDistance(evt.touches);
+        if (touchZoomState.startDistance > 0) {
+          var center = getTouchCenter(evt.touches);
+          var nextZoom = clampZoom(touchZoomState.startZoom * (distance / touchZoomState.startDistance));
+          zoomAtClientPoint(center.x, center.y, nextZoom);
+        }
+
+        preventNodePanDefault(evt);
+        return true;
+      }
+
       function startNodePan(evt) {
+        if (startTouchZoom(evt)) {
+          return;
+        }
+
         var point = getPointerPoint(evt);
         if (!point) {
           return;
@@ -1095,12 +1175,18 @@
         nodePanState.lastY = point.y;
         nodePanState.moved = false;
         nodePanState.targetNode = evt.currentTarget;
+        nodePanState.targetNodeData = evt.currentTarget.graphNode || null;
         chartContainer.classList.add("is-node-panning");
         tooltipDiv.style.display = "none";
         preventNodePanDefault(evt);
       }
 
       function continueNodePan(evt) {
+        if (continueTouchZoom(evt)) {
+          suppressNextNodeTap = true;
+          return;
+        }
+
         if (!nodePanState.active) {
           return;
         }
@@ -1130,18 +1216,37 @@
       }
 
       function stopNodePan(evt) {
+        if (touchZoomState.active) {
+          if (!evt.touches || evt.touches.length < 2) {
+            touchZoomState.active = false;
+            suppressNextNodeTap = true;
+            window.setTimeout(function () {
+              suppressNextNodeTap = false;
+            }, 350);
+          }
+
+          preventNodePanDefault(evt);
+          return;
+        }
+
         if (!nodePanState.active) {
           return;
         }
 
+        var tappedNode = !nodePanState.moved && nodePanState.targetNodeData;
         nodePanState.active = false;
+        var targetNodeData = nodePanState.targetNodeData;
         nodePanState.targetNode = null;
+        nodePanState.targetNodeData = null;
         chartContainer.classList.remove("is-node-panning");
 
         if (nodePanState.moved) {
           window.setTimeout(function () {
             suppressNextNodeTap = false;
           }, 350);
+        } else if (evt.type === "touchend" && tappedNode) {
+          lastTouchTooltipTime = new Date().getTime();
+          showTooltip(targetNodeData, evt);
         }
 
         preventNodePanDefault(evt);
@@ -1167,17 +1272,8 @@
         evt.preventDefault();
 
         var zoomFactor = Math.pow(1.05, -evt.deltaY / 100);
-        var nextZoom = Math.max(graphState.minZoom, Math.min(graphState.maxZoom, graphState.zoom * zoomFactor));
-        var rect = chartContainer.getBoundingClientRect();
-        var pointerX = evt.clientX - rect.left;
-        var pointerY = evt.clientY - rect.top;
-        var graphX = pointerX / graphState.zoom;
-        var graphY = pointerY / graphState.zoom;
-
-        graphState.panX += pointerX - (graphX * nextZoom);
-        graphState.panY += pointerY - (graphY * nextZoom);
-        graphState.zoom = nextZoom;
-        applyGraphTransform();
+        var nextZoom = clampZoom(graphState.zoom * zoomFactor);
+        zoomAtClientPoint(evt.clientX, evt.clientY, nextZoom);
       }, { passive: false });
 
       function boldDescriptionExampleLine(description) {
@@ -1188,11 +1284,38 @@
         return description.replace(/<br>(Example:|Ejemplo:|Exemplo:)(.*)$/g, "<br><strong>$1$2</strong>");
       }
 
+      function getEventClientPoint(evt) {
+        if (evt.changedTouches && evt.changedTouches.length > 0) {
+          return { x: evt.changedTouches[0].clientX, y: evt.changedTouches[0].clientY };
+        }
+
+        if (evt.touches && evt.touches.length > 0) {
+          return { x: evt.touches[0].clientX, y: evt.touches[0].clientY };
+        }
+
+        if (typeof evt.clientX === "number" && typeof evt.clientY === "number") {
+          return { x: evt.clientX, y: evt.clientY };
+        }
+
+        return { x: 16, y: 16 };
+      }
+
+      function positionTooltip(evt) {
+        var point = getEventClientPoint(evt);
+        var offset = 15;
+        var left = point.x + offset;
+        var top = point.y + offset;
+        var maxLeft = window.innerWidth - tooltipDiv.offsetWidth - 16;
+        var maxTop = window.innerHeight - tooltipDiv.offsetHeight - 16;
+
+        tooltipDiv.style.left = Math.max(16, Math.min(left, maxLeft)) + "px";
+        tooltipDiv.style.top = Math.max(16, Math.min(top, maxTop)) + "px";
+      }
+
       function showTooltip(node, evt) {
         tooltipDiv.innerHTML = boldDescriptionExampleLine(node.description);
         tooltipDiv.style.display = "block";
-        tooltipDiv.style.left = (evt.pageX + 15) + "px";
-        tooltipDiv.style.top = (evt.pageY + 15) + "px";
+        positionTooltip(evt);
       }
 
       let lastClickTime = 0;
@@ -1203,8 +1326,7 @@
         });
 
         node.element.addEventListener("mousemove", function (evt) {
-          tooltipDiv.style.left = (evt.pageX + 15) + "px";
-          tooltipDiv.style.top = (evt.pageY + 15) + "px";
+          positionTooltip(evt);
         });
 
         node.element.addEventListener("mouseleave", function () {
@@ -1212,7 +1334,7 @@
         });
 
         node.element.addEventListener("click", function (evt) {
-          if (suppressNextNodeTap) {
+          if (suppressNextNodeTap || new Date().getTime() - lastTouchTooltipTime < 400) {
             suppressNextNodeTap = false;
             return;
           }
