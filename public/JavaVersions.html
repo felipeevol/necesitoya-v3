@@ -1067,6 +1067,8 @@
         node.element.addEventListener("mousedown", startNodePan);
         node.element.addEventListener("touchstart", startNodePan, { passive: false });
       });
+      chartContainer.addEventListener("mousedown", startNodePan);
+      chartContainer.addEventListener("touchstart", startNodePan, { passive: false });
       window.addEventListener("mousemove", continueNodePan, { passive: false });
       window.addEventListener("touchmove", continueNodePan, { passive: false });
       window.addEventListener("mouseup", stopNodePan);
