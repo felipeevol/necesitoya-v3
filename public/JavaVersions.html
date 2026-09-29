@@ -6,7 +6,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233b82f6;stop-opacity:1' /><stop offset='100%' style='stop-color:%238b5cf6;stop-opacity:1' /></linearGradient></defs><circle cx='100' cy='100' r='100' fill='url(%23grad)'/><text x='100' y='135' font-size='110' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial, sans-serif'>PJ</text></svg>" type="image/svg+xml">
-  <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4R0N7JB6F7"></script>
   <script>
@@ -51,57 +50,88 @@
         radial-gradient(circle at 10% 14%, rgba(36, 156, 255, 0.16), transparent 28%),
         radial-gradient(circle at 76% 12%, rgba(255, 125, 29, 0.16), transparent 22%),
         linear-gradient(180deg, rgba(5, 17, 31, 0.14), rgba(1, 6, 13, 0.5));
+      transform-origin: 0 0;
+      user-select: none;
+      touch-action: none;
     }
 
     #cy.is-node-panning {
       cursor: grabbing;
     }
 
-    /* Default styles for nodes and edges */
-    .node-default-style {
-      background-color: transparent;
-      label: data(name);
-      width: label;
-      height: label;
-      padding: 10px;
-      shape: rectangle;
-      color: white;
-      text-valign: center;
-      text-halign: center;
-      border-width: 1px;
-      border-color: #333;
-      opacity: 1;
-      transition: border-color 0.2s ease-in-out, border-width 0.2s ease-in-out;
+    .timeline-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .edge-default-style {
-      width: 3;
-      line-color: #ccc;
-      target-arrow-color: #ccc;
-      target-arrow-shape: triangle;
-      curve-style: bezier;
-      opacity: 1;
-      transition: line-color 0.2s ease-in-out, width 0.2s ease-in-out;
+    .timeline-line {
+      stroke: #ff8a24;
+      stroke-width: 5;
+      stroke-linecap: round;
+      opacity: 0.92;
     }
 
-    /* Highlight style for the CLICKED NODE - NOW WITH BLUE BORDER */
-    .node-clicked-highlight-style {
-      border-color: #0000FF;
-      /* BLUE border for the clicked node */
-      border-width: 4px;
-      /* Borda mais grossa para o nÃ³ clicado */
+    .chart-node {
+      position: absolute;
+      width: 310px;
+      min-height: 64px;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 12px 16px;
+      color: #eaf6ff;
+      font-family: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.12;
+      text-align: center;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      border: 0 solid rgba(74, 181, 255, 0.62);
+      background: transparent;
+      border-radius: 18px;
+      z-index: 1;
+      cursor: grab;
+      appearance: none;
+      transition: border-color 0.2s ease-in-out, border-width 0.2s ease-in-out, background-color 0.2s ease-in-out;
     }
 
-    /* Highlight style ONLY for CONNECTED EDGES */
-    .edge-highlighted-blue-style {
-      line-color: #0000FF;
-      /* Blue line */
-      target-arrow-color: #0000FF;
-      /* Blue arrow */
-      source-arrow-color: #0000FF;
-      /* Blue arrow */
-      width: 6px;
-      /* Thicker */
+    .chart-node.title,
+    .chart-node.title-lts {
+      width: 290px;
+      min-height: 86px;
+      color: #ffffff;
+      font-weight: 800;
+      white-space: pre-line;
+      z-index: 2;
+    }
+
+    .chart-node.title {
+      background: rgba(30, 28, 35, 0.74);
+      border-width: 2px;
+      border-color: rgba(255, 138, 36, 0.74);
+      font-size: 24px;
+      box-shadow: 0 4px 26px rgba(255, 132, 37, 0.34);
+    }
+
+    .chart-node.title-lts {
+      background: rgba(18, 33, 53, 0.74);
+      border-width: 3px;
+      border-color: #35aaff;
+      font-size: 26px;
+      box-shadow: 0 4px 30px rgba(37, 163, 255, 0.46);
+    }
+
+    .chart-node.accent-orange {
+      border-color: #ff8a24;
+      box-shadow: 0 4px 18px rgba(255, 132, 37, 0.38);
     }
 
     /* Tooltip Style */
@@ -259,9 +289,7 @@
 	  var coluna22 = coluna1 + (espacoHorizontalColunas * 21);
 	  var coluna23 = coluna1 + (espacoHorizontalColunas * 22);
 
-      var cy = cytoscape({
-        container: chartContainer,
-        elements: [
+      var graphElements = [
 
           // Coluna 1
           { data: { id: 'Java 1.4 and Previous', name: 'Java 1.4 and Previous - Feb/2002', description: 'Classic Java foundation before generics and lambdas.', linkURL: '', rightLinkURL: '', category: 'title' }, position: { x: 350, y: linha1 } },
@@ -484,115 +512,7 @@
           { data: { id: 'G1 default everywhere', name: 'G1 default everywhere', description: 'Makes G1 the default garbage collector in every environment.<br>Example: consistent default GC behavior in small containers.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha8 } },
           { data: { id: 'JFR data redaction', name: 'JFR data redaction', description: 'Redacts sensitive arguments, environment variables, and properties in recordings.<br>Example: safer production JFR captures.', linkURL: '', rightLinkURL: '' }, position: { x: coluna23, y: linha9 } },
 
-        ],
-        style: [
-          {
-            selector: "node",
-            style: {
-              "background-color": "transparent",
-              "background-opacity": 0,
-              "label": "data(label)",
-              "width": 310,
-              "height": 64,
-              "padding": "16px",
-              "shape": "roundrectangle",
-              "color": "#eaf6ff",
-              "font-family": "Inter, Segoe UI, Helvetica, Arial, sans-serif",
-              "font-size": 24,
-              "font-weight": 600,
-              "text-wrap": "wrap",
-              "text-max-width": 290,
-              "text-valign": "center",
-              "text-halign": "center",
-              "border-width": 0,
-              "border-color": "rgba(74, 181, 255, 0.62)",
-              "shadow-blur": 18,
-              "shadow-color": "rgba(32, 156, 255, 0.28)",
-              "shadow-opacity": 0,
-              "shadow-offset-x": 0,
-              "shadow-offset-y": 4,
-              "overlay-opacity": 0,
-              "opacity": 1,
-              "transition-property": "border-color, border-width, background-color",
-              "transition-duration": "0.2s"
-            }
-          },
-          {
-            selector: "edge",
-            style: {
-              "width": 0,
-              "line-color": "rgba(255, 255, 255, 0)",
-              "target-arrow-color": "rgba(255, 255, 255, 0)",
-              "target-arrow-shape": "none",
-              "curve-style": "straight",
-              "opacity": 1,
-              "transition-property": "line-color, width",
-              "transition-duration": "0.2s"
-            }
-          },
-          {
-            selector: "edge[kind = 'timeline']",
-            style: {
-              "width": 5,
-              "line-color": "#ff8a24",
-              "target-arrow-color": "#ff8a24",
-              "target-arrow-shape": "triangle",
-              "arrow-scale": 1.25,
-              "curve-style": "straight",
-              "opacity": 0.92,
-              "z-index": 0
-            }
-          },
-          {
-            selector: "node[category = 'title_lts']",
-            style: {
-              "width": 290,
-              "height": 86,
-              "background-color": "rgba(18, 33, 53, 0.74)",
-              "background-opacity": 1,
-              "border-width": 3,
-              "border-color": "#35aaff",
-              "color": "#ffffff",
-              "font-size": 26,
-              "font-weight": 800,
-              "text-max-width": 250,
-              "shadow-blur": 30,
-              "shadow-opacity": 1,
-              "shadow-color": "rgba(37, 163, 255, 0.46)"
-            }
-          },
-          {
-            selector: "node[category = 'title']",
-            style: {
-              "width": 290,
-              "height": 86,
-              "background-color": "rgba(30, 28, 35, 0.74)",
-              "background-opacity": 1,
-              "border-width": 2,
-              "border-color": "rgba(255, 138, 36, 0.74)",
-              "color": "#ffffff",
-              "font-size": 24,
-              "font-weight": 800,
-              "text-max-width": 250,
-              "shadow-blur": 26,
-              "shadow-opacity": 1,
-              "shadow-color": "rgba(255, 132, 37, 0.34)"
-            }
-          },
-          {
-            selector: "node[accent = 'orange']",
-            style: {
-              "border-color": "#ff8a24",
-              "shadow-color": "rgba(255, 132, 37, 0.38)"
-            }
-          }
-        ],
-        layout: {
-          name: "preset", idealEdgeLength: 100, nodeOverlap: 20, refresh: 20, fit: false, padding: 10, randomize: false, componentSpacing: 100, nodeRepulsion: 400000, edgeElasticity: 100, nestingFactor: 5, gravity: 80, numIter: 1000, initialTemp: 200, coolingFactor: 0.95, minTemp: 1.0
-        },
-		autoungrabify: true,
-        userZoomingEnabled: false
-      });
+      ];
 
       function getFeatureIcon(name) {
         var normalized = name.toLowerCase();
@@ -626,34 +546,39 @@
         return icon + "  " + name;
       }
 
-      cy.nodes().forEach(function (node) {
-        var category = node.data("category");
-        var icon = category ? "" : getFeatureIcon(node.data("name"));
-        node.data("icon", icon);
-        node.data("label", buildNodeLabel(node.data("name"), category, icon));
-
-        if (!category && node.position("x") >= coluna17) {
-          node.data("accent", "orange");
-        }
+      var graphNodes = graphElements.map(function (element) {
+        var category = element.data.category || "";
+        var icon = category ? "" : getFeatureIcon(element.data.name);
+        return {
+          id: element.data.id,
+          name: element.data.name,
+          nameEn: element.data.name,
+          description: element.data.description,
+          descriptionEn: element.data.description,
+          linkURL: element.data.linkURL,
+          rightLinkURL: element.data.rightLinkURL,
+          category: category,
+          icon: icon,
+          accent: !category && element.position.x >= coluna17 ? "orange" : "",
+          label: buildNodeLabel(element.data.name, category, icon),
+          position: element.position,
+          element: null
+        };
       });
 
-      var timelineNodes = cy.nodes().filter(function (node) {
-        return node.data("category") === "title" || node.data("category") === "title_lts";
+      var timelineNodes = graphNodes.filter(function (node) {
+        return node.category === "title" || node.category === "title_lts";
       }).sort(function (a, b) {
-        return a.position("x") - b.position("x");
+        return a.position.x - b.position.x;
       });
 
-      for (var timelineIndex = 0; timelineIndex < timelineNodes.length - 1; timelineIndex++) {
-        cy.add({
-          group: "edges",
-          data: {
-            id: "timeline-" + timelineIndex,
-            source: timelineNodes[timelineIndex].id(),
-            target: timelineNodes[timelineIndex + 1].id(),
-            kind: "timeline"
-          }
-        });
-      }
+      var graphState = {
+        zoom: 1,
+        panX: 0,
+        panY: 0,
+        minZoom: 0.25,
+        maxZoom: 1.8
+      };
 
       var languageButtons = Array.prototype.slice.call(document.querySelectorAll(".language-button"));
       var releaseDateTranslations = {
@@ -887,10 +812,98 @@
         "JFR data redaction": { es: `Oculta argumentos, variables de entorno y propiedades sensibles en grabaciones.<br>Ejemplo: capturas JFR de producción más seguras.`, pt: `Oculta argumentos, variáveis de ambiente e propriedades sensíveis em gravações.<br>Exemplo: capturas JFR de produção mais seguras.` }
       };
 
-      cy.nodes().forEach(function (node) {
-        node.data("nameEn", node.data("name"));
-        node.data("descriptionEn", node.data("description"));
-      });
+      function applyGraphTransform() {
+        chartContainer.style.transform = "translate(" + graphState.panX + "px, " + graphState.panY + "px) scale(" + graphState.zoom + ")";
+      }
+
+      function getNodesBounds(nodes) {
+        return nodes.reduce(function (bounds, node) {
+          var halfWidth = node.category ? 145 : 155;
+          var halfHeight = node.category ? 43 : 32;
+          return {
+            x1: Math.min(bounds.x1, node.position.x - halfWidth),
+            y1: Math.min(bounds.y1, node.position.y - halfHeight),
+            x2: Math.max(bounds.x2, node.position.x + halfWidth),
+            y2: Math.max(bounds.y2, node.position.y + halfHeight)
+          };
+        }, { x1: Infinity, y1: Infinity, x2: -Infinity, y2: -Infinity });
+      }
+
+      function renderTimeline() {
+        var svgNS = "http://www.w3.org/2000/svg";
+        var timelineSvg = document.createElementNS(svgNS, "svg");
+        var defs = document.createElementNS(svgNS, "defs");
+        var marker = document.createElementNS(svgNS, "marker");
+        marker.setAttribute("id", "timeline-arrow");
+        marker.setAttribute("viewBox", "0 0 10 10");
+        marker.setAttribute("refX", "9");
+        marker.setAttribute("refY", "5");
+        marker.setAttribute("markerWidth", "9");
+        marker.setAttribute("markerHeight", "9");
+        marker.setAttribute("orient", "auto-start-reverse");
+
+        var arrow = document.createElementNS(svgNS, "path");
+        arrow.setAttribute("d", "M 0 0 L 10 5 L 0 10 z");
+        arrow.setAttribute("fill", "#ff8a24");
+        marker.appendChild(arrow);
+        defs.appendChild(marker);
+        timelineSvg.appendChild(defs);
+        timelineSvg.classList.add("timeline-layer");
+
+        for (var timelineIndex = 0; timelineIndex < timelineNodes.length - 1; timelineIndex++) {
+          var source = timelineNodes[timelineIndex];
+          var target = timelineNodes[timelineIndex + 1];
+          var line = document.createElementNS(svgNS, "line");
+          line.classList.add("timeline-line");
+          line.setAttribute("x1", source.position.x + 145);
+          line.setAttribute("y1", source.position.y);
+          line.setAttribute("x2", target.position.x - 155);
+          line.setAttribute("y2", target.position.y);
+          line.setAttribute("marker-end", "url(#timeline-arrow)");
+          timelineSvg.appendChild(line);
+        }
+
+        chartContainer.appendChild(timelineSvg);
+      }
+
+      function renderNodes() {
+        graphNodes.forEach(function (node) {
+          var nodeElement = document.createElement("button");
+          nodeElement.type = "button";
+          nodeElement.className = "chart-node";
+          nodeElement.style.left = node.position.x + "px";
+          nodeElement.style.top = node.position.y + "px";
+          nodeElement.setAttribute("data-node-id", node.id);
+          nodeElement.setAttribute("aria-label", node.name);
+
+          if (node.category === "title") {
+            nodeElement.classList.add("title");
+          } else if (node.category === "title_lts") {
+            nodeElement.classList.add("title-lts");
+          }
+
+          if (node.accent === "orange") {
+            nodeElement.classList.add("accent-orange");
+          }
+
+          node.element = nodeElement;
+          chartContainer.appendChild(nodeElement);
+        });
+      }
+
+      function updateNodeElements() {
+        graphNodes.forEach(function (node) {
+          if (!node.element) {
+            return;
+          }
+
+          node.element.textContent = node.label;
+          node.element.setAttribute("aria-label", node.name);
+        });
+      }
+
+      renderTimeline();
+      renderNodes();
 
       function translateTitleName(originalName, language) {
         if (language === "en" || originalName.indexOf(" - ") === -1) {
@@ -905,16 +918,15 @@
       }
 
       function applyLanguage(language) {
-        cy.batch(function () {
-          cy.nodes().forEach(function (node) {
-            var nodeTranslations = descriptionTranslations[node.id()];
-            node.data("name", translateTitleName(node.data("nameEn"), language));
-            node.data("description", language === "en"
-              ? node.data("descriptionEn")
-              : ((nodeTranslations && nodeTranslations[language]) || node.data("descriptionEn")));
-            node.data("label", buildNodeLabel(node.data("name"), node.data("category"), node.data("icon")));
-          });
+        graphNodes.forEach(function (node) {
+          var nodeTranslations = descriptionTranslations[node.id];
+          node.name = translateTitleName(node.nameEn, language);
+          node.description = language === "en"
+            ? node.descriptionEn
+            : ((nodeTranslations && nodeTranslations[language]) || node.descriptionEn);
+          node.label = buildNodeLabel(node.name, node.category, node.icon);
         });
+        updateNodeElements();
 
         languageButtons.forEach(function (button) {
           var isActive = button.getAttribute("data-language") === language;
@@ -940,17 +952,15 @@
 
       function fitGraphToVisibleArea() {
         var padding = 10;
-        var initialVisibleBounds = cy.nodes().filter(function (node) {
-          return node.position("x") <= coluna6;
-        }).boundingBox();
+        var initialVisibleBounds = getNodesBounds(graphNodes.filter(function (node) {
+          return node.position.x <= coluna6;
+        }));
         var visibleWidth = chartScroll.clientWidth;
-        var zoom = Math.min(0.82, (visibleWidth - (padding * 2)) / initialVisibleBounds.w);
-
-        cy.zoom(zoom);
-        cy.pan({
-          x: (visibleWidth - (zoom * (initialVisibleBounds.x1 + initialVisibleBounds.x2))) / 2,
-          y: 48 - (zoom * initialVisibleBounds.y1)
-        });
+        var boundsWidth = initialVisibleBounds.x2 - initialVisibleBounds.x1;
+        graphState.zoom = Math.min(0.82, (visibleWidth - (padding * 2)) / boundsWidth);
+        graphState.panX = (visibleWidth - (graphState.zoom * (initialVisibleBounds.x1 + initialVisibleBounds.x2))) / 2;
+        graphState.panY = 48 - (graphState.zoom * initialVisibleBounds.y1);
+        applyGraphTransform();
       }
 
       fitGraphToVisibleArea();
@@ -960,7 +970,8 @@
         active: false,
         lastX: 0,
         lastY: 0,
-        moved: false
+        moved: false,
+        targetNode: null
       };
       var suppressNextNodeTap = false;
 
@@ -990,7 +1001,7 @@
       }
 
       function startNodePan(evt) {
-        var point = getPointerPoint(evt.originalEvent);
+        var point = getPointerPoint(evt);
         if (!point) {
           return;
         }
@@ -999,9 +1010,10 @@
         nodePanState.lastX = point.x;
         nodePanState.lastY = point.y;
         nodePanState.moved = false;
+        nodePanState.targetNode = evt.currentTarget;
         chartContainer.classList.add("is-node-panning");
         tooltipDiv.style.display = "none";
-        preventNodePanDefault(evt.originalEvent);
+        preventNodePanDefault(evt);
       }
 
       function continueNodePan(evt) {
@@ -1018,7 +1030,9 @@
         var deltaY = point.y - nodePanState.lastY;
 
         if (deltaX !== 0 || deltaY !== 0) {
-          cy.panBy({ x: deltaX, y: deltaY });
+          graphState.panX += deltaX;
+          graphState.panY += deltaY;
+          applyGraphTransform();
           nodePanState.lastX = point.x;
           nodePanState.lastY = point.y;
 
@@ -1037,6 +1051,7 @@
         }
 
         nodePanState.active = false;
+        nodePanState.targetNode = null;
         chartContainer.classList.remove("is-node-panning");
 
         if (nodePanState.moved) {
@@ -1048,14 +1063,17 @@
         preventNodePanDefault(evt);
       }
 
-      cy.on("mousedown touchstart", "node", startNodePan);
+      graphNodes.forEach(function (node) {
+        node.element.addEventListener("mousedown", startNodePan);
+        node.element.addEventListener("touchstart", startNodePan, { passive: false });
+      });
       window.addEventListener("mousemove", continueNodePan, { passive: false });
       window.addEventListener("touchmove", continueNodePan, { passive: false });
       window.addEventListener("mouseup", stopNodePan);
       window.addEventListener("touchend", stopNodePan);
       window.addEventListener("touchcancel", stopNodePan);
 
-      cy.container().addEventListener("wheel", function (evt) {
+      chartContainer.addEventListener("wheel", function (evt) {
         if (!evt.ctrlKey) {
           return;
         }
@@ -1063,17 +1081,17 @@
         evt.preventDefault();
 
         var zoomFactor = Math.pow(1.05, -evt.deltaY / 100);
-        var nextZoom = cy.zoom() * zoomFactor;
-        nextZoom = Math.max(cy.minZoom(), Math.min(cy.maxZoom(), nextZoom));
-        var rect = cy.container().getBoundingClientRect();
+        var nextZoom = Math.max(graphState.minZoom, Math.min(graphState.maxZoom, graphState.zoom * zoomFactor));
+        var rect = chartContainer.getBoundingClientRect();
+        var pointerX = evt.clientX - rect.left;
+        var pointerY = evt.clientY - rect.top;
+        var graphX = pointerX / graphState.zoom;
+        var graphY = pointerY / graphState.zoom;
 
-        cy.zoom({
-          level: nextZoom,
-          renderedPosition: {
-            x: evt.clientX - rect.left,
-            y: evt.clientY - rect.top
-          }
-        });
+        graphState.panX += pointerX - (graphX * nextZoom);
+        graphState.panY += pointerY - (graphY * nextZoom);
+        graphState.zoom = nextZoom;
+        applyGraphTransform();
       }, { passive: false });
 
       function boldDescriptionExampleLine(description) {
@@ -1084,55 +1102,47 @@
         return description.replace(/<br>(Example:|Ejemplo:|Exemplo:)(.*)$/g, "<br><strong>$1$2</strong>");
       }
 
-      // Tooltip events
-      cy.on("mouseover", "node", function (evt) {
-        var node = evt.target;
-        var nodeDescription = node.data("description");
-        tooltipDiv.innerHTML = boldDescriptionExampleLine(nodeDescription);
-        tooltipDiv.style.display = "block";
-        // Posiciona o tooltip perto do mouse
-        // Adiciona um pequeno deslocamento para nÃ£o cobrir o cursor
-        tooltipDiv.style.left = (evt.originalEvent.pageX + 15) + "px";
-        tooltipDiv.style.top = (evt.originalEvent.pageY + 15) + "px";
-      });
-
-      cy.on("mouseout", "node", function (evt) {
-        tooltipDiv.style.display = "none";
-      });
-
       let lastClickTime = 0;
 
-      cy.on("tap", "node", function (evt) {
-        if (suppressNextNodeTap) {
-          suppressNextNodeTap = false;
-          return;
-        }
+      graphNodes.forEach(function (node) {
+        node.element.addEventListener("mouseenter", function (evt) {
+          tooltipDiv.innerHTML = boldDescriptionExampleLine(node.description);
+          tooltipDiv.style.display = "block";
+          tooltipDiv.style.left = (evt.pageX + 15) + "px";
+          tooltipDiv.style.top = (evt.pageY + 15) + "px";
+        });
 
-        var tappedNode = evt.target;
+        node.element.addEventListener("mousemove", function (evt) {
+          tooltipDiv.style.left = (evt.pageX + 15) + "px";
+          tooltipDiv.style.top = (evt.pageY + 15) + "px";
+        });
 
-        const now = new Date().getTime();
-        const timeDiff = now - lastClickTime;
-        lastClickTime = now;
+        node.element.addEventListener("mouseleave", function () {
+          tooltipDiv.style.display = "none";
+        });
 
-        if (timeDiff < 300) {
-
-          // Agora, abre o link se existir
-          var link = tappedNode.data("linkURL");
-          if (link) {
-            window.open(link, "_blank"); // Abre em uma nova aba
+        node.element.addEventListener("click", function () {
+          if (suppressNextNodeTap) {
+            suppressNextNodeTap = false;
+            return;
           }
 
-        }
+          var now = new Date().getTime();
+          var timeDiff = now - lastClickTime;
+          lastClickTime = now;
 
-        // Other nodes remain in their default state
-      });
+          if (timeDiff < 300 && node.linkURL) {
+            window.open(node.linkURL, "_blank");
+          }
+        });
 
-      cy.on("cxttap", "node", function (evt) {
-        var tappedNode = evt.target;
-        var link = tappedNode.data("rightLinkURL");
-        if (link) {
-          window.open(link, "_blank"); // Abre em uma nova aba
-        }
+        node.element.addEventListener("contextmenu", function (evt) {
+          evt.preventDefault();
+
+          if (node.rightLinkURL) {
+            window.open(node.rightLinkURL, "_blank");
+          }
+        });
       });
 
     });
