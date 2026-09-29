@@ -1188,14 +1188,18 @@
         return description.replace(/<br>(Example:|Ejemplo:|Exemplo:)(.*)$/g, "<br><strong>$1$2</strong>");
       }
 
+      function showTooltip(node, evt) {
+        tooltipDiv.innerHTML = boldDescriptionExampleLine(node.description);
+        tooltipDiv.style.display = "block";
+        tooltipDiv.style.left = (evt.pageX + 15) + "px";
+        tooltipDiv.style.top = (evt.pageY + 15) + "px";
+      }
+
       let lastClickTime = 0;
 
       graphNodes.forEach(function (node) {
         node.element.addEventListener("mouseenter", function (evt) {
-          tooltipDiv.innerHTML = boldDescriptionExampleLine(node.description);
-          tooltipDiv.style.display = "block";
-          tooltipDiv.style.left = (evt.pageX + 15) + "px";
-          tooltipDiv.style.top = (evt.pageY + 15) + "px";
+          showTooltip(node, evt);
         });
 
         node.element.addEventListener("mousemove", function (evt) {
@@ -1207,11 +1211,13 @@
           tooltipDiv.style.display = "none";
         });
 
-        node.element.addEventListener("click", function () {
+        node.element.addEventListener("click", function (evt) {
           if (suppressNextNodeTap) {
             suppressNextNodeTap = false;
             return;
           }
+
+          showTooltip(node, evt);
 
           var now = new Date().getTime();
           var timeDiff = now - lastClickTime;
