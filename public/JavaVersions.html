@@ -162,19 +162,38 @@
       left: 8px;
       z-index: 1100;
       display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px 8px 8px;
+      background: rgba(6, 19, 35, 0.86);
+      border: 1px solid rgba(84, 190, 255, 0.24);
+      border-radius: 999px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(8px);
+      overflow: visible;
+      --language-button-height: 34px;
+      --language-button-gap: 6px;
+    }
+
+    .language-options {
+      display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
-      padding: 8px;
-      background: rgba(6, 19, 35, 0.86);
-      border: 1px solid rgba(84, 190, 255, 0.24);
-      border-radius: 18px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
-      backdrop-filter: blur(8px);
+      position: relative;
+      flex: 0 0 38px;
+      min-height: var(--language-button-height);
     }
 
     .language-switcher:not(.open) .language-button:not(.active) {
       display: none;
+    }
+
+    .language-switcher.open .language-button:not(.active) {
+      position: absolute;
+      left: 0;
+      top: var(--language-menu-offset);
+      z-index: 1;
     }
 
     .language-button {
@@ -185,6 +204,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-width: 38px;
+      min-height: var(--language-button-height);
+      box-sizing: border-box;
       font-size: 1.1rem;
       line-height: 1;
       cursor: pointer;
@@ -221,26 +243,39 @@
       height: 100%;
       display: block;
     }
+
+    .language-hint {
+      max-width: 118px;
+      color: #d9f1ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: 0.01em;
+      text-align: left;
+    }
   </style>
 </head>
 
 <body>
   <div class="language-switcher" aria-label="Language selector">
-    <button class="language-button active" type="button" data-language="en" aria-label="English" title="English" aria-pressed="true" aria-expanded="false">
-      <span aria-hidden="true" class="flag-icon">
-        <img src="assets/flags/en.svg" alt="">
-      </span>
-    </button>
-    <button class="language-button" type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false" aria-expanded="false">
-      <span aria-hidden="true" class="flag-icon">
-        <img src="assets/flags/es.svg" alt="">
-      </span>
-    </button>
-    <button class="language-button" type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="false" aria-expanded="false">
-      <span aria-hidden="true" class="flag-icon">
-        <img src="assets/flags/pt.svg" alt="">
-      </span>
-    </button>
+    <div class="language-options">
+      <button class="language-button active" type="button" data-language="en" aria-label="English" title="English" aria-pressed="true" aria-expanded="false">
+        <span aria-hidden="true" class="flag-icon">
+          <img src="assets/flags/en.svg" alt="">
+        </span>
+      </button>
+      <button class="language-button" type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false" aria-expanded="false">
+        <span aria-hidden="true" class="flag-icon">
+          <img src="assets/flags/es.svg" alt="">
+        </span>
+      </button>
+      <button class="language-button" type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="false" aria-expanded="false">
+        <span aria-hidden="true" class="flag-icon">
+          <img src="assets/flags/pt.svg" alt="">
+        </span>
+      </button>
+    </div>
+    <span class="language-hint">Click or tap a topic</span>
   </div>
   <div id="chart-scroll">
     <div id="cy"></div>
@@ -601,7 +636,13 @@
       };
 
       var languageSwitcher = document.querySelector(".language-switcher");
+      var languageHint = document.querySelector(".language-hint");
       var languageButtons = Array.prototype.slice.call(document.querySelectorAll(".language-button"));
+      var instructionTranslations = {
+        en: "Click or tap a topic",
+        es: "Haz clic o toca un tema",
+        pt: "Clique ou toque em um tópico"
+      };
       var releaseDateTranslations = {
         en: {},
         es: {
@@ -1025,12 +1066,20 @@
           button.setAttribute("aria-expanded", isActive && languageSwitcher.classList.contains("open") ? "true" : "false");
         });
 
+        languageHint.textContent = instructionTranslations[language] || instructionTranslations.en;
         document.documentElement.setAttribute("lang", language);
       }
 
       function setLanguageMenuOpen(isOpen) {
         languageSwitcher.classList.toggle("open", isOpen);
+        var menuIndex = 1;
         languageButtons.forEach(function (button) {
+          if (!button.classList.contains("active")) {
+            button.style.setProperty("--language-menu-offset", (menuIndex * 40) + "px");
+            menuIndex += 1;
+          } else {
+            button.style.removeProperty("--language-menu-offset");
+          }
           button.setAttribute("aria-expanded", button.classList.contains("active") && isOpen ? "true" : "false");
         });
       }
