@@ -36,18 +36,7 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '2. Que dados recolhemos?',
-        paragraphs: [
-          'Quando utiliza o formulário de contacto, podemos recolher os seguintes dados:',
-        ],
-        items: [
-          'Nome',
-          'Endereço de e-mail',
-          'Qualquer informação adicional que decida incluir na sua mensagem',
-        ],
-      },
-      {
-        title: '3. Para que utilizamos os seus dados?',
+        title: '2. Para que utilizamos os seus dados?',
         paragraphs: [
           'Através do formulário de contacto na nossa página principal, podemos recolher o seu nome, endereço de e-mail e qualquer informação adicional que decida incluir na sua mensagem. Utilizamos estas informações apenas para responder às suas perguntas ou pedidos e acompanhar a sua consulta. Não as utilizamos para marketing sem o seu consentimento.',
         ],
@@ -56,32 +45,32 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '4. Base legal para o tratamento',
+        title: '3. Base legal para o tratamento',
         paragraphs: [
           'Tratamos os seus dados com base no seu consentimento ao submeter o formulário de contacto e/ou porque o tratamento é necessário para responder ao seu pedido.',
         ],
       },
       {
-        title: '5. Durante quanto tempo conservamos os dados?',
+        title: '4. Durante quanto tempo conservamos os dados?',
         paragraphs: [
           'Os seus dados serão conservados apenas durante o tempo necessário para responder ao seu pedido ou cumprir obrigações legais aplicáveis.',
         ],
       },
       {
-        title: '6. Partilha de dados',
+        title: '5. Partilha de dados',
         paragraphs: [
           'Os seus dados não são vendidos nem cedidos a terceiros para fins comerciais.',
           'Poderão ser tratados por fornecedores de serviços tecnológicos que suportam o funcionamento deste website (por exemplo, alojamento ou envio de e-mails), sempre em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD).',
         ],
       },
       {
-        title: '7. Segurança',
+        title: '6. Segurança',
         paragraphs: [
           'Adotamos medidas técnicas e organizativas adequadas para proteger os seus dados contra acesso não autorizado, perda, alteração ou divulgação.',
         ],
       },
       {
-        title: '8. Os seus direitos',
+        title: '7. Os seus direitos',
         paragraphs: [
           'Nos termos do RGPD, tem o direito de:',
           'Para exercer qualquer destes direitos, contacte-nos através do endereço indicado abaixo.',
@@ -97,14 +86,14 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '9. Contacto',
+        title: '8. Contacto',
         paragraphs: [
           'Se tiver alguma questão sobre esta Política de Privacidade ou sobre o tratamento dos seus dados pessoais, pode contactar-nos através de:',
         ],
         emailLabel: 'E-mail',
       },
       {
-        title: '10. Alterações a esta política',
+        title: '9. Alterações a esta política',
         paragraphs: [
           'Reservamo-nos o direito de atualizar esta Política de Privacidade sempre que necessário. A versão mais recente estará sempre disponível nesta página.',
         ],
@@ -125,18 +114,7 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '2. What data do we collect?',
-        paragraphs: [
-          'When you use the contact form, we may collect the following data:',
-        ],
-        items: [
-          'Name',
-          'Email address',
-          'Any additional information you choose to include in your message',
-        ],
-      },
-      {
-        title: '3. How do we use your data?',
+        title: '2. How do we use your data?',
         paragraphs: [
           'Through the contact form on our main page, we may collect your name, email address, and any additional information you choose to include in your message. We use this information only to respond to your questions or requests and follow up on your inquiry. We do not use it for marketing without your consent.',
         ],
@@ -145,32 +123,32 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '4. Legal basis for processing',
+        title: '3. Legal basis for processing',
         paragraphs: [
           'We process your data based on your consent when submitting the contact form and/or because the processing is necessary to respond to your request.',
         ],
       },
       {
-        title: '5. How long do we retain your data?',
+        title: '4. How long do we retain your data?',
         paragraphs: [
           'Your data will only be kept for as long as necessary to respond to your request or comply with applicable legal obligations.',
         ],
       },
       {
-        title: '6. Data sharing',
+        title: '5. Data sharing',
         paragraphs: [
           'Your data is not sold or shared with third parties for commercial purposes.',
           'It may be processed by technology service providers that support the operation of this website (for example, hosting or email services), always in compliance with the General Data Protection Regulation (GDPR).',
         ],
       },
       {
-        title: '7. Security',
+        title: '6. Security',
         paragraphs: [
           'We adopt appropriate technical and organizational measures to protect your data against unauthorized access, loss, alteration, or disclosure.',
         ],
       },
       {
-        title: '8. Your rights',
+        title: '7. Your rights',
         paragraphs: [
           'Under the GDPR, you have the right to:',
           'To exercise any of these rights, please contact us using the address below.',
@@ -186,14 +164,14 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '9. Contact',
+        title: '8. Contact',
         paragraphs: [
           'If you have any questions about this Privacy Policy or the processing of your personal data, you can contact us via:',
         ],
         emailLabel: 'Email',
       },
       {
-        title: '10. Changes to this policy',
+        title: '9. Changes to this policy',
         paragraphs: [
           'We reserve the right to update this Privacy Policy whenever necessary. The latest version will always be available on this page.',
         ],
@@ -214,18 +192,7 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '2. ¿Qué datos recopilamos?',
-        paragraphs: [
-          'Cuando utilizas el formulario de contacto, podemos recopilar los siguientes datos:',
-        ],
-        items: [
-          'Nombre',
-          'Dirección de correo electrónico',
-          'Cualquier información adicional que decidas incluir en tu mensaje',
-        ],
-      },
-      {
-        title: '3. ¿Para qué utilizamos tus datos?',
+        title: '2. ¿Para qué utilizamos tus datos?',
         paragraphs: [
           'A través del formulario de contacto de nuestra página principal, podemos recopilar tu nombre, dirección de correo electrónico y cualquier información adicional que decidas incluir en tu mensaje. Utilizamos esta información solo para responder a tus preguntas o solicitudes y hacer seguimiento de tu consulta. No la utilizamos con fines de marketing sin tu consentimiento.',
         ],
@@ -234,32 +201,32 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '4. Base legal para el tratamiento',
+        title: '3. Base legal para el tratamiento',
         paragraphs: [
           'Tratamos tus datos con base en tu consentimiento al enviar el formulario de contacto y/o porque el tratamiento es necesario para responder a tu solicitud.',
         ],
       },
       {
-        title: '5. ¿Durante cuánto tiempo conservamos los datos?',
+        title: '4. ¿Durante cuánto tiempo conservamos los datos?',
         paragraphs: [
           'Tus datos solo se conservarán durante el tiempo necesario para responder a tu solicitud o cumplir con las obligaciones legales aplicables.',
         ],
       },
       {
-        title: '6. Cesión de datos',
+        title: '5. Cesión de datos',
         paragraphs: [
           'Tus datos no se venden ni se ceden a terceros con fines comerciales.',
           'Pueden ser tratados por proveedores de servicios tecnológicos que apoyan el funcionamiento de este sitio web (por ejemplo, alojamiento o envío de correos electrónicos), siempre de conformidad con el Reglamento General de Protección de Datos (RGPD).',
         ],
       },
       {
-        title: '7. Seguridad',
+        title: '6. Seguridad',
         paragraphs: [
           'Adoptamos medidas técnicas y organizativas adecuadas para proteger tus datos contra accesos no autorizados, pérdida, alteración o divulgación.',
         ],
       },
       {
-        title: '8. Tus derechos',
+        title: '7. Tus derechos',
         paragraphs: [
           'De acuerdo con el RGPD, tienes derecho a:',
           'Para ejercer cualquiera de estos derechos, contáctanos mediante la dirección indicada a continuación.',
@@ -275,14 +242,14 @@ const policyContent: Record<Locale, PolicyContent> = {
         ],
       },
       {
-        title: '9. Contacto',
+        title: '8. Contacto',
         paragraphs: [
           'Si tienes alguna pregunta sobre esta Política de Privacidad o sobre el tratamiento de tus datos personales, puedes contactarnos a través de:',
         ],
         emailLabel: 'Correo electrónico',
       },
       {
-        title: '10. Cambios en esta política',
+        title: '9. Cambios en esta política',
         paragraphs: [
           'Nos reservamos el derecho de actualizar esta Política de Privacidad siempre que sea necesario. La versión más reciente estará siempre disponible en esta página.',
         ],
