@@ -26,7 +26,7 @@
             <li class="policy-list-item" *ngFor="let item of section.items">{{ item }}</li>
           </ul>
 
-          <p *ngFor="let paragraph of section.afterItemsParagraphs">{{ paragraph }}</p>
+          <p class="after-items-paragraph" *ngFor="let paragraph of section.afterItemsParagraphs">{{ paragraph }}</p>
 
           <p *ngIf="section.emailLabel">
             <strong>{{ section.emailLabel }}: </strong>

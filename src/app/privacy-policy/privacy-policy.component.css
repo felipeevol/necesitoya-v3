@@ -104,6 +104,7 @@
 .privacy-card h2{margin:0 0 12px;font-size:1.35rem}
 .privacy-card p,.privacy-card li{font-size:1rem;line-height:1.7}
 .policy-list{margin:1rem 0 0;padding:1rem 1.25rem 1rem 2.5rem;border:1px solid rgba(148,163,184,.16);background:#fff}
+.after-items-paragraph{margin-top:1.5rem}
 
 a {
   color: var(--accent);
