@@ -156,11 +156,18 @@
       /* Para nÃ£o interferir com eventos do mouse no Cytoscape */
     }
 
-    .language-switcher {
+    .language-toolbar {
       position: fixed;
       top: 8px;
       left: 8px;
       z-index: 1100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .language-switcher {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -261,11 +268,17 @@
     }
 
     .unsubscribe-link {
-      max-width: none;
-      padding: 7px 10px;
+      color: #d9f1ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: 0.01em;
+      padding: 15px 14px;
       border: 1px solid rgba(84, 190, 255, 0.24);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(6, 19, 35, 0.86);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(8px);
       text-decoration: none;
       white-space: nowrap;
       transition:
@@ -285,28 +298,30 @@
 </head>
 
 <body>
-  <div class="language-switcher" aria-label="Language selector">
-    <div class="language-options">
-      <button class="language-button active" type="button" data-language="en" aria-label="English" title="English" aria-pressed="true" aria-expanded="false">
-        <span aria-hidden="true" class="flag-icon">
-          <img src="assets/flags/en.svg" alt="">
-        </span>
-      </button>
-      <button class="language-button" type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false" aria-expanded="false">
-        <span aria-hidden="true" class="flag-icon">
-          <img src="assets/flags/es.svg" alt="">
-        </span>
-      </button>
-      <button class="language-button" type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="false" aria-expanded="false">
-        <span aria-hidden="true" class="flag-icon">
-          <img src="assets/flags/pt.svg" alt="">
-        </span>
-      </button>
+  <div class="language-toolbar">
+    <div class="language-switcher" aria-label="Language selector">
+      <div class="language-options">
+        <button class="language-button active" type="button" data-language="en" aria-label="English" title="English" aria-pressed="true" aria-expanded="false">
+          <span aria-hidden="true" class="flag-icon">
+            <img src="assets/flags/en.svg" alt="">
+          </span>
+        </button>
+        <button class="language-button" type="button" data-language="es" aria-label="Español" title="Español" aria-pressed="false" aria-expanded="false">
+          <span aria-hidden="true" class="flag-icon">
+            <img src="assets/flags/es.svg" alt="">
+          </span>
+        </button>
+        <button class="language-button" type="button" data-language="pt" aria-label="Português" title="Português" aria-pressed="false" aria-expanded="false">
+          <span aria-hidden="true" class="flag-icon">
+            <img src="assets/flags/pt.svg" alt="">
+          </span>
+        </button>
+      </div>
+      <div class="language-actions">
+        <span class="language-hint">Click or tap a topic</span>
+      </div>
     </div>
-    <div class="language-actions">
-      <span class="language-hint">Click or tap a topic</span>
-      <a class="language-hint unsubscribe-link" href="https://be4394eb.sibforms.com/serve/MUIFANum5nXgC0hIKyUHAF6cHfDmks0kXQxIKwC8vRO81_meXQCHPtV5kD6-pJvNfDpyvdbOdr0KnZmIYeic5t7sdj2lEY_DdyVFsguNUKZ1wO1sjblyhc2QtZ1cnL_GRXuPLnq1EFyQbumPLSEMJtRVzjATydZMyZlgbGlpM6UPITynKVStEuuZtycwGnuKW6i1xq4-S2yGKo3KIw==" target="_blank" rel="noopener noreferrer">Unsubscribe</a>
-    </div>
+    <a class="unsubscribe-link" href="https://be4394eb.sibforms.com/serve/MUIFANum5nXgC0hIKyUHAF6cHfDmks0kXQxIKwC8vRO81_meXQCHPtV5kD6-pJvNfDpyvdbOdr0KnZmIYeic5t7sdj2lEY_DdyVFsguNUKZ1wO1sjblyhc2QtZ1cnL_GRXuPLnq1EFyQbumPLSEMJtRVzjATydZMyZlgbGlpM6UPITynKVStEuuZtycwGnuKW6i1xq4-S2yGKo3KIw==" target="_blank" rel="noopener noreferrer">Unsubscribe</a>
   </div>
   <div id="chart-scroll">
     <div id="cy"></div>
