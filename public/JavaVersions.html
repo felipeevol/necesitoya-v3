@@ -375,13 +375,6 @@
       background: rgba(39, 156, 255, 0.12);
     }
 
-    .subscribe-popup-title {
-      margin: 0 28px 12px;
-      color: #ffffff;
-      font-size: clamp(1.65rem, 5vw, 2.15rem);
-      line-height: 1.08;
-    }
-
     .subscribe-popup-text {
       margin: 0 auto 22px;
       max-width: 330px;
@@ -482,11 +475,10 @@
     <a class="subscribe-link" href="https://be4394eb.sibforms.com/serve/MUIFAGNPUJqArP90vIyKWdUag9Hhg_YScYIo_Bn0CJqS0q4aRUcubq68iJ6FkLz6Iz876T_9-0P2iSiFdxfCunCCPN6xIIKGU1De02-3kdlIwVzLof5NGhSzTUsPMiZyx4MrEimxTT9Wo1ESTntAXUdFp7K7z_RlPsBefq687UmiUOvCzo06s50pWrFomPxaO8807NcRV64ph0gjBQ==" target="_blank" rel="noopener noreferrer">Subscribe to receive Java Versions updates</a>
     <a class="unsubscribe-link" href="https://be4394eb.sibforms.com/serve/MUIFANum5nXgC0hIKyUHAF6cHfDmks0kXQxIKwC8vRO81_meXQCHPtV5kD6-pJvNfDpyvdbOdr0KnZmIYeic5t7sdj2lEY_DdyVFsguNUKZ1wO1sjblyhc2QtZ1cnL_GRXuPLnq1EFyQbumPLSEMJtRVzjATydZMyZlgbGlpM6UPITynKVStEuuZtycwGnuKW6i1xq4-S2yGKo3KIw==" target="_blank" rel="noopener noreferrer">Unsubscribe</a>
   </div>
-  <div class="subscribe-popup" role="dialog" aria-modal="true" aria-labelledby="subscribe-popup-title" aria-describedby="subscribe-popup-text">
+  <div class="subscribe-popup" role="dialog" aria-modal="true" aria-label="Java Versions" aria-describedby="subscribe-popup-text">
     <div class="subscribe-popup-card">
       <button class="subscribe-popup-close" type="button" aria-label="Close subscription popup">×</button>
       <div class="subscribe-popup-kicker">Java Versions</div>
-      <h1 class="subscribe-popup-title" id="subscribe-popup-title">Email updates</h1>
       <p class="subscribe-popup-text" id="subscribe-popup-text">Subscribe to receive email updates.</p>
       <div class="subscribe-popup-languages" aria-label="Popup language selector">
         <button class="subscribe-popup-language active" type="button" data-language="en" aria-label="English" title="English" aria-pressed="true">
@@ -871,7 +863,6 @@
       var unsubscribeLink = document.querySelector(".unsubscribe-link");
       var languageButtons = Array.prototype.slice.call(document.querySelectorAll(".language-button"));
       var subscribePopup = document.querySelector(".subscribe-popup");
-      var subscribePopupTitle = document.querySelector(".subscribe-popup-title");
       var subscribePopupText = document.querySelector(".subscribe-popup-text");
       var subscribePopupClose = document.querySelector(".subscribe-popup-close");
       var subscribePopupButton = document.querySelector(".subscribe-popup-button");
@@ -897,21 +888,18 @@
       };
       var subscribeTranslations = {
         en: {
-          title: "Email updates",
           message: "Subscribe to receive email updates.",
           label: "Subscribe",
           closeLabel: "Close subscription popup",
           url: "https://be4394eb.sibforms.com/serve/MUIFAGNPUJqArP90vIyKWdUag9Hhg_YScYIo_Bn0CJqS0q4aRUcubq68iJ6FkLz6Iz876T_9-0P2iSiFdxfCunCCPN6xIIKGU1De02-3kdlIwVzLof5NGhSzTUsPMiZyx4MrEimxTT9Wo1ESTntAXUdFp7K7z_RlPsBefq687UmiUOvCzo06s50pWrFomPxaO8807NcRV64ph0gjBQ=="
         },
         es: {
-          title: "Actualizaciones por email",
           message: "Suscríbete para recibir actualizaciones por email.",
           label: "Suscríbete",
           closeLabel: "Cerrar popup de suscripción",
           url: "https://be4394eb.sibforms.com/serve/MUIFAIChFjQ1MQ0k-R3nOfHwG8N1Pl27BSGqpALvaGWuEoMsuZokUjDf0R_8FSrN5g0qyt5cwcWjbbI2mveMWQfcbe668PzFCgRIpKFlaYObPmizJYhxOzuM3cLokRex40uEQFqk0PSiQCVBw0o4vZOaHv_o9aFWW-B1XPHkCbxbjb3AXLj3dZtV5bpsmysWU0WrTRTDIkpS4wQ6-w=="
         },
         pt: {
-          title: "Atualizações por email",
           message: "Inscreva-se para receber atualizações por email.",
           label: "Inscreva-se",
           closeLabel: "Fechar popup de inscrição",
@@ -1349,7 +1337,6 @@
 
         languageHint.textContent = instructionTranslations[language] || instructionTranslations.en;
         var subscribeTranslation = subscribeTranslations[language] || subscribeTranslations.en;
-        subscribePopupTitle.textContent = subscribeTranslation.title;
         subscribePopupText.textContent = subscribeTranslation.message;
         subscribePopupButton.textContent = subscribeTranslation.label;
         subscribePopupButton.setAttribute("href", subscribeTranslation.url);
