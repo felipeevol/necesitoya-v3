@@ -49,11 +49,7 @@ const policyContent: Record<Locale, PolicyContent> = {
       {
         title: '3. Para que utilizamos os seus dados?',
         paragraphs: [
-          'Na página principal (formulário de contacto), não utilizamos os seus dados para marketing sem o seu consentimento e os dados recolhidos são utilizados exclusivamente para:',
-        ],
-        items: [
-          'Responder às suas perguntas ou pedidos.',
-          'Comunicar consigo relativamente ao assunto do seu contacto.',
+          'Através do formulário de contacto na nossa página principal, podemos recolher o seu nome, endereço de e-mail e qualquer informação adicional que decida incluir na sua mensagem. Utilizamos estas informações apenas para responder às suas perguntas ou pedidos e acompanhar a sua consulta. Não as utilizamos para marketing sem o seu consentimento.',
         ],
         afterItemsParagraphs: [
           'Na página Java Versions, podemos recolher o seu endereço de e-mail através do formulário de subscrição e armazenamo-lo no Brevo, a plataforma de e-mail que utilizamos para gerir subscrições e enviar atualizações. Com o seu consentimento, utilizamos o seu endereço de e-mail apenas para lhe enviar atualizações sobre o diagrama Java Versions. Pode cancelar a subscrição a qualquer momento.',
@@ -142,11 +138,7 @@ const policyContent: Record<Locale, PolicyContent> = {
       {
         title: '3. How do we use your data?',
         paragraphs: [
-          'In the main page (contact form), we do not use your data for marketing without your consent and the data collected is used exclusively to:',
-        ],
-        items: [
-          'Respond to your questions or requests.',
-          'Communicate with you about your inquiry.',
+          'Through the contact form on our main page, we may collect your name, email address, and any additional information you choose to include in your message. We use this information only to respond to your questions or requests and follow up on your inquiry. We do not use it for marketing without your consent.',
         ],
         afterItemsParagraphs: [
           'On the Java Versions page, we may collect your email address through the subscription form and store it in Brevo, the email platform we use to manage subscriptions and send updates. With your consent, we use your email address only to send you updates about the Java Versions diagram. You can unsubscribe at any time.',
@@ -235,11 +227,7 @@ const policyContent: Record<Locale, PolicyContent> = {
       {
         title: '3. ¿Para qué utilizamos tus datos?',
         paragraphs: [
-          'En la página principal (formulario de contacto), no utilizamos tus datos con fines de marketing sin tu consentimiento y los datos recopilados se utilizan exclusivamente para:',
-        ],
-        items: [
-          'Responder a tus preguntas o solicitudes.',
-          'Comunicarnos contigo sobre el asunto de tu contacto.',
+          'A través del formulario de contacto de nuestra página principal, podemos recopilar tu nombre, dirección de correo electrónico y cualquier información adicional que decidas incluir en tu mensaje. Utilizamos esta información solo para responder a tus preguntas o solicitudes y hacer seguimiento de tu consulta. No la utilizamos con fines de marketing sin tu consentimiento.',
         ],
         afterItemsParagraphs: [
           'En la página Java Versions, podemos recopilar tu dirección de correo electrónico a través del formulario de suscripción y la almacenamos en Brevo, la plataforma de correo electrónico que utilizamos para gestionar suscripciones y enviar actualizaciones. Con tu consentimiento, utilizamos tu dirección de correo electrónico únicamente para enviarte actualizaciones sobre el diagrama Java Versions. Puedes cancelar la suscripción en cualquier momento.',
