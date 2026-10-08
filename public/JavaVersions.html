@@ -267,6 +267,7 @@
       text-align: left;
     }
 
+    .subscribe-link,
     .unsubscribe-link {
       color: #d9f1ff;
       font-size: 0.78rem;
@@ -287,6 +288,8 @@
         background-color 0.2s ease;
     }
 
+    .subscribe-link:hover,
+    .subscribe-link:focus-visible,
     .unsubscribe-link:hover,
     .unsubscribe-link:focus-visible {
       transform: translateY(-1px);
@@ -321,6 +324,7 @@
         <span class="language-hint">Click or tap a topic</span>
       </div>
     </div>
+    <a class="subscribe-link" href="" target="_blank" rel="noopener noreferrer">Subscribe to receive Java Versions updates</a>
     <a class="unsubscribe-link" href="https://be4394eb.sibforms.com/serve/MUIFANum5nXgC0hIKyUHAF6cHfDmks0kXQxIKwC8vRO81_meXQCHPtV5kD6-pJvNfDpyvdbOdr0KnZmIYeic5t7sdj2lEY_DdyVFsguNUKZ1wO1sjblyhc2QtZ1cnL_GRXuPLnq1EFyQbumPLSEMJtRVzjATydZMyZlgbGlpM6UPITynKVStEuuZtycwGnuKW6i1xq4-S2yGKo3KIw==" target="_blank" rel="noopener noreferrer">Unsubscribe</a>
   </div>
   <div id="chart-scroll">
@@ -683,6 +687,7 @@
 
       var languageSwitcher = document.querySelector(".language-switcher");
       var languageHint = document.querySelector(".language-hint");
+      var subscribeLink = document.querySelector(".subscribe-link");
       var unsubscribeLink = document.querySelector(".unsubscribe-link");
       var languageButtons = Array.prototype.slice.call(document.querySelectorAll(".language-button"));
       var instructionTranslations = {
@@ -702,6 +707,20 @@
         pt: {
           label: "Cancelar subscrição",
           url: "https://be4394eb.sibforms.com/serve/MUIFACnPUyiDWFB5QRb7P05ebqLOIRYdvu45xwF2rkW023Ms0tYEf6x2Cww4q4pe7F14gF4Syuq6aVKqRhxt3kXDbv9yvUSwBXKkBNMDRhj3iC4keOwLkSjf0L8l9EXlKLYJ5_DRkML6TM9BOvc0O-NSdOTOPiqVHrxva3SbhYzfCPeWxnLr4NVadlEPKeEI0yNoyI9Wk12qHr769Q=="
+        }
+      };
+      var subscribeTranslations = {
+        en: {
+          label: "Subscribe to receive Java Versions updates",
+          url: ""
+        },
+        es: {
+          label: "Suscríbete para recibir actualizaciones de Java Versions",
+          url: ""
+        },
+        pt: {
+          label: "Subscreva para receber atualizações do Java Versions",
+          url: ""
         }
       };
       var releaseDateTranslations = {
@@ -1128,6 +1147,10 @@
         });
 
         languageHint.textContent = instructionTranslations[language] || instructionTranslations.en;
+        var subscribeTranslation = subscribeTranslations[language] || subscribeTranslations.en;
+        subscribeLink.textContent = subscribeTranslation.label;
+        subscribeLink.setAttribute("href", subscribeTranslation.url);
+        subscribeLink.setAttribute("aria-label", subscribeTranslation.label);
         var unsubscribeTranslation = unsubscribeTranslations[language] || unsubscribeTranslations.en;
         unsubscribeLink.textContent = unsubscribeTranslation.label;
         unsubscribeLink.setAttribute("href", unsubscribeTranslation.url);
