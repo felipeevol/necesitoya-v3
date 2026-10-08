@@ -26,6 +26,8 @@
             <li class="policy-list-item" *ngFor="let item of section.items">{{ item }}</li>
           </ul>
 
+          <p *ngFor="let paragraph of section.afterItemsParagraphs">{{ paragraph }}</p>
+
           <p *ngIf="section.emailLabel">
             <strong>{{ section.emailLabel }}: </strong>
             <a href="mailto:felipe@profesionaljava.es">felipe&#64;profesionaljava.es</a>
