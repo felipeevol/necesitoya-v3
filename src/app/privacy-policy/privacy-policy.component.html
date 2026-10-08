@@ -26,7 +26,12 @@
             <li class="policy-list-item" *ngFor="let item of section.items">{{ item }}</li>
           </ul>
 
-          <p class="after-items-paragraph" *ngFor="let paragraph of section.afterItemsParagraphs">{{ paragraph }}</p>
+          <p class="after-items-paragraph" *ngFor="let paragraph of section.afterItemsParagraphs">
+            {{ paragraph }}
+            <ng-container *ngIf="section.afterItemsLink">
+              (<a [href]="section.afterItemsLink.url" target="_blank" rel="noopener noreferrer">{{ section.afterItemsLink.label }}</a>){{ section.afterItemsLink.punctuation }}
+            </ng-container>
+          </p>
 
           <p *ngIf="section.emailLabel">
             <strong>{{ section.emailLabel }}: </strong>

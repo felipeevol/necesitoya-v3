@@ -9,6 +9,11 @@ type PolicySection = {
   paragraphs: string[];
   items?: string[];
   afterItemsParagraphs?: string[];
+  afterItemsLink?: {
+    label: string;
+    url: string;
+    punctuation?: string;
+  };
   emailLabel?: string;
 };
 
@@ -119,8 +124,13 @@ const policyContent: Record<Locale, PolicyContent> = {
           'Through the contact form on our main page, we may collect your name, email address, and any additional information you choose to include in your message. We use this information only to respond to your questions or requests and follow up on your inquiry. We do not use it for marketing without your consent.',
         ],
         afterItemsParagraphs: [
-          'On the Java Versions page, we may collect your email address through the subscription form and store it in Brevo, the email platform we use to manage subscriptions and send updates. With your consent, we use your email address only to send you updates about the Java Versions diagram. You can unsubscribe at any time.',
+          'On the Java Versions page, we may collect your email address through the subscription form and store it in Brevo, the email platform we use to manage subscriptions and send updates. With your consent, we use your email address only to send you updates about the Java Versions diagram. You can unsubscribe at any time',
         ],
+        afterItemsLink: {
+          label: 'unsubscribe',
+          url: 'https://be4394eb.sibforms.com/serve/MUIFANum5nXgC0hIKyUHAF6cHfDmks0kXQxIKwC8vRO81_meXQCHPtV5kD6-pJvNfDpyvdbOdr0KnZmIYeic5t7sdj2lEY_DdyVFsguNUKZ1wO1sjblyhc2QtZ1cnL_GRXuPLnq1EFyQbumPLSEMJtRVzjATydZMyZlgbGlpM6UPITynKVStEuuZtycwGnuKW6i1xq4-S2yGKo3KIw==',
+          punctuation: '.',
+        },
       },
       {
         title: '3. Legal basis for processing',
