@@ -244,6 +244,12 @@
       display: block;
     }
 
+    .language-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .language-hint {
       max-width: 118px;
       color: #d9f1ff;
@@ -252,6 +258,28 @@
       line-height: 1.12;
       letter-spacing: 0.01em;
       text-align: left;
+    }
+
+    .unsubscribe-link {
+      max-width: none;
+      padding: 7px 10px;
+      border: 1px solid rgba(84, 190, 255, 0.24);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      text-decoration: none;
+      white-space: nowrap;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .unsubscribe-link:hover,
+    .unsubscribe-link:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255, 132, 37, 0.8);
+      background: rgba(255, 132, 37, 0.16);
+      outline: none;
     }
   </style>
 </head>
@@ -275,7 +303,10 @@
         </span>
       </button>
     </div>
-    <span class="language-hint">Click or tap a topic</span>
+    <div class="language-actions">
+      <span class="language-hint">Click or tap a topic</span>
+      <a class="language-hint unsubscribe-link" href="https://be4394eb.sibforms.com/serve/MUIFANum5nXgC0hIKyUHAF6cHfDmks0kXQxIKwC8vRO81_meXQCHPtV5kD6-pJvNfDpyvdbOdr0KnZmIYeic5t7sdj2lEY_DdyVFsguNUKZ1wO1sjblyhc2QtZ1cnL_GRXuPLnq1EFyQbumPLSEMJtRVzjATydZMyZlgbGlpM6UPITynKVStEuuZtycwGnuKW6i1xq4-S2yGKo3KIw==" target="_blank" rel="noopener noreferrer">Unsubscribe</a>
+    </div>
   </div>
   <div id="chart-scroll">
     <div id="cy"></div>
@@ -637,11 +668,26 @@
 
       var languageSwitcher = document.querySelector(".language-switcher");
       var languageHint = document.querySelector(".language-hint");
+      var unsubscribeLink = document.querySelector(".unsubscribe-link");
       var languageButtons = Array.prototype.slice.call(document.querySelectorAll(".language-button"));
       var instructionTranslations = {
         en: "Click or tap a topic",
         es: "Haz clic o toca un tema",
         pt: "Clique ou toque em um tópico"
+      };
+      var unsubscribeTranslations = {
+        en: {
+          label: "Unsubscribe",
+          url: "https://be4394eb.sibforms.com/serve/MUIFANum5nXgC0hIKyUHAF6cHfDmks0kXQxIKwC8vRO81_meXQCHPtV5kD6-pJvNfDpyvdbOdr0KnZmIYeic5t7sdj2lEY_DdyVFsguNUKZ1wO1sjblyhc2QtZ1cnL_GRXuPLnq1EFyQbumPLSEMJtRVzjATydZMyZlgbGlpM6UPITynKVStEuuZtycwGnuKW6i1xq4-S2yGKo3KIw=="
+        },
+        es: {
+          label: "Darse de baja",
+          url: "https://be4394eb.sibforms.com/serve/MUIFANPyJafzkKfGEAdpSgazgEuSSTz1UL-Bb1yThG6ElUbZV1KxGDHYbP1N-2DJNplNdKX9OwBFZHk1rW5tMX4854yPZUE13V_02mp2yCR9Ar04nRYa2W3UZ4qCcwABe5tRbPCPYbh1_-OgSjAICLtLT1g3oE_p-HYBUmjA03U97hDfA3voHRN6gZl8H1n3Ob7mSFKk3n3yCFP-sQ=="
+        },
+        pt: {
+          label: "Cancelar subscrição",
+          url: "https://be4394eb.sibforms.com/serve/MUIFACnPUyiDWFB5QRb7P05ebqLOIRYdvu45xwF2rkW023Ms0tYEf6x2Cww4q4pe7F14gF4Syuq6aVKqRhxt3kXDbv9yvUSwBXKkBNMDRhj3iC4keOwLkSjf0L8l9EXlKLYJ5_DRkML6TM9BOvc0O-NSdOTOPiqVHrxva3SbhYzfCPeWxnLr4NVadlEPKeEI0yNoyI9Wk12qHr769Q=="
+        }
       };
       var releaseDateTranslations = {
         en: {},
@@ -1067,6 +1113,10 @@
         });
 
         languageHint.textContent = instructionTranslations[language] || instructionTranslations.en;
+        var unsubscribeTranslation = unsubscribeTranslations[language] || unsubscribeTranslations.en;
+        unsubscribeLink.textContent = unsubscribeTranslation.label;
+        unsubscribeLink.setAttribute("href", unsubscribeTranslation.url);
+        unsubscribeLink.setAttribute("aria-label", unsubscribeTranslation.label);
         document.documentElement.setAttribute("lang", language);
       }
 
