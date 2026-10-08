@@ -46,8 +46,13 @@ const policyContent: Record<Locale, PolicyContent> = {
           'Através do formulário de contacto na nossa página principal, podemos recolher o seu nome, endereço de e-mail e qualquer informação adicional que decida incluir na sua mensagem. Utilizamos estas informações apenas para responder às suas perguntas ou pedidos e acompanhar a sua consulta. Não as utilizamos para marketing sem o seu consentimento.',
         ],
         afterItemsParagraphs: [
-          'Na página Java Versions, podemos recolher o seu endereço de e-mail através do formulário de subscrição e armazenamo-lo no Brevo, a plataforma de e-mail que utilizamos para gerir subscrições e enviar atualizações. Com o seu consentimento, utilizamos o seu endereço de e-mail apenas para lhe enviar atualizações sobre o diagrama Java Versions. Pode cancelar a subscrição a qualquer momento.',
+          'Na página Java Versions, podemos recolher o seu endereço de e-mail através do formulário de subscrição e armazenamo-lo no Brevo, a plataforma de e-mail que utilizamos para gerir subscrições e enviar atualizações. Com o seu consentimento, utilizamos o seu endereço de e-mail apenas para lhe enviar atualizações sobre o diagrama Java Versions. Pode cancelar a subscrição a qualquer momento',
         ],
+        afterItemsLink: {
+          label: 'cancelar subscrição',
+          url: 'https://be4394eb.sibforms.com/serve/MUIFACnPUyiDWFB5QRb7P05ebqLOIRYdvu45xwF2rkW023Ms0tYEf6x2Cww4q4pe7F14gF4Syuq6aVKqRhxt3kXDbv9yvUSwBXKkBNMDRhj3iC4keOwLkSjf0L8l9EXlKLYJ5_DRkML6TM9BOvc0O-NSdOTOPiqVHrxva3SbhYzfCPeWxnLr4NVadlEPKeEI0yNoyI9Wk12qHr769Q==',
+          punctuation: '.',
+        },
       },
       {
         title: '3. Base legal para o tratamento',
