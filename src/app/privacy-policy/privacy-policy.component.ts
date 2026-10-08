@@ -48,8 +48,7 @@ const policyContent: Record<Locale, PolicyContent> = {
       {
         title: '3. Para que utilizamos os seus dados?',
         paragraphs: [
-          'Os dados recolhidos são utilizados exclusivamente para:',
-          'Não utilizamos os seus dados para marketing sem o seu consentimento.',
+          'Na página principal, não utilizamos os seus dados para marketing sem o seu consentimento e os dados recolhidos são utilizados exclusivamente para:',
         ],
         items: [
           'Responder às suas perguntas ou pedidos.',
@@ -139,8 +138,7 @@ const policyContent: Record<Locale, PolicyContent> = {
       {
         title: '3. How do we use your data?',
         paragraphs: [
-          'The data collected is used exclusively to:',
-          'We do not use your data for marketing without your consent.',
+          'In the main page, we do not use your data for marketing without your consent and the data collected is used exclusively to:',
         ],
         items: [
           'Respond to your questions or requests.',
@@ -230,8 +228,7 @@ const policyContent: Record<Locale, PolicyContent> = {
       {
         title: '3. ¿Para qué utilizamos tus datos?',
         paragraphs: [
-          'Los datos recopilados se utilizan exclusivamente para:',
-          'No utilizamos tus datos con fines de marketing sin tu consentimiento.',
+          'En la página principal, no utilizamos tus datos con fines de marketing sin tu consentimiento y los datos recopilados se utilizan exclusivamente para:',
         ],
         items: [
           'Responder a tus preguntas o solicitudes.',
