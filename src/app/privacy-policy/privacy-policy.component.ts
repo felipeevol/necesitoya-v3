@@ -56,7 +56,7 @@ const policyContent: Record<Locale, PolicyContent> = {
           'Comunicar consigo relativamente ao assunto do seu contacto.',
         ],
         afterItemsParagraphs: [
-          'Na página Java Versions, recolhemos o seu endereço de e-mail através do formulário de subscrição e armazenamo-lo no Brevo, a plataforma de e-mail que utilizamos para gerir subscrições e enviar atualizações. Com o seu consentimento, utilizamos o seu endereço de e-mail apenas para lhe enviar atualizações sobre o diagrama Java Versions. Pode cancelar a subscrição a qualquer momento.',
+          'Na página Java Versions, podemos recolher o seu endereço de e-mail através do formulário de subscrição e armazenamo-lo no Brevo, a plataforma de e-mail que utilizamos para gerir subscrições e enviar atualizações. Com o seu consentimento, utilizamos o seu endereço de e-mail apenas para lhe enviar atualizações sobre o diagrama Java Versions. Pode cancelar a subscrição a qualquer momento.',
         ],
       },
       {
@@ -149,7 +149,7 @@ const policyContent: Record<Locale, PolicyContent> = {
           'Communicate with you about your inquiry.',
         ],
         afterItemsParagraphs: [
-          'On the Java Versions page, we collect your email address through the subscription form and store it in Brevo, the email platform we use to manage subscriptions and send updates. With your consent, we use your email address only to send you updates about the Java Versions diagram. You can unsubscribe at any time.',
+          'On the Java Versions page, we may collect your email address through the subscription form and store it in Brevo, the email platform we use to manage subscriptions and send updates. With your consent, we use your email address only to send you updates about the Java Versions diagram. You can unsubscribe at any time.',
         ],
       },
       {
@@ -242,7 +242,7 @@ const policyContent: Record<Locale, PolicyContent> = {
           'Comunicarnos contigo sobre el asunto de tu contacto.',
         ],
         afterItemsParagraphs: [
-          'En la página Java Versions, recopilamos tu dirección de correo electrónico a través del formulario de suscripción y la almacenamos en Brevo, la plataforma de correo electrónico que utilizamos para gestionar suscripciones y enviar actualizaciones. Con tu consentimiento, utilizamos tu dirección de correo electrónico únicamente para enviarte actualizaciones sobre el diagrama Java Versions. Puedes cancelar la suscripción en cualquier momento.',
+          'En la página Java Versions, podemos recopilar tu dirección de correo electrónico a través del formulario de suscripción y la almacenamos en Brevo, la plataforma de correo electrónico que utilizamos para gestionar suscripciones y enviar actualizaciones. Con tu consentimiento, utilizamos tu dirección de correo electrónico únicamente para enviarte actualizaciones sobre el diagrama Java Versions. Puedes cancelar la suscripción en cualquier momento.',
         ],
       },
       {
