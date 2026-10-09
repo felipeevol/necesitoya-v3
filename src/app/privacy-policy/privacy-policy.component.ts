@@ -55,7 +55,7 @@ const policyContent: Record<Locale, PolicyContent> = {
           {
             text: 'Na página IaC Examples, podemos recolher o seu endereço de e-mail através do formulário de subscrição e armazenamo-lo no Brevo, a plataforma de e-mail que utilizamos para gerir subscrições e enviar atualizações. Com o seu consentimento, utilizamos o seu endereço de e-mail apenas para lhe enviar atualizações do IaC Examples. Pode cancelar a subscrição a qualquer momento',
             label: 'cancelar subscrição',
-            url: 'https://be4394eb.sibforms.com/serve/MUIFAI0T2W-wx7MBXFvKN3MDWQMmI3IVIhe7BmyHJTFAprVwdja4wOZJfqF7_yHn8D-lA3iDLCDABqvgHhIZPm71FDpQGkwHtihYf9CeJwFk5kpozDk2FXvm06kzLifg3YE-Nz8f7Lduexkeo1i24WYjAdTyXwi73nv9WR-m67T8O3P4-sP269BRT3D5yTiIsRAKvqSrAc7YV2aADQ==',
+            url: 'https://be4394eb.sibforms.com/serve/MUIFAA7Q5wXaLII6PnlIU1R5UxeT2VfhFbx8UDhxsGac_RbmcNxddosIITfGp5i04Ym52ZZFdJnYEr1XwsMWFPs-mQrV5Vb_hH90g-8lI4YTKk7Z2KHS8tmHZjNrzkMWW7NEj-y_KCsRgqh0uIB_fAD3ecQd2oYZLYNf7v1QvPA08h0AMvDartm4FycJ2LcGb07Jr2P9n8T-XAANIw==',
             punctuation: '.',
           },
         ],
@@ -233,7 +233,7 @@ const policyContent: Record<Locale, PolicyContent> = {
           {
             text: 'En la página IaC Examples, podemos recopilar tu dirección de correo electrónico a través del formulario de suscripción y la almacenamos en Brevo, la plataforma de correo electrónico que utilizamos para gestionar suscripciones y enviar actualizaciones. Con tu consentimiento, utilizamos tu dirección de correo electrónico únicamente para enviarte actualizaciones sobre IaC Examples. Puedes cancelar la suscripción en cualquier momento',
             label: 'cancelar la suscripción',
-            url: 'https://be4394eb.sibforms.com/serve/MUIFAM0Nw_PHJOq72d5O8NTbA6PMlo9GZL30QtM8qYXei7o0v_v4wfCUFfD53hW07y-fEDDJFf-YyD1Rljgz4pCbnHjmzaWWya01BKUNFVvV9CEeZvsB8X97N2mdwFxN0wFp9lokUxGw_ThGryEbx63DChmTpwrv5-opx9R63Hh7OHAORHw4AwyR4vKKYZeWqAij7gJe9zxrwsPCvA==',
+            url: 'https://be4394eb.sibforms.com/serve/MUIFAHfqFt9qlsTxpJe8JTjOHQa5fy6C6ni4e7N6BsZcCFPklRxNJD44QjhMHI6lscALSXfo331C26cg7sgLnflmtYxJyyJf0PLJ7k5RmRJtLrflDqKq5uFmEnpdIYozmwWZYVkDU1oe-1TBbDT_I2UftpDLd90Yqg1Sl35Bv3MdWbI4Bg-D4S72aJdkpT27P4lPmTenGYmXrs4cHQ==',
             punctuation: '.',
           },
         ],
