@@ -27,10 +27,8 @@
           </ul>
 
           <p class="after-items-paragraph" *ngFor="let paragraph of section.afterItemsParagraphs">
-            {{ paragraph }}
-            <ng-container *ngIf="section.afterItemsLink">
-              (<a [href]="section.afterItemsLink.url" target="_blank" rel="noopener noreferrer">{{ section.afterItemsLink.label }}</a>){{ section.afterItemsLink.punctuation }}
-            </ng-container>
+            {{ paragraph.text }}
+            (<a [href]="paragraph.url" target="_blank" rel="noopener noreferrer">{{ paragraph.label }}</a>){{ paragraph.punctuation }}
           </p>
 
           <p *ngIf="section.emailLabel">
