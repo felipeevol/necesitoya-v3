@@ -35,19 +35,19 @@ const subscribePopupContent: Record<Locale, SubscribePopupContent> = {
     message: 'Subscribe to receive an email when IaC Examples is updated',
     label: 'Subscribe',
     closeLabel: 'Close subscription popup',
-    url: 'https://be4394eb.sibforms.com/serve/MUIFAGNPUJqArP90vIyKWdUag9Hhg_YScYIo_Bn0CJqS0q4aRUcubq68iJ6FkLz6Iz876T_9-0P2iSiFdxfCunCCPN6xIIKGU1De02-3kdlIwVzLof5NGhSzTUsPMiZyx4MrEimxTT9Wo1ESTntAXUdFp7K7z_RlPsBefq687UmiUOvCzo06s50pWrFomPxaO8807NcRV64ph0gjBQ==',
+    url: 'https://be4394eb.sibforms.com/serve/MUIFAGTxnEUVCiOzQCObZO4EQka--NlTZxKllixpa9G3qjGUL99rKUCY3WcJXiFuzwQQ7w06I3ULqWQJ_nXg1ehJQR89MRUfz308lS51jd3ENFRsFiWjWpRZSv3NmlA0CnWlT8rZK8m_A4RQQjjurfGDjhT3e7Dfqqg2PrFN03nkz5uZs1ibYLN55lvhFmg-4JHnpowC0yR5gPRcHQ==',
   },
   es: {
     message: 'Suscríbete para recibir un email cuando se actualice IaC Examples',
     label: 'Suscríbete',
     closeLabel: 'Cerrar popup de suscripción',
-    url: 'https://be4394eb.sibforms.com/serve/MUIFAIChFjQ1MQ0k-R3nOfHwG8N1Pl27BSGqpALvaGWuEoMsuZokUjDf0R_8FSrN5g0qyt5cwcWjbbI2mveMWQfcbe668PzFCgRIpKFlaYObPmizJYhxOzuM3cLokRex40uEQFqk0PSiQCVBw0o4vZOaHv_o9aFWW-B1XPHkCbxbjb3AXLj3dZtV5bpsmysWU0WrTRTDIkpS4wQ6-w==',
+    url: 'https://be4394eb.sibforms.com/serve/MUIFAM0Nw_PHJOq72d5O8NTbA6PMlo9GZL30QtM8qYXei7o0v_v4wfCUFfD53hW07y-fEDDJFf-YyD1Rljgz4pCbnHjmzaWWya01BKUNFVvV9CEeZvsB8X97N2mdwFxN0wFp9lokUxGw_ThGryEbx63DChmTpwrv5-opx9R63Hh7OHAORHw4AwyR4vKKYZeWqAij7gJe9zxrwsPCvA==',
   },
   pt: {
     message: 'Inscreva-se para receber email quando o IaC Examples for atualizado',
     label: 'Inscreva-se',
     closeLabel: 'Fechar popup de inscrição',
-    url: 'https://be4394eb.sibforms.com/serve/MUIFAFB8YYlzyUtYNLvki0ltBIB_vj4L9t6z25IxEt4XSnomLCRaqRCEf19RnouU02wRf2mpmOqi7culWR41GUDXmXOEO1Qh6-8czVznPX7Q4FUoDx6ZMMNMgu1jDlcKyp5AvC2bI0Jpj2pgv-XVZH2XqTZIMqCFDO226NWWcbUJdtRBcHHeuDqoyyYkVtQEDPuTaBaxVmyL7ICswA==',
+    url: 'https://be4394eb.sibforms.com/serve/MUIFAI0T2W-wx7MBXFvKN3MDWQMmI3IVIhe7BmyHJTFAprVwdja4wOZJfqF7_yHn8D-lA3iDLCDABqvgHhIZPm71FDpQGkwHtihYf9CeJwFk5kpozDk2FXvm06kzLifg3YE-Nz8f7Lduexkeo1i24WYjAdTyXwi73nv9WR-m67T8O3P4-sP269BRT3D5yTiIsRAKvqSrAc7YV2aADQ==',
   },
 };
 
