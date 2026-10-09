@@ -7,6 +7,8 @@ import { AutoScalingDetailComponent } from './auto-scaling-detail/auto-scaling-d
 import { CommandGroup, CommandPlatform, getIacCommand } from './iac-command.model';
 import { LoadBalancerAutoScalingDetailComponent } from './load-balancer-auto-scaling-detail/load-balancer-auto-scaling-detail.component';
 
+const iacGoogleAnalyticsId = 'G-KS1XTY9N6Z';
+
 const iacFiles = [
   {
     fileName: 'AutoScaling1.yaml',
@@ -29,6 +31,13 @@ type SubscribePopupContent = {
   closeLabel: string;
   url: string;
 };
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 const subscribePopupContent: Record<Locale, SubscribePopupContent> = {
   en: {
@@ -83,6 +92,8 @@ export class IacComponent {
     if (this.isIacFileName(requestedFile)) {
       this.selectedFileName = requestedFile;
     }
+
+    this.configureIacAnalytics();
   }
 
   get currentTranslations(): Translation {
@@ -219,5 +230,16 @@ export class IacComponent {
 
   private isIacFileName(value: string | null): value is IacFileName {
     return this.files.some((file) => file.fileName === value);
+  }
+
+  private configureIacAnalytics(): void {
+    window.dataLayer = window.dataLayer ?? [];
+    window.gtag =
+      window.gtag ??
+      ((...args: unknown[]) => {
+        window.dataLayer?.push(args);
+      });
+
+    window.gtag('config', iacGoogleAnalyticsId);
   }
 }
