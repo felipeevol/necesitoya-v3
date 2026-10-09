@@ -8,6 +8,53 @@
   gtag('config', 'G-KS1XTY9N6Z');
 </script>
 
+<div
+  class="subscribe-popup"
+  [class.is-hidden]="!subscribePopupVisible"
+  role="dialog"
+  aria-modal="true"
+  aria-label="IaC Examples"
+  aria-describedby="subscribe-popup-text"
+  (click)="closeSubscribePopupOnBackdrop($event)">
+  <div class="subscribe-popup-card">
+    <button
+      class="subscribe-popup-close"
+      type="button"
+      [attr.aria-label]="subscribePopupContent.closeLabel"
+      (click)="closeSubscribePopup()">
+      ×
+    </button>
+    <div class="subscribe-popup-kicker">IaC Examples</div>
+    <p class="subscribe-popup-text" id="subscribe-popup-text">
+      {{ subscribePopupContent.message }}
+    </p>
+    <div class="subscribe-popup-languages" aria-label="Popup language selector">
+      <button
+        *ngFor="let option of languageOptions"
+        class="subscribe-popup-language"
+        [class.active]="currentLocale === option.code"
+        type="button"
+        [attr.data-language]="option.code"
+        [attr.aria-label]="getLanguageLabel(option.code)"
+        [attr.title]="getLanguageLabel(option.code)"
+        [attr.aria-pressed]="currentLocale === option.code"
+        (click)="setPopupLanguage(option.code)">
+        <span aria-hidden="true" class="flag-icon">
+          <img [src]="option.flagSrc" alt="">
+        </span>
+      </button>
+    </div>
+    <a
+      class="subscribe-popup-button"
+      [href]="subscribePopupContent.url"
+      target="_blank"
+      rel="noopener noreferrer"
+      [attr.aria-label]="subscribePopupContent.label">
+      {{ subscribePopupContent.label }}
+    </a>
+  </div>
+</div>
+
 <section class="iac-hero">
   <div class="container hero-grid">
     <div class="hero">
