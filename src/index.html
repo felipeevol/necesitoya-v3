@@ -6,14 +6,31 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233b82f6;stop-opacity:1' /><stop offset='100%' style='stop-color:%238b5cf6;stop-opacity:1' /></linearGradient></defs><circle cx='100' cy='100' r='100' fill='url(%23grad)'/><text x='100' y='135' font-size='110' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial, sans-serif'>PJ</text></svg>" type="image/svg+xml">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6LEV3RH6X"></script>
   <script>
+    (function () {
+      var currentPath = window.location.pathname.replace(/\/$/, '');
+
+      if (currentPath.endsWith('/recursos_iac')) {
+        window.isRecursosIacRoute = true;
+        document.documentElement.classList.add('route-recursos-iac');
+      }
+    })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script>
+    var googleTagId = window.location.pathname.replace(/\/$/, '') === '/recursos_iac'
+      ? 'G-KS1XTY9N6Z'
+      : 'G-Z6LEV3RH6X';
+    var googleTagScript = document.createElement('script');
+    googleTagScript.async = true;
+    googleTagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + googleTagId;
+    document.head.appendChild(googleTagScript);
+
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-Z6LEV3RH6X');
+    gtag('config', googleTagId);
   </script>
 </head>
 <body>
